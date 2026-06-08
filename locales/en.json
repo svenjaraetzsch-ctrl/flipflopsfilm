@@ -1,0 +1,41 @@
+{
+  "home_header": {
+    "title": "Keep your",
+    "title2": "passion alive",
+    "subtitle": "We create digital experiences"
+  },
+
+  "home_whoweare": {
+    "text": "Bring your creative vision to life through feature films, commercials, and photoshoots in the Canary Islands, Madrid, Almería, and Bilbao.",
+    "subtext": "Combining deep local knowledge with international production standards, we navigate complexity behind the scenes so creativity can take center stage."
+  },
+
+  "home_awards": {
+    "frog": "Production Services",
+    "text": "Your tailored solution for every challenge.",
+
+    "service": "Service",
+    "description": "Description",
+
+    "service1": "Production Services",
+    "service1_desc": "End-to-end support for productions of every scale.",
+
+    "service2": "Tax Incentives",
+    "service2_desc": "Maximizing financial benefits through Spain's incentive programs.",
+
+    "service3": "Location Scouting",
+    "service3_desc": "Access to exceptional locations across Spain and the Canary Islands.",
+
+    "service4": "Production Management",
+    "service4_desc": "Professional planning, coordination, and execution.",
+
+    "service5": "Line Producing",
+    "service5_desc": "Efficient budgeting, scheduling, and local supervision.",
+
+    "service6": "Crew & Equipment",
+    "service6_desc": "Connecting productions with trusted industry professionals.",
+
+    "service7": "Permits & Logistics",
+    "service7_desc": "Ensuring smooth operations from pre-production to wrap."
+  }
+}

@@ -1,0 +1,14 @@
+[
+  {
+    "id": 1,
+    "role": "Founder",
+    "name": "David",
+    "image": "/assets/imgs/team/t2.jpg"
+  },
+  {
+    "id": 2,
+    "role": "Founder",
+    "name": "Andre",
+    "image": "/assets/imgs/team/t3.jpg"
+  }
+]

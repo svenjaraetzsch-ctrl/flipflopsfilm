@@ -1,0 +1,1 @@
+export { default } from "file:///Users/svenjaraetzsch/Documents/FLIP_FLOPS_FILMS/WEBDEV/Main_Files/bayone_nuxtjs/node_modules/@nuxt/vite-builder/dist/runtime/client.manifest.mjs"
