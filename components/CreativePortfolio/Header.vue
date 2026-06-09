@@ -13,7 +13,7 @@
         </div>
         <div class="col-lg-5">
           <div class="text f-ultra-light">
-            <span>Studio</span>
+            <span>Flip Flops</span>
           </div>
         </div>
         <div class="col-lg-3">
@@ -30,7 +30,7 @@
         </div>
         <div class="col-lg-10 offset-lg-1">
           <div class="text text-lg text-center mt-50 f-bold">
-            <span>Agency</span>
+            <span>Films</span>
           </div>
         </div>
       </div>

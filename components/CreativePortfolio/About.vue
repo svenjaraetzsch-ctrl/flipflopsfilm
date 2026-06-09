@@ -4,17 +4,14 @@
       <div class="row pb-100 bord-thin-bottom mb-80">
         <div class="col-lg-4">
           <div class="sec-head">
-            <h6 class="sub-title fz-20 md-mb50">Company.</h6>
+            <span class="sub-title bord mb-30">Company</span>
           </div>
         </div>
         <div class="col-lg-7 offset-lg-1">
           <div>
-            <h3 class="text-u text-indent">Our experience in design spans geographies and cultures, industries and
-              business objectives.</h3>
+            <h3 class="text-u text-indent">A COMPANY DRIVEN BY PEOPLE, PARTNERSHIPS AND A COMMITMENT TO EVERY PROJECT'S SUCCESS.</h3>
             <div class="text mt-30">
-              <p>The Koyeb unified platform lets you combine the languages, frameworks and technologies you love. Deploy
-                any application thanks to native support of popular languages and built-in Docker container deployment.
-              </p>
+              <p>At Flip Flops Film, we believe great productions are built through strong relationships and seamless collaboration. Combining deep regional knowledge with international expertise, we create the foundation for projects to perform at their highest level.</p>
             </div>
           </div>
         </div>
@@ -22,7 +19,7 @@
       <div class="row">
         <div class="col-lg-4">
           <div class="sec-head">
-            <h6 class="sub-title fz-20 md-mb50">Our <br /> Services.</h6>
+            <span class="sub-title bord mb-30">Crew & Network</span>
           </div>
         </div>
         <div class="col-lg-7 offset-lg-1">
