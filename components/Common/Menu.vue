@@ -21,7 +21,7 @@
                   <ul class="rest">
                     <li>
                       <div class="o-hidden">
-                        <a href="/flipflopsfilm" class="sub-link animsition-link" @click="closeMenu">Flip Flops Film</a>
+                        <a href="/" class="sub-link animsition-link" @click="closeMenu">Flip Flops Film</a>
                       </div>
                     </li>
                     <li>
