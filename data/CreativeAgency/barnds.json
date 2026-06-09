@@ -1,8 +1,38 @@
 [
-  "/assets/imgs/brands/01.png",
-  "/assets/imgs/brands/02.png",
-  "/assets/imgs/brands/03.png",
-  "/assets/imgs/brands/04.png",
-  "/assets/imgs/brands/05.png",
-  "/assets/imgs/brands/06.png"
+  {
+    "image": "/assets/imgs/brands/Scout&Film_logo_blanco.png",
+    "url": "https://scoutandfilm.com"
+  },
+  {
+    "image": "/assets/imgs/brands/WB-Film_RGB_White.png",
+    "url": "https://www.w-b-film.de/"
+  },
+  {
+    "image": "/assets/imgs/logo-light.png",
+    "url": "https://flipflopsfilm.com"
+  },
+  {
+    "image": "/assets/imgs/brands/Scout&Film_logo_blanco.png",
+    "url": "https://scoutandfilm.com"
+  },
+  {
+    "image": "/assets/imgs/brands/WB-Film_RGB_White.png",
+    "url": "https://www.w-b-film.de/"
+  },
+  {
+    "image": "/assets/imgs/logo-light.png",
+    "url": "https://flipflopsfilm.com"
+  },
+  {
+    "image": "/assets/imgs/brands/Scout&Film_logo_blanco.png",
+    "url": "https://scoutandfilm.com"
+  },
+  {
+    "image": "/assets/imgs/brands/WB-Film_RGB_White.png",
+    "url": "https://www.w-b-film.de/"
+  },
+  {
+    "image": "/assets/imgs/logo-light.png",
+    "url": "https://flipflopsfilm.com"
+  }
 ]

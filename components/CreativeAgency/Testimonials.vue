@@ -55,22 +55,30 @@
         <div class="main-marq">
           <div class="slide-har st1">
             <div class="box non-strok">
-              <div v-for="item in barndsData" :key="item" class="item">
-                <div class="img icon-img-100">
-                  <a href="#0">
-                    <img :src="item" alt="" />
-                  </a>
-                </div>
-              </div>
+              <div v-for="(item, index) in barndsData" :key="index" class="item">
+  <div class="img icon-img-100">
+    <a
+      :href="item.url"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img :src="item.image" alt="" />
+    </a>
+  </div>
+</div>
             </div>
             <div class="box non-strok">
-              <div v-for="item in barndsData" :key="item" class="item">
-                <div class="img icon-img-100">
-                  <a href="#0">
-                    <img :src="item" alt="" />
-                  </a>
-                </div>
-              </div>
+              <div v-for="(item, index) in barndsData" :key="index" class="item">
+  <div class="img icon-img-100">
+    <a
+      :href="item.url"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <img :src="item.image" alt="" />
+    </a>
+  </div>
+</div>
             </div>
           </div>
         </div>

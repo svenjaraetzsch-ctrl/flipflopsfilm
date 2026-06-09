@@ -1,27 +1,46 @@
 <template>
   <CommonLoader />
   <div id="smooth-wrapper">
+    <CommonNavbar />
+    <CommonMenu />
+
     <div id="smooth-content">
-      <PreviewNavigation />
-      <main>
-        <PreviewHeader />
-        <PreviewPortfolio />
+      <main class="main-bg">
+        <div class="main-box main-bg ontop">
+          <CreativeAgencyHeader />
+          <CreativeAgencyAbout />
+          <CreativeAgencyTestimonials />
+          
+          <!--<CreativeAgencyServices />-->
+          <!---<CreativeAgencyWorks />-->
+          <CreativeAgencyAwards />
+          
+          <CreativeAgencyTeam />
+        </div>
+
+        <CreativePortfolioContact />
       </main>
-      <PreviewFooter />
+
+      <CommonFooter1 />
     </div>
   </div>
 </template>
 
 <script setup>
-//= Page Metadata
-definePageMeta({
-  layout: "preview",
-});
-//= Page Head
+const { t } = useI18n()
+
 useHead({
-  titleTemplate: `%s - Preview`,
+  title: t('home_header.title'),
+
+  bodyAttrs: {
+    class: 'main-bg'
+  },
+
   script: [
-    { src: "/assets/js/smoother-script.js", defer: true }
+    {
+      src: '/assets/js/smoother-script.js',
+      defer: true
+    }
   ]
-});
+})
 </script>
