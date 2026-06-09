@@ -23,9 +23,9 @@
         <div class="col-lg-8">
           <div class="intro">
             <div class="text-reval">
-              <span class="text">We are a creative agency working with</span>
-              <span class="text">brands – building insightful strategy,</span>
-              <span class="text">creating unique designs.</span>
+              <span class="text">International productions and local expertise,</span>
+              <span class="text">working together to bring ambitious creative</span>
+              <span class="text">projects to life with precision and efficiency.</span>
             </div>
           </div>
         </div>

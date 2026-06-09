@@ -2,29 +2,29 @@
   {
     "id": 1,
     "numb": "01",
-    "title": "Product Design",
+    "title": "Leading Tax Incentives",
     "icon": "/assets/imgs/serv-icons/0.png",
-    "content": "We build and activate brands through cultural insight, strategic vision, and the power of emotion across every"
+    "content": "Benefit from some of Europe's most competitive film incentives and maximise your production budget."
   },
   {
     "id": 2,
     "numb": "02",
-    "title": "Art Direction",
+    "title": "Strategic Production Planning",
     "icon": "/assets/imgs/serv-icons/1.png",
-    "content": "We build and activate brands through cultural insight, strategic vision, and the power of emotion across every"
+    "content": "Efficient workflows and experienced coordination help productions stay on schedule and on budget."
   },
   {
     "id": 3,
     "numb": "03",
-    "title": "Web Development",
+    "title": "International Experience",
     "icon": "/assets/imgs/serv-icons/2.png",
-    "content": "We build and activate brands through cultural insight, strategic vision, and the power of emotion across every"
+    "content": "We combine local expertise with a deep understanding of international production requirements."
   },
   {
     "id": 4,
     "numb": "04",
-    "title": "Branding Strategy",
+    "title": "End-to-End Support",
     "icon": "/assets/imgs/serv-icons/0.png",
-    "content": "We build and activate brands through cultural insight, strategic vision, and the power of emotion across every"
+    "content": "From first scouting to final wrap, we provide comprehensive production services under one roof."
   }
 ]

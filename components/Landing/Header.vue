@@ -4,7 +4,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-11">
           <div class="caption text-center">
-            <h1 class="fz-60">Branding, websites and digital experiences, crafted with love, intelligence and precision.
+            <h1 class="fz-60">International productions and local expertise, working together to bring ambitious creative projects to life with precision and efficiency.
             </h1>
           </div>
         </div>
