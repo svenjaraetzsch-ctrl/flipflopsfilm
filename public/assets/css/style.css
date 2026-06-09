@@ -312,11 +312,11 @@ figure {
 }
 
 .main-color {
-  color: #f1da78 !important;
+  color: #D4C8B2 !important;
 }
 
 .main-colorbg {
-  background-color: #f1da78;
+  background-color: #D4C8B2;
 }
 
 .main-bg {
@@ -504,7 +504,7 @@ img {
   width: 100%;
   height: 100%;
   border-radius: 50%;
-  background: #f1da78;
+  background: #D4C8B2;
   -webkit-transform: scale(0);
   -ms-transform: scale(0);
   transform: scale(0);
@@ -3682,7 +3682,7 @@ body.loaded {
   line-height: 40px;
   text-align: center;
   color: #0c0c0c;
-  background: #f1da78;
+  background: #D4C8B2;
   border-radius: 50%;
   margin-left: 5px;
 }
@@ -5368,8 +5368,8 @@ footer .logo img {
 
 .work-crev .swiper-button-prev:hover,
 .work-crev .swiper-button-next:hover {
-  background: #f1da78;
-  border-color: #f1da78;
+  background: #D4C8B2;
+  border-color: #D4C8B2;
 }
 
 .work-crev .work-crus {
@@ -6221,8 +6221,8 @@ footer .logo img {
 
 .testimonials .swiper-button-prev:hover,
 .testimonials .swiper-button-next:hover {
-  background: #f1da78;
-  border-color: #f1da78;
+  background: #D4C8B2;
+  border-color: #D4C8B2;
   color: #0c0c0c;
 }
 
