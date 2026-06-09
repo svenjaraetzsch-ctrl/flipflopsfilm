@@ -9,12 +9,12 @@
         <div class="main-box main-bg ontop">
           <CreativeAgencyHeader />
           <CreativeAgencyAbout />
-          <CreativePortfolioMarquee />
+          <CreativeAgencyTestimonials />
           
           <!--<CreativeAgencyServices />-->
           <!---<CreativeAgencyWorks />-->
           <CreativeAgencyAwards />
-          <CreativeAgencyTestimonials />
+          
           <CreativeAgencyTeam />
         </div>
 
