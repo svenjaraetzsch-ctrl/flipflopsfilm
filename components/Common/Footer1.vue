@@ -41,7 +41,7 @@
 
       <li>
         <a
-          href="https://www.linkedin.com/company/flip-flops-film/"
+          href="https://www.linkedin.com/posts/david-turpin-production_producciones-audiovisuales-canarias-flip-activity-7301559594177200130-EhoR"
           target="_blank"
           rel="noopener noreferrer"
           style="pointer-events:auto;"
