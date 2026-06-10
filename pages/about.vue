@@ -1,6 +1,5 @@
 <template>
   <CommonLoader />
-  <div class="noise"></div>
   <div id="smooth-wrapper">
     <CommonNavbar />
     <CommonMenu />
@@ -8,16 +7,15 @@
       <main class="main-bg">
         <div class="main-box main-bg ontop">
           <LandingHeader />
-          <!--<CreativePortfolioHeader />-->
-          <!--<CreativePortfolioMarquee />-->
-          <CreativePortfolioAbout />
-          <CreativePortfolioServices />
-          <!---<CreativePortfolioWorks />-->
-          <!--<CreativePortfolioTestimonials />-->
-          <!--<CreativePortfolioBlog />-->
+          <LandingMarquee />
+          <LandingAbout />
+          <SliderScroll></SliderScroll>
           
+
+          <LandingAccordions />
+          <CreativeAgencyTeam />
         </div>
-        <CreativeAgencyTeam />
+        
       </main>
       <CommonFooter1 />
     </div>
@@ -27,11 +25,19 @@
 <script setup>
 //= Page Head
 useHead({
-  titleTemplate: `%s - About`,
+  titleTemplate: `%s - Landing`,
   bodyAttrs: {
-    class: 'crev-portfolio'
+    class: 'landing'
   },
+  link: [
+    {
+      rel: "stylesheet",
+      href: '/assets/css/base.css'
+    }
+  ],
   script: [
+    { src: "/assets/js/TweenMax.min.js" },
+    { src: "/assets/js/charming.min.js" },
     { src: "/assets/js/smoother-script.js", defer: true }
   ]
 });

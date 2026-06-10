@@ -1,84 +1,60 @@
 <template>
   <section class="about">
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-12">
-          <div class="vid-intro">
-            <div class="video-container">
-              <video autoPlay loop muted>
-                <source src="/assets/vid/vid-startup.mp4" type="video/mp4" />
-              </video>
+    
+    <div class="container section-padding">
+      <div class="row pb-100 bord-thin-bottom mb-80">
+        <div class="col-lg-4">
+          <div class="sec-head">
+            <span class="sub-title bord mb-30">Company</span>
+          </div>
+        </div>
+        <div class="col-lg-7 offset-lg-1">
+          <div>
+            <h3 class="text-u text-indent">BUILT ON PRODUCTION EXPERTISE AND TRUSTED PARTNERSHIPS.</h3>
+            <div class="text mt-30">
+              <p>Flip Flops Film was founded by David Turpin and André Dolezal, bringing together Spanish production management expertise and international line production experience. What started as a shared passion for filmmaking has grown into a trusted production partner, helping clients navigate Spain's unique opportunities with practical knowledge, personal involvement and a commitment to getting things done right.</p>
             </div>
           </div>
         </div>
       </div>
-    </div>
-    <div class="container section-padding">
       <div class="row">
         <div class="col-lg-4">
           <div class="sec-head">
-            <span class="sub-title mb-15 opacity-8">- About Us</span>
+            <span class="sub-title bord mb-30">Crew & Network</span>
           </div>
         </div>
-        <div class="col-lg-8">
-          <div class="intro">
-            <div class="text-reval">
-              <span class="text">International productions and local expertise,</span>
-              <span class="text">working together to bring ambitious creative</span>
-              <span class="text">projects to life with precision and efficiency.</span>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="serv-inline mt-80">
-        <div class="row justify-content-end">
-          <div class="col-lg-8">
-            <div class="item pb-30 pt-30 mb-30 bord-thin-top bord-thin-bottom wow fadeInUp" data-wow-delay=".2s">
-              <div class="d-flex align-items-center">
-                <div>
-                  <span class="mb-10 opacity-8">01 / <span class="text-u ml-5">Branding</span></span>
-                  <h5>Branding & Design</h5>
+        <div class="col-lg-7 offset-lg-1">
+          <div class="cont">
+            <div class="accordion bord">
+              <div v-for="(item, index) in data" :key="item.id" class="item mb-20 wow fadeInUp" @click="openAccordion"
+                :data-wow-delay="`${((index * 0.2) + 0.1).toFixed(1)}s`">
+                <div class="title">
+                  <h4>{{ item.title }}</h4>
+                  <span class="ico"></span>
                 </div>
-                <div class="ml-auto">
-                  <div class="d-flex align-items-center">
-                    <a href="/about" class="animsition-link">View Details</a>
-                    <span class="fz-30 pe-7s-angle-right"></span>
-                  </div>
+                <div class="accordion-info">
+                  <p>{{ item.content }}</p>
                 </div>
               </div>
             </div>
-            <div class="item pb-30 mb-30 bord-thin-bottom wow fadeInUp" data-wow-delay=".4s">
-              <div class="d-flex align-items-center">
-                <div>
-                  <span class="mb-10 opacity-8">02 / <span class="text-u ml-5">Branding</span></span>
-                  <h5>Brand Strategy & Voice</h5>
-                </div>
-                <div class="ml-auto">
-                  <div class="d-flex align-items-center">
-                    <a href="/about" class="animsition-link">View Details</a>
-                    <span class="fz-30 pe-7s-angle-right"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="item pb-30 bord-thin-bottom wow fadeInUp" data-wow-delay=".6s">
-              <div class="d-flex align-items-center">
-                <div>
-                  <span class="mb-10 opacity-8">03 / <span class="text-u ml-5">Design</span></span>
-                  <h5>Digital & Web Design</h5>
-                </div>
-                <div class="ml-auto">
-                  <div class="d-flex align-items-center">
-                    <a href="/about" class="animsition-link">View Details</a>
-                    <span class="fz-30 pe-7s-angle-right"></span>
-                  </div>
-                </div>
-              </div>
-            </div>
-
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  
 </template>
+
+<script setup>
+import data from '@/data/CreativePortfolio/about.json';
+
+const openAccordion = (event) => {
+  document.querySelectorAll('.accordion .item').forEach((el) => {
+    el.classList.remove('active');
+    el.querySelector('.accordion-info').style.display = 'none';
+  });
+  event.currentTarget.classList.add('active');
+  event.currentTarget.querySelector('.accordion-info').style.display = 'block';
+};
+</script>
