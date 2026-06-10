@@ -47,9 +47,10 @@ const breadcrumbs = computed(() => {
 
 <style scoped>
 .ff-breadcrumbs {
+  max-width: 1320px;
   position: absolute;
-  right: 40px;
-  top: 90px;
+  
+  top: 140px;
   z-index: 20;
   width: fit-content;
   max-width: calc(100vw - 40px);

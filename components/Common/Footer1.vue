@@ -85,13 +85,13 @@
                   </NuxtLink>
                 </li>
                 <li>
-                  <NuxtLink to="/data-privacy" class="animsition-link">
-                    Data Privacy
+                  <NuxtLink to="/privacy-policy" class="animsition-link">
+                    Privacy Policy
                   </NuxtLink>
                 </li>
                 <li>
-                  <NuxtLink to="/impress" class="animsition-link">
-                    Impress
+                  <NuxtLink to="/imprint" class="animsition-link">
+                    Imprint
                   </NuxtLink>
                 </li>
               </ul>
