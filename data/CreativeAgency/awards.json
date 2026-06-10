@@ -1,32 +1,37 @@
 [
   {
     "id": 1,
-    "award": "XD, UI galery",
-    "year": "2023",
-    "platform": "Behance"
+    "award": "Production Services",
+    "year": "",
+    "platform": "Full-service support from prep to wrap.",
+    "link": "/services"
   },
   {
     "id": 2,
-    "award": "Mobile of the week",
-    "year": "2022",
-    "platform": "Awwwards"
+    "award": "Line Production",
+    "year": "",
+    "platform": "Budgeting, planning and production management.",
+    "link": "/services"
   },
   {
     "id": 3,
-    "award": "Site of the day",
-    "year": "2021",
-    "platform": "CSSDA"
+    "award": "Locations",
+    "year": "",
+    "platform": "Scouting and securing unique filming locations.",
+    "link": "/services"
   },
   {
     "id": 4,
-    "award": "UX, UI, innovation",
-    "year": "2020",
-    "platform": "CSSDA"
+    "award": "Tax Incentives",
+    "year": "",
+    "platform": "Full Guidance on permits and tax rebates.",
+    "link": "/tax-incentives"
   },
   {
     "id": 5,
-    "award": "XD, UI galery",
-    "year": "2019",
-    "platform": "Behance"
+    "award": "Crew & Logistics",
+    "year": "",
+    "platform": "Trusted crews and smooth operations on the ground.",
+    "link": "/about"
   }
 ]

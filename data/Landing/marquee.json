@@ -1,22 +1,18 @@
 [
   {
     "id": 1,
-    "title": "UI-UX Experience"
+    "title": "Canary Islands"
   },
   {
     "id": 2,
-    "title": "Web Development"
+    "title": "Madrid"
   },
   {
     "id": 3,
-    "title": "Digital Marketing"
+    "title": "Almería"
   },
   {
     "id": 4,
-    "title": "Product Design"
-  },
-  {
-    "id": 5,
-    "title": "Mobile Solutions"
+    "title": "Bilbao"
   }
 ]
