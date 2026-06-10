@@ -80,7 +80,19 @@
                   </NuxtLink>
                 </li>
                 <li>
-                  <NuxtLink to="/contact" class="animsition-link">Contact</NuxtLink>
+                  <NuxtLink to="/spanish-tax-incentives" class="animsition-link">
+                    Services
+                  </NuxtLink>
+                </li>
+                <li>
+                  <NuxtLink to="/data-privacy" class="animsition-link">
+                    Data Privacy
+                  </NuxtLink>
+                </li>
+                <li>
+                  <NuxtLink to="/impress" class="animsition-link">
+                    Impress
+                  </NuxtLink>
                 </li>
               </ul>
             </div>
