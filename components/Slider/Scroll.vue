@@ -74,6 +74,7 @@ onUnmounted(() => {
   display: flex;
   flex-wrap: nowrap;
   overflow: hidden;
+  gap: 40px;
 }
 
 .panel {
