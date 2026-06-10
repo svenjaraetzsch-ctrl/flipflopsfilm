@@ -1,5 +1,4 @@
 <template>
-  
   <section class="about section-padding">
     <div class="container">
       <div class="row">
