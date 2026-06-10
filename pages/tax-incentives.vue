@@ -7,7 +7,7 @@
     <div id="smooth-content">
       <main class="main-bg">
         <div class="main-box main-bg ontop">
-          <CommonBreadcrumbs />
+          
           <TaxIncentivesHeader />
           <TaxIncentivesTopContent />
           <!--<TaxIncentivesImageColumn />-->

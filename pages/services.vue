@@ -9,9 +9,10 @@
         <div class="main-box main-bg ontop">
           <PortfolioInteractiveCenter />
           <ServicesTopContent></ServicesTopContent>
+          
+          
         </div>
 
-        <!--<CreativePortfolioContact />-->
         <CreativePortfolioContact />
       </main>
 
@@ -21,14 +22,20 @@
 </template>
 
 <script setup>
-//= Page Head
+const { t } = useI18n()
+
 useHead({
-  titleTemplate: `%s - Portfolio Interactive Center`,
+  title: t('home_header.title'),
+
   bodyAttrs: {
     class: 'main-bg'
   },
-  link: [
-    { rel: "stylesheet", href: "/assets/css/base.css" }
+
+  script: [
+    {
+      src: '/assets/js/smoother-script.js',
+      defer: true
+    }
   ]
-});
+})
 </script>
