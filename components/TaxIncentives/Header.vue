@@ -5,7 +5,7 @@
       <div class="row">
         <div class="col-12">
           <div class="caption">
-            <h1>Tax Incentives</h1>
+            <h1 style="text-transform: uppercase;">Tax Incentives</h1>
           </div>
         </div>
       </div>

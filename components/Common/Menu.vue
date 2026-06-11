@@ -53,8 +53,16 @@
 
               <li @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
                 <div class="o-hidden">
+                  <a href="/locations" class="link animsition-link" @click="closeMenu">
+                    <span class="nm">04.</span>Locations
+                  </a>
+                </div>
+              </li>
+
+              <li @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
+                <div class="o-hidden">
                   <a href="/about" class="link animsition-link" @click="closeMenu">
-                    <span class="nm">04.</span>About
+                    <span class="nm">05.</span>About
                   </a>
                 </div>
               </li>

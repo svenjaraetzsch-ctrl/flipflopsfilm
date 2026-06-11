@@ -44,6 +44,10 @@ header:after {
   right: 0%;
 }
 
+header::after {
+  content: none !important;
+}
+
 header .caption {
   padding-top: 120px;
   padding-bottom: 180px;

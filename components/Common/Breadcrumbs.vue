@@ -48,13 +48,8 @@ const breadcrumbs = computed(() => {
 <style scoped>
 .ff-breadcrumbs {
   max-width: 1320px;
-  position: absolute;
-  
-  top: 140px;
-  z-index: 20;
-  width: fit-content;
-  max-width: calc(100vw - 40px);
-  margin: 0 0 40px;
+
+  margin-top: 200px;
 }
 
 .ff-breadcrumbs-inner {
