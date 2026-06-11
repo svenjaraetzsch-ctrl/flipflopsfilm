@@ -1420,9 +1420,7 @@ img.left {
   background-size: contain !important;
 }
 
-.section-padding {
-  padding: 120px 0;
-}
+
 
 .section-ptb {
   padding: 80px 0;
@@ -6287,6 +6285,10 @@ footer .logo img {
   border-radius: 50%;
 }
 
+.section-padding {
+  padding: 120px 15px;
+}
+
 /* ====================== [ Start Responsive ] ====================== */
 @media screen and (max-width: 992px) {
   .md-mb10 {
@@ -6665,6 +6667,10 @@ footer .logo img {
 }
 
 @media screen and (max-width: 768px) {
+
+  .section-padding {
+  padding: 0 15px;
+}
   .sm-mb10 {
     margin-bottom: 10px;
   }
@@ -6901,7 +6907,7 @@ footer .logo img {
     height: 60px;
   }
   .testimonials .icon-img-100 {
-    width: 60px;
+    width: 120px;
     margin-bottom: 30px;
   }
   .testimonials .quote-icon {

@@ -3,6 +3,7 @@
   <div id="smooth-wrapper">
     <CommonNavbar />
     <CommonMenu />
+    
 
     <div id="smooth-content">
       <main class="main-bg">
@@ -10,17 +11,10 @@
           <CreativeAgencyHeader />
           <CreativeAgencyAbout />
           <CreativeAgencyTestimonials />
-          
-          <!--<CreativeAgencyServices />-->
-          <!---<CreativeAgencyWorks />-->
           <CreativeAgencyAwards />
-          
-          
         </div>
-
         <CreativePortfolioContact />
       </main>
-
       <CommonFooter1 />
     </div>
   </div>
