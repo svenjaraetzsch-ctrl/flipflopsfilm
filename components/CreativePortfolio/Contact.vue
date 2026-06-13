@@ -11,7 +11,7 @@
               <h2 class="fz-70 f-bold text-u">
                 We would love <span class="d-block f-ultra-light">to hear more about</span> your project
               </h2>
-              <a href="/contact" class="butn-circle animsition-link colorbg mt-30">
+              <a href="mailto:info@flipflopsfilm.com" class="butn-circle animsition-link colorbg mt-30">
                 <span>Get In Touch</span>
               </a>
             </div>
