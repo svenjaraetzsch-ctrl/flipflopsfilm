@@ -29,7 +29,7 @@
           class="w-100 h-100"
           style="object-fit: cover;"
         >
-          <source src="/assets/vid/vid-startup.mp4" type="video/mp4" />
+          <source src="/assets/vid/smaller_filesize.mp4" type="video/mp4" />
         </video>
     </div>
   </header>

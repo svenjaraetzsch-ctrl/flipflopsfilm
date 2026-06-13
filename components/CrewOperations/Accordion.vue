@@ -1,21 +1,7 @@
 <template>
-  <section class="intro section-padding pb-0">
-    <div class="container">
-      <div class="row pb-100 bord-thin-bottom mb-80">
-        <div class="col-lg-4">
-          <div class="sec-head">
-            <span class="sub-title bord mb-30">Company</span>
-          </div>
-        </div>
-        <div class="col-lg-7 offset-lg-1">
-          <div>
-            <h3 class="text-u text-indent">A COMPANY DRIVEN BY PEOPLE, PARTNERSHIPS AND A COMMITMENT TO EVERY PROJECT'S SUCCESS.</h3>
-            <div class="text mt-30">
-              <p>At Flip Flops Film, we believe great productions are built through strong relationships and seamless collaboration. Combining deep regional knowledge with international expertise, we create the foundation for projects to perform at their highest level.</p>
-            </div>
-          </div>
-        </div>
-      </div>
+  <section class="about">
+    
+    <div class="container section-padding">
       <div class="row">
         <div class="col-lg-4">
           <div class="sec-head">
@@ -41,6 +27,8 @@
       </div>
     </div>
   </section>
+
+  
 </template>
 
 <script setup>

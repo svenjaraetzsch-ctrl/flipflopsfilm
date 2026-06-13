@@ -8,14 +8,14 @@
       <main class="main-bg">
         <div class="main-box main-bg ontop">
           
-          <TaxIncentivesHeader />
-          <TaxIncentivesTopContent />
+          <CrewOperationsHeader />
+          <CrewOperationsTopContent />
           <LandingMarquee />
           <!--<TaxIncentivesImageColumn />-->
-          <TaxIncentivesBottomContent />
+          <CrewOperationsAccordion />
           <!--<TaxIncentivesBottomImage />-->
         </div>
-        <TaxIncentivesNextProject />
+        <CrewOperationsNextProject />
       </main>
       <CommonFooter1 />
     </div>

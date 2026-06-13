@@ -1,10 +1,9 @@
 <template>
   <CommonLoader />
   <div id="smooth-wrapper">
+
     <CommonNavbar />
     <CommonMenu />
-    
-
     <div id="smooth-content">
       <main class="main-bg">
         <div class="main-box main-bg ontop">

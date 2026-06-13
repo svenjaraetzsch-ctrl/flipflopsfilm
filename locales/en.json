@@ -30,13 +30,10 @@
     "service4": "Production Management",
     "service4_desc": "Professional planning, coordination, and execution.",
 
-    "service5": "Line Producing",
-    "service5_desc": "Efficient budgeting, scheduling, and local supervision.",
-
-    "service6": "Crew & Equipment",
+    "service5": "Crew & Equipment",
     "service6_desc": "Connecting productions with trusted industry professionals.",
 
-    "service7": "Permits & Logistics",
+    "service6": "Permits & Logistics",
     "service7_desc": "Ensuring smooth operations from pre-production to wrap."
   }
 }
