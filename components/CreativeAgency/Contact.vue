@@ -10,7 +10,7 @@
                   <div class="box non-strok">
                     <div v-for="(_, i) in new Array(5).fill()" :key="i" class="item">
                       <h2>
-                        <a href="/contact" class="animsition-link">Get In Touch</a>
+                        <a href="mailto:info@flipflopsfilm.com" class="animsition-link">Get In Touch</a>
                         <span>
                           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
@@ -24,7 +24,7 @@
                   <div class="box non-strok">
                     <div v-for="( _, i ) in  new Array(5).fill()" :key="i" class="item">
                       <h2>
-                        <a href="/contact" class="animsition-link">Get In Touch</a>
+                        <a href="mailto:info@flipflopsfilm.com" class="animsition-link">Get In Touch</a>
                         <span>
                           <svg width="18" height="18" viewBox="0 0 18 18" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path
