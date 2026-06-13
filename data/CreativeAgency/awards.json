@@ -8,30 +8,23 @@
   },
   {
     "id": 2,
-    "award": "Line Production",
-    "year": "",
-    "platform": "Budgeting, planning and production management.",
-    "link": "/services"
-  },
-  {
-    "id": 3,
     "award": "Locations",
     "year": "",
     "platform": "Scouting and securing unique filming locations.",
-    "link": "/services"
+    "link": "/locations"
   },
   {
-    "id": 4,
+    "id": 3,
     "award": "Tax Incentives",
     "year": "",
     "platform": "Full Guidance on permits and tax rebates.",
     "link": "/tax-incentives"
   },
   {
-    "id": 5,
-    "award": "Crew & Logistics",
+    "id": 4,
+    "award": "Crew & Operations",
     "year": "",
     "platform": "Trusted crews and smooth operations on the ground.",
-    "link": "/about"
+    "link": "/crew-operations"
   }
 ]

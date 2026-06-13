@@ -6,15 +6,24 @@
           <img src="/assets/imgs/logo-light.png" alt="" />
         </nuxt-link>
       </div>
+
+       
+        <CommonBreadcrumbs />
+      
+       
       <div class="menu-icon cursor-pointer" @click="toggleMenu">
         <span class="text"><span class="word">Menu</span></span>
         <span class="icon">
           <i></i>
           <i></i>
         </span>
+        
       </div>
+      
     </div>
+    
   </div>
+  
 </template>
 
 <script setup>

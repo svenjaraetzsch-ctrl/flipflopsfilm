@@ -1,11 +1,12 @@
 <template>
   <CommonLoader />
   <div id="smooth-wrapper">
+    <CommonNavbar />
+    <CommonMenu />
     <div id="smooth-content">
-        <CommonNavbar />
-        <CommonMenu />
         <main class="main-bg">
             <div class="main-box main-bg ontop">
+                
                 <LocationsHeader />
                 <LocationsTopContent></LocationsTopContent>
                 <LocationsGrid></LocationsGrid>

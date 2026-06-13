@@ -7,8 +7,6 @@
       <main class="main-bg">
         <div class="main-box main-bg ontop">
           <LandingHeader />
-        
-
           <LandingAbout />
           <SliderScroll></SliderScroll>
           

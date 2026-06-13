@@ -75,8 +75,8 @@
                   <NuxtLink to="/about" class="animsition-link">About Us</NuxtLink>
                 </li>
                 <li>
-                  <NuxtLink to="/spanish-tax-incentives" class="animsition-link">
-                    Spanish Tax Incentives
+                  <NuxtLink to="/tax-incentives" class="animsition-link">
+                    Tax Incentives
                   </NuxtLink>
                 </li>
                 <li>

@@ -10,6 +10,7 @@
           
           <TaxIncentivesHeader />
           <TaxIncentivesTopContent />
+          <LandingMarquee />
           <!--<TaxIncentivesImageColumn />-->
           <TaxIncentivesBottomContent />
           <!--<TaxIncentivesBottomImage />-->
