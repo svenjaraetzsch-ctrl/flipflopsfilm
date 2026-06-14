@@ -3,12 +3,14 @@
     "id": 1,
     "title": "Production Services",
     "category": "Full-service support from prep to wrap.",
+    
     "color": "#FFD54F"
   },
   {
     "id": 2,
     "title": "Locations",
     "category": "Scouting and securing unique filming locations.",
+      "link": "/locations",
     "color": "#4FC3F7"
   },
   {
@@ -22,6 +24,7 @@
     "id": 4,
     "title": "Crew & Operations",
     "category": "Trusted crews and smooth operations.",
+    "link": "/crew-operations",
     "color": "#AB47BC"
   }
 ]
