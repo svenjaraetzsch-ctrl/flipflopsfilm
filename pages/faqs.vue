@@ -6,11 +6,7 @@
     <div id="smooth-content">
       <main class="main-bg">
         <div class="main-box main-bg ontop">
-          <AboutHeader />
-          <AboutUs />
-          <SliderScroll></SliderScroll>
-          <AboutAccordions />
-          <CreativeAgencyTeam />
+          <FaqsText />
         </div>
         
       </main>
@@ -22,9 +18,9 @@
 <script setup>
 //= Page Head
 useHead({
-  titleTemplate: `%s - About`,
+  titleTemplate: `%s - Faqs`,
   bodyAttrs: {
-    class: 'about'
+    class: 'faqs'
   },
   link: [
     {

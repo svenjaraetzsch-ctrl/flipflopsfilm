@@ -90,6 +90,11 @@
                   </NuxtLink>
                 </li>
                 <li>
+                  <NuxtLink to="/faqs" class="animsition-link">
+                    FAQ's
+                  </NuxtLink>
+                </li>
+                <li>
                   <NuxtLink to="/privacy-policy" class="animsition-link">
                     Privacy Policy
                   </NuxtLink>

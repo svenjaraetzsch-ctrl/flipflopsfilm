@@ -1,17 +1,14 @@
 <template>
-  <header class="about-header section-padding pb-0">
-    <div class="container mt-100">
-      <div class="row">
-        <div class="col-lg-9 offset-lg-1">
-          <div class="cont">
-            <h6 class="sub-title mb-15">Creative Agency</h6>
-            <h1 class="text-u">About Us</h1>
+  <header class="land-header valign">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-11">
+          <div class="caption text-center">
+            <h1 class="fz-60">At the heart of Flip Flops Film are the people, partnerships and shared values that have shaped the company from the very beginning.
+            </h1>
           </div>
         </div>
       </div>
-    </div>
-    <div class="img mt-80" data-overlay-dark="4">
-      <img src="/assets/imgs/b3.jpg" alt="" />
     </div>
   </header>
 </template>
