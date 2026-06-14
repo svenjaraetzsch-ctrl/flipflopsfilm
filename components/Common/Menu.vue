@@ -94,7 +94,7 @@
             </div>
 
             <div class="bottom">
-              <h6 class="text-u fw-600 mb-20">Follow Us</h6>
+              <h6 class="text-u fw-600 mb-20">Socials</h6>
               <ul class="rest social-text d-flex fz-13">
                 <li class="mr-20">
                   <a
