@@ -20,7 +20,7 @@
       <div class="row">
         <div class="col-lg-4">
           <div class="sec-head">
-            <span class="sub-title bord mb-30">Network</span>
+            <span class="sub-title bord mb-30">What we believe</span>
           </div>
         </div>
         <div class="col-lg-7 offset-lg-1">
@@ -47,7 +47,7 @@
 </template>
 
 <script setup>
-import data from '@/data/CreativePortfolio/about.json';
+import data from '@/data/About/accordion.json';
 
 const openAccordion = (event) => {
   document.querySelectorAll('.accordion .item').forEach((el) => {

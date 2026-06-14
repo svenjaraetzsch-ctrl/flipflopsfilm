@@ -1,38 +1,56 @@
 [
   {
     "id": 1,
-    "title": "Tenerife",
+    "title": "Coastlines",
     "category": "Location",
-    "image": "/landing-preview/example.jpg"
+    "image": "/assets/imgs/locations/examples/coastline.jpg"
   },
   {
     "id": 2,
-    "title": "La Gomera",
+    "title": "Deserts",
     "category": "Location",
-    "image": "/landing-preview/example.jpg"
+    "image": "/assets/imgs/locations/examples/desert.jpg"
   },
   {
     "id": 3,
-    "title": "Gran Canaria",
+    "title": "Forests",
     "category": "Location",
-    "image": "/landing-preview/example.jpg"
+    "image": "/assets/imgs/locations/examples/forest.jpg"
   },
   {
     "id": 4,
-    "title": "Lanzarote",
+    "title": "Urban",
     "category": "Location",
-    "image": "/landing-preview/example.jpg"
+    "image": "/assets/imgs/locations/examples/madrid.jpg"
   },
   {
     "id": 5,
-    "title": "Fuerteventura",
+    "title": "Hotels & Villas",
     "category": "Location",
-    "image": "/landing-preview/example.jpg"
+    "image": "/assets/imgs/locations/examples/villa.jpg"
   },
   {
     "id": 6,
-    "title": "El Hierro",
+    "title": "Volcanic Landscapes",
     "category": "Location",
-    "image": "/landing-preview/example.jpg"
+    "image": "/assets/imgs/locations/examples/volcanic.jpg"
+  },
+  {
+    "id": 7,
+    "title": "Mountains",
+    "category": "Location",
+    "image": "/assets/imgs/locations/examples/mountain.jpg"
+  },
+    {
+    "id": 8,
+    "title": "Roads",
+    "category": "Location",
+    "image": "/assets/imgs/locations/examples/roads.jpg"
+  },
+    {
+    "id": 9,
+    "title": "Sunsets",
+    "category": "Location",
+    "image": "/assets/imgs/locations/examples/sunset.jpg"
   }
 ]

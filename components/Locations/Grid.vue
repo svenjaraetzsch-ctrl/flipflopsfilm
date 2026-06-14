@@ -26,7 +26,7 @@
 </template>
 
 <script setup>
-import data from '@/data/Portfolio/grid.json';
+import data from '@/data/Locations/grid.json';
 </script>
 
 <style scoped>
