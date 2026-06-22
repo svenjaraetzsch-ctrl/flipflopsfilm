@@ -6,7 +6,7 @@
 
     <div id="smooth-content">
       <main class="main-bg">
-          <section class="about section-padding">
+          <section class="about section-padding section-top-clearance">
     <div class="container">
       <div class="row">
         <div class="col-lg-11">

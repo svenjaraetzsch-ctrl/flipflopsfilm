@@ -1,7 +1,7 @@
 <template>
-  <section class="about">
-    
-    <div class="container section-padding">
+  <section class="about section-padding">
+
+    <div class="container">
       <div class="row pb-100 bord-thin-bottom mb-80">
         <div class="col-lg-4">
           <div class="sec-head">
