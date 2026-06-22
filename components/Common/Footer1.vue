@@ -68,7 +68,7 @@
           </div>
 
           <div class="col-lg-6">
-            <div class="d-flex align-items-center justify-content-end gap-30">
+            <div class="d-flex align-items-center justify-content-end gap-30 footer-bottom-right">
               <CommonLangSwitcher />
               <p class="fz-13 mb-0">{{ $t('footer.copyright') }}</p>
             </div>
@@ -115,3 +115,12 @@ onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize)
 })
 </script>
+
+<style scoped>
+@media (max-width: 991px) {
+  .footer-bottom-right {
+    justify-content: space-between !important;
+    margin-top: 16px;
+  }
+}
+</style>
