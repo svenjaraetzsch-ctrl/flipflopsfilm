@@ -3,54 +3,54 @@
     "id": 1,
     "title": "Coastlines",
     "category": "Location",
-    "image": "/assets/imgs/locations/examples/coastline.jpg"
+    "image": "/assets/imgs/locations/folder/20240304_142416.jpg"
   },
   {
     "id": 2,
     "title": "Deserts",
     "category": "Location",
-    "image": "/assets/imgs/locations/examples/desert.jpg"
+    "image": "/assets/imgs/locations/folder/20240308_150856.jpg"
   },
   {
     "id": 3,
     "title": "Forests",
     "category": "Location",
-    "image": "/assets/imgs/locations/examples/forest.jpg"
+    "image": "/assets/imgs/locations/folder/20241022_114610.jpg"
   },
   {
     "id": 4,
     "title": "Urban",
     "category": "Location",
-    "image": "/assets/imgs/locations/examples/madrid.jpg"
+    "image": "/assets/imgs/locations/folder/20241022_163837.jpg"
   },
   {
     "id": 5,
     "title": "Hotels & Villas",
     "category": "Location",
-    "image": "/assets/imgs/locations/examples/villa.jpg"
+    "image": "/assets/imgs/locations/folder/20241022_170903.jpg"
   },
   {
     "id": 6,
     "title": "Volcanic Landscapes",
     "category": "Location",
-    "image": "/assets/imgs/locations/examples/volcanic.jpg"
+    "image": "/assets/imgs/locations/folder/20241023_145548.jpg"
   },
   {
     "id": 7,
     "title": "Mountains",
     "category": "Location",
-    "image": "/assets/imgs/locations/examples/mountain.jpg"
+    "image": "/assets/imgs/locations/folder/20241212_113937.jpg"
   },
-    {
+  {
     "id": 8,
     "title": "Roads",
     "category": "Location",
-    "image": "/assets/imgs/locations/examples/roads.jpg"
+    "image": "/assets/imgs/locations/folder/20250323_154738.jpg"
   },
-    {
+  {
     "id": 9,
     "title": "Sunsets",
     "category": "Location",
-    "image": "/assets/imgs/locations/examples/sunset.jpg"
+    "image": "/assets/imgs/locations/folder/20251104_124604.jpg"
   }
 ]

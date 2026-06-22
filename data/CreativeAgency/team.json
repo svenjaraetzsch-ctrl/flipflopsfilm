@@ -2,13 +2,13 @@
   {
     "id": 1,
     "role": "Founder",
-    "name": "David",
-    "image": "/assets/imgs/team/t2.jpg"
+    "name": "David Turpin",
+    "image": "/assets/imgs/team/David_Turpin.jpeg"
   },
   {
     "id": 2,
     "role": "Founder",
-    "name": "Andre",
-    "image": "/assets/imgs/team/t3.jpg"
+    "name": "André Dolezal",
+    "image": "/assets/imgs/team/André_Dolezal.jpeg"
   }
 ]
