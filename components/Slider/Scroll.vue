@@ -9,17 +9,6 @@
         <div class="img">
           <img :src="item.img" :alt="item.title" />
         </div>
-
-        <div class="cont d-flex align-items-center">
-          <div>
-            <span>{{ item.category }}</span>
-            <h5>{{ item.title }}</h5>
-          </div>
-
-          <div class="ml-auto">
-            <h6>{{ item.year }}</h6>
-          </div>
-        </div>
       </div>
     </div>
   </section>
@@ -95,10 +84,6 @@ onUnmounted(() => {
   display: block;
 }
 
-.cont {
-  padding: 20px 0;
-}
-
 .thecontainer {
   display: flex;
   flex-wrap: nowrap;
@@ -130,11 +115,6 @@ onUnmounted(() => {
   width: 100%;
   height: auto;
   display: block;
-}
-
-.cont {
-  padding: 10px 0; /* vorher 20px 0 */
-  background: transparent !important;
 }
 
 /* Falls die Theme-Klassen Hintergrund/Padding setzen */

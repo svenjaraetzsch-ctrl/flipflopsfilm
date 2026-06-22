@@ -1,5 +1,5 @@
 <template>
-  <section class="team  bord-thin-bottom">
+  <section class="team section-padding bord-thin-bottom">
     <div class="container">
       <!--<div class="row">
         <div class="col-lg-6">

@@ -50,11 +50,11 @@ header::after {
 
 header .caption {
   padding-top: 120px;
-  padding-bottom: 180px;
+  padding-bottom: 120px;
 }
 
 header .caption h1 {
-  font-size: 140px;
+  font-size: 70px;
   text-transform: uppercase;
   line-height: 1;
 }

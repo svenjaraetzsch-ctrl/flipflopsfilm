@@ -4585,6 +4585,8 @@ body.loaded {
 -----------------------------------------------------------------*/
 footer {
   position: relative;
+  padding-top: 80px;
+  padding-bottom: 30px;
 }
 
 footer .eml .sub-title {
@@ -4616,7 +4618,7 @@ footer .logo img {
 /* Pages Header
 -----------------------------------------------------------------*/
 .land-header {
-  padding: 180px 0 120px;
+  padding: 180px 0 80px;
 }
 
 .crev-header {
@@ -4813,7 +4815,7 @@ footer .logo img {
 
 .header-project3 {
   min-height: 70vh;
-  padding: 220px 0 120px;
+  padding: 220px 0 80px;
 }
 
 .header-project3:before {
@@ -6287,7 +6289,12 @@ footer .logo img {
 }
 
 .section-padding {
-  padding: 120px 15px;
+  padding-top: 80px;
+  padding-bottom: 80px;
+}
+
+.section-top-clearance {
+  padding-top: 150px !important;
 }
 
 /* ====================== [ Start Responsive ] ====================== */
@@ -6658,6 +6665,9 @@ footer .logo img {
     height: auto;
     min-height: auto;
   }
+  footer {
+    padding-top: 70px;
+  }
   footer .column {
     margin-top: 50px;
   }
@@ -6665,13 +6675,51 @@ footer .logo img {
     margin-left: 0;
     margin-top: 15px;
   }
+  .section-padding {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+  .section-top-clearance {
+    padding-top: 130px !important;
+  }
+  .crev-header {
+    padding-top: 140px;
+  }
+  .land-header {
+    padding: 140px 0 60px;
+  }
+  .header-project3 {
+    min-height: 60vh;
+    padding: 160px 0 60px;
+  }
+  .interactive-center {
+    padding: 120px 0 70px;
+  }
 }
 
 @media screen and (max-width: 768px) {
 
   .section-padding {
-  padding: 0 15px;
-}
+    padding-top: 50px;
+    padding-bottom: 50px;
+  }
+  .section-top-clearance {
+    padding-top: 110px !important;
+  }
+  .crev-header {
+    padding-top: 120px;
+  }
+  .land-header {
+    padding: 120px 0 50px;
+  }
+  .header-project3 {
+    min-height: 50vh;
+    padding: 120px 0 50px;
+  }
+  .interactive-center {
+    min-height: auto;
+    padding: 110px 0 50px;
+  }
   .sm-mb10 {
     margin-bottom: 10px;
   }
@@ -7044,6 +7092,9 @@ footer .logo img {
     margin-left: 0 !important;
     margin-top: 30px;
     margin-bottom: 30px;
+  }
+  footer {
+    padding-top: 50px;
   }
 }
 

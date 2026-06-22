@@ -1,6 +1,6 @@
 <template>
-  <section class="about">
-    <div class="container section-padding">
+  <section class="about section-padding section-top-clearance">
+    <div class="container">
       <div class="row">
         <div class="col-lg-4">
           <div class="sec-head">
