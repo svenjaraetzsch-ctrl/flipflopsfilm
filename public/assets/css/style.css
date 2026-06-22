@@ -484,6 +484,9 @@ img {
   border-radius: 50%;
   position: relative;
   overflow: hidden;
+  display: flex;
+    align-items: center;
+    margin: auto;
 }
 
 .butn-circle:hover span {
