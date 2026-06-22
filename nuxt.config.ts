@@ -13,7 +13,11 @@ export default defineNuxtConfig({
       { code: 'en', name: 'English', file: 'en.json' },
       { code: 'de', name: 'Deutsch', file: 'de.json' },
       { code: 'es', name: 'Español', file: 'es.json' }
-    ]
+    ],
+    compilation: {
+      strictMessage: false,
+      escapeHtml: false
+    }
   },
 
   ssr: true,

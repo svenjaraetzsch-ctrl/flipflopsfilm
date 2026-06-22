@@ -1,36 +1,47 @@
 <template>
   <section class="interactive-center logo-hover-section">
-    <div
-      class="bg-logo"
-      :style="{ filter: `drop-shadow(0 0 0 ${activeColor})` }"
-    >
+    <div class="bg-logo" :style="{ filter: `drop-shadow(0 0 0 ${activeColor})` }">
       <img src="/assets/imgs/logos/favicon.svg" alt="Logo" />
     </div>
 
     <div class="container text-center">
       <div
-        v-for="item in data"
+        v-for="item in mergedData"
         :key="item.id"
         class="item block"
         @mouseenter="activeColor = item.color"
         @mouseleave="activeColor = '#ffffff'"
       >
-        <a :href="item.link" class="block__link animsition-link">
+        <NuxtLink :to="localePath(item.link)" class="block__link animsition-link">
           <div class="cont">
             <h4 class="f-bold">{{ item.title }}</h4>
             <p>{{ item.category }}</p>
           </div>
-        </a>
+        </NuxtLink>
       </div>
     </div>
   </section>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-import data from '@/data/Portfolio/interactive-center.json';
+import { ref, computed } from 'vue'
+import staticData from '@/data/Portfolio/interactive-center.json'
 
-const activeColor = ref('#ffffff');
+const { tm, rt } = useI18n()
+const localePath = useLocalePath()
+const activeColor = ref('#ffffff')
+
+const mergedData = computed(() => {
+  const translated = tm('services_items')
+  return staticData.map((item, i) => {
+    const t = translated[i]
+    return {
+      ...item,
+      title: t ? rt(t.title) : item.title,
+      category: t ? rt(t.category) : item.category
+    }
+  })
+})
 </script>
 
 <style scoped>
@@ -39,7 +50,6 @@ const activeColor = ref('#ffffff');
   overflow: hidden;
 }
 
-/* LOGO HINTER DEM TEXT */
 .bg-logo {
   position: absolute;
   inset: 0;
@@ -56,7 +66,6 @@ const activeColor = ref('#ffffff');
   transition: all 0.4s ease;
 }
 
-/* TEXT IMMER DARÜBER */
 .container {
   position: relative;
   z-index: 2;

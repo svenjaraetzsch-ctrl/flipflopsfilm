@@ -1,3 +1,335 @@
 {
-  "welcome": "Willkommen"
+  "nav": {
+    "home": "Home",
+    "services": "Leistungen",
+    "tax_incentives": "Steuervorteile",
+    "locations": "Locations",
+    "about": "Über uns",
+    "crew_operations": "Crew & Produktion",
+    "faqs": "FAQ''s"
+  },
+  "menu": {
+    "our_offices": "Unsere Büros",
+    "offices": "Kanarische Inseln · Madrid · Almería · Bilbao",
+    "contact": "Kontakt",
+    "socials": "Social Media"
+  },
+  "footer": {
+    "tagline": "Wir würden uns freuen, von Ihnen zu hören.",
+    "social_media": "Social Media",
+    "our_offices": "Unsere Büros",
+    "offices": "Kanarische Inseln · Madrid · Almería · Bilbao",
+    "contact_us": "Kontakt aufnehmen",
+    "about_us": "Über uns",
+    "privacy_policy": "Datenschutz",
+    "imprint": "Impressum",
+    "copyright": "© 2024 Flip Flops Film S.L. CIF: B75447698"
+  },
+  "common": {
+    "read_more": "Mehr erfahren",
+    "years_in_production": "Jahre in der Produktion",
+    "why_label": "Warum Flip Flops Film",
+    "why_heading": "Warum mit",
+    "why_heading_light": "uns arbeiten",
+    "work_with_us": "Mit uns arbeiten",
+    "contact_cta_1": "Wir würden gerne",
+    "contact_cta_2": "mehr über Ihr",
+    "contact_cta_3": "Projekt erfahren",
+    "get_in_touch": "Kontakt aufnehmen"
+  },
+  "why_items": [
+    {
+      "id": 1,
+      "title": "Führende Steuervorteile",
+      "content": "Profitieren Sie von einigen der wettbewerbsfähigsten Filmförderungen Europas und maximieren Sie Ihr Produktionsbudget durch strategische Planung und lokales Know-how."
+    },
+    {
+      "id": 2,
+      "title": "Strategische Produktionsplanung",
+      "content": "Von der Budgetierung und Terminplanung bis zu Logistik und Genehmigungen helfen wir Produktionen, effizient zu arbeiten und den Zeitplan von der Vorproduktion bis zur Auslieferung einzuhalten."
+    },
+    {
+      "id": 3,
+      "title": "Internationale Erfahrung",
+      "content": "Unser Team verbindet lokales Wissen mit umfangreicher Erfahrung bei der Unterstützung internationaler Produktionen, Agenturen, Marken und kreativer Partner."
+    },
+    {
+      "id": 4,
+      "title": "Rundum-Unterstützung",
+      "content": "Location Scouting, Genehmigungen, Crew-Beschaffung, Casting, Ausrüstung, Transport und Produktionsmanagement – alles aus einer Hand."
+    }
+  ],
+  "believe_items": [
+    {
+      "id": 1,
+      "title": "Lokales Wissen zuerst",
+      "content": "Die stärksten Produktionen basieren auf lokalem Wissen. Wir glauben, dass das Verstehen der Menschen, der Kultur und der praktischen Gegebenheiten eines Ortes zu reibungsloseren Abläufen und besseren kreativen Ergebnissen führt."
+    },
+    {
+      "id": 2,
+      "title": "Beziehungen zählen",
+      "content": "Großartige Produktionen werden auf Vertrauen aufgebaut. Langfristige Partnerschaften mit Kunden, Crew-Mitgliedern, Lieferanten und kreativen Kollaborateuren ermöglichen es uns, effizient zu arbeiten und Herausforderungen zu lösen, bevor sie zu Problemen werden."
+    },
+    {
+      "id": 3,
+      "title": "Ein Team",
+      "content": "Wir sehen keinen Unterschied zwischen lokalen und internationalen Teams. Jedes Projekt funktioniert am besten, wenn die Kommunikation klar ist, Verantwortlichkeiten geteilt werden und alle dasselbe Ziel verfolgen."
+    },
+    {
+      "id": 4,
+      "title": "Lösungen statt Hindernisse",
+      "content": "Produktionen folgen selten einem perfekten Plan. Wir glauben daran, flexibel zu bleiben, uns schnell anzupassen und praktische Lösungen zu finden, die Projekte voranbringen, ohne Abstriche bei der Qualität zu machen."
+    }
+  ],
+  "home": {
+    "header_tagline": "Im Herzen von Flip Flops Film stehen die Menschen, Partnerschaften und gemeinsamen Werte, die das Unternehmen von Anfang an geprägt haben.",
+    "company_label": "Unternehmen",
+    "company_heading": "AUFGEBAUT AUF PRODUKTIONSKOMPETENZ UND VERTRAUENSVOLLEN PARTNERSCHAFTEN.",
+    "company_text": "Flip Flops Film wurde von David Turpin und André Dolezal gegründet, die spanisches Produktionsmanagement-Know-how und internationale Erfahrung in der Ausführungsproduktion vereinen. Was als gemeinsame Leidenschaft für das Filmemachen begann, ist zu einem verlässlichen Produktionspartner geworden, der Kunden hilft, Spaniens einzigartige Möglichkeiten mit praktischem Wissen, persönlichem Engagement und dem Anspruch zu navigieren, Dinge richtig zu machen.",
+    "believe_label": "Was wir glauben",
+    "contact_label": "— Kontakt",
+    "contact_heading": "In Kontakt",
+    "contact_heading_light": "treten",
+    "form_name": "Name",
+    "form_email": "E-Mail",
+    "form_message": "Nachricht",
+    "form_submit": "Gespräch starten",
+    "hero_title1": "Produktionsdienstleistungen",
+    "hero_title2": "in Spanien",
+    "services_label": "Was wir bieten",
+    "services_heading": "Produktionsunterstützung, die Ihr Projekt voranbringt."
+  },
+  "tax": {
+    "header": "Steuervorteile",
+    "canary_label": "Kanarische Inseln",
+    "canary_value": "Bis zu 50% Rückerstattung",
+    "mainland_label": "Spanisches Festland",
+    "mainland_value": "Bis zu 30% Rückerstattung",
+    "min_spend_label": "Mindestausgaben",
+    "min_spend_value": "Ab €200K",
+    "max_rebate_label": "Maximale Rückerstattung",
+    "max_rebate_value": "Bis zu €20M",
+    "opportunity_label": "Die Chance",
+    "opportunity_h5": "Spanien hat sich zu einem der führenden Ziele für internationale Produktionen in Europa entwickelt und bietet eine Kombination aus finanziellen Anreizen, vielfältigen Drehorten und hochqualifizierten Produktionsfachleuten. Je nach Region und Projektstruktur können Produktionen erhebliche Rückerstattungen auf förderfähige lokale Ausgaben erhalten.",
+    "opportunity_p": "Die Kanarischen Inseln bieten derzeit einige der wettbewerbsfähigsten Produktionsförderungen in Europa, während das spanische Festland attraktive Rückerstattungsmöglichkeiten für Spielfilme, Fernsehproduktionen und internationale Koproduktionen bietet. Kombiniert mit etablierter Infrastruktur und ganzjährigen Drehmöglichkeiten zieht Spanien weiterhin Produktionen aus aller Welt an.",
+    "approach_label": "Unser Ansatz",
+    "approach_p": "Jede Produktion ist einzigartig, und die Förderungsberechtigung hängt von einer Reihe kreativer, betrieblicher und finanzieller Faktoren ab. Unsere Aufgabe ist es, Kunden zu helfen, verfügbare Möglichkeiten zu verstehen, Projektanforderungen zu bewerten und eine Produktionsstrategie zu entwickeln, die Spaniens Fördersystem optimal nutzt und gleichzeitig einen reibungslosen Produktionsablauf gewährleistet.",
+    "next_link": "Über Flip Flops Film"
+  },
+  "crew": {
+    "header": "Crew & Produktion",
+    "network_label": "Crew-Netzwerk",
+    "network_value": "Erfahrene Fachleute",
+    "reach_label": "Regionale Reichweite",
+    "reach_value": "Spanien & Kanarische Inseln",
+    "logistics_label": "Logistik-Unterstützung",
+    "logistics_value": "End-to-End-Koordination",
+    "scale_label": "Projektgröße",
+    "scale_value": "Von Werbespots bis zu Spielfilmen",
+    "expertise_label": "Lokale Expertise",
+    "expertise_h5": "Die richtige Produktionsunterstützung ist oft unsichtbar. Wenn Crew, Ausrüstung, Transport und Unterkunft nahtlos zusammenarbeiten, können sich Produktionen auf die kreative Umsetzung konzentrieren statt auf operative Herausforderungen.",
+    "expertise_p": "Durch unser Netzwerk in ganz Spanien und auf den Kanarischen Inseln ermöglichen wir den Zugang zu erfahrenen lokalen Fachleuten und koordinieren den logistischen Rahmen, der nötig ist, um Projekte effizient voranzubringen. Von der Crew-Beschaffung und Ausrüstungsverwaltung bis zu Reise, Unterkunft und täglichen Produktionsabläufen schaffen wir die Infrastruktur, die Produktionen ermöglicht, ihr Bestes zu leisten.",
+    "network_section_label": "Netzwerk",
+    "next_link": "Über Locations",
+    "network_items": [
+      {
+        "id": 1,
+        "title": "Erfahrene lokale Crews",
+        "content": "Zugang zu hochqualifizierten Technikern, Kreativen und Produktionsfachleuten mit umfangreicher Erfahrung bei internationalen Projekten."
+      },
+      {
+        "id": 2,
+        "title": "Langfristige Partnerschaften",
+        "content": "Jahre der Zusammenarbeit haben vertrauensvolle Beziehungen zu Lieferanten, Dienstleistern und lokalen Behörden geschaffen."
+      },
+      {
+        "id": 3,
+        "title": "Regionales Wissen",
+        "content": "Unser Team kennt die Drehorte, Vorschriften und logistischen Gegebenheiten, die Produktionen effizient halten."
+      },
+      {
+        "id": 4,
+        "title": "Ein-Team-Philosophie",
+        "content": "Wir integrieren uns nahtlos in Ihre Produktion und arbeiten als engagierter lokaler Partner an Ihrer Seite."
+      }
+    ]
+  },
+  "locations": {
+    "header": "Locations",
+    "label": "Endlose visuelle Möglichkeiten",
+    "h5": "Weniger Ortswechsel, mehr visuelle Vielfalt und mehr Zeit, wo es am meisten zählt: am Set.",
+    "p": "Innerhalb weniger Stunden wandeln sich die Landschaften von mondvulkanischem Terrain und windgepeitschten Küsten zu dichten Wäldern, Wüstenstraßen und zeitlosen Dörfern. Drehorte, die normalerweise mehrere Länder erfordern würden, lassen sich oft innerhalb einer einzigen Region finden."
+  },
+  "services": {
+    "header": "Produktionsleistungen",
+    "header_p": "Der Erfolg einer Produktion wird oft lange vor dem Start der Kameras definiert. Durch sorgfältige Vorbereitung, lokales Know-how und jahrelange praktische Erfahrung helfen wir, die Bedingungen zu schaffen, die es Produktionen ermöglichen, sich auf das Wesentliche zu konzentrieren.",
+    "top_label": "Produktionsleistungen",
+    "top_h5": "Die kreative Vision mag eine Produktion definieren, aber ihr Erfolg wird oft durch die praktischen Entscheidungen im Hintergrund bestimmt.",
+    "top_p": "Jeder Drehort muss bewertet, jede Genehmigung eingeholt, jedes Crew-Mitglied koordiniert und jedes logistische Detail berücksichtigt werden. Produktionen, die in unbekannten Regionen arbeiten, stehen oft vor zusätzlichen Herausforderungen: vom Verstehen lokaler Vorschriften bis zur Identifizierung zuverlässiger Lieferanten. Durch jahrelange Erfahrung in ganz Spanien hilft Flip Flops Film, diese Lücke zu schließen und Produktionsunterstützung zu bieten, die es kreativen Teams ermöglicht, sich auf ihre Arbeit zu konzentrieren.",
+    "single_label": "Produktionsleistungen",
+    "single_heading": "Spanien als Ihre Produktionsbasis",
+    "single_p": "Jedes Projekt ist auf Vorbereitung, Koordination und die richtigen Personen angewiesen. Unsere Leistungen sind darauf ausgerichtet, Produktionen in jeder Phase der Reise zu unterstützen."
+  },
+  "faqs": {
+    "label": "FAQ''s",
+    "items": [
+      {
+        "id": 1,
+        "title": "Wie können wir Kontakt aufnehmen?",
+        "content": "Am einfachsten über unser Kontaktformular oder per E-Mail. Wir freuen uns, Ihr Projekt zu besprechen, Fragen zu beantworten und zu erkunden, wie wir Ihre Produktion in Spanien oder auf den Kanarischen Inseln unterstützen können."
+      },
+      {
+        "id": 2,
+        "title": "Wie früh sollten wir Sie kontaktieren?",
+        "content": "Je früher, desto besser. Frühe Gespräche schaffen mehr Möglichkeiten für Location-Zugang, Incentive-Planung, Terminplanung und Produktionsoptimierung."
+      },
+      {
+        "id": 3,
+        "title": "Bieten Sie vollständige Produktionsdienstleistungen an?",
+        "content": "Ja. Wir unterstützen Produktionen in allen Phasen, einschließlich Location Scouting, Genehmigungen, Crew-Beschaffung, Logistik, Produktionsmanagement und lokaler Koordination."
+      },
+      {
+        "id": 4,
+        "title": "Arbeiten Sie mit internationalen Produktionen?",
+        "content": "Absolut. Wir arbeiten regelmäßig mit Produktionsfirmen, Agenturen, Marken und Studios aus aller Welt zusammen, die in Spanien und auf den Kanarischen Inseln drehen."
+      },
+      {
+        "id": 5,
+        "title": "Arbeiten Sie nur auf den Kanarischen Inseln?",
+        "content": "Nein. Obwohl die Kanarischen Inseln ein wichtiger Produktionsstandort sind, unterstützen wir Projekte im gesamten spanischen Festland und arbeiten mit Partnern in mehreren Regionen zusammen."
+      },
+      {
+        "id": 6,
+        "title": "Können Sie sowohl kleine als auch große Produktionen unterstützen?",
+        "content": "Ja. Unsere Leistungen skalieren entsprechend den Anforderungen jedes Projekts, von schlanken Werbeproduktionen bis zu großen internationalen Film- und Fernsehprojekten."
+      },
+      {
+        "id": 7,
+        "title": "Können Sie bei Genehmigungen helfen?",
+        "content": "Ja. Wir koordinieren Genehmigungsanträge und arbeiten eng mit lokalen Behörden zusammen, um Produktionen bei regionalen Drehgenehmigungen zu unterstützen."
+      },
+      {
+        "id": 8,
+        "title": "Bieten Sie Location Scouting an?",
+        "content": "Wir bieten sowohl Location-Recherche als auch Scouting vor Ort an und helfen Produktionen, Drehorte zu finden, die kreative, logistische und budgetäre Anforderungen erfüllen."
+      },
+      {
+        "id": 9,
+        "title": "Können Sie bei der Ausrüstungsbeschaffung helfen?",
+        "content": "Durch unser Netzwerk vertrauenswürdiger Lieferanten können wir Kamera-, Licht-, Grip-, Transport- und weitere Produktionsausrüstung basierend auf den Projektanforderungen koordinieren."
+      },
+      {
+        "id": 10,
+        "title": "Warum kehren Produktionen immer wieder nach Spanien zurück?",
+        "content": "Weil Spanien Produktionsinfrastruktur, erfahrene Crews, vielfältige Drehorte und wettbewerbsfähige Förderungen in einem einzigen Land vereint."
+      },
+      {
+        "id": 11,
+        "title": "Was macht die Kanarischen Inseln für Filmaufnahmen einzigartig?",
+        "content": "Wenige Destinationen bieten eine solche Bandbreite an Landschaften, stabile Wetterbedingungen und Produktionsförderungen in einem relativ kleinen geografischen Gebiet."
+      },
+      {
+        "id": 12,
+        "title": "Kann Spanien andere Länder darstellen?",
+        "content": "Regelmäßig. Produktionen nutzen Spanien, um alles von Nordamerika und dem Nahen Osten bis zu Lateinamerika und verschiedenen europäischen Schauplätzen nachzubilden."
+      },
+      {
+        "id": 13,
+        "title": "Wie früh sollten Location-Gespräche beginnen?",
+        "content": "Idealerweise während der kreativen Entwicklung. Frühzeitige Planung erschließt oft Möglichkeiten, die später im Prozess nicht mehr verfügbar sind."
+      },
+      {
+        "id": 14,
+        "title": "Wie wichtig ist lokales Wissen?",
+        "content": "Lokale Expertise offenbart oft Lösungen, Alternativen und Möglichkeiten, die in Datenbanken, Location-Bibliotheken oder Scouting-Decks nicht erscheinen."
+      },
+      {
+        "id": 15,
+        "title": "Kann ein Drehort Produktionskosten sparen?",
+        "content": "Absolut. Der richtige Drehort kann Reise, Logistik, Drehtage und die Gesamtkomplexität der Produktion reduzieren."
+      },
+      {
+        "id": 16,
+        "title": "Was ist das größte Missverständnis beim Drehen in Spanien?",
+        "content": "Dass Produktionen nur wegen der Förderungen kommen. In Wirklichkeit kehren viele wegen der Infrastruktur, Zuverlässigkeit und kreativen Flexibilität zurück."
+      },
+      {
+        "id": 17,
+        "title": "Wie balancieren Sie kreative Ambitionen mit praktischen Realitäten?",
+        "content": "Die besten Lösungen entstehen, wenn kreative und produktionstechnische Überlegungen gemeinsam entwickelt werden, statt gegeneinander zu konkurrieren."
+      },
+      {
+        "id": 18,
+        "title": "Warum wählen internationale Produktionen lokale Crews?",
+        "content": "Lokale Crews bringen regionales Wissen, operative Effizienz und umfangreiche Erfahrung mit den spezifischen Realitäten jedes Gebiets mit."
+      },
+      {
+        "id": 19,
+        "title": "Wie wichtig ist Flexibilität bei der Produktion?",
+        "content": "Produktionen folgen selten einem perfekten Plan. Flexibilität ermöglicht es Teams, sich schnell anzupassen und dabei kreative und operative Ziele beizubehalten."
+      },
+      {
+        "id": 20,
+        "title": "Kann eine Region mehrere visuelle Identitäten bieten?",
+        "content": "Oft ja. Viele spanische Regionen enthalten dramatisch unterschiedliche Umgebungen in kurzen Reisedistanzen."
+      },
+      {
+        "id": 21,
+        "title": "Was macht eine starke Produktionspartnerschaft aus?",
+        "content": "Vertrauen, Transparenz und gemeinsame Ziele. Die erfolgreichsten Kooperationen funktionieren als ein integriertes Team."
+      },
+      {
+        "id": 22,
+        "title": "Wie beeinflussen Förderungen Entscheidungen über Drehorte?",
+        "content": "Förderungen können ein wichtiger Faktor sein, aber sie funktionieren am besten in Kombination mit Drehorten, Infrastruktur und Crews, die die kreativen Ziele des Projekts unterstützen."
+      },
+      {
+        "id": 23,
+        "title": "Was sollten Produzenten bei der Wahl einer Destination berücksichtigen?",
+        "content": "Vielfalt der Drehorte, Logistik, Crew-Verfügbarkeit, Genehmigungsanforderungen, Infrastruktur und allgemeine Produktionseffizienz."
+      },
+      {
+        "id": 24,
+        "title": "Was wird bei der Vorproduktion oft übersehen?",
+        "content": "Kleine operative Details. Frühzeitige Planung rund um Zugang, Terminplanung und Logistik verhindert häufig größere Herausforderungen später."
+      },
+      {
+        "id": 25,
+        "title": "Was definiert eine erfolgreiche Produktionserfahrung?",
+        "content": "Ein Prozess, bei dem sich kreative Teams auf das Erzählen von Geschichten konzentrieren können, während operative Herausforderungen effektiv im Hintergrund gemanagt werden."
+      }
+    ]
+  },
+  "imprint": {
+    "label": "Impressum",
+    "heading": "Unternehmensinformationen, rechtliche Details und Kontaktinformationen für Flip Flops Film.",
+    "body": "Flip Flops Film S.L. ist ein Produktionsdienstleistungsunternehmen, das internationale Film-, Fernseh-, Werbe- und Fotooproduktionen in ganz Spanien unterstützt. Mit einer Präsenz auf den Kanarischen Inseln, in Madrid, Almería und Bilbao bietet das Unternehmen Produktionsunterstützung, Location-Services, Incentive-Beratung, Logistik und lokale Koordination für Projekte jeder Größe.<br><br>Firmenname: Flip Flops Film S.L.<br>CIF: B75447698<br>Hauptsitz: Kanarische Inseln, Spanien<br>Weitere Büros: Madrid, Almería und Bilbao<br>E-Mail: hello&#64;flipflopsfilm.com<br>Website: www.flipflopsfilm.com<br><br>Geschäftsführer:<br>David Turpin<br>André Dolezal"
+  },
+  "privacy": {
+    "label": "Datenschutz",
+    "heading": "Privatsphäre schützen durch Transparenz, verantwortungsvollen Umgang mit Daten und sichere Kommunikation.",
+    "body": "Wir legen großen Wert auf Transparenz und respektieren die Privatsphäre aller Besucher unserer Website. Informationen, die Flip Flops Film über Kontaktformulare, E-Mail-Korrespondenz oder andere Kommunikationswege mitgeteilt werden, werden ausschließlich verwendet, um auf Anfragen zu reagieren und unsere Dienste zu erbringen.<br><br>Unsere Website kann bestimmte technische Informationen erfassen, wie z.B. Browsertyp, Gerätedaten und Website-Nutzungsstatistiken, um die Leistung und Benutzererfahrung zu verbessern. Wir verkaufen keine personenbezogenen Daten an Dritte und ergreifen angemessene Maßnahmen zum Schutz der uns anvertrauten Informationen.<br><br>Wenn Sie Fragen zur Erhebung oder Verwendung personenbezogener Daten haben, kontaktieren Sie uns bitte direkt."
+  },
+  "services_items": [
+    {
+      "id": 1,
+      "title": "Produktionsdienstleistungen",
+      "category": "Vollständige Unterstützung von der Vorbereitung bis zum Abschluss."
+    },
+    {
+      "id": 2,
+      "title": "Locations",
+      "category": "Scouting und Sicherung einzigartiger Drehorte."
+    },
+    {
+      "id": 3,
+      "title": "Steuervorteile",
+      "category": "Beratung zu Genehmigungen und Steuervergünstigungen."
+    },
+    {
+      "id": 4,
+      "title": "Crew & Produktion",
+      "category": "Erfahrene Crews und reibungsloser Betrieb vor Ort."
+    }
+  ]
 }

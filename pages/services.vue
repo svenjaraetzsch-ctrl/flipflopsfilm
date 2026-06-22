@@ -25,7 +25,7 @@
 const { t } = useI18n()
 
 useHead({
-  title: t('home_header.title'),
+  title: t('services.header') + ' | Flip Flops Film',
 
   bodyAttrs: {
     class: 'main-bg'

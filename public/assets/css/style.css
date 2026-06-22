@@ -6701,7 +6701,7 @@ footer .logo img {
 
   .section-padding {
     padding-top: 50px;
-    padding-bottom: 50px;
+    padding-bottom: 30px;
   }
   .section-top-clearance {
     padding-top: 110px !important;
@@ -7093,8 +7093,15 @@ footer .logo img {
     margin-top: 30px;
     margin-bottom: 30px;
   }
+  .topnav .menu-icon .text {
+    display: none;
+  }
   footer {
-    padding-top: 50px;
+    padding-top: 0;
+  }
+  footer .eml h2 {
+    font-size: clamp(18px, 5vw, 28px) !important;
+    overflow-wrap: break-word;
   }
 }
 

@@ -20,10 +20,8 @@
 </template>
 
 <script setup>
-const { t } = useI18n()
-
 useHead({
-  title: t('home_header.title'),
+  title: 'Flip Flops Film',
 
   bodyAttrs: {
     class: 'main-bg'

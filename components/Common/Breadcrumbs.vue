@@ -17,33 +17,37 @@
 </template>
 
 <script setup>
-const route = useRoute();
+const route = useRoute()
+const { locale } = useI18n()
 
 const labels = {
   about: 'About',
   services: 'Services',
   locations: 'Locations',
   'tax-incentives': 'Tax Incentives',
+  'crew-operations': 'Crew & Operations',
+  faqs: "FAQ's",
   contact: 'Contact',
-  privacy: 'Privacy Policy',
+  'privacy-policy': 'Privacy Policy',
   imprint: 'Imprint'
-};
+}
+
+const localeCodes = ['de', 'es', 'en']
 
 const breadcrumbs = computed(() => {
-  const segments = route.path.split('/').filter(Boolean);
+  const segments = route.path.split('/').filter(s => s && !localeCodes.includes(s))
 
   return segments.map((segment, index) => {
-    const path = '/' + segments.slice(0, index + 1).join('/');
+    const localePfx = locale.value !== 'en' ? `/${locale.value}` : ''
+    const path = localePfx + '/' + segments.slice(0, index + 1).join('/')
 
     return {
-      name:
-        labels[segment] ||
-        segment.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
+      name: labels[segment] || segment.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),
       path,
       isCurrent: index === segments.length - 1
-    };
-  });
-});
+    }
+  })
+})
 </script>
 
 <style scoped>
