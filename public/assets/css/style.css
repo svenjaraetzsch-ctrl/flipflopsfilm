@@ -540,6 +540,7 @@ img {
   line-height: 2;
   position: relative;
   z-index: 2;
+  margin: auto;
 }
 
 .butn-circle .circle-star {
