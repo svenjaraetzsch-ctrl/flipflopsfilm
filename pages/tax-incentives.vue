@@ -23,6 +23,10 @@
 </template>
 
 <script setup>
+//= Page Meta
+definePageMeta({
+  layout: "preview",
+});
 //= Page Head
 useHead({
   titleTemplate: `%s - Tax Incentives`,

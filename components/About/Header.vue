@@ -4,8 +4,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-11">
           <div class="caption text-center">
-            <h1 class="fz-60">At the heart of Flip Flops Film are the people, partnerships and shared values that have shaped the company from the very beginning.
-            </h1>
+            <h1 class="fz-60">{{ $t('home.header_tagline') }}</h1>
           </div>
         </div>
       </div>

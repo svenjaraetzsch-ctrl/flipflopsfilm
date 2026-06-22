@@ -1,39 +1,335 @@
 {
-  "home_header": {
-    "title": "Flip Flops Film",
-    "title1": "FILM PRODUCTION",
-    "title2": "SERVICES",
-    "subtitle": "LOCAL EXPERTISE FOR GLOBAL PRODUCTIONS."
+  "nav": {
+    "home": "Home",
+    "services": "Services",
+    "tax_incentives": "Tax Incentives",
+    "locations": "Locations",
+    "about": "About",
+    "crew_operations": "Crew & Operations",
+    "faqs": "FAQ''s"
   },
-
-  "home_whoweare": {
-    "text": "WE PROVIDE FULL-SERVICE PRODUCTION SUPPORT FOR FEATURE FILMS, COMMERCIALS AND PHOTO PRODUCTIONS ACROSS SPAIN AND THE CANARY ISLANDS.",
-    "subtext": "From location scouting and permits to crew sourcing, logistics and tax incentives, Flip Flops Film helps international productions navigate every stage of the process. Combining local expertise, trusted industry partnerships and hands-on production management, we deliver seamless support from first enquiry to final wrap."
+  "menu": {
+    "our_offices": "Our Offices",
+    "offices": "Canary Islands · Madrid · Almería · Bilbao",
+    "contact": "Contact",
+    "socials": "Socials"
   },
-
-  "home_awards": {
-    "frog": "Production Services",
-    "text": "Your tailored solution for every challenge.",
-
-    "service": "Service",
-    "description": "Description",
-
-    "service1": "Production Services",
-    "service1_desc": "End-to-end support for productions of every scale.",
-
-    "service2": "Tax Incentives",
-    "service2_desc": "Maximizing financial benefits through Spain's incentive programs.",
-
-    "service3": "Location Scouting",
-    "service3_desc": "Access to exceptional locations across Spain and the Canary Islands.",
-
-    "service4": "Production Management",
-    "service4_desc": "Professional planning, coordination, and execution.",
-
-    "service5": "Crew & Equipment",
-    "service6_desc": "Connecting productions with trusted industry professionals.",
-
-    "service6": "Permits & Logistics",
-    "service7_desc": "Ensuring smooth operations from pre-production to wrap."
-  }
+  "footer": {
+    "tagline": "We would love to hear from you.",
+    "social_media": "Social Media",
+    "our_offices": "Our Offices",
+    "offices": "Canary Islands · Madrid · Almería · Bilbao",
+    "contact_us": "Contact Us",
+    "about_us": "About Us",
+    "privacy_policy": "Privacy Policy",
+    "imprint": "Imprint",
+    "copyright": "© 2024 Flip Flops Film S.L. CIF: B75447698"
+  },
+  "common": {
+    "read_more": "Read more",
+    "years_in_production": "Years in Production",
+    "why_label": "Why Flip Flops Film",
+    "why_heading": "Why Work",
+    "why_heading_light": "With Us",
+    "work_with_us": "Work With Us",
+    "contact_cta_1": "We would love",
+    "contact_cta_2": "to hear more about",
+    "contact_cta_3": "your project",
+    "get_in_touch": "Get In Touch"
+  },
+  "why_items": [
+    {
+      "id": 1,
+      "title": "Leading Tax Incentives",
+      "content": "Benefit from some of Europe''s most competitive film incentives and maximise your production budget through strategic planning and local expertise."
+    },
+    {
+      "id": 2,
+      "title": "Strategic Production Planning",
+      "content": "From budgeting and scheduling to logistics and permits, we help productions run efficiently and stay on track from pre-production to final delivery."
+    },
+    {
+      "id": 3,
+      "title": "International Experience",
+      "content": "Our team combines local knowledge with extensive experience supporting international productions, agencies, brands and creative partners."
+    },
+    {
+      "id": 4,
+      "title": "End-to-End Support",
+      "content": "Location scouting, permits, crew sourcing, casting, equipment, transportation and production management — everything you need under one roof."
+    }
+  ],
+  "believe_items": [
+    {
+      "id": 1,
+      "title": "Local First",
+      "content": "The strongest productions are built on local knowledge. We believe that understanding the people, culture and practical realities of a location creates smoother workflows and better creative outcomes."
+    },
+    {
+      "id": 2,
+      "title": "Relationships Matter",
+      "content": "Great productions are built on trust. Long-term partnerships with clients, crew members, suppliers and creative collaborators allow us to work efficiently and solve challenges before they become problems."
+    },
+    {
+      "id": 3,
+      "title": "One Team",
+      "content": "We don''t see a distinction between local and international teams. Every project works best when communication is clear, responsibilities are shared and everyone moves towards the same goal."
+    },
+    {
+      "id": 4,
+      "title": "Solutions Over Obstacles",
+      "content": "Production rarely follows a perfect plan. We believe in staying flexible, adapting quickly and finding practical solutions that keep projects moving forward without compromising quality."
+    }
+  ],
+  "home": {
+    "header_tagline": "At the heart of Flip Flops Film are the people, partnerships and shared values that have shaped the company from the very beginning.",
+    "company_label": "Company",
+    "company_heading": "BUILT ON PRODUCTION EXPERTISE AND TRUSTED PARTNERSHIPS.",
+    "company_text": "Flip Flops Film was founded by David Turpin and André Dolezal, bringing together Spanish production management expertise and international line production experience. What started as a shared passion for filmmaking has grown into a trusted production partner, helping clients navigate Spain''s unique opportunities with practical knowledge, personal involvement and a commitment to getting things done right.",
+    "believe_label": "What we believe",
+    "contact_label": "— Contact Us",
+    "contact_heading": "Get In",
+    "contact_heading_light": "Touch",
+    "form_name": "Name",
+    "form_email": "Email",
+    "form_message": "Message",
+    "form_submit": "Let''s Talk",
+    "hero_title1": "Production Services",
+    "hero_title2": "in Spain",
+    "services_label": "What we offer",
+    "services_heading": "Production Support That Moves Your Project Forward."
+  },
+  "tax": {
+    "header": "Tax Incentives",
+    "canary_label": "Canary Islands",
+    "canary_value": "Up to 50% Rebate",
+    "mainland_label": "Mainland Spain",
+    "mainland_value": "Up to 30% Rebate",
+    "min_spend_label": "Minimum Spend",
+    "min_spend_value": "From €200K",
+    "max_rebate_label": "Maximum Rebate",
+    "max_rebate_value": "Up to €20M",
+    "opportunity_label": "The Opportunity",
+    "opportunity_h5": "Spain has become one of Europe''s leading destinations for international productions, offering a combination of financial incentives, diverse filming locations and highly experienced production professionals. Depending on the region and project structure, productions may qualify for substantial rebates on eligible local expenditure.",
+    "opportunity_p": "The Canary Islands currently offer some of the most competitive production incentives in Europe, while mainland Spain provides attractive rebate opportunities for feature films, television productions and international co-productions. Combined with established infrastructure and year-round filming conditions, Spain continues to attract productions from around the world.",
+    "approach_label": "Our Approach",
+    "approach_p": "Every production is unique, and incentive eligibility depends on a range of creative, operational and financial factors. Our role is to help clients understand available opportunities, evaluate project requirements and develop a production strategy that makes the most of Spain''s incentive framework while ensuring a smooth production process.",
+    "next_link": "About Flip Flops Film"
+  },
+  "crew": {
+    "header": "Crew & Operations",
+    "network_label": "Crew Network",
+    "network_value": "Experienced Professionals",
+    "reach_label": "Regional Reach",
+    "reach_value": "Spain & Canary Islands",
+    "logistics_label": "Logistics Support",
+    "logistics_value": "End-to-End Coordination",
+    "scale_label": "Project Scale",
+    "scale_value": "Commercials to Features",
+    "expertise_label": "Local Expertise",
+    "expertise_h5": "The right production support is often invisible. When crew, equipment, transport and accommodation work seamlessly together, productions stay focused on creative execution rather than operational challenges.",
+    "expertise_p": "Through our network across Spain and the Canary Islands, we provide access to experienced local professionals while coordinating the logistical framework required to keep projects moving efficiently. From crew sourcing and equipment management to travel, accommodation and day-to-day production operations, we build the infrastructure that allows productions to perform at their best.",
+    "network_section_label": "Network",
+    "next_link": "About Locations",
+    "network_items": [
+      {
+        "id": 1,
+        "title": "Experienced Local Crews",
+        "content": "Access highly skilled technicians, creatives and production professionals with extensive experience across international projects."
+      },
+      {
+        "id": 2,
+        "title": "Long-Term Partnerships",
+        "content": "Years of collaboration have created trusted relationships with suppliers, service providers and local authorities."
+      },
+      {
+        "id": 3,
+        "title": "Regional Knowledge",
+        "content": "Our team understands the locations, regulations and logistics that keep productions moving efficiently."
+      },
+      {
+        "id": 4,
+        "title": "One Team Philosophy",
+        "content": "We integrate seamlessly with your production, working alongside you as a dedicated local partner."
+      }
+    ]
+  },
+  "locations": {
+    "header": "Locations",
+    "label": "Endless Visual Possibilities",
+    "h5": "Fewer company moves, greater visual variety and more time where it matters most: on set.",
+    "p": "Within a few hours, landscapes shift from lunar volcanic terrain and windswept coastlines to dense forests, desert roads and timeless villages. Locations that would normally require multiple countries can often be found within a single region."
+  },
+  "services": {
+    "header": "Production Services",
+    "header_p": "The success of a production is often defined long before the cameras start rolling. Through careful preparation, local insight and years of hands-on experience, we help create the conditions that allow productions to focus on what matters most.",
+    "top_label": "Production Services",
+    "top_h5": "The creative vision may define a production, but its success is often determined by the practical decisions made behind the scenes.",
+    "top_p": "Every location must be assessed, every permit secured, every crew member coordinated and every logistical detail accounted for. Productions working in unfamiliar regions often face additional challenges, from understanding local regulations to identifying reliable suppliers and service providers. Through years of experience working across Spain, Flip Flops Film helps bridge that gap, providing production support that allows creative teams to focus on the work in front of them while the operational side remains under control.",
+    "single_label": "Production Services",
+    "single_heading": "Turning Spain Into Your Production Base",
+    "single_p": "Every project relies on preparation, coordination and the right people in the right place. Our services are designed to support productions at every stage of the journey."
+  },
+  "faqs": {
+    "label": "FAQ''s",
+    "items": [
+      {
+        "id": 1,
+        "title": "How can we get in touch?",
+        "content": "The easiest way is through our contact form or by email. We''d be happy to discuss your project, answer questions and explore how we can support your production in Spain or the Canary Islands."
+      },
+      {
+        "id": 2,
+        "title": "How early should we contact you?",
+        "content": "The earlier, the better. Early conversations create more opportunities for location access, incentive planning, scheduling and production optimization."
+      },
+      {
+        "id": 3,
+        "title": "Do you provide full production services?",
+        "content": "Yes. We support productions across all stages, including location scouting, permitting, crew sourcing, logistics, production management and local coordination."
+      },
+      {
+        "id": 4,
+        "title": "Do you work with international productions?",
+        "content": "Absolutely. We regularly collaborate with production companies, agencies, brands and studios from around the world filming in Spain and the Canary Islands."
+      },
+      {
+        "id": 5,
+        "title": "Do you only work in the Canary Islands?",
+        "content": "No. While the Canary Islands are a key production hub, we support projects throughout mainland Spain and collaborate with partners across multiple regions."
+      },
+      {
+        "id": 6,
+        "title": "Can you support small productions as well as large shoots?",
+        "content": "Yes. Our services scale according to each project''s requirements, from lean commercial productions to large international film and television projects."
+      },
+      {
+        "id": 7,
+        "title": "Can you assist with permits and filming permissions?",
+        "content": "Yes. We coordinate permit applications and work closely with local authorities to help productions navigate regional filming requirements."
+      },
+      {
+        "id": 8,
+        "title": "Do you provide location scouting services?",
+        "content": "We offer both location research and on-the-ground scouting, helping productions identify locations that satisfy creative, logistical and budgetary requirements."
+      },
+      {
+        "id": 9,
+        "title": "Can you help source equipment?",
+        "content": "Through our network of trusted suppliers, we can coordinate camera, lighting, grip, transport and additional production equipment based on project needs."
+      },
+      {
+        "id": 10,
+        "title": "Why do productions keep coming back to Spain?",
+        "content": "Because Spain combines production infrastructure, experienced crews, diverse locations and competitive incentives within a single territory."
+      },
+      {
+        "id": 11,
+        "title": "What makes the Canary Islands unique for filming?",
+        "content": "Few destinations offer such a wide range of landscapes, stable weather conditions and production incentives within a relatively small geographic area."
+      },
+      {
+        "id": 12,
+        "title": "Can Spain double for other countries?",
+        "content": "Regularly. Productions use Spain to recreate everything from North America and the Middle East to Latin America and various European settings."
+      },
+      {
+        "id": 13,
+        "title": "How early should location conversations begin?",
+        "content": "Ideally during creative development. Early planning often unlocks opportunities that are no longer available later in the process."
+      },
+      {
+        "id": 14,
+        "title": "How important is local knowledge?",
+        "content": "Local expertise often reveals solutions, alternatives and opportunities that don''t appear in databases, location libraries or scouting decks."
+      },
+      {
+        "id": 15,
+        "title": "Can a location save production costs?",
+        "content": "Absolutely. The right location can reduce travel, logistics, shooting days and overall production complexity."
+      },
+      {
+        "id": 16,
+        "title": "What is the biggest misconception about filming in Spain?",
+        "content": "That productions come only for incentives. In reality, many return because of the infrastructure, reliability and creative flexibility available throughout the country."
+      },
+      {
+        "id": 17,
+        "title": "How do you balance creative ambitions with practical realities?",
+        "content": "The best solutions emerge when creative and production considerations develop together rather than competing against one another."
+      },
+      {
+        "id": 18,
+        "title": "Why do international productions choose local crews?",
+        "content": "Local crews bring regional knowledge, operational efficiency and extensive experience working within the specific realities of each territory."
+      },
+      {
+        "id": 19,
+        "title": "How important is flexibility during production?",
+        "content": "Production rarely follows a perfect plan. Flexibility allows teams to adapt quickly while maintaining creative and operational goals."
+      },
+      {
+        "id": 20,
+        "title": "Can one region offer multiple visual identities?",
+        "content": "Often yes. Many Spanish regions contain dramatically different environments within short travel distances."
+      },
+      {
+        "id": 21,
+        "title": "What makes a strong production partnership?",
+        "content": "Trust, transparency and shared objectives. The most successful collaborations operate as one integrated team."
+      },
+      {
+        "id": 22,
+        "title": "How do incentives influence location decisions?",
+        "content": "Incentives can be an important factor, but they work best when combined with locations, infrastructure and crews that support the project''s creative goals."
+      },
+      {
+        "id": 23,
+        "title": "What should producers consider before choosing a destination?",
+        "content": "Location diversity, logistics, crew availability, permitting requirements, infrastructure and overall production efficiency."
+      },
+      {
+        "id": 24,
+        "title": "What is often overlooked during pre-production?",
+        "content": "Small operational details. Early planning around access, scheduling and logistics frequently prevents larger challenges later."
+      },
+      {
+        "id": 25,
+        "title": "What defines a successful production experience?",
+        "content": "A process where creative teams can focus on storytelling while operational challenges are managed effectively behind the scenes."
+      }
+    ]
+  },
+  "imprint": {
+    "label": "Imprint",
+    "heading": "Company information, legal details and contact information for Flip Flops Film.",
+    "body": "Flip Flops Film S.L. is a production services company supporting international film, television, commercial and photographic productions across Spain. With a presence in the Canary Islands, Madrid, Almería and Bilbao, the company provides production support, location services, incentives guidance, logistics and local coordination for projects of all scales.<br><br>Company Name: Flip Flops Film S.L.<br>CIF: B75447698<br>Headquarters: Canary Islands, Spain<br>Additional Offices: Madrid, Almería and Bilbao<br>Email: hello&#64;flipflopsfilm.com<br>Website: www.flipflopsfilm.com<br><br>Managing Directors:<br>David Turpin<br>André Dolezal"
+  },
+  "privacy": {
+    "label": "Privacy Policy",
+    "heading": "Respecting privacy through transparency, responsible data handling and secure communication.",
+    "body": "We value transparency and respect the privacy of everyone who visits our website. Any information shared with Flip Flops Film through contact forms, email correspondence or other communications is used solely for the purpose of responding to enquiries and providing our services.<br><br>Our website may collect certain technical information, such as browser type, device data and website usage statistics, to help improve performance and user experience. We do not sell personal information to third parties and take reasonable measures to protect any information entrusted to us.<br><br>If you have questions regarding the collection or use of personal information, please contact us directly."
+  },
+  "services_items": [
+    {
+      "id": 1,
+      "title": "Production Services",
+      "category": "Full-service support from prep to wrap."
+    },
+    {
+      "id": 2,
+      "title": "Locations",
+      "category": "Scouting and securing unique filming locations."
+    },
+    {
+      "id": 3,
+      "title": "Tax Incentives",
+      "category": "Guidance on permits and rebates."
+    },
+    {
+      "id": 4,
+      "title": "Crew & Operations",
+      "category": "Trusted crews and smooth operations."
+    }
+  ]
 }

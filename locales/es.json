@@ -1,3 +1,335 @@
 {
-  "welcome": "Bienvenido"
+  "nav": {
+    "home": "Inicio",
+    "services": "Servicios",
+    "tax_incentives": "Incentivos Fiscales",
+    "locations": "Localizaciones",
+    "about": "Nosotros",
+    "crew_operations": "Equipo & Producción",
+    "faqs": "FAQ''s"
+  },
+  "menu": {
+    "our_offices": "Nuestras Oficinas",
+    "offices": "Islas Canarias · Madrid · Almería · Bilbao",
+    "contact": "Contacto",
+    "socials": "Redes Sociales"
+  },
+  "footer": {
+    "tagline": "Nos encantaría saber de usted.",
+    "social_media": "Redes Sociales",
+    "our_offices": "Nuestras Oficinas",
+    "offices": "Islas Canarias · Madrid · Almería · Bilbao",
+    "contact_us": "Contáctenos",
+    "about_us": "Nosotros",
+    "privacy_policy": "Política de Privacidad",
+    "imprint": "Aviso Legal",
+    "copyright": "© 2024 Flip Flops Film S.L. CIF: B75447698"
+  },
+  "common": {
+    "read_more": "Leer más",
+    "years_in_production": "Años en Producción",
+    "why_label": "Por qué Flip Flops Film",
+    "why_heading": "Por qué trabajar",
+    "why_heading_light": "con nosotros",
+    "work_with_us": "Trabajar con Nosotros",
+    "contact_cta_1": "Nos encantaría",
+    "contact_cta_2": "saber más sobre",
+    "contact_cta_3": "su proyecto",
+    "get_in_touch": "Ponerse en Contacto"
+  },
+  "why_items": [
+    {
+      "id": 1,
+      "title": "Incentivos Fiscales Líderes",
+      "content": "Benefíciese de algunos de los incentivos cinematográficos más competitivos de Europa y maximice su presupuesto de producción mediante planificación estratégica y experiencia local."
+    },
+    {
+      "id": 2,
+      "title": "Planificación Estratégica",
+      "content": "Desde la presupuestación y la programación hasta la logística y los permisos, ayudamos a las producciones a trabajar de manera eficiente y a mantenerse en el camino correcto."
+    },
+    {
+      "id": 3,
+      "title": "Experiencia Internacional",
+      "content": "Nuestro equipo combina conocimiento local con amplia experiencia apoyando producciones internacionales, agencias, marcas y socios creativos."
+    },
+    {
+      "id": 4,
+      "title": "Apoyo Integral",
+      "content": "Búsqueda de localizaciones, permisos, contratación de equipo, casting, equipamiento, transporte y gestión de producción — todo lo que necesita bajo un mismo techo."
+    }
+  ],
+  "believe_items": [
+    {
+      "id": 1,
+      "title": "Lo Local Primero",
+      "content": "Las producciones más sólidas se construyen sobre el conocimiento local. Creemos que entender a las personas, la cultura y las realidades prácticas de una localización crea flujos de trabajo más ágiles y mejores resultados creativos."
+    },
+    {
+      "id": 2,
+      "title": "Las Relaciones Importan",
+      "content": "Las grandes producciones se construyen sobre la confianza. Las asociaciones a largo plazo con clientes, miembros del equipo, proveedores y colaboradores creativos nos permiten trabajar eficientemente y resolver desafíos antes de que se conviertan en problemas."
+    },
+    {
+      "id": 3,
+      "title": "Un Solo Equipo",
+      "content": "No vemos distinción entre equipos locales e internacionales. Cada proyecto funciona mejor cuando la comunicación es clara, las responsabilidades se comparten y todos avanzan hacia el mismo objetivo."
+    },
+    {
+      "id": 4,
+      "title": "Soluciones sobre Obstáculos",
+      "content": "Las producciones raramente siguen un plan perfecto. Creemos en mantenerse flexibles, adaptarnos rápidamente y encontrar soluciones prácticas que mantengan los proyectos avanzando sin comprometer la calidad."
+    }
+  ],
+  "home": {
+    "header_tagline": "En el corazón de Flip Flops Film están las personas, las asociaciones y los valores compartidos que han dado forma a la empresa desde el principio.",
+    "company_label": "Empresa",
+    "company_heading": "CONSTRUIDA SOBRE EXPERIENCIA EN PRODUCCIÓN Y ASOCIACIONES DE CONFIANZA.",
+    "company_text": "Flip Flops Film fue fundada por David Turpin y André Dolezal, reuniendo experiencia en gestión de producción española y experiencia internacional en producción ejecutiva. Lo que comenzó como una pasión compartida por el cine se ha convertido en un socio de producción de confianza, ayudando a los clientes a navegar las oportunidades únicas de España con conocimiento práctico, implicación personal y el compromiso de hacer las cosas bien.",
+    "believe_label": "Lo que creemos",
+    "contact_label": "— Contáctenos",
+    "contact_heading": "Póngase en",
+    "contact_heading_light": "Contacto",
+    "form_name": "Nombre",
+    "form_email": "Correo electrónico",
+    "form_message": "Mensaje",
+    "form_submit": "Hablemos",
+    "hero_title1": "Servicios de Producción",
+    "hero_title2": "en España",
+    "services_label": "Lo que ofrecemos",
+    "services_heading": "Apoyo de producción que impulsa tu proyecto."
+  },
+  "tax": {
+    "header": "Incentivos Fiscales",
+    "canary_label": "Islas Canarias",
+    "canary_value": "Hasta un 50% de reembolso",
+    "mainland_label": "España Peninsular",
+    "mainland_value": "Hasta un 30% de reembolso",
+    "min_spend_label": "Gasto Mínimo",
+    "min_spend_value": "Desde €200K",
+    "max_rebate_label": "Reembolso Máximo",
+    "max_rebate_value": "Hasta €20M",
+    "opportunity_label": "La Oportunidad",
+    "opportunity_h5": "España se ha convertido en uno de los principales destinos de Europa para producciones internacionales, ofreciendo una combinación de incentivos financieros, diversas localizaciones y profesionales de producción altamente experimentados. Dependiendo de la región y la estructura del proyecto, las producciones pueden optar a importantes reembolsos sobre el gasto local elegible.",
+    "opportunity_p": "Las Islas Canarias ofrecen actualmente algunos de los incentivos de producción más competitivos de Europa, mientras que la España peninsular ofrece atractivas oportunidades de reembolso para largometrajes, producciones televisivas y coproducciones internacionales. Combinado con una infraestructura establecida y condiciones de rodaje durante todo el año, España sigue atrayendo producciones de todo el mundo.",
+    "approach_label": "Nuestro Enfoque",
+    "approach_p": "Cada producción es única y la elegibilidad para los incentivos depende de una serie de factores creativos, operativos y financieros. Nuestro papel es ayudar a los clientes a entender las oportunidades disponibles, evaluar los requisitos del proyecto y desarrollar una estrategia de producción que aproveche al máximo el marco de incentivos de España, garantizando al mismo tiempo un proceso de producción fluido.",
+    "next_link": "Sobre Flip Flops Film"
+  },
+  "crew": {
+    "header": "Equipo & Producción",
+    "network_label": "Red de Equipo",
+    "network_value": "Profesionales Experimentados",
+    "reach_label": "Alcance Regional",
+    "reach_value": "España e Islas Canarias",
+    "logistics_label": "Apoyo Logístico",
+    "logistics_value": "Coordinación Integral",
+    "scale_label": "Escala del Proyecto",
+    "scale_value": "De Comerciales a Largometrajes",
+    "expertise_label": "Experiencia Local",
+    "expertise_h5": "El apoyo de producción adecuado suele ser invisible. Cuando el equipo, el equipamiento, el transporte y el alojamiento funcionan a la perfección, las producciones pueden centrarse en la ejecución creativa en lugar de los desafíos operativos.",
+    "expertise_p": "A través de nuestra red en España y las Islas Canarias, ofrecemos acceso a profesionales locales experimentados mientras coordinamos el marco logístico necesario para mantener los proyectos avanzando eficientemente. Desde la contratación de equipo y la gestión de equipamiento hasta los viajes, el alojamiento y las operaciones de producción diarias, construimos la infraestructura que permite a las producciones rendir al máximo.",
+    "network_section_label": "Red",
+    "next_link": "Sobre Localizaciones",
+    "network_items": [
+      {
+        "id": 1,
+        "title": "Equipos Locales Experimentados",
+        "content": "Acceso a técnicos, creativos y profesionales de producción altamente cualificados con amplia experiencia en proyectos internacionales."
+      },
+      {
+        "id": 2,
+        "title": "Asociaciones a Largo Plazo",
+        "content": "Años de colaboración han creado relaciones de confianza con proveedores, prestadores de servicios y autoridades locales."
+      },
+      {
+        "id": 3,
+        "title": "Conocimiento Regional",
+        "content": "Nuestro equipo entiende las localizaciones, regulaciones y logística que mantienen las producciones avanzando eficientemente."
+      },
+      {
+        "id": 4,
+        "title": "Filosofía de Un Solo Equipo",
+        "content": "Nos integramos perfectamente en su producción, trabajando junto a usted como un socio local dedicado."
+      }
+    ]
+  },
+  "locations": {
+    "header": "Localizaciones",
+    "label": "Posibilidades Visuales Infinitas",
+    "h5": "Menos desplazamientos, mayor variedad visual y más tiempo donde más importa: en el set.",
+    "p": "En pocas horas, los paisajes pasan de terrenos volcánicos lunares y costas azotadas por el viento a densos bosques, carreteras desérticas y pueblos atemporales. Las localizaciones que normalmente requerirían varios países a menudo se pueden encontrar dentro de una sola región."
+  },
+  "services": {
+    "header": "Servicios de Producción",
+    "header_p": "El éxito de una producción se define a menudo mucho antes de que las cámaras comiencen a rodar. A través de una preparación cuidadosa, conocimiento local y años de experiencia práctica, ayudamos a crear las condiciones que permiten a las producciones centrarse en lo que más importa.",
+    "top_label": "Servicios de Producción",
+    "top_h5": "La visión creativa puede definir una producción, pero su éxito a menudo viene determinado por las decisiones prácticas tomadas entre bastidores.",
+    "top_p": "Cada localización debe evaluarse, cada permiso obtenerse, cada miembro del equipo coordinarse y cada detalle logístico tenerse en cuenta. Las producciones que trabajan en regiones desconocidas suelen enfrentarse a desafíos adicionales, desde entender las normativas locales hasta identificar proveedores y prestadores de servicios de confianza. A través de años de experiencia trabajando en España, Flip Flops Film ayuda a salvar esa brecha, proporcionando apoyo de producción que permite a los equipos creativos centrarse en su trabajo.",
+    "single_label": "Servicios de Producción",
+    "single_heading": "Convirtiendo España en su Base de Producción",
+    "single_p": "Cada proyecto depende de la preparación, la coordinación y las personas adecuadas en el lugar correcto. Nuestros servicios están diseñados para apoyar las producciones en cada etapa del proceso."
+  },
+  "faqs": {
+    "label": "FAQ''s",
+    "items": [
+      {
+        "id": 1,
+        "title": "¿Cómo podemos ponernos en contacto?",
+        "content": "La forma más sencilla es a través de nuestro formulario de contacto o por correo electrónico. Estaremos encantados de hablar sobre su proyecto, responder preguntas y explorar cómo podemos apoyar su producción en España o las Islas Canarias."
+      },
+      {
+        "id": 2,
+        "title": "¿Con cuánta antelación deberíamos contactarles?",
+        "content": "Cuanto antes, mejor. Las conversaciones tempranas crean más oportunidades para el acceso a localizaciones, la planificación de incentivos, la programación y la optimización de la producción."
+      },
+      {
+        "id": 3,
+        "title": "¿Ofrecen servicios de producción completos?",
+        "content": "Sí. Apoyamos producciones en todas las fases, incluyendo búsqueda de localizaciones, permisos, contratación de equipo, logística, gestión de producción y coordinación local."
+      },
+      {
+        "id": 4,
+        "title": "¿Trabajan con producciones internacionales?",
+        "content": "Por supuesto. Colaboramos regularmente con productoras, agencias, marcas y estudios de todo el mundo que ruedan en España y las Islas Canarias."
+      },
+      {
+        "id": 5,
+        "title": "¿Solo trabajan en las Islas Canarias?",
+        "content": "No. Aunque las Islas Canarias son un hub de producción clave, apoyamos proyectos en toda la España peninsular y colaboramos con socios en múltiples regiones."
+      },
+      {
+        "id": 6,
+        "title": "¿Pueden apoyar tanto producciones pequeñas como grandes rodajes?",
+        "content": "Sí. Nuestros servicios escalan según los requisitos de cada proyecto, desde producciones comerciales ágiles hasta grandes proyectos internacionales de cine y televisión."
+      },
+      {
+        "id": 7,
+        "title": "¿Pueden ayudar con permisos y autorizaciones de rodaje?",
+        "content": "Sí. Coordinamos las solicitudes de permisos y trabajamos estrechamente con las autoridades locales para ayudar a las producciones a cumplir con los requisitos de rodaje regionales."
+      },
+      {
+        "id": 8,
+        "title": "¿Ofrecen servicios de búsqueda de localizaciones?",
+        "content": "Ofrecemos tanto investigación de localizaciones como scouting sobre el terreno, ayudando a las producciones a identificar localizaciones que satisfagan los requisitos creativos, logísticos y presupuestarios."
+      },
+      {
+        "id": 9,
+        "title": "¿Pueden ayudar a conseguir equipamiento?",
+        "content": "A través de nuestra red de proveedores de confianza, podemos coordinar cámara, iluminación, grúas, transporte y equipamiento de producción adicional según las necesidades del proyecto."
+      },
+      {
+        "id": 10,
+        "title": "¿Por qué las producciones siguen volviendo a España?",
+        "content": "Porque España combina infraestructura de producción, equipos experimentados, localizaciones diversas e incentivos competitivos dentro de un solo territorio."
+      },
+      {
+        "id": 11,
+        "title": "¿Qué hace únicas a las Islas Canarias para el rodaje?",
+        "content": "Pocos destinos ofrecen una gama tan amplia de paisajes, condiciones climáticas estables e incentivos de producción dentro de un área geográfica relativamente pequeña."
+      },
+      {
+        "id": 12,
+        "title": "¿Puede España doblar a otros países?",
+        "content": "Regularmente. Las producciones usan España para recrear desde América del Norte y Oriente Medio hasta América Latina y varios escenarios europeos."
+      },
+      {
+        "id": 13,
+        "title": "¿Cuándo deben comenzar las conversaciones sobre localizaciones?",
+        "content": "Idealmente durante el desarrollo creativo. La planificación temprana a menudo abre oportunidades que ya no están disponibles más adelante en el proceso."
+      },
+      {
+        "id": 14,
+        "title": "¿Qué tan importante es el conocimiento local?",
+        "content": "La experiencia local a menudo revela soluciones, alternativas y oportunidades que no aparecen en bases de datos, bibliotecas de localizaciones o documentos de scouting."
+      },
+      {
+        "id": 15,
+        "title": "¿Puede una localización ahorrar costes de producción?",
+        "content": "Por supuesto. La localización correcta puede reducir viajes, logística, días de rodaje y la complejidad general de la producción."
+      },
+      {
+        "id": 16,
+        "title": "¿Cuál es el mayor error al pensar en rodar en España?",
+        "content": "Que las producciones vienen solo por los incentivos. En realidad, muchas regresan por la infraestructura, la fiabilidad y la flexibilidad creativa disponible en todo el país."
+      },
+      {
+        "id": 17,
+        "title": "¿Cómo equilibran las ambiciones creativas con las realidades prácticas?",
+        "content": "Las mejores soluciones surgen cuando las consideraciones creativas y de producción se desarrollan juntas en lugar de competir entre sí."
+      },
+      {
+        "id": 18,
+        "title": "¿Por qué las producciones internacionales eligen equipos locales?",
+        "content": "Los equipos locales aportan conocimiento regional, eficiencia operativa y amplia experiencia trabajando dentro de las realidades específicas de cada territorio."
+      },
+      {
+        "id": 19,
+        "title": "¿Qué tan importante es la flexibilidad durante la producción?",
+        "content": "La producción raramente sigue un plan perfecto. La flexibilidad permite a los equipos adaptarse rápidamente manteniendo los objetivos creativos y operativos."
+      },
+      {
+        "id": 20,
+        "title": "¿Puede una región ofrecer múltiples identidades visuales?",
+        "content": "A menudo sí. Muchas regiones españolas contienen entornos dramáticamente diferentes a cortas distancias de viaje."
+      },
+      {
+        "id": 21,
+        "title": "¿Qué define una sólida asociación de producción?",
+        "content": "Confianza, transparencia y objetivos compartidos. Las colaboraciones más exitosas operan como un equipo integrado."
+      },
+      {
+        "id": 22,
+        "title": "¿Cómo influyen los incentivos en las decisiones sobre localizaciones?",
+        "content": "Los incentivos pueden ser un factor importante, pero funcionan mejor combinados con localizaciones, infraestructura y equipos que apoyen los objetivos creativos del proyecto."
+      },
+      {
+        "id": 23,
+        "title": "¿Qué deben considerar los productores antes de elegir un destino?",
+        "content": "Diversidad de localizaciones, logística, disponibilidad de equipo, requisitos de permisos, infraestructura y eficiencia general de producción."
+      },
+      {
+        "id": 24,
+        "title": "¿Qué se pasa por alto en la preproducción?",
+        "content": "Los pequeños detalles operativos. La planificación temprana en torno al acceso, la programación y la logística previene con frecuencia desafíos mayores más adelante."
+      },
+      {
+        "id": 25,
+        "title": "¿Qué define una experiencia de producción exitosa?",
+        "content": "Un proceso en el que los equipos creativos pueden centrarse en contar historias mientras los desafíos operativos se gestionan eficazmente entre bastidores."
+      }
+    ]
+  },
+  "imprint": {
+    "label": "Aviso Legal",
+    "heading": "Información de la empresa, detalles legales e información de contacto de Flip Flops Film.",
+    "body": "Flip Flops Film S.L. es una empresa de servicios de producción que apoya producciones internacionales de cine, televisión, publicidad y fotografía en toda España. Con presencia en las Islas Canarias, Madrid, Almería y Bilbao, la empresa ofrece apoyo de producción, servicios de localización, asesoramiento sobre incentivos, logística y coordinación local para proyectos de todas las escalas.<br><br>Nombre de la empresa: Flip Flops Film S.L.<br>CIF: B75447698<br>Sede: Islas Canarias, España<br>Oficinas adicionales: Madrid, Almería y Bilbao<br>Email: hello&#64;flipflopsfilm.com<br>Web: www.flipflopsfilm.com<br><br>Directores Gerentes:<br>David Turpin<br>André Dolezal"
+  },
+  "privacy": {
+    "label": "Política de Privacidad",
+    "heading": "Respetando la privacidad mediante la transparencia, el manejo responsable de datos y la comunicación segura.",
+    "body": "Valoramos la transparencia y respetamos la privacidad de todos los que visitan nuestro sitio web. Cualquier información compartida con Flip Flops Film a través de formularios de contacto, correspondencia por correo electrónico u otras comunicaciones se utiliza únicamente para responder a consultas y proporcionar nuestros servicios.<br><br>Nuestro sitio web puede recopilar cierta información técnica, como el tipo de navegador, datos del dispositivo y estadísticas de uso del sitio web, para ayudar a mejorar el rendimiento y la experiencia del usuario. No vendemos información personal a terceros y tomamos medidas razonables para proteger cualquier información que se nos confíe.<br><br>Si tiene preguntas sobre la recopilación o el uso de información personal, póngase en contacto con nosotros directamente."
+  },
+  "services_items": [
+    {
+      "id": 1,
+      "title": "Servicios de Producción",
+      "category": "Apoyo completo desde la preparación hasta el cierre."
+    },
+    {
+      "id": 2,
+      "title": "Localizaciones",
+      "category": "Búsqueda y aseguramiento de localizaciones únicas."
+    },
+    {
+      "id": 3,
+      "title": "Incentivos Fiscales",
+      "category": "Asesoramiento sobre permisos y deducciones fiscales."
+    },
+    {
+      "id": 4,
+      "title": "Equipo & Producción",
+      "category": "Equipos de confianza y operaciones fluidas."
+    }
+  ]
 }

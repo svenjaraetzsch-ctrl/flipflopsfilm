@@ -314,3 +314,29 @@ header .img-marq .box {
   padding: 3px 10px;
   background: #ff2300;
 }
+
+@media screen and (max-width: 991px) {
+  header {
+    padding-top: 160px;
+  }
+  header .caption h1 {
+    font-size: 50px;
+  }
+  header .caption {
+    padding-top: 80px;
+    padding-bottom: 80px;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  header {
+    padding-top: 120px;
+  }
+  header .caption h1 {
+    font-size: 35px;
+  }
+  header .caption {
+    padding-top: 60px;
+    padding-bottom: 60px;
+  }
+}

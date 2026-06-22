@@ -6,9 +6,7 @@
         <div class="row">
           <div class="col-lg-6">
             <div class="eml">
-              <h6 class="sub-title opacity-8">
-                We would love to hear from you.
-              </h6>
+              <h6 class="sub-title opacity-8">{{ $t('footer.tagline') }}</h6>
               <h2 class="underline fz-60">
                 <a :href="emailHref">{{ emailLabel }}</a>
               </h2>
@@ -24,42 +22,29 @@
           </div>
 
           <div class="col-lg-6">
-  <div class="column">
-    <h6 class="sub-title mb-30">Social Media</h6>
+            <div class="column">
+              <h6 class="sub-title mb-30">{{ $t('footer.social_media') }}</h6>
+              <ul class="rest">
+                <li>
+                  <a href="https://www.instagram.com/flipflopsfilm/" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">
+                    Instagram
+                  </a>
+                </li>
+                <li>
+                  <a href="https://www.linkedin.com/posts/david-turpin-production_producciones-audiovisuales-canarias-flip-activity-7301559594177200130-EhoR" target="_blank" rel="noopener noreferrer" style="pointer-events:auto;">
+                    LinkedIn
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
 
-    <ul class="rest">
-      <li>
-        <a
-          href="https://www.instagram.com/flipflopsfilm/"
-          target="_blank"
-          rel="noopener noreferrer"
-          style="pointer-events:auto;"
-        >
-          Instagram
-        </a>
-      </li>
-
-      <li>
-        <a
-          href="https://www.linkedin.com/posts/david-turpin-production_producciones-audiovisuales-canarias-flip-activity-7301559594177200130-EhoR"
-          target="_blank"
-          rel="noopener noreferrer"
-          style="pointer-events:auto;"
-        >
-          LinkedIn
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
           <div class="col-lg-3">
             <div class="column">
-              <h6 class="sub-title mb-30">Our Offices</h6>
-              <p>
-                Canary Islands · Madrid · Almería · Bilbao
-              </p>
+              <h6 class="sub-title mb-30">{{ $t('footer.our_offices') }}</h6>
+              <p>{{ $t('footer.offices') }}</p>
               <h5 class="mt-15 underline">
-                <a :href="emailHref">Contact Us</a>
+                <a :href="emailHref">{{ $t('footer.contact_us') }}</a>
               </h5>
             </div>
           </div>
@@ -67,54 +52,25 @@
       </div>
 
       <div class="container bord pt-30 pb-30 bord-thin-top">
-        <div class="row">
+        <div class="row align-items-center">
           <div class="col-lg-6">
             <div class="links">
               <ul class="rest">
-                <li>
-                  <NuxtLink to="/about" class="animsition-link">About Us</NuxtLink>
-                </li>
-                <li>
-                  <NuxtLink to="/tax-incentives" class="animsition-link">
-                    Tax Incentives
-                  </NuxtLink>
-                </li>
-                <li>
-                  <NuxtLink to="/locations" class="animsition-link">
-                    Locations
-                  </NuxtLink>
-                </li>
-                <li>
-                  <NuxtLink to="/services" class="animsition-link">
-                    Services
-                  </NuxtLink>
-                </li>
-                <li>
-                  <NuxtLink to="/faqs" class="animsition-link">
-                    FAQ's
-                  </NuxtLink>
-                </li>
-                <li>
-                  <NuxtLink to="/privacy-policy" class="animsition-link">
-                    Privacy Policy
-                  </NuxtLink>
-                </li>
-                <li>
-                  <NuxtLink to="/imprint" class="animsition-link">
-                    Imprint
-                  </NuxtLink>
-                </li>
+                <li><NuxtLink :to="localePath('/about')" class="animsition-link">{{ $t('footer.about_us') }}</NuxtLink></li>
+                <li><NuxtLink :to="localePath('/tax-incentives')" class="animsition-link">{{ $t('nav.tax_incentives') }}</NuxtLink></li>
+                <li><NuxtLink :to="localePath('/locations')" class="animsition-link">{{ $t('nav.locations') }}</NuxtLink></li>
+                <li><NuxtLink :to="localePath('/services')" class="animsition-link">{{ $t('nav.services') }}</NuxtLink></li>
+                <li><NuxtLink :to="localePath('/faqs')" class="animsition-link">{{ $t('nav.faqs') }}</NuxtLink></li>
+                <li><NuxtLink :to="localePath('/privacy-policy')" class="animsition-link">{{ $t('footer.privacy_policy') }}</NuxtLink></li>
+                <li><NuxtLink :to="localePath('/imprint')" class="animsition-link">{{ $t('footer.imprint') }}</NuxtLink></li>
               </ul>
             </div>
           </div>
 
           <div class="col-lg-6">
-            <div class="copyright d-flex">
-              <div class="ml-auto">
-                <p class="fz-13">
-                  © 2024 Flip Flops Film S.L. CIF: B75447698
-                </p>
-              </div>
+            <div class="d-flex align-items-center justify-content-end gap-30">
+              <CommonLangSwitcher />
+              <p class="fz-13 mb-0">{{ $t('footer.copyright') }}</p>
             </div>
           </div>
         </div>
@@ -126,23 +82,20 @@
 <script setup>
 import { onMounted, onBeforeUnmount, computed } from 'vue'
 
-const { subBg } = defineProps({
-  subBg: Boolean
-})
+const { subBg } = defineProps({ subBg: Boolean })
+
+const localePath = useLocalePath()
 
 const emailUser = 'info'
 const emailDomain = 'flipflopsfilm.com'
-
 const emailLabel = computed(() => `${emailUser}@${emailDomain}`)
 const emailHref = computed(() => `mailto:${emailUser}@${emailDomain}`)
 
 const handleResize = () => {
   if (window.innerWidth > 991) {
     gsap.set('.footer-container', { yPercent: -50 })
-
     const uncover = gsap.timeline({ paused: true })
     uncover.to('.footer-container', { yPercent: 0, ease: 'none' })
-
     ScrollTrigger.create({
       trigger: 'main',
       start: 'bottom bottom',
