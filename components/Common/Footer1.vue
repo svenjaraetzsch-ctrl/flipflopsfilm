@@ -92,18 +92,16 @@ const emailLabel = computed(() => `${emailUser}@${emailDomain}`)
 const emailHref = computed(() => `mailto:${emailUser}@${emailDomain}`)
 
 const handleResize = () => {
-  if (window.innerWidth > 991) {
-    gsap.set('.footer-container', { yPercent: -50 })
-    const uncover = gsap.timeline({ paused: true })
-    uncover.to('.footer-container', { yPercent: 0, ease: 'none' })
-    ScrollTrigger.create({
-      trigger: 'main',
-      start: 'bottom bottom',
-      end: '+=50%',
-      animation: uncover,
-      scrub: true
-    })
-  }
+  gsap.set('.footer-container', { yPercent: -50 })
+  const uncover = gsap.timeline({ paused: true })
+  uncover.to('.footer-container', { yPercent: 0, ease: 'none' })
+  ScrollTrigger.create({
+    trigger: 'main',
+    start: 'bottom bottom',
+    end: '+=50%',
+    animation: uncover,
+    scrub: true
+  })
 }
 
 onMounted(() => {

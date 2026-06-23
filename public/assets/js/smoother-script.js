@@ -2,11 +2,12 @@
 
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-  ScrollTrigger.normalizeScroll(true)
+  ScrollTrigger.normalizeScroll(true);
 
-  // create the smooth scroller FIRST!
-  let smoother = ScrollSmoother.create({
-    smooth: 2,
+  ScrollSmoother.create({
+    smooth: window.innerWidth > 991 ? 2 : 1,
     effects: true,
+    normalizeScroll: true,
   });
+
 })()
