@@ -24,18 +24,16 @@
 
 <script setup>
 const handleResize = () => {
-  if (window.innerWidth > 991) {
-    gsap.set('.contact-container', { yPercent: -50 })
-    const cover = gsap.timeline({ paused: true })
-    cover.to('.contact-container', { yPercent: 0, ease: 'none' })
-    ScrollTrigger.create({
-      trigger: '.main-box',
-      start: 'bottom bottom',
-      end: '+=50%',
-      animation: cover,
-      scrub: true,
-    })
-  }
+  gsap.set('.contact-container', { yPercent: -50 })
+  const cover = gsap.timeline({ paused: true })
+  cover.to('.contact-container', { yPercent: 0, ease: 'none' })
+  ScrollTrigger.create({
+    trigger: '.main-box',
+    start: 'bottom bottom',
+    end: '+=50%',
+    animation: cover,
+    scrub: true,
+  })
 }
 
 onMounted(() => {
