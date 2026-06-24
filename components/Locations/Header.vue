@@ -6,7 +6,7 @@
       </div>
     </div>
 
-    <div class="img-marq">
+    <div class="img-marq d-none d-md-block">
       <div class="circle-shadow"></div>
       <div class="shadow-left box-shadow"></div>
       <div class="shadow-right box-shadow"></div>

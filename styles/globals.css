@@ -24,3 +24,106 @@
     width: 100% !important;
   }
 }
+
+
+/* ====================== [ Footer Links ] ====================== */
+@media (max-width: 768px) {
+  footer .bord .links li {
+    margin-right: 12px;
+  }
+}
+
+/* ====================== [ Mobile Header ] ====================== */
+/* backdrop-filter renders as a solid colour on many mobile browsers — keep transparent */
+@media (max-width: 991px) {
+  .topnav,
+  .topnav.blur,
+  .topnav.blur.nav-scroll {
+    background: transparent !important;
+  }
+}
+
+/* ====================== [ Mobile Spacing Scale ] ====================== */
+/*
+  Desktop → Mobile mapping (consistent rhythm):
+  100px → 40px
+  80px  → 35px
+  70px  → 30px
+  60px  → 25px
+  50px  → 22px
+  40px  → 18px
+  30px  → 15px  (unchanged for tighter spacing)
+*/
+@media (max-width: 768px) {
+
+  /* Section rhythm */
+  .section-padding {
+    padding-top: 50px !important;
+    padding-bottom: 50px !important;
+  }
+
+  .section-top-clearance {
+    padding-top: 100px !important;
+  }
+
+  /* Padding top */
+  .pt-100 { padding-top: 40px !important; }
+  .pt-95  { padding-top: 40px !important; }
+  .pt-90  { padding-top: 40px !important; }
+  .pt-85  { padding-top: 38px !important; }
+  .pt-80  { padding-top: 35px !important; }
+  .pt-75  { padding-top: 32px !important; }
+  .pt-70  { padding-top: 30px !important; }
+  .pt-65  { padding-top: 28px !important; }
+  .pt-60  { padding-top: 25px !important; }
+  .pt-55  { padding-top: 24px !important; }
+  .pt-50  { padding-top: 22px !important; }
+  .pt-40  { padding-top: 18px !important; }
+
+  /* Padding bottom */
+  .pb-100 { padding-bottom: 40px !important; }
+  .pb-95  { padding-bottom: 40px !important; }
+  .pb-90  { padding-bottom: 40px !important; }
+  .pb-85  { padding-bottom: 38px !important; }
+  .pb-80  { padding-bottom: 35px !important; }
+  .pb-75  { padding-bottom: 32px !important; }
+  .pb-70  { padding-bottom: 30px !important; }
+  .pb-65  { padding-bottom: 28px !important; }
+  .pb-60  { padding-bottom: 25px !important; }
+  .pb-55  { padding-bottom: 24px !important; }
+  .pb-50  { padding-bottom: 22px !important; }
+  .pb-40  { padding-bottom: 18px !important; }
+
+  /* Margin top */
+  .mt-100 { margin-top: 40px !important; }
+  .mt-95  { margin-top: 40px !important; }
+  .mt-90  { margin-top: 40px !important; }
+  .mt-85  { margin-top: 38px !important; }
+  .mt-80  { margin-top: 35px !important; }
+  .mt-75  { margin-top: 32px !important; }
+  .mt-70  { margin-top: 30px !important; }
+  .mt-65  { margin-top: 28px !important; }
+  .mt-60  { margin-top: 25px !important; }
+  .mt-55  { margin-top: 24px !important; }
+  .mt-50  { margin-top: 22px !important; }
+  .mt-40  { margin-top: 18px !important; }
+
+  /* Margin bottom */
+  .mb-100 { margin-bottom: 40px !important; }
+  .mb-95  { margin-bottom: 40px !important; }
+  .mb-90  { margin-bottom: 40px !important; }
+  .mb-85  { margin-bottom: 38px !important; }
+  .mb-80  { margin-bottom: 35px !important; }
+  .mb-75  { margin-bottom: 32px !important; }
+  .mb-70  { margin-bottom: 30px !important; }
+  .mb-65  { margin-bottom: 28px !important; }
+  .mb-60  { margin-bottom: 25px !important; }
+  .mb-55  { margin-bottom: 24px !important; }
+  .mb-50  { margin-bottom: 22px !important; }
+  .mb-40  { margin-bottom: 18px !important; }
+
+  /* Footer internal spacing */
+  footer .container.pb-80 { padding-bottom: 35px !important; }
+  footer .container.pt-80 { padding-top: 35px !important; }
+  footer .row.mt-80 { margin-top: 35px !important; }
+}

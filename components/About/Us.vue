@@ -43,6 +43,20 @@
   </section>
 </template>
 
+<style scoped>
+@media (max-width: 768px) {
+  section {
+    padding-top: 30px !important;
+  }
+  .row.pb-100 {
+    padding-bottom: 25px !important;
+  }
+  .row.mb-80 {
+    margin-bottom: 20px !important;
+  }
+}
+</style>
+
 <script setup>
 import { computed } from 'vue'
 const { tm, rt } = useI18n()

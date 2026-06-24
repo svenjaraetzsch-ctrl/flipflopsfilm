@@ -29,7 +29,7 @@ const handleResize = () => {
   cover.to('.contact-container', { yPercent: 0, ease: 'none' })
   ScrollTrigger.create({
     trigger: '.main-box',
-    start: 'bottom bottom',
+    start: 'bottom 80%',
     end: '+=50%',
     animation: cover,
     scrub: true,

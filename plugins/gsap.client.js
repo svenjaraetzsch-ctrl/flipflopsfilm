@@ -2,11 +2,12 @@ export default defineNuxtPlugin(() => {
   const router = useRouter()
   let ready = false
 
-  router.afterEach(() => {
+  router.beforeEach((to) => {
     if (!ready) {
       ready = true
-      return
+      return true
     }
-    window.location.reload()
+    window.location.href = to.fullPath
+    return false
   })
 })

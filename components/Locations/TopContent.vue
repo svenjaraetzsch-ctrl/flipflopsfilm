@@ -19,3 +19,11 @@
     </div>
   </section>
 </template>
+
+<style scoped>
+@media (max-width: 768px) {
+  section {
+    padding-bottom: 35px !important;
+  }
+}
+</style>
