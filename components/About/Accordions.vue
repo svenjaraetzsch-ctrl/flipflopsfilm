@@ -68,3 +68,33 @@ function openAccordion(event) {
   if (activeInfo) activeInfo.style.display = 'block'
 }
 </script>
+
+<style scoped>
+@media (max-width: 768px) {
+  section {
+    padding-top: 30px !important;
+    padding-bottom: 30px !important;
+  }
+
+  /* Scale the circle down and reduce bottom gap */
+  .exp {
+    width: 200px !important;
+    height: 200px !important;
+    margin-bottom: 30px;
+  }
+
+  .exp h2 {
+    font-size: 64px !important;
+  }
+
+  /* Scale WHY WORK heading down to fit mobile width */
+  .sec-head h3 {
+    font-size: 32px !important;
+  }
+
+  /* Tighten the internal sec-head margin */
+  .sec-head.mb-70 {
+    margin-bottom: 20px !important;
+  }
+}
+</style>

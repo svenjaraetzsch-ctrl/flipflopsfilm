@@ -73,4 +73,10 @@ import data from '@/data/Locations/grid.json';
     grid-template-columns: 1fr;
   }
 }
+
+@media (max-width: 768px) {
+  section {
+    padding-top: 15px !important;
+  }
+}
 </style>

@@ -1,7 +1,13 @@
 <template>
   <section class="interactive-center logo-hover-section">
-    <div class="bg-logo" :style="{ filter: `drop-shadow(0 0 0 ${activeColor})` }">
-      <img src="/assets/imgs/logos/favicon.svg" alt="Logo" />
+    <div class="bg-logo">
+      <div
+        class="logo-mask"
+        :style="{
+          backgroundColor: activeColor,
+          opacity: isHovering ? 0.25 : 0.06
+        }"
+      ></div>
     </div>
 
     <div class="container text-center">
@@ -9,8 +15,8 @@
         v-for="item in mergedData"
         :key="item.id"
         class="item block"
-        @mouseenter="activeColor = item.color"
-        @mouseleave="activeColor = '#ffffff'"
+        @mouseenter="activeColor = item.color; isHovering = true"
+        @mouseleave="activeColor = '#ffffff'; isHovering = false"
       >
         <NuxtLink :to="localePath(item.link)" class="block__link animsition-link">
           <div class="cont">
@@ -30,6 +36,7 @@ import staticData from '@/data/Portfolio/interactive-center.json'
 const { tm, rt } = useI18n()
 const localePath = useLocalePath()
 const activeColor = ref('#ffffff')
+const isHovering = ref(false)
 
 const mergedData = computed(() => {
   const translated = tm('services_items')
@@ -60,10 +67,13 @@ const mergedData = computed(() => {
   z-index: 1;
 }
 
-.bg-logo img {
+.logo-mask {
   width: 500px;
-  opacity: 0.05;
-  transition: all 0.4s ease;
+  height: 500px;
+  -webkit-mask: url('/assets/imgs/logos/icon-transparent.png') center / contain no-repeat;
+  mask: url('/assets/imgs/logos/icon-transparent.png') center / contain no-repeat;
+  background-color: #ffffff;
+  transition: background-color 0.4s ease, opacity 0.4s ease;
 }
 
 .container {
@@ -77,5 +87,15 @@ const mergedData = computed(() => {
 
 .item:hover h4 {
   color: var(--main-color);
+}
+
+@media (max-width: 768px) {
+  :deep(.interactive-center) {
+    padding-top: 100px !important;
+    padding-bottom: 30px !important;
+  }
+  :deep(.interactive-center .item a) {
+    padding: 12px 0 !important;
+  }
 }
 </style>
