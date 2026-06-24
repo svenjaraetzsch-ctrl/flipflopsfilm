@@ -7,35 +7,35 @@
             <ul class="main-menu rest">
               <li @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
                 <div class="o-hidden">
-                  <NuxtLink :to="localePath('/')" class="link animsition-link" @click="closeMenu">
+                  <NuxtLink :to="localePath('/')" class="link animsition-link" @click="handleNav(localePath('/'))">
                     <span class="nm">01.</span>{{ $t('nav.home') }}
                   </NuxtLink>
                 </div>
               </li>
               <li @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
                 <div class="o-hidden">
-                  <NuxtLink :to="localePath('/services')" class="link animsition-link" @click="closeMenu">
+                  <NuxtLink :to="localePath('/services')" class="link animsition-link" @click="handleNav(localePath('/services'))">
                     <span class="nm">02.</span>{{ $t('nav.services') }}
                   </NuxtLink>
                 </div>
               </li>
               <li @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
                 <div class="o-hidden">
-                  <NuxtLink :to="localePath('/tax-incentives')" class="link animsition-link" @click="closeMenu">
+                  <NuxtLink :to="localePath('/tax-incentives')" class="link animsition-link" @click="handleNav(localePath('/tax-incentives'))">
                     <span class="nm">03.</span>{{ $t('nav.tax_incentives') }}
                   </NuxtLink>
                 </div>
               </li>
               <li @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
                 <div class="o-hidden">
-                  <NuxtLink :to="localePath('/locations')" class="link animsition-link" @click="closeMenu">
+                  <NuxtLink :to="localePath('/locations')" class="link animsition-link" @click="handleNav(localePath('/locations'))">
                     <span class="nm">04.</span>{{ $t('nav.locations') }}
                   </NuxtLink>
                 </div>
               </li>
               <li @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
                 <div class="o-hidden">
-                  <NuxtLink :to="localePath('/about')" class="link animsition-link" @click="closeMenu">
+                  <NuxtLink :to="localePath('/about')" class="link animsition-link" @click="handleNav(localePath('/about'))">
                     <span class="nm">05.</span>{{ $t('nav.about') }}
                   </NuxtLink>
                 </div>
@@ -89,11 +89,19 @@
 
 <script setup>
 const localePath = useLocalePath()
+const route = useRoute()
 
 const closeMenu = () => {
   document.querySelector('.hamenu').classList.remove('open')
   document.querySelector('.topnav').classList.remove('navlit')
   document.querySelector('.topnav .menu-icon').classList.remove('open')
+}
+
+const handleNav = (targetPath) => {
+  closeMenu()
+  if (route.path === targetPath) {
+    window.location.reload()
+  }
 }
 
 const handleMouseEnter = (event) => {

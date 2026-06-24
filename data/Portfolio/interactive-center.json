@@ -3,7 +3,7 @@
     "id": 1,
     "title": "Production Services",
     "category": "Full-service support from prep to wrap.",
-    "color": "#FFD54F",
+    "color": "#D4AF37",
     "link": "/services"
   },
   {
@@ -11,20 +11,20 @@
     "title": "Locations",
     "category": "Scouting and securing unique filming locations.",
     "link": "/locations",
-    "color": "#4FC3F7"
+    "color": "#C0C0C0"
   },
   {
     "id": 3,
     "title": "Tax Incentives",
     "category": "Guidance on permits and rebates.",
     "link": "/tax-incentives",
-    "color": "#EF5350"
+    "color": "#B87333"
   },
   {
     "id": 4,
     "title": "Crew & Operations",
     "category": "Trusted crews and smooth operations.",
     "link": "/crew-operations",
-    "color": "#AB47BC"
+    "color": "#E8E4DC"
   }
 ]
