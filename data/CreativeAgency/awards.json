@@ -11,20 +11,20 @@
     "award": "Locations",
     "year": "",
     "platform": "Scouting and securing unique filming locations.",
-    "link": "/locations"
+    "link": "/services/locations"
   },
   {
     "id": 3,
     "award": "Tax Incentives",
     "year": "",
     "platform": "Full Guidance on permits and tax rebates.",
-    "link": "/tax-incentives"
+    "link": "/services/tax-incentives"
   },
   {
     "id": 4,
     "award": "Crew & Operations",
     "year": "",
     "platform": "Trusted crews and smooth operations on the ground.",
-    "link": "/crew-operations"
+    "link": "/services/crew-operations"
   }
 ]

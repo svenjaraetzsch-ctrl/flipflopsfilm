@@ -22,7 +22,6 @@ const switchLocalePath = useSwitchLocalePath()
   gap: 5px;
   font-size: 11px;
   letter-spacing: 1.5px;
-  margin-right: 20px;
 }
 .lang-item {
   opacity: 0.4;

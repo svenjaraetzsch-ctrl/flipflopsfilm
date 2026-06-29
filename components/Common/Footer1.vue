@@ -57,8 +57,8 @@
             <div class="links">
               <ul class="rest">
                 <li><NuxtLink :to="localePath('/about')" class="animsition-link">{{ $t('footer.about_us') }}</NuxtLink></li>
-                <li><NuxtLink :to="localePath('/tax-incentives')" class="animsition-link">{{ $t('nav.tax_incentives') }}</NuxtLink></li>
-                <li><NuxtLink :to="localePath('/locations')" class="animsition-link">{{ $t('nav.locations') }}</NuxtLink></li>
+                <li><NuxtLink :to="localePath('/services/tax-incentives')" class="animsition-link">{{ $t('nav.tax_incentives') }}</NuxtLink></li>
+                <li><NuxtLink :to="localePath('/services/locations')" class="animsition-link">{{ $t('nav.locations') }}</NuxtLink></li>
                 <li><NuxtLink :to="localePath('/services')" class="animsition-link">{{ $t('nav.services') }}</NuxtLink></li>
                 <li><NuxtLink :to="localePath('/faqs')" class="animsition-link">{{ $t('nav.faqs') }}</NuxtLink></li>
                 <li><NuxtLink :to="localePath('/privacy-policy')" class="animsition-link">{{ $t('footer.privacy_policy') }}</NuxtLink></li>
