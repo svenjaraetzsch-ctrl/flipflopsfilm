@@ -69,8 +69,8 @@
 
           <div class="col-lg-6">
             <div class="d-flex align-items-center justify-content-end gap-30 footer-bottom-right">
-              <CommonLangSwitcher />
               <p class="fz-13 mb-0">{{ $t('footer.copyright') }}</p>
+              <CommonLangSwitcher />
             </div>
           </div>
         </div>

@@ -26,6 +26,37 @@
 }
 
 
+/* ====================== [ Navbar Logo – Centered & Scroll-Shrink ] ====================== */
+
+/* Desktop: 3-column grid so logo is always perfectly centered */
+@media (min-width: 992px) {
+  .topnav .container {
+    display: grid !important;
+    grid-template-columns: 1fr auto 1fr !important;
+    align-items: center !important;
+  }
+}
+
+/* Logo sizing with smooth scroll-shrink */
+.topnav .logo img {
+  height: 120px !important;
+  width: auto !important;
+  display: block !important;
+  transition: height 0.5s ease !important;
+}
+
+.topnav.nav-scroll .logo img {
+  height: 75px !important;
+}
+
+/* Mobile */
+@media (max-width: 991px) {
+  .topnav .logo img {
+    height: 75px !important;
+  }
+}
+
+
 /* ====================== [ Footer Links ] ====================== */
 @media (max-width: 768px) {
   footer .bord .links li {
