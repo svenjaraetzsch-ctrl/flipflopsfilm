@@ -21,14 +21,14 @@
               </li>
               <li @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
                 <div class="o-hidden">
-                  <NuxtLink :to="localePath('/tax-incentives')" class="link animsition-link" @click="handleNav(localePath('/tax-incentives'))">
+                  <NuxtLink :to="localePath('/services/tax-incentives')" class="link animsition-link" @click="handleNav(localePath('/services/tax-incentives'))">
                     <span class="nm">03.</span>{{ $t('nav.tax_incentives') }}
                   </NuxtLink>
                 </div>
               </li>
               <li @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
                 <div class="o-hidden">
-                  <NuxtLink :to="localePath('/locations')" class="link animsition-link" @click="handleNav(localePath('/locations'))">
+                  <NuxtLink :to="localePath('/services/locations')" class="link animsition-link" @click="handleNav(localePath('/services/locations'))">
                     <span class="nm">04.</span>{{ $t('nav.locations') }}
                   </NuxtLink>
                 </div>

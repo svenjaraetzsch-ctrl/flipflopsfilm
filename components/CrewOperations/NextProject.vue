@@ -8,7 +8,7 @@
               <h6 class="sub-title fz-18">{{ $t('common.read_more') }}</h6>
               <div class="inline">
                 <div class="d-flex align-items-center">
-                  <NuxtLink :to="localePath('/locations')" class="animsition-link fz-70 fw-700 stroke">{{ $t('crew.next_link') }}</NuxtLink>
+                  <NuxtLink :to="localePath('/services/locations')" class="animsition-link fz-70 fw-700 stroke">{{ $t('crew.next_link') }}</NuxtLink>
                   <span class="ml-15">
                     <img src="/assets/imgs/svg-assets/arrow-right-top.svg" alt="" class="icon-img-70" />
                   </span>
