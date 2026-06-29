@@ -1,13 +1,15 @@
 <template>
   <div id="navi" class="topnav blur" :class="{ 'bord-thin-bottom': borderBottom }">
     <div class="container">
-      <div :class="`logo icon-img-${borderBottom ? '100' : '90'}`">
-        <nuxt-link to="/">
+      <div class="nav-left">
+        <CommonBreadcrumbs />
+      </div>
+
+      <div class="logo">
+        <nuxt-link to="/" class="logo-link">
           <img src="/assets/imgs/logo-light.png" alt="" />
         </nuxt-link>
       </div>
-
-      <CommonBreadcrumbs />
 
       <div class="nav-right">
         <CommonLangSwitcher />
@@ -62,10 +64,23 @@ const toggleMenu = () => {
 </script>
 
 <style scoped>
+/* ── Nav columns ── */
 .nav-right {
   display: flex;
   align-items: center;
   gap: 24px;
-  margin-left: auto;
+  margin-left: auto;        /* flex fallback: pushes to far right */
+  justify-content: flex-end; /* grid mode: items right-aligned in their column */
+}
+
+/* ── Mobile ── */
+@media (max-width: 991px) {
+  .nav-left {
+    display: none;
+  }
+  /* hide lang switcher from top nav on mobile — it lives in the hamburger menu */
+  .nav-right :deep(.lang-switcher) {
+    display: none;
+  }
 }
 </style>

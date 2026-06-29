@@ -1,42 +1,46 @@
 <template>
   <div class="hamenu valign">
     <div class="container">
+      <div class="mobile-lang-bar d-lg-none">
+        <span class="lang-label">Language</span>
+        <CommonLangSwitcher />
+      </div>
       <div class="row">
         <div class="col-lg-8">
           <div class="menu-links">
             <ul class="main-menu rest">
               <li @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
                 <div class="o-hidden">
-                  <NuxtLink :to="localePath('/')" class="link animsition-link" @click="handleNav(localePath('/'))">
-                    <span class="nm">01.</span>{{ $t('nav.home') }}
+                  <NuxtLink :to="localePath('index')" class="link animsition-link" @click="handleNav(localePath('index'))">
+                    {{ $t('nav.home') }}
                   </NuxtLink>
                 </div>
               </li>
               <li @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
                 <div class="o-hidden">
                   <NuxtLink :to="localePath('/services')" class="link animsition-link" @click="handleNav(localePath('/services'))">
-                    <span class="nm">02.</span>{{ $t('nav.services') }}
+                    {{ $t('nav.services') }}
                   </NuxtLink>
                 </div>
               </li>
               <li @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
                 <div class="o-hidden">
                   <NuxtLink :to="localePath('/services/tax-incentives')" class="link animsition-link" @click="handleNav(localePath('/services/tax-incentives'))">
-                    <span class="nm">03.</span>{{ $t('nav.tax_incentives') }}
+                    {{ $t('nav.tax_incentives') }}
                   </NuxtLink>
                 </div>
               </li>
               <li @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
                 <div class="o-hidden">
                   <NuxtLink :to="localePath('/services/locations')" class="link animsition-link" @click="handleNav(localePath('/services/locations'))">
-                    <span class="nm">04.</span>{{ $t('nav.locations') }}
+                    {{ $t('nav.locations') }}
                   </NuxtLink>
                 </div>
               </li>
               <li @mouseenter="handleMouseEnter" @mouseleave="handleMouseLeave">
                 <div class="o-hidden">
                   <NuxtLink :to="localePath('/about')" class="link animsition-link" @click="handleNav(localePath('/about'))">
-                    <span class="nm">05.</span>{{ $t('nav.about') }}
+                    {{ $t('nav.about') }}
                   </NuxtLink>
                 </div>
               </li>
@@ -117,3 +121,45 @@ const handleMouseLeave = (event) => {
   )
 }
 </script>
+
+<style scoped>
+/* Mobile language switcher bar — shown above nav links */
+.mobile-lang-bar {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 18px 0 24px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  margin-bottom: 30px;
+}
+
+.lang-label {
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  opacity: 0.4;
+}
+
+/* Make lang items larger and easier to tap on mobile */
+.mobile-lang-bar :deep(.lang-switcher) {
+  font-size: 13px;
+  letter-spacing: 2px;
+  gap: 10px;
+  pointer-events: auto;
+  position: relative;
+  z-index: 9999;
+}
+
+.mobile-lang-bar :deep(.lang-item),
+.mobile-lang-bar :deep(.lang-sep) {
+  pointer-events: auto;
+  position: relative;
+  z-index: 9999;
+}
+
+.mobile-lang-bar :deep(.lang-item) {
+  padding: 6px 2px;
+  min-width: 28px;
+  text-align: center;
+}
+</style>

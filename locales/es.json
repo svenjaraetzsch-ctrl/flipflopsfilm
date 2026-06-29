@@ -10,7 +10,7 @@
   },
   "menu": {
     "our_offices": "Nuestras Oficinas",
-    "offices": "Islas Canarias · Madrid · Almería · Bilbao",
+    "offices": "Islas Canarias · Madrid · Almería",
     "contact": "Contacto",
     "socials": "Redes Sociales"
   },
@@ -18,7 +18,7 @@
     "tagline": "Nos encantaría saber de usted.",
     "social_media": "Redes Sociales",
     "our_offices": "Nuestras Oficinas",
-    "offices": "Islas Canarias · Madrid · Almería · Bilbao",
+    "offices": "Islas Canarias · Madrid · Almería",
     "contact_us": "Contáctenos",
     "about_us": "Nosotros",
     "privacy_policy": "Política de Privacidad",
@@ -31,7 +31,7 @@
     "why_label": "Por qué Flip Flops Film",
     "why_heading": "Por qué trabajar",
     "why_heading_light": "con nosotros",
-    "work_with_us": "Trabajar con Nosotros",
+    "work_with_us": "Por qué trabajar con nosotros",
     "contact_cta_1": "Nos encantaría",
     "contact_cta_2": "saber más sobre",
     "contact_cta_3": "su proyecto",
@@ -83,7 +83,7 @@
   ],
   "home": {
     "header_tagline": "En el corazón de Flip Flops Film están las personas, las asociaciones y los valores compartidos que han dado forma a la empresa desde el principio.",
-    "company_label": "Empresa",
+    "company_label": "QUIÉNES SOMOS",
     "company_heading": "CONSTRUIDA SOBRE EXPERIENCIA EN PRODUCCIÓN Y ASOCIACIONES DE CONFIANZA.",
     "company_text": "Flip Flops Film fue fundada por David Turpin y André Dolezal, reuniendo experiencia en gestión de producción española y experiencia internacional en producción ejecutiva. Lo que comenzó como una pasión compartida por el cine se ha convertido en un socio de producción de confianza, ayudando a los clientes a navegar las oportunidades únicas de España con conocimiento práctico, implicación personal y el compromiso de hacer las cosas bien.",
     "believe_label": "Lo que creemos",
