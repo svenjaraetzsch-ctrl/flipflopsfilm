@@ -2,12 +2,16 @@
 
   gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
-  ScrollTrigger.normalizeScroll(true);
+  const isDesktop = window.innerWidth > 991;
+
+  if (isDesktop) {
+    ScrollTrigger.normalizeScroll(true);
+  }
 
   ScrollSmoother.create({
-    smooth: window.innerWidth > 991 ? 2 : 1,
-    effects: true,
-    normalizeScroll: true,
+    smooth: isDesktop ? 2 : 0,
+    effects: isDesktop,
+    normalizeScroll: false,
   });
 
 })()
