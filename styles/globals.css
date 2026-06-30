@@ -37,23 +37,62 @@
   }
 }
 
-/* Logo sizing with smooth scroll-shrink */
-.topnav .logo img {
-  height: 120px !important;
+/* ====================== [ Page top clearance — adjusted for 90px logo navbar ] ====================== */
+/* Navbar total height ≈ 120px (90px logo + 15px padding top/bottom).
+   All page-top sections get extra breathing room so content never sits
+   flush against the nav. */
+
+.section-top-clearance {
+  padding-top: 200px !important;
+}
+
+.interactive-center {
+  padding-top: 180px !important;
+}
+
+.land-header {
+  padding-top: 200px !important;
+}
+
+@media (max-width: 991px) {
+  .section-top-clearance {
+    padding-top: 160px !important;
+  }
+  .interactive-center {
+    padding-top: 140px !important;
+  }
+  .land-header {
+    padding-top: 160px !important;
+  }
+}
+
+/* Logo sizing with smooth scroll-shrink — targets both img fallback and SVG wrapper */
+.topnav .logo img,
+.topnav .logo .logo-svg-wrap {
+  height: 90px !important;
   width: auto !important;
   display: block !important;
   transition: height 0.5s ease !important;
 }
 
-.topnav.nav-scroll .logo img {
-  height: 75px !important;
+.topnav.nav-scroll .logo img,
+.topnav.nav-scroll .logo .logo-svg-wrap {
+  height: 60px !important;
 }
 
 /* Mobile */
 @media (max-width: 991px) {
-  .topnav .logo img {
-    height: 75px !important;
+  .topnav .logo img,
+  .topnav .logo .logo-svg-wrap {
+    height: 60px !important;
   }
+}
+
+/* Footer logo size */
+footer .logo .logo-svg-wrap {
+  height: 60px !important;
+  width: auto !important;
+  display: block !important;
 }
 
 
@@ -94,7 +133,13 @@
   }
 
   .section-top-clearance {
-    padding-top: 100px !important;
+    padding-top: 120px !important;
+  }
+  .interactive-center {
+    padding-top: 110px !important;
+  }
+  .land-header {
+    padding-top: 120px !important;
   }
 
   /* Padding top */

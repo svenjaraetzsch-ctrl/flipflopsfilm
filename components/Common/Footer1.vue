@@ -17,7 +17,7 @@
         <div class="row mt-80">
           <div class="col-lg-3">
             <div class="logo">
-              <img src="/assets/imgs/logo-light.png" alt="Flip Flops Film" />
+              <CommonLogoSVG />
             </div>
           </div>
 
@@ -51,7 +51,7 @@
         </div>
       </div>
 
-      <div class="container bord pt-30 pb-30 bord-thin-top">
+      <div class="container bord pt-30 pb-20 bord-thin-top">
         <div class="row align-items-center">
           <div class="col-lg-6">
             <div class="links">
@@ -61,16 +61,23 @@
                 <li><NuxtLink :to="localePath('/services/locations')" class="animsition-link">{{ $t('nav.locations') }}</NuxtLink></li>
                 <li><NuxtLink :to="localePath('/services')" class="animsition-link">{{ $t('nav.services') }}</NuxtLink></li>
                 <li><NuxtLink :to="localePath('/faqs')" class="animsition-link">{{ $t('nav.faqs') }}</NuxtLink></li>
-                <li><NuxtLink :to="localePath('/privacy-policy')" class="animsition-link">{{ $t('footer.privacy_policy') }}</NuxtLink></li>
-                <li><NuxtLink :to="localePath('/imprint')" class="animsition-link">{{ $t('footer.imprint') }}</NuxtLink></li>
               </ul>
             </div>
           </div>
 
           <div class="col-lg-6">
             <div class="d-flex align-items-center justify-content-end gap-30 footer-bottom-right">
-              <p class="fz-13 mb-0">{{ $t('footer.copyright') }}</p>
               <CommonLangSwitcher />
+              <p class="fz-13 mb-0">{{ $t('footer.copyright') }}</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="row mt-15">
+          <div class="col-12">
+            <div class="legal-links">
+              <NuxtLink :to="localePath('/privacy-policy')" class="animsition-link">{{ $t('footer.privacy_policy') }}</NuxtLink>
+              <NuxtLink :to="localePath('/imprint')" class="animsition-link">{{ $t('footer.imprint') }}</NuxtLink>
             </div>
           </div>
         </div>
@@ -115,6 +122,33 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+.legal-links {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  opacity: 0.45;
+}
+
+.legal-links a {
+  color: inherit;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+
+.legal-links a:hover {
+  opacity: 0.8;
+}
+
+.legal-links .sep {
+  opacity: 0.5;
+}
+
+.footer-bottom-right :deep(.lang-switcher) {
+  margin-right: 8px;
+}
+
 @media (max-width: 991px) {
   .footer-bottom-right {
     justify-content: space-between !important;
