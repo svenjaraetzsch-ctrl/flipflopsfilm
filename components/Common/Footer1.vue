@@ -151,8 +151,15 @@ onBeforeUnmount(() => {
 
 @media (max-width: 991px) {
   .footer-bottom-right {
-    justify-content: space-between !important;
-    margin-top: 16px;
+    flex-direction: column !important;
+    align-items: flex-start !important;
+    justify-content: flex-start !important;
+    gap: 14px !important;
+    margin-top: 24px;
+  }
+
+  .footer-bottom-right p {
+    margin-top: 0;
   }
 }
 </style>
