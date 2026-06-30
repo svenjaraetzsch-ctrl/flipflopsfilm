@@ -5,7 +5,7 @@
         class="logo-mask"
         :style="{
           backgroundColor: activeColor,
-          opacity: isHovering ? 0.25 : 0.06
+          opacity: isHovering ? 0.45 : 0.06
         }"
       ></div>
     </div>

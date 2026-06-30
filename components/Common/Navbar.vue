@@ -7,7 +7,7 @@
 
       <div class="logo">
         <nuxt-link to="/" class="logo-link">
-          <img src="/assets/imgs/logo-light.png" alt="" />
+          <CommonLogoSVG />
         </nuxt-link>
       </div>
 
