@@ -12,7 +12,7 @@
     </div>
     <div class="img mt-50">
       <video autoplay muted loop playsinline preload="auto" class="w-100 h-100" style="object-fit: cover;">
-        <source src="/assets/vid/flipflops_video_smaller.mp4" type="video/mp4" />
+        <source src="/assets/vid/flipflops_video_smaller-verkleinert-online-umwandeln.de.mp4" type="video/mp4" />
       </video>
     </div>
   </header>
