@@ -19,16 +19,7 @@ import { onMounted, onUnmounted } from 'vue';
 import data from '@/data/Slider/scroll.json';
 
 const handleResize = () => {
-  const allTriggers = ScrollTrigger.getAll();
-
-  if (
-    (window.innerWidth < 991 && allTriggers.length) ||
-    (window.innerWidth > 991 && !allTriggers.length)
-  ) {
-    window.location.reload();
-  }
-
-  allTriggers.forEach((trigger) => trigger.update());
+  ScrollTrigger.getAll().forEach((trigger) => trigger.update());
 };
 
 onMounted(() => {
