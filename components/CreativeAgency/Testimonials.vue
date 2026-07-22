@@ -55,30 +55,22 @@
         <div class="main-marq">
           <div class="slide-har st1">
             <div class="box non-strok">
-              <div v-for="(item, index) in barndsData" :key="index" class="item">
-  <div class="img icon-img-100">
-    <a
-      :href="item.url"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <img :src="item.image" alt="" />
-    </a>
-  </div>
-</div>
+              <div v-for="(item, index) in barndsData" :key="'e-' + index" class="item">
+                <div class="img logo-large">
+                  <a :href="item.url" target="_blank" rel="noopener noreferrer">
+                    <img :src="item.image" alt="" />
+                  </a>
+                </div>
+              </div>
             </div>
             <div class="box non-strok">
-              <div v-for="(item, index) in barndsData" :key="index" class="item">
-  <div class="img icon-img-100">
-    <a
-      :href="item.url"
-      target="_blank"
-      rel="noopener noreferrer"
-    >
-      <img :src="item.image" alt="" />
-    </a>
-  </div>
-</div>
+              <div v-for="(item, index) in barndsData" :key="'f-' + index" class="item">
+                <div class="img logo-large">
+                  <a :href="item.url" target="_blank" rel="noopener noreferrer">
+                    <img :src="item.image" alt="" />
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -86,6 +78,22 @@
     </div>
   </section>
 </template>
+
+<style scoped>
+.logo-large {
+  display: flex;
+  align-items: center;
+  height: 90px;
+}
+
+.logo-large img {
+  height: 90px;
+  width: auto;
+  max-width: 220px;
+  object-fit: contain;
+  display: block;
+}
+</style>
 
 <script setup>
 import { Swiper, SwiperSlide } from 'swiper/vue';
