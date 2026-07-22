@@ -7,7 +7,7 @@
           <div class="col-lg-6">
             <div class="eml">
               <h6 class="sub-title opacity-8">{{ $t('footer.tagline') }}</h6>
-              <h2 class="underline fz-60">
+              <h2 class="underline footer-email">
                 <a :href="emailHref">{{ emailLabel }}</a>
               </h2>
             </div>
@@ -122,6 +122,11 @@ onBeforeUnmount(() => {
 </script>
 
 <style scoped>
+.footer-email {
+  font-size: clamp(1.1rem, 2.6vw, 2rem);
+  word-break: break-all;
+}
+
 .legal-links {
   display: flex;
   align-items: center;

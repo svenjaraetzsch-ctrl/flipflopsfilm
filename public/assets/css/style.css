@@ -3712,10 +3712,6 @@ body.loaded {
   border-color: rgba(0, 0, 0, 0.1);
 }
 
-.text-indent {
-  text-indent: 20%;
-}
-
 .vew-all a {
   position: relative;
   z-index: 2;
@@ -3758,10 +3754,6 @@ body.loaded {
   font-size: 44px;
   font-weight: 600;
   line-height: 1.2;
-}
-
-.about .text-indent {
-  text-indent: 20%;
 }
 
 .exp {
@@ -6885,9 +6877,6 @@ footer .logo img {
   }
   .crev-header2 p {
     display: none;
-  }
-  .text-indent {
-    text-indent: 0 !important;
   }
   .marquee h4 {
     font-size: 40px;
