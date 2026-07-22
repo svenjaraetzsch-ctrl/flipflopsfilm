@@ -37,6 +37,59 @@
   }
 }
 
+/* ====================== [ Mobile critical fixes ] ====================== */
+
+/* 1. body.loaded keeps overflow:hidden after loader — unlock vertical only, keep x hidden */
+body.loaded {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  height: auto !important;
+}
+
+/* 2. Hamburger menu: use dvh so it doesn't get clipped by iOS browser chrome */
+.hamenu {
+  height: 100vh;
+  height: 100dvh;
+  /* Allow scrolling inside menu on small phones */
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 3. Loader: dvh fallback */
+.loader-wrap {
+  height: 100vh;
+  height: 100dvh;
+}
+
+/* 4. Video header: dvh fallback */
+.crev-header .img {
+  height: 70vh;
+  height: 70dvh;
+}
+
+/* 5. Hard-lock horizontal overflow on all wrappers */
+html,
+body,
+#smooth-wrapper,
+#smooth-content {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* 6. Hide the cursor dot on touch devices */
+@media (hover: none), (pointer: coarse) {
+  .cursor { display: none !important; }
+}
+
+/* 6. Navbar: give a subtle background on mobile when scrolled so text stays readable */
+@media (max-width: 991px) {
+  .topnav.nav-scroll {
+    background: rgba(32, 29, 29, 0.85) !important;
+    backdrop-filter: none !important;
+  }
+}
+
 /* ====================== [ Page top clearance — adjusted for 90px logo navbar ] ====================== */
 /* Navbar total height ≈ 120px (90px logo + 15px padding top/bottom).
    All page-top sections get extra breathing room so content never sits

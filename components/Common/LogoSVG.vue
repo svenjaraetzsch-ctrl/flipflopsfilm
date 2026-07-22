@@ -101,8 +101,10 @@ const W = 590
 let sweepTween = null
 let liftTween = null
 
+const isTouch = typeof window !== 'undefined' && window.matchMedia('(pointer: coarse)').matches
+
 onMounted(() => {
-  if (typeof gsap === 'undefined') return
+  if (typeof gsap === 'undefined' || isTouch) return
 
   const groups = svgRef.value?.querySelectorAll('.lg')
   if (!groups?.length) return
@@ -119,7 +121,7 @@ onMounted(() => {
 })
 
 const onHover = () => {
-  if (typeof gsap === 'undefined') return
+  if (typeof gsap === 'undefined' || isTouch) return
 
   const groups = [...(svgRef.value?.querySelectorAll('.lg') ?? [])]
 
@@ -159,7 +161,7 @@ const onHover = () => {
 }
 
 const onLeave = () => {
-  if (typeof gsap === 'undefined') return
+  if (typeof gsap === 'undefined' || isTouch) return
 
   const groups = [...(svgRef.value?.querySelectorAll('.lg') ?? [])]
 

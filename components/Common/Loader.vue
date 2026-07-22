@@ -28,7 +28,11 @@ onMounted(() => {
   tl.to(".loader-wrap-heading .load-text , .loader-wrap-heading .cont", { delay: 1.5, y: -100, opacity: 0, });
   tl.to(svg, { duration: 0.5, attr: { d: curve }, ease: "power2.easeIn", }).to(svg, { duration: 0.5, attr: { d: flat }, ease: "power2.easeOut", });
   tl.to(".loader-wrap", { y: -1500, });
-  tl.to(".loader-wrap", { zIndex: -1, display: "none", });
+  tl.to(".loader-wrap", { zIndex: -1, display: "none", onComplete: function() {
+    document.body.style.overflow = '';
+    document.body.style.height = '';
+    document.documentElement.style.overflow = '';
+  }});
   tl.from("header", { y: 200 }, "-=1.5");
   tl.from("header .container", { y: 40, opacity: 0, delay: 0.3 }, "-=1.5");
 });

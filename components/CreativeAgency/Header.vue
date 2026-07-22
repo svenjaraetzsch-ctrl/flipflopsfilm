@@ -5,7 +5,7 @@
         <div class="col-12">
           <div class="caption text-center">
             <h1 style="position: absolute; opacity: 0;">Flip Flops Film</h1>
-            <h1 class="f-xbold"><span class="f-ultra-light d-block">{{ $t('home.hero_title1') }}</span>{{ $t('home.hero_title2') }}</h1>
+            <h1 class="f-xbold"><span class="f-ultra-light d-block">{{ t('home.hero_title1') }}</span>{{ t('home.hero_title2') }}</h1>
           </div>
         </div>
       </div>
@@ -17,3 +17,7 @@
     </div>
   </header>
 </template>
+
+<script setup>
+const { t } = useI18n()
+</script>
