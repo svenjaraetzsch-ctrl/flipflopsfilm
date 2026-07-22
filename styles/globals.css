@@ -82,13 +82,6 @@ body,
   .cursor { display: none !important; }
 }
 
-/* 6. Navbar: give a subtle background on mobile when scrolled so text stays readable */
-@media (max-width: 991px) {
-  .topnav.nav-scroll {
-    background: rgba(32, 29, 29, 0.85) !important;
-    backdrop-filter: none !important;
-  }
-}
 
 /* ====================== [ Page top clearance — adjusted for 90px logo navbar ] ====================== */
 /* Navbar total height ≈ 120px (90px logo + 15px padding top/bottom).
@@ -156,15 +149,6 @@ footer .logo .logo-svg-wrap {
   }
 }
 
-/* ====================== [ Mobile Header ] ====================== */
-/* backdrop-filter renders as a solid colour on many mobile browsers — keep transparent */
-@media (max-width: 991px) {
-  .topnav,
-  .topnav.blur,
-  .topnav.blur.nav-scroll {
-    background: transparent !important;
-  }
-}
 
 /* ====================== [ Mobile Spacing Scale ] ====================== */
 /*
