@@ -1,0 +1,4 @@
+# TODO: BEFORE LAUNCH — replace the two lines below with the production policy
+# (allow crawling + point to the sitemap). Staging must stay fully disallowed.
+User-agent: *
+Disallow: /

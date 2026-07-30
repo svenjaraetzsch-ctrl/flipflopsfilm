@@ -26,7 +26,22 @@ export default defineNuxtConfig({
     shim: false
   },
 
-  nitro: {},
+  nitro: {
+    // Static export for IONOS Deploy Now (Apache shared hosting, no Node runtime).
+    // `nuxt generate` prerenders every route to real HTML so Google sees content,
+    // not an empty <div>. crawlLinks follows internal links to discover routes.
+    prerender: {
+      crawlLinks: true,
+      routes: ['/'],
+      // Don't abort the whole build on a single dead link (the theme demo data
+      // still references non-existent pages, e.g. /creative-portfolio). Broken
+      // links are logged. TODO: set back to true once demo pages/data are pruned.
+      failOnError: false
+    }
+    // Static output lands in Nuxt's canonical `.output/public/` (incl. the
+    // copied public/.htaccess and robots.txt). The `build` script then copies
+    // it to `dist/` so Deploy Now can serve `dist` at the domain root.
+  },
 
   alias: {
     '@': fileURLToPath(new URL('./', import.meta.url))
@@ -39,6 +54,12 @@ export default defineNuxtConfig({
         lang: 'en'
       },
       meta: [
+        // TODO: REMOVE THIS noindex/nofollow TAG BEFORE GOING LIVE.
+        // It keeps search engines out while the site is on staging.
+        {
+          name: 'robots',
+          content: 'noindex, nofollow'
+        },
         {
           charset: 'utf-8'
         },
