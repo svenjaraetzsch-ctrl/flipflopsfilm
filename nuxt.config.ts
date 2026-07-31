@@ -70,12 +70,6 @@ export default defineNuxtConfig({
         lang: 'en'
       },
       meta: [
-        // TODO: REMOVE THIS noindex/nofollow TAG BEFORE GOING LIVE.
-        // It keeps search engines out while the site is on staging.
-        {
-          name: 'robots',
-          content: 'noindex, nofollow'
-        },
         {
           charset: 'utf-8'
         },
