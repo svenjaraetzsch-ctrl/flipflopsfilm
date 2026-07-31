@@ -20,9 +20,10 @@
 </template>
 
 <script setup>
+usePageSeo('about')
+
 //= Page Head
 useHead({
-  titleTemplate: `%s - About`,
   bodyAttrs: {
     class: 'about'
   },

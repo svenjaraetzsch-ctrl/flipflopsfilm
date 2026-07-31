@@ -16,9 +16,10 @@
 </template>
 
 <script setup>
+usePageSeo('faqs')
+
 //= Page Head
 useHead({
-  titleTemplate: `%s - Faqs`,
   bodyAttrs: {
     class: 'faqs'
   },

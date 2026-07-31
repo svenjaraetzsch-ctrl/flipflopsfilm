@@ -22,11 +22,9 @@
 </template>
 
 <script setup>
-const { t } = useI18n()
+usePageSeo('services')
 
 useHead({
-  title: t('services.header') + ' | Flip Flops Film',
-
   bodyAttrs: {
     class: 'main-bg'
   },

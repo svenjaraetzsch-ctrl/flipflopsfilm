@@ -24,9 +24,10 @@
 definePageMeta({
   layout: "preview",
 });
+usePageSeo('locations')
+
 //= Page Head
 useHead({
-  titleTemplate: `%s - Locations`,
   script: [
     { src: "/assets/js/smoother-script.js", defer: true }
   ]

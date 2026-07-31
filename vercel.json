@@ -1,0 +1,18 @@
+{
+  "redirects": [
+    { "source": "/spanish-tax-incentives", "destination": "/services/tax-incentives", "permanent": true },
+    { "source": "/spanish-tax-incentives/", "destination": "/services/tax-incentives", "permanent": true },
+    { "source": "/about-us", "destination": "/about", "permanent": true },
+    { "source": "/about-us/", "destination": "/about", "permanent": true },
+    { "source": "/contacto", "destination": "/about", "permanent": true },
+    { "source": "/contacto/", "destination": "/about", "permanent": true },
+    { "source": "/aviso-legal", "destination": "/imprint", "permanent": true },
+    { "source": "/aviso-legal/", "destination": "/imprint", "permanent": true },
+    { "source": "/politica-de-privacidad", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/politica-de-privacidad/", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/cookie-policy", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/cookie-policy/", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/otros-proyectos", "destination": "/about", "permanent": true },
+    { "source": "/otros-proyectos/", "destination": "/about", "permanent": true }
+  ]
+}

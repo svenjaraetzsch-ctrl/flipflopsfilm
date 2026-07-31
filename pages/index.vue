@@ -20,9 +20,9 @@
 </template>
 
 <script setup>
-useHead({
-  title: 'Flip Flops Film',
+usePageSeo('home')
 
+useHead({
   bodyAttrs: {
     class: 'main-bg'
   },

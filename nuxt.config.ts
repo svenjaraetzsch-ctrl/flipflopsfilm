@@ -97,6 +97,21 @@ export default defineNuxtConfig({
         {
           property: 'og:type',
           content: 'website'
+        },
+        {
+          property: 'og:site_name',
+          content: 'Flip Flops Film'
+        },
+        // Site-wide default share image (used for link previews on WhatsApp,
+        // LinkedIn, X, etc.). TODO: replace this placeholder with a real
+        // 1200x630 branded share image before launch. Must be an absolute URL.
+        {
+          property: 'og:image',
+          content: 'https://flipflopsfilm.com/des.jpg'
+        },
+        {
+          name: 'twitter:card',
+          content: 'summary_large_image'
         }
       ],
       link: [

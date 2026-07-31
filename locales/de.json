@@ -331,5 +331,43 @@
       "title": "Crew & Produktion",
       "category": "Erfahrene Crews und reibungsloser Betrieb vor Ort."
     }
-  ]
+  ],
+  "seo": {
+    "home": {
+      "title": "Produktionsservice in Spanien & den Kanaren",
+      "description": "Produktionsservice für internationale Film-, TV- und Werbeproduktionen in Spanien und auf den Kanaren: Motive, Crew, Genehmigungen und Steueranreize."
+    },
+    "services": {
+      "title": "Filmproduktionsservice in Spanien",
+      "description": "Von der Motivsuche über Genehmigungen bis zu Crew und Logistik begleiten wir jede Phase Ihrer Produktion in Spanien und auf den Kanaren."
+    },
+    "taxIncentives": {
+      "title": "Steueranreize Spanien & Kanarische Inseln",
+      "description": "Nutzen Sie attraktive Film-Steueranreize in Spanien und auf den Kanaren. Wir begleiten Produktionen durch Voraussetzungen und Antragstellung."
+    },
+    "locations": {
+      "title": "Drehorte in Spanien & auf den Kanaren",
+      "description": "Vulkanlandschaften, Küsten, Wälder und historische Dörfer nur wenige Stunden voneinander entfernt: vielseitige Drehorte in Spanien und auf den Kanaren."
+    },
+    "crewOperations": {
+      "title": "Filmcrew & Operations in Spanien",
+      "description": "Erfahrene lokale Crew, Equipment, Transport und Logistik – koordiniert in Spanien und auf den Kanaren, damit Ihre Produktion effizient vorankommt."
+    },
+    "about": {
+      "title": "Über uns",
+      "description": "Gegründet von David Turpin und André Dolezal, verbindet Flip Flops Film spanisches Produktionsmanagement mit internationaler Line-Producing-Erfahrung."
+    },
+    "faqs": {
+      "title": "FAQ zum Produktionsservice",
+      "description": "Antworten auf häufige Fragen zum Dreh in Spanien und auf den Kanaren – Produktionsservice, Genehmigungen, Steueranreize, Crew und Logistik."
+    },
+    "privacy": {
+      "title": "Datenschutzerklärung",
+      "description": "Datenschutzerklärung von Flip Flops Film: wie wir personenbezogene Daten verarbeiten und welche Rechte Sie bei der Nutzung unserer Website haben."
+    },
+    "imprint": {
+      "title": "Impressum",
+      "description": "Impressum und Unternehmensangaben von Flip Flops Film, Produktionsservice in Spanien und auf den Kanarischen Inseln."
+    }
+  }
 }

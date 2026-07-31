@@ -331,5 +331,43 @@
       "title": "Crew & Operations",
       "category": "Trusted crews and smooth operations."
     }
-  ]
+  ],
+  "seo": {
+    "home": {
+      "title": "Production Services in Spain & the Canaries",
+      "description": "Full production services for international film, TV and commercial shoots across Spain and the Canary Islands: locations, crew, permits and tax incentives."
+    },
+    "services": {
+      "title": "Film Production Services in Spain",
+      "description": "From location scouting to permits, crew and logistics, we handle every stage of production across Spain and the Canary Islands so your shoot stays on track."
+    },
+    "taxIncentives": {
+      "title": "Spain & Canary Islands Tax Incentives",
+      "description": "Access some of Europe's most competitive film tax rebates in Spain and the Canary Islands. We guide productions through eligibility, requirements and applications."
+    },
+    "locations": {
+      "title": "Filming Locations in Spain & the Canaries",
+      "description": "Volcanic terrain, coastlines, forests and historic villages within hours of each other: versatile filming locations across Spain and the Canary Islands."
+    },
+    "crewOperations": {
+      "title": "Film Crew & Operations in Spain",
+      "description": "Experienced local crew, equipment, transport and logistics coordinated across Spain and the Canary Islands to keep your production moving efficiently."
+    },
+    "about": {
+      "title": "About Us",
+      "description": "Founded by David Turpin and André Dolezal, Flip Flops Film unites Spanish production management with international line-producing experience."
+    },
+    "faqs": {
+      "title": "Production Services FAQs",
+      "description": "Answers to common questions about filming in Spain and the Canary Islands — production services, permits, tax incentives, crew and logistics."
+    },
+    "privacy": {
+      "title": "Privacy Policy",
+      "description": "Privacy policy for Flip Flops Film: how we handle personal data and your rights when using our website and contacting us."
+    },
+    "imprint": {
+      "title": "Legal Notice",
+      "description": "Legal notice and company information for Flip Flops Film, production services in Spain and the Canary Islands."
+    }
+  }
 }

@@ -331,5 +331,43 @@
       "title": "Equipo & Producción",
       "category": "Equipos de confianza y operaciones fluidas."
     }
-  ]
+  ],
+  "seo": {
+    "home": {
+      "title": "Servicios de Producción en España y Canarias",
+      "description": "Servicios de producción para rodajes internacionales de cine, TV y publicidad en España y Canarias: localizaciones, equipo, permisos e incentivos fiscales."
+    },
+    "services": {
+      "title": "Servicios de Producción en España",
+      "description": "Desde la búsqueda de localizaciones hasta permisos, equipo y logística, gestionamos cada fase de tu producción en España y Canarias."
+    },
+    "taxIncentives": {
+      "title": "Incentivos Fiscales España y Canarias",
+      "description": "Accede a algunos de los incentivos fiscales al cine más competitivos de Europa en España y Canarias. Te guiamos por los requisitos y la solicitud."
+    },
+    "locations": {
+      "title": "Localizaciones de Rodaje en España y Canarias",
+      "description": "Paisajes volcánicos, costas, bosques y pueblos con historia a pocas horas entre sí: localizaciones de rodaje versátiles en España y Canarias."
+    },
+    "crewOperations": {
+      "title": "Equipo y Operaciones de Rodaje en España",
+      "description": "Equipo local con experiencia, material, transporte y logística coordinados en España y Canarias para que tu producción avance con eficacia."
+    },
+    "about": {
+      "title": "Sobre nosotros",
+      "description": "Fundada por David Turpin y André Dolezal, Flip Flops Film une la gestión de producción española con la experiencia internacional en line production."
+    },
+    "faqs": {
+      "title": "Preguntas Frecuentes de Producción",
+      "description": "Respuestas a preguntas habituales sobre rodar en España y Canarias: servicios de producción, permisos, incentivos fiscales, equipo y logística."
+    },
+    "privacy": {
+      "title": "Política de Privacidad",
+      "description": "Política de privacidad de Flip Flops Film: cómo tratamos los datos personales y qué derechos tienes al usar nuestra web y contactarnos."
+    },
+    "imprint": {
+      "title": "Aviso Legal",
+      "description": "Aviso legal e información de empresa de Flip Flops Film, servicios de producción en España y Canarias."
+    }
+  }
 }

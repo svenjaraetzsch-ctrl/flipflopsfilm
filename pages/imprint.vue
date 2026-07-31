@@ -29,10 +29,9 @@
 </template>
 
 <script setup>
-const { t } = useI18n()
+usePageSeo('imprint')
 
 useHead({
-  title: t('imprint.label') + ' | Flip Flops Film',
   bodyAttrs: { class: 'main-bg' },
   script: [{ src: '/assets/js/smoother-script.js', defer: true }]
 })

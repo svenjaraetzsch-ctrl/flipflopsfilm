@@ -27,9 +27,10 @@
 definePageMeta({
   layout: "preview",
 });
+usePageSeo('crewOperations')
+
 //= Page Head
 useHead({
-  titleTemplate: `%s - Tax Incentives`,
   bodyAttrs: {
     class: 'main-bg'
   },
