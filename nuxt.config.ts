@@ -27,7 +27,13 @@ export default defineNuxtConfig({
   },
 
   nitro: {
-    // Static export for IONOS Deploy Now (Apache shared hosting, no Node runtime).
+    // Force the plain static preset. On Vercel, Nitro would otherwise auto-detect
+    // the `vercel` preset and emit `.vercel/output/static`, so the build script's
+    // `cp -R .output/public dist` finds nothing and the deploy fails. Pinning
+    // `static` makes every environment (local + Vercel) generate `.output/public`,
+    // which the build script copies to `dist/`. Vercel's Output Directory must be
+    // set to `dist`. vercel.json redirects are applied by Vercel regardless.
+    preset: 'static',
     // `nuxt generate` prerenders every route to real HTML so Google sees content,
     // not an empty <div>. crawlLinks follows internal links to discover routes.
     prerender: {
