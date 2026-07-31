@@ -118,12 +118,28 @@ export default defineNuxtConfig({
           property: 'og:site_name',
           content: 'Flip Flops Film'
         },
-        // Site-wide default share image (used for link previews on WhatsApp,
-        // LinkedIn, X, etc.). TODO: replace this placeholder with a real
-        // 1200x630 branded share image before launch. Must be an absolute URL.
+        // Site-wide default share image (link previews on WhatsApp, LinkedIn, X).
+        // Teide volcanic-road location shot: cinematic, on-brand, 1280x721 (>1200
+        // wide, ~16:9). Optional future nicety: a purpose-made 1200x630 brand card.
         {
           property: 'og:image',
-          content: 'https://flipflopsfilm.com/des.jpg'
+          content: 'https://flipflopsfilm.com/assets/imgs/locations/folder/10.jpeg'
+        },
+        {
+          property: 'og:image:width',
+          content: '1280'
+        },
+        {
+          property: 'og:image:height',
+          content: '721'
+        },
+        {
+          property: 'og:image:type',
+          content: 'image/jpeg'
+        },
+        {
+          property: 'og:image:alt',
+          content: 'A road winding through the volcanic landscape of Teide, Tenerife — one of the Canary Islands filming locations offered by Flip Flops Film.'
         },
         {
           name: 'twitter:card',
