@@ -62,10 +62,14 @@ body.loaded {
   height: 100dvh;
 }
 
-/* 4. Video header: dvh fallback */
+/* 4. Video header: use a STABLE viewport unit.
+   dvh (dynamic) changes as the mobile URL bar shows/hides, which rescaled the
+   object-fit:cover video on every scroll and made the page wobble/zoom when
+   scrolling back up. svh (small viewport height) stays fixed regardless of the
+   browser chrome, so the video keeps a constant height. vh is the fallback. */
 .crev-header .img {
   height: 70vh;
-  height: 70dvh;
+  height: 70svh;
 }
 
 /* 5. Hard-lock horizontal overflow on all wrappers */
