@@ -22,7 +22,10 @@
                   <h4>{{ item.title }}</h4>
                   <span class="ico"></span>
                 </div>
-                <div class="accordion-info" v-show="activeIndex === index">
+                <div
+                  class="accordion-info"
+                  :style="{ display: activeIndex === index ? 'block' : 'none' }"
+                >
                   <p>{{ item.content }}</p>
                 </div>
               </div>

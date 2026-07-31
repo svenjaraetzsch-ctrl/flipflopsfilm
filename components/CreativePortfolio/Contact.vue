@@ -23,11 +23,29 @@
 </template>
 
 <script setup>
-const handleResize = () => {
+// Scroll-scrubbed reveal for the contact block.
+// Desktop only (matches ScrollSmoother / Works / Slider, which all gate at 991):
+// on mobile the scrubbed parallax fought the momentum scroll + the URL-bar
+// resize and jittered, so on phones the block just sits in its natural place.
+let st = null
+let lastWidth = 0
+
+const build = () => {
+  // Tear down any previous instance so triggers never stack up — mobile browsers
+  // fire many resize events (one per URL-bar show/hide) which otherwise pile up
+  // multiple ScrollTriggers on the same element and cause the shaking.
+  if (st) {
+    st.kill()
+    st = null
+    gsap.set('.contact-container', { clearProps: 'transform' })
+  }
+
+  if (window.innerWidth <= 991) return
+
   gsap.set('.contact-container', { yPercent: -50 })
   const cover = gsap.timeline({ paused: true })
   cover.to('.contact-container', { yPercent: 0, ease: 'none' })
-  ScrollTrigger.create({
+  st = ScrollTrigger.create({
     trigger: '.main-box',
     start: 'bottom 80%',
     end: '+=50%',
@@ -36,12 +54,24 @@ const handleResize = () => {
   })
 }
 
+const handleResize = () => {
+  // Ignore height-only changes (mobile URL bar) — only rebuild on a real width change.
+  if (window.innerWidth === lastWidth) return
+  lastWidth = window.innerWidth
+  build()
+}
+
 onMounted(() => {
-  handleResize()
+  lastWidth = window.innerWidth
+  build()
   window.addEventListener('resize', handleResize)
 })
 
 onUnmounted(() => {
   window.removeEventListener('resize', handleResize)
+  if (st) {
+    st.kill()
+    st = null
+  }
 })
 </script>

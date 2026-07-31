@@ -98,11 +98,29 @@ const emailDomain = 'flipflopsfilm.com'
 const emailLabel = computed(() => `${emailUser}@${emailDomain}`)
 const emailHref = computed(() => `mailto:${emailUser}@${emailDomain}`)
 
-const handleResize = () => {
+// Footer "uncover" reveal. Desktop only (matches ScrollSmoother / Works / Slider,
+// which all gate at 991): on mobile the scrubbed transform fought the momentum
+// scroll + the URL-bar resize and made the footer jitter, so on phones the footer
+// just sits in its natural position.
+let st = null
+let lastWidth = 0
+
+const build = () => {
+  // Tear down any previous instance so triggers never stack up — mobile browsers
+  // fire many resize events (one per URL-bar show/hide) which otherwise pile up
+  // multiple ScrollTriggers on the same element and cause the shaking.
+  if (st) {
+    st.kill()
+    st = null
+    gsap.set('.footer-container', { clearProps: 'transform' })
+  }
+
+  if (window.innerWidth <= 991) return
+
   gsap.set('.footer-container', { yPercent: -50 })
   const uncover = gsap.timeline({ paused: true })
   uncover.to('.footer-container', { yPercent: 0, ease: 'none' })
-  ScrollTrigger.create({
+  st = ScrollTrigger.create({
     trigger: 'main',
     start: 'bottom bottom',
     end: '+=50%',
@@ -111,13 +129,25 @@ const handleResize = () => {
   })
 }
 
+const handleResize = () => {
+  // Ignore height-only changes (mobile URL bar) — only rebuild on a real width change.
+  if (window.innerWidth === lastWidth) return
+  lastWidth = window.innerWidth
+  build()
+}
+
 onMounted(() => {
-  handleResize()
+  lastWidth = window.innerWidth
+  build()
   window.addEventListener('resize', handleResize)
 })
 
 onBeforeUnmount(() => {
   window.removeEventListener('resize', handleResize)
+  if (st) {
+    st.kill()
+    st = null
+  }
 })
 </script>
 
