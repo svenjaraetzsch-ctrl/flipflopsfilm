@@ -12,14 +12,34 @@
 
 <script setup>
 const { locale, locales } = useI18n()
-const switchLocalePath = useSwitchLocalePath()
-const router = useRouter()
+
+// Matches the i18n config: English is the default locale, served at the site root
+// with no URL prefix; /de and /es carry a locale prefix. Slugs are identical across
+// locales, so switching is just a matter of swapping the leading /<locale> prefix.
+const DEFAULT_LOCALE = 'en'
 
 const selected = computed({
   get: () => locale.value,
   set: (val) => {
-    const path = switchLocalePath(val)
-    if (path) router.push(path)
+    if (val === locale.value) return
+
+    const codes = locales.value.map((l) => l.code)
+    // Strip any existing locale prefix → the path without a locale.
+    const bare =
+      window.location.pathname.replace(
+        new RegExp(`^/(?:${codes.join('|')})(?=/|$)`),
+        ''
+      ) || '/'
+    // Re-add the target locale prefix (none for the default locale).
+    const target =
+      val === DEFAULT_LOCALE ? bare : `/${val}${bare === '/' ? '' : bare}`
+
+    // Hard navigation: the app already re-inits GSAP via a full reload on every
+    // route change, and this guarantees the URL actually changes. The previous
+    // switchLocalePath + router.push chain silently no-op'd on the static build,
+    // so all languages stayed on the same address.
+    window.location.href =
+      (target || '/') + window.location.search + window.location.hash
   }
 })
 </script>
