@@ -6,7 +6,7 @@
       </div>
 
       <div class="logo">
-        <nuxt-link to="/" class="logo-link">
+        <nuxt-link :to="localePath('index')" class="logo-link">
           <CommonLogoSVG />
         </nuxt-link>
       </div>
@@ -29,6 +29,8 @@
 
 <script setup>
 import { onMounted, onUnmounted } from 'vue';
+
+const localePath = useLocalePath();
 
 const { borderBottom } = defineProps(['borderBottom']);
 

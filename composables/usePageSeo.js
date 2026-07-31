@@ -33,4 +33,13 @@ export function usePageSeo(key) {
       { property: 'og:url', content: url }
     ]
   })
+
+  // hreflang alternates (en/de/es) + x-default, rel=canonical and og:locale,
+  // generated from the i18n config. Relies on i18n.baseUrl for absolute URLs.
+  const localeHead = useLocaleHead({ addSeoAttributes: true })
+  useHead(() => ({
+    htmlAttrs: { lang: localeHead.value.htmlAttrs?.lang },
+    link: localeHead.value.link,
+    meta: localeHead.value.meta
+  }))
 }

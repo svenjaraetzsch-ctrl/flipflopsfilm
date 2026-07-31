@@ -1,6 +1,6 @@
 <template>
   <nav class="breadcrumbs">
-    <NuxtLink to="/">Home</NuxtLink>
+    <NuxtLink :to="localePath('index')">Home</NuxtLink>
 
     <template v-for="crumb in breadcrumbs" :key="crumb.path">
       <span class="sep">/</span>
@@ -18,7 +18,7 @@
 
 <script setup>
 const route = useRoute()
-const { locale } = useI18n()
+const localePath = useLocalePath()
 
 const labels = {
   about: 'About',
@@ -38,8 +38,9 @@ const breadcrumbs = computed(() => {
   const segments = route.path.split('/').filter(s => s && !localeCodes.includes(s))
 
   return segments.map((segment, index) => {
-    const localePfx = locale.value !== 'en' ? `/${locale.value}` : ''
-    const path = localePfx + '/' + segments.slice(0, index + 1).join('/')
+    // Build the locale-agnostic app path, then let localePath() add the correct
+    // prefix for the active locale (works with strategy 'prefix' incl. /en).
+    const path = localePath('/' + segments.slice(0, index + 1).join('/'))
 
     return {
       name: labels[segment] || segment.replace(/-/g, ' ').replace(/\b\w/g, c => c.toUpperCase()),

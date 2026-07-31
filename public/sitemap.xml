@@ -1,12 +1,193 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url><loc>https://flipflopsfilm.com/</loc></url>
-  <url><loc>https://flipflopsfilm.com/services</loc></url>
-  <url><loc>https://flipflopsfilm.com/services/tax-incentives</loc></url>
-  <url><loc>https://flipflopsfilm.com/services/locations</loc></url>
-  <url><loc>https://flipflopsfilm.com/services/crew-operations</loc></url>
-  <url><loc>https://flipflopsfilm.com/about</loc></url>
-  <url><loc>https://flipflopsfilm.com/faqs</loc></url>
-  <url><loc>https://flipflopsfilm.com/privacy-policy</loc></url>
-  <url><loc>https://flipflopsfilm.com/imprint</loc></url>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://flipflopsfilm.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/de</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/es</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/services"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/services"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/de/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/services"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/services"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/es/services</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/services"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/services"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/services"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/services"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/services/tax-incentives</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/services/tax-incentives"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/services/tax-incentives"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/services/tax-incentives"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/services/tax-incentives"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/de/services/tax-incentives</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/services/tax-incentives"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/services/tax-incentives"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/services/tax-incentives"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/services/tax-incentives"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/es/services/tax-incentives</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/services/tax-incentives"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/services/tax-incentives"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/services/tax-incentives"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/services/tax-incentives"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/services/locations</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/services/locations"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/services/locations"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/services/locations"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/services/locations"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/de/services/locations</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/services/locations"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/services/locations"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/services/locations"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/services/locations"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/es/services/locations</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/services/locations"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/services/locations"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/services/locations"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/services/locations"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/services/crew-operations</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/services/crew-operations"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/services/crew-operations"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/services/crew-operations"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/services/crew-operations"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/de/services/crew-operations</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/services/crew-operations"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/services/crew-operations"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/services/crew-operations"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/services/crew-operations"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/es/services/crew-operations</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/services/crew-operations"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/services/crew-operations"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/services/crew-operations"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/services/crew-operations"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/about"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/about"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/about"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/de/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/about"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/about"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/about"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/es/about</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/about"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/about"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/about"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/about"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/faqs</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/faqs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/faqs"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/faqs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/faqs"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/de/faqs</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/faqs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/faqs"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/faqs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/faqs"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/es/faqs</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/faqs"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/faqs"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/faqs"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/faqs"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/privacy-policy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/privacy-policy"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/de/privacy-policy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/privacy-policy"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/es/privacy-policy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/privacy-policy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/privacy-policy"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/imprint</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/imprint"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/imprint"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/imprint"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/imprint"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/de/imprint</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/imprint"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/imprint"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/imprint"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/imprint"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/es/imprint</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/imprint"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/imprint"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/imprint"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/imprint"/>
+  </url>
 </urlset>

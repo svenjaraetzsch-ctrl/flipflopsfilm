@@ -7,12 +7,22 @@ export default defineNuxtConfig({
 
   i18n: {
     defaultLocale: 'en',
+    // English at root (no prefix); /de/… and /es/… for the other locales.
+    // NOTE: strategy 'prefix' (en → /en) crashes the prerender on this stack
+    // (Nuxt 3.6.5 + @nuxtjs/i18n v8: "First argument to String.prototype
+    // .startsWith must not be a regular expression"). The hreflang + x-default
+    // + canonical tags below cover multilingual SEO without moving English.
+    // Revisit 'prefix' only after a Nuxt/i18n upgrade.
     strategy: 'prefix_except_default',
+    // Absolute base URL so useLocaleHead emits absolute hreflang + canonical URLs.
+    baseUrl: 'https://flipflopsfilm.com',
+    // Deterministic URLs for crawlers: no cookie/Accept-Language auto-redirect.
+    detectBrowserLanguage: false,
     langDir: 'locales/',
     locales: [
-      { code: 'en', name: 'English', file: 'en.json' },
-      { code: 'de', name: 'Deutsch', file: 'de.json' },
-      { code: 'es', name: 'Español', file: 'es.json' }
+      { code: 'en', iso: 'en', name: 'English', file: 'en.json' },
+      { code: 'de', iso: 'de', name: 'Deutsch', file: 'de.json' },
+      { code: 'es', iso: 'es', name: 'Español', file: 'es.json' }
     ],
     compilation: {
       strictMessage: false,
