@@ -10,6 +10,12 @@
     { "source": "/aviso-legal/", "destination": "/imprint", "permanent": true },
     { "source": "/politica-de-privacidad", "destination": "/privacy-policy", "permanent": true },
     { "source": "/politica-de-privacidad/", "destination": "/privacy-policy", "permanent": true },
+    { "source": "/contact", "destination": "/about", "permanent": true },
+    { "source": "/contact/", "destination": "/about", "permanent": true },
+    { "source": "/de/contact", "destination": "/de/about", "permanent": true },
+    { "source": "/de/contact/", "destination": "/de/about", "permanent": true },
+    { "source": "/es/contact", "destination": "/es/about", "permanent": true },
+    { "source": "/es/contact/", "destination": "/es/about", "permanent": true },
     { "source": "/otros-proyectos", "destination": "/about", "permanent": true },
     { "source": "/otros-proyectos/", "destination": "/about", "permanent": true }
   ]

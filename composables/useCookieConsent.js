@@ -1,15 +1,18 @@
 // Cookie / tracking consent state, shared across the app.
 //
-// WHAT THIS SITE ACTUALLY LOADS (keep this list honest — it's what the privacy
+// WHAT THIS SITE ACTUALLY LOADS (keep this list honest — it's what the cookie
 // policy promises):
-//   necessary      — nothing but the consent choice itself. No app cookies, no
-//                    session storage, no tracking. Always on, not refusable.
-//   external_media — the Google Maps embed on /contact. Google sets cookies and
-//                    reads storage as soon as the iframe loads, so the iframe
-//                    must NOT be in the DOM until this is true.
-//   analytics      — reserved. Nothing uses it yet (Search Console needs no
-//                    consent: it never touches the visitor's device). Wired up
-//                    now so adding GA4 later is a drop-in, not a rewrite.
+//   necessary — nothing but the consent choice itself. No app cookies, no
+//               session storage, no tracking. Always on, not refusable.
+//   analytics — reserved. Nothing uses it yet (Search Console needs no consent:
+//               it never touches the visitor's device). Wired up so adding GA4
+//               later is a drop-in, not a rewrite.
+//
+// There used to be an `external_media` category gating the Google Maps embed on
+// /contact. That page was removed (enquiries go to info@flipflopsfilm.com), and
+// with it the last third-party request on the site — fonts are self-hosted, so
+// nothing else reaches off-domain. The category went with it rather than being
+// left as a toggle that controls nothing.
 //
 // TO ADD GA4 LATER: don't put the gtag script in nuxt.config.ts — that would
 // fire before consent. Instead create plugins/analytics.client.js:
@@ -34,8 +37,10 @@
 
 const STORAGE_KEY = 'fff_consent'
 
-// Bump this whenever the CATEGORIES list changes (adding a new category means
-// the visitor's old choice no longer covers everything, so we must re-ask).
+// Bump this when a category is ADDED: the visitor's stored choice cannot cover
+// a purpose that did not exist when they made it, so we have to re-ask.
+// Removing one needs no bump — consent already given still covers strictly less
+// processing, and the now-unknown key is simply ignored on read.
 const CONSENT_VERSION = 1
 
 // Re-ask after 12 months — the retention period the Spanish AEPD and the
@@ -44,9 +49,9 @@ const MAX_AGE_MS = 365 * 24 * 60 * 60 * 1000
 
 // `necessary` is deliberately absent: it's implicit, always granted, and
 // showing it as a locked toggle only invites "why can't I turn this off".
-export const OPTIONAL_CATEGORIES = ['analytics', 'external_media']
+export const OPTIONAL_CATEGORIES = ['analytics']
 
-const emptyState = () => ({ analytics: false, external_media: false })
+const emptyState = () => ({ analytics: false })
 
 export function useCookieConsent() {
   // useState keeps one instance shared between the banner, the footer link and
@@ -126,16 +131,6 @@ export function useCookieConsent() {
     persist()
   }
 
-  // Consent for one purpose, given at the point of use — e.g. the "load the map"
-  // button on /contact. Counts as a decision, so the banner stops asking; the
-  // other categories stay off because the visitor didn't agree to those.
-  function grant(category) {
-    if (!OPTIONAL_CATEGORIES.includes(category)) return
-    categories.value[category] = true
-    decided.value = true
-    persist()
-  }
-
   // Lets the visitor change their mind later (footer link). Withdrawing consent
   // has to be as easy as giving it, so this reopens the full banner.
   function reopen() {
@@ -155,7 +150,6 @@ export function useCookieConsent() {
     acceptAll,
     rejectAll,
     saveSelection,
-    grant,
     reopen,
     hasConsent
   }
