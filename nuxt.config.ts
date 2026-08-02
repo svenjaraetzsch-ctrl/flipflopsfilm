@@ -142,10 +142,12 @@ export default defineNuxtConfig({
       ],
       link: [
         { rel: 'shortcut icon', href: '/assets/imgs/favicon.png' },
-        {
-          rel: 'stylesheet',
-          href: 'https://fonts.googleapis.com/css?family=Poppins:100,200,300,400,500,600,700,800,900&display=swap'
-        },
+        // Poppins is self-hosted (see public/assets/fonts/poppins/). It used to
+        // come from fonts.googleapis.com, which sent every visitor's IP to
+        // Google before they could consent to anything — the exact issue German
+        // courts have ruled on. Serving it ourselves removes that entirely, so
+        // fonts need no cookie-banner category. Do not point this back at Google.
+        { rel: 'stylesheet', href: '/assets/fonts/poppins/style.css' },
         { rel: 'stylesheet', href: '/assets/fonts/mona-sans/style.css' },
         { rel: 'stylesheet', href: '/assets/css/plugins.css' },
         { rel: 'stylesheet', href: '/assets/css/style.css' }

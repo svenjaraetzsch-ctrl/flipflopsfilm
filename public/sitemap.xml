@@ -190,4 +190,25 @@
     <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/imprint"/>
     <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/imprint"/>
   </url>
+  <url>
+    <loc>https://flipflopsfilm.com/cookie-policy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/cookie-policy"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/cookie-policy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/cookie-policy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/cookie-policy"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/de/cookie-policy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/cookie-policy"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/cookie-policy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/cookie-policy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/cookie-policy"/>
+  </url>
+  <url>
+    <loc>https://flipflopsfilm.com/es/cookie-policy</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://flipflopsfilm.com/cookie-policy"/>
+    <xhtml:link rel="alternate" hreflang="de" href="https://flipflopsfilm.com/de/cookie-policy"/>
+    <xhtml:link rel="alternate" hreflang="es" href="https://flipflopsfilm.com/es/cookie-policy"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://flipflopsfilm.com/cookie-policy"/>
+  </url>
 </urlset>

@@ -78,6 +78,13 @@
             <div class="legal-links">
               <NuxtLink :to="localePath('/privacy-policy')" class="animsition-link">{{ $t('footer.privacy_policy') }}</NuxtLink>
               <NuxtLink :to="localePath('/imprint')" class="animsition-link">{{ $t('footer.imprint') }}</NuxtLink>
+              <NuxtLink :to="localePath('/cookie-policy')" class="animsition-link">{{ $t('footer.cookie_policy') }}</NuxtLink>
+              <!-- Reopens the consent banner. Withdrawing consent has to be as
+                   easy as giving it, so this sits with the other legal links on
+                   every page rather than being buried in the privacy policy. -->
+              <button type="button" class="cookie-settings-link" @click="reopen">
+                {{ $t('footer.cookie_settings') }}
+              </button>
             </div>
           </div>
         </div>
@@ -88,10 +95,15 @@
 
 <script setup>
 import { onMounted, onBeforeUnmount, computed } from 'vue'
+import { useCookieConsent } from '@/composables/useCookieConsent'
 
 const { subBg } = defineProps({ subBg: Boolean })
 
 const localePath = useLocalePath()
+
+// Footer sits on all 21 real pages, so this is the site-wide way back into the
+// consent banner.
+const { reopen } = useCookieConsent()
 
 const emailUser = 'info'
 const emailDomain = 'flipflopsfilm.com'
@@ -166,14 +178,33 @@ onBeforeUnmount(() => {
   opacity: 0.45;
 }
 
-.legal-links a {
+.legal-links a,
+.legal-links .cookie-settings-link {
   color: inherit;
   text-decoration: none;
   transition: opacity 0.2s;
 }
 
-.legal-links a:hover {
+.legal-links a:hover,
+.legal-links .cookie-settings-link:hover {
   opacity: 0.8;
+}
+
+/* A button, not a link, because it opens a dialog rather than navigating.
+   Stripped back to look identical to its neighbours. */
+.cookie-settings-link {
+  padding: 0;
+  border: 0;
+  background: none;
+  font: inherit;
+  letter-spacing: inherit;
+  cursor: pointer;
+  pointer-events: auto;
+}
+
+.cookie-settings-link:focus-visible {
+  outline: 1px solid currentColor;
+  outline-offset: 3px;
 }
 
 .legal-links .sep {

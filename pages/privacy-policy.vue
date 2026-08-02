@@ -17,6 +17,19 @@
                 <div class="text mt-50">
                   <p v-html="$t('privacy.body')"></p>
                 </div>
+
+                <!-- Pointer only. The full cookie disclosure lives on its own
+                     page so there is a single source of truth for it; keeping a
+                     copy here as well would guarantee the two drift apart. -->
+                <div class="text mt-50">
+                  <h4 class="mb-20">{{ $t('privacy.cookies_heading') }}</h4>
+                  <p>
+                    {{ $t('privacy.cookies_pointer') }}
+                    <NuxtLink :to="localePath('/cookie-policy')" class="cookie-policy-link">
+                      {{ $t('footer.cookie_policy') }}
+                    </NuxtLink>
+                  </p>
+                </div>
               </div>
             </div>
           </div>
@@ -31,8 +44,21 @@
 <script setup>
 usePageSeo('privacy')
 
+const localePath = useLocalePath()
+
 useHead({
   bodyAttrs: { class: 'main-bg' },
   script: [{ src: '/assets/js/smoother-script.js', defer: true }]
 })
 </script>
+
+<style scoped>
+.cookie-policy-link {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+  pointer-events: auto;
+}
+
+.cookie-policy-link:hover { opacity: 0.7; }
+</style>
