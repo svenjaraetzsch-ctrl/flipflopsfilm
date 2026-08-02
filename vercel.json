@@ -10,8 +10,6 @@
     { "source": "/aviso-legal/", "destination": "/imprint", "permanent": true },
     { "source": "/politica-de-privacidad", "destination": "/privacy-policy", "permanent": true },
     { "source": "/politica-de-privacidad/", "destination": "/privacy-policy", "permanent": true },
-    { "source": "/cookie-policy", "destination": "/privacy-policy", "permanent": true },
-    { "source": "/cookie-policy/", "destination": "/privacy-policy", "permanent": true },
     { "source": "/otros-proyectos", "destination": "/about", "permanent": true },
     { "source": "/otros-proyectos/", "destination": "/about", "permanent": true }
   ]
