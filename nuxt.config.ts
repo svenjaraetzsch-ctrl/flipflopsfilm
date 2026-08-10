@@ -112,28 +112,41 @@ export default defineNuxtConfig({
           property: 'og:site_name',
           content: 'Flip Flops Film'
         },
-        // Site-wide default share image (link previews on WhatsApp, LinkedIn, X).
-        // Teide volcanic-road location shot: cinematic, on-brand, 1280x721 (>1200
-        // wide, ~16:9). Optional future nicety: a purpose-made 1200x630 brand card.
+        // Site-wide share image (link previews on WhatsApp, LinkedIn, X, iMessage).
+        // The brand card: butterfly mark over the wordmark on the site's own
+        // background (#201D1D), at the canonical 1200x630. It replaced a Teide
+        // location photo that read as a random road rather than as Flip Flops.
+        //
+        // Alternatives sit next to it, already rendered at the same size:
+        // og-share-butterfly.png (mark only) and og-share-wordmark.png (type
+        // only). Swapping is just the URL below - but give the new file a NEW
+        // name rather than overwriting this one: scrapers cache per URL, and a
+        // reused path can keep serving the old picture for weeks.
         {
           property: 'og:image',
-          content: 'https://flipflopsfilm.com/assets/imgs/locations/folder/10.jpeg'
+          content: 'https://flipflopsfilm.com/assets/imgs/og-share.png'
         },
         {
           property: 'og:image:width',
-          content: '1280'
+          content: '1200'
         },
         {
           property: 'og:image:height',
-          content: '721'
+          content: '630'
         },
         {
           property: 'og:image:type',
-          content: 'image/jpeg'
+          content: 'image/png'
         },
         {
           property: 'og:image:alt',
-          content: 'A road winding through the volcanic landscape of Teide, Tenerife — one of the Canary Islands filming locations offered by Flip Flops Film.'
+          content: 'The Flip Flops Film logo: a butterfly whose wings are film clapperboards, above the Flip Flops Film wordmark.'
+        },
+        // X falls back to og:image, but naming it explicitly stops the card
+        // renderer guessing when both are present on a page.
+        {
+          name: 'twitter:image',
+          content: 'https://flipflopsfilm.com/assets/imgs/og-share.png'
         },
         {
           name: 'twitter:card',
