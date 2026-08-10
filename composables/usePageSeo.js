@@ -17,20 +17,23 @@ const BRAND = 'Flip Flops Film'
 
 export function usePageSeo(key) {
   const { t } = useI18n()
-  const route = useRoute()
 
   const pageTitle = computed(() => t(`seo.${key}.title`))
   const description = computed(() => t(`seo.${key}.description`))
-  const url = `https://flipflopsfilm.com${route.path}`
 
+  // No og:url here on purpose. useLocaleHead below already emits one, derived
+  // from i18n.baseUrl, and a second hand-built tag produced TWO conflicting
+  // og:url values on every page (".../" here vs "..." there). Scrapers treat
+  // og:url as the canonical identity of the page, so a contradictory pair is
+  // worth avoiding - and letting useLocaleHead own it keeps og:url byte-identical
+  // to the rel=canonical it generates from the same source.
   useHead({
     title: computed(() => `${pageTitle.value} | ${BRAND}`),
     meta: [
       { name: 'description', content: description },
       { property: 'og:title', content: pageTitle },
       { property: 'og:description', content: description },
-      { property: 'og:type', content: 'website' },
-      { property: 'og:url', content: url }
+      { property: 'og:type', content: 'website' }
     ]
   })
 
