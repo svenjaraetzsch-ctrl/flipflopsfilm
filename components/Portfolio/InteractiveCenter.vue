@@ -1,26 +1,9 @@
 <template>
-  <section class="interactive-center logo-hover-section" :class="{ 'is-hovering': hoverIndex > -1 }">
-    <!-- Full-bleed photo of the hovered service: film-graded, slow zoom, grain. -->
-    <div class="svc-stage" aria-hidden="true">
-      <img
-        v-for="(image, i) in serviceImages"
-        :key="image.src"
-        :ref="(el) => (bgImgs[i] = el)"
-        class="svc-stage__img"
-        :src="image.src"
-        :srcset="image.srcset"
-        sizes="100vw"
-        alt=""
-        decoding="async"
-      />
-      <div class="svc-stage__shade"></div>
-      <div class="svc-stage__grain"></div>
-    </div>
-
+  <section class="interactive-center logo-hover-section">
     <!-- The logo as a window onto the islands: the service photos take turns
-         inside it at rest; on hover it opens out into the full background. -->
+         inside it at rest; hovering a service shows that service's photo. -->
     <div class="svc-logo" aria-hidden="true">
-      <div ref="logoWindow" class="svc-logo__window">
+      <div class="svc-logo__window">
         <div ref="logoInner" class="svc-logo__inner">
           <img
             v-for="(image, i) in serviceImages"
@@ -77,9 +60,7 @@ const mergedData = computed(() => {
   })
 })
 
-const bgImgs = []
 const logoImgs = []
-const logoWindow = ref(null)
 const logoInner = ref(null)
 
 let ready = false
@@ -90,9 +71,9 @@ let leaveTimer = null
 
 const canHover = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches
 
-// Rest state: one photo after another inside the logo, crossfading.
-const showInLogo = (i) => {
-  logoImgs.forEach((el, j) => gsap.to(el, { autoAlpha: j === i ? 1 : 0, duration: 1.4, ease: 'sine.inOut', overwrite: 'auto' }))
+// Crossfade to photo i inside the logo: slow at rest, quicker on hover.
+const showInLogo = (i, duration = 1.4) => {
+  logoImgs.forEach((el, j) => gsap.to(el, { autoAlpha: j === i ? 1 : 0, duration, ease: 'sine.inOut', overwrite: 'auto' }))
   current = i
 }
 
@@ -111,7 +92,6 @@ const stopCycle = () => {
 
 useScrollFx(() => {
   reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-  gsap.set(bgImgs, { autoAlpha: 0 })
   gsap.set(logoImgs, { autoAlpha: 0 })
   gsap.set(logoImgs[0], { autoAlpha: 1 })
   if (!reduced) {
@@ -125,36 +105,21 @@ useScrollFx(() => {
 const enter = (i) => {
   if (!ready || !canHover()) return
   clearTimeout(leaveTimer)
-  const opening = hoverIndex.value === -1
-  hoverIndex.value = i
   stopCycle()
-
-  // The logo opens out and gives way to the full photo.
-  if (opening) {
-    gsap.to(logoWindow.value, { scale: 1.6, autoAlpha: 0, duration: 0.9, ease: 'power3.out', overwrite: 'auto' })
-  }
-  bgImgs.forEach((el, j) => {
-    if (j === i) {
-      gsap.to(el, { autoAlpha: 1, duration: 0.8, ease: 'power2.out', overwrite: 'auto' })
-      if (!reduced) gsap.fromTo(el, { scale: 1.14 }, { scale: 1, duration: 2.6, ease: 'power2.out' })
-    } else {
-      gsap.to(el, { autoAlpha: 0, duration: 0.6, ease: 'power2.out', overwrite: 'auto' })
-    }
-  })
-  // Come back to the rest state on the photo the visitor last looked at.
-  logoImgs.forEach((el, j) => gsap.set(el, { autoAlpha: j === i ? 1 : 0 }))
-  current = i
+  if (hoverIndex.value === i) return
+  hoverIndex.value = i
+  showInLogo(i, 0.7)
+  // The new photo settles in with a small zoom.
+  if (!reduced) gsap.fromTo(logoImgs[i], { scale: 1.1 }, { scale: 1, duration: 1.6, ease: 'power2.out' })
 }
 
-// A short delay so moving from one service to the next doesn't flash
-// back to the logo in between.
+// A short delay so moving from one service to the next doesn't restart
+// the rest cycle in between. The cycle carries on from the hovered photo.
 const leave = () => {
   if (!ready || !canHover()) return
   clearTimeout(leaveTimer)
   leaveTimer = setTimeout(() => {
     hoverIndex.value = -1
-    gsap.to(bgImgs, { autoAlpha: 0, duration: 0.7, ease: 'power2.out', overwrite: 'auto' })
-    gsap.to(logoWindow.value, { scale: 1, autoAlpha: 1, duration: 0.9, ease: 'power3.out', overwrite: 'auto' })
     startCycle()
   }, 90)
 }
@@ -168,57 +133,6 @@ onBeforeUnmount(() => clearTimeout(leaveTimer))
   overflow: hidden;
 }
 
-/* ---- Full-bleed photo ---- */
-.svc-stage {
-  position: absolute;
-  /* 2px short of the bottom edge, and faded out towards it, so a moving
-     photo can never leave a hairline at the seam with the next section. */
-  inset: 0 0 2px 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%);
-}
-
-.svc-stage__img {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: var(--pc-film-filter);
-  will-change: transform, opacity;
-}
-
-.svc-stage__shade {
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(ellipse at center, rgba(32, 29, 29, 0.35) 0%, rgba(32, 29, 29, 0.75) 100%),
-    linear-gradient(to bottom, rgba(32, 29, 29, 0.6) 0%, rgba(32, 29, 29, 0.25) 35%, rgba(32, 29, 29, 0.4) 100%);
-  opacity: 0;
-  transition: opacity 0.6s ease;
-}
-
-.svc-stage__grain {
-  position: absolute;
-  inset: -100%;
-  background-image: url(/assets/imgs/noise.png);
-  mix-blend-mode: overlay;
-  opacity: 0;
-  animation: grain 8s steps(10) infinite;
-  transition: opacity 0.6s ease;
-}
-
-.is-hovering .svc-stage__shade {
-  opacity: 1;
-}
-
-.is-hovering .svc-stage__grain {
-  opacity: 0.3;
-}
-
 /* ---- Logo window ---- */
 .svc-logo {
   position: absolute;
@@ -228,8 +142,7 @@ onBeforeUnmount(() => clearTimeout(leaveTimer))
   justify-content: center;
   align-items: center;
   pointer-events: none;
-  /* Rest strength of the logo window; GSAP animates the window inside
-     between 1 and 0, so this stays the ceiling. */
+  /* How strongly the photo shows through the logo. */
   opacity: 0.45;
 }
 
