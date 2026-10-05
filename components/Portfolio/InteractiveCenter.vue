@@ -29,7 +29,20 @@
         @mouseenter="enter(i)"
         @mouseleave="leave"
       >
-        <NuxtLink :to="localePath(item.link)" class="block__link animsition-link">
+        <!-- Production Services is this very page: scroll down to its section
+             instead of reloading the page. -->
+        <a
+          v-if="item.link === '/services'"
+          href="#production-services"
+          class="block__link"
+          @click.prevent="scrollToSection('production-services')"
+        >
+          <div class="cont">
+            <h4 class="f-bold">{{ item.title }}</h4>
+            <p>{{ item.category }}</p>
+          </div>
+        </a>
+        <NuxtLink v-else :to="localePath(item.link)" class="block__link animsition-link">
           <div class="cont">
             <h4 class="f-bold">{{ item.title }}</h4>
             <p>{{ item.category }}</p>
@@ -72,6 +85,18 @@ let current = 0
 let leaveTimer = null
 
 const canHover = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches
+
+// ScrollSmoother (desktop) moves the page with transforms, so scroll through
+// it; on phones there is no smoother, so scroll natively and stop below the
+// fixed navbar.
+const scrollToSection = (id) => {
+  const smoother = typeof ScrollSmoother !== 'undefined' && ScrollSmoother.get()
+  if (smoother) return smoother.scrollTo(`#${id}`, true, 'top 80px')
+  const el = document.getElementById(id)
+  if (!el) return
+  const nav = document.querySelector('.topnav')?.offsetHeight || 0
+  window.scrollTo({ top: el.getBoundingClientRect().top + window.scrollY - nav, behavior: 'smooth' })
+}
 
 // Crossfade to photo i inside the logo: slow at rest, quicker on hover.
 const showInLogo = (i, duration = 1.4) => {
