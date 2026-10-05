@@ -121,6 +121,11 @@ useScrollFx(() => {
   overflow: hidden;
 }
 
+.pc-split__frame img,
+.pc-split__small img {
+  filter: var(--pc-film-filter);
+}
+
 .pc-split__frame img {
   width: 100%;
   height: 100%;

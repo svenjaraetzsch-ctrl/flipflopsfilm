@@ -91,6 +91,7 @@ useScrollFx(() => {
   height: 100%;
   object-fit: cover;
   display: block;
+  filter: var(--pc-film-filter);
 }
 
 /* Single: a landscape frame */
