@@ -49,3 +49,14 @@ export const photos = {
 // Shared by the services hover on home and concept 04, in the order of
 // data/CreativeAgency/awards.json.
 export const serviceImages = [photos.desertRoad, photos.agando, photos.serpentine, photos.pineRoad]
+
+// Behind the menu links, one calm photo per island (concept 07).
+export const menuPhotos = [
+  photos.coast,
+  photos.cofete,
+  photos.roqueNublo,
+  photos.agando,
+  photos.caldera,
+  photos.palm,
+  photos.seaOfClouds
+]

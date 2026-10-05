@@ -1,5 +1,19 @@
 <template>
-  <div class="hamenu">
+  <div ref="menuEl" class="hamenu">
+    <!-- A dimmed photo behind the links, from a different island each time
+         the menu opens (concept 07). Chosen and loaded on the client only. -->
+    <div class="hamenu-photo" aria-hidden="true">
+      <img
+        v-if="photo"
+        :key="photo.src"
+        :src="photo.src"
+        :srcset="photo.srcset"
+        sizes="100vw"
+        alt=""
+        decoding="async"
+      />
+    </div>
+
     <div class="container h-100 d-flex flex-column">
       <div class="row flex-grow-1">
         <div class="col-lg-8 d-flex flex-column justify-content-center">
@@ -104,8 +118,70 @@
 </template>
 
 <script setup>
+import { ref, onMounted, onBeforeUnmount } from 'vue'
+import { menuPhotos } from '@/data/PhotoConcepts/photos'
+
 const localePath = useLocalePath()
 const route = useRoute()
+
+const menuEl = ref(null)
+const photo = ref(null)
+let shown = -1 // island last actually seen in the open menu
+let next = -1 // island loaded and waiting for the next open
+let observer = null
+let idle = null
+
+// Every navigation is a full page load, so the island last seen is kept
+// for the session; storage can be unavailable, so it is optional.
+const LAST_KEY = 'ff-menu-photo'
+const readLast = () => { try { return Number(sessionStorage.getItem(LAST_KEY) ?? -1) } catch { return -1 } }
+const saveLast = (i) => { try { sessionStorage.setItem(LAST_KEY, String(i)) } catch {} }
+
+// Load any island except the one seen last time.
+const pickNext = () => {
+  const n = menuPhotos.length
+  let i
+  if (!(shown >= 0 && shown < n)) {
+    i = Math.floor(Math.random() * n)
+  } else {
+    i = Math.floor(Math.random() * (n - 1))
+    if (i >= shown) i++
+  }
+  next = i
+  photo.value = menuPhotos[i]
+}
+
+const markShown = () => {
+  shown = next
+  saveLast(shown)
+}
+
+onMounted(() => {
+  shown = readLast()
+  // Load the photo once the page itself has settled, not during page load.
+  const load = () => { if (!photo.value) pickNext() }
+  idle = window.requestIdleCallback ? window.requestIdleCallback(load, { timeout: 2500 }) : setTimeout(load, 1500)
+
+  // The navbar opens and closes the menu by toggling the "open" class.
+  // After each close, prepare the next island for the next open.
+  let wasOpen = false
+  observer = new MutationObserver(() => {
+    const open = menuEl.value.classList.contains('open')
+    if (open && !wasOpen) {
+      if (!photo.value) pickNext()
+      markShown()
+    }
+    if (wasOpen && !open) setTimeout(pickNext, 600)
+    wasOpen = open
+  })
+  observer.observe(menuEl.value, { attributes: true, attributeFilter: ['class'] })
+})
+
+onBeforeUnmount(() => {
+  observer?.disconnect()
+  if (window.cancelIdleCallback && typeof idle === 'number') window.cancelIdleCallback(idle)
+  clearTimeout(idle)
+})
 
 const closeMenu = () => {
   document.querySelector('.hamenu').classList.remove('open')
@@ -141,9 +217,55 @@ const handleMouseLeave = (event) => {
 }
 
 .hamenu .container {
+  position: relative;
+  z-index: 1;
   flex: 1;
   padding-top: 100px;
   padding-bottom: 32px;
+}
+
+/* Background photo: fades in after the menu has slid down, then drifts. */
+.hamenu-photo {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hamenu-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: var(--pc-film-filter);
+  opacity: 0;
+  transform: scale(1.08);
+  transition: opacity 1.2s ease 0.5s, transform 8s ease-out 0.5s;
+}
+
+.hamenu.open .hamenu-photo img {
+  opacity: 0.4;
+  transform: scale(1);
+}
+
+/* Darker on the left, where the links are. */
+.hamenu-photo::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    rgba(32, 29, 29, 0.85) 0%,
+    rgba(32, 29, 29, 0.35) 65%,
+    rgba(32, 29, 29, 0.55) 100%
+  );
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hamenu-photo img {
+    transform: none;
+    transition: opacity 0.6s ease 0.3s;
+  }
 }
 
 /* Mobile bottom bar: socials + lang side by side */
