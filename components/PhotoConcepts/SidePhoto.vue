@@ -13,7 +13,7 @@
           ref="img"
           :src="image.src"
           :srcset="image.srcset"
-          sizes="(max-width: 991px) 100vw, 30vw"
+          sizes="(max-width: 991px) 100vw, 45vw"
           :width="image.w"
           :height="image.h"
           :alt="image.alt"
@@ -94,9 +94,9 @@ useScrollFx(() => {
   filter: var(--pc-film-filter);
 }
 
-/* Single: a landscape frame */
+/* Single: a landscape frame filling its column */
 .pc-side-photo--single .pc-side-photo__main {
-  width: 78%;
+  width: 100%;
 }
 
 .pc-side-photo--single .pc-side-photo__frame {
@@ -104,7 +104,7 @@ useScrollFx(() => {
 }
 
 .pc-side-photo--portrait.pc-side-photo--single .pc-side-photo__main {
-  width: 62%;
+  width: 82%;
 }
 
 .pc-side-photo--portrait.pc-side-photo--single .pc-side-photo__frame {
@@ -126,7 +126,7 @@ useScrollFx(() => {
 }
 
 .pc-side-photo--duo .pc-side-photo__main {
-  width: 72%;
+  width: 82%;
 }
 
 .pc-side-photo--duo .pc-side-photo__frame {
@@ -135,9 +135,9 @@ useScrollFx(() => {
 
 .pc-side-photo__small {
   position: absolute;
-  right: 6%;
+  right: 0;
   bottom: 0;
-  width: 36%;
+  width: 38%;
   box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
 }
 

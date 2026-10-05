@@ -10,7 +10,7 @@
         :class="{ 'is-active': i === active }"
         :src="image.src"
         :srcset="image.srcset"
-        sizes="(max-width: 991px) 100vw, 30vw"
+        sizes="(max-width: 991px) 100vw, 45vw"
         :width="image.w"
         :height="image.h"
         :alt="i === active ? image.alt : ''"
@@ -48,7 +48,7 @@ useScrollFx(() => {
 <style scoped>
 .pc-swap {
   margin-top: 40px;
-  width: 62%;
+  width: 82%;
 }
 
 .pc-swap__frame {

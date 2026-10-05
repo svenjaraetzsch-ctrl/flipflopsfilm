@@ -4,7 +4,7 @@
       <div class="row justify-content-center">
         <div class="col-lg-11">
           <div class="row">
-            <div class="col-lg-7">
+            <div class="col-lg-5">
               <div class="accordion bord">
                 <div v-for="(item, index) in networkItems" :key="item.id" class="item mb-20 wow fadeInUp" @click="openAccordion"
                   :data-wow-delay="`${((index * 0.2) + 0.1).toFixed(1)}s`">
@@ -18,7 +18,7 @@
                 </div>
               </div>
             </div>
-            <div class="col-lg-5">
+            <div class="col-lg-6 offset-lg-1">
               <PhotoConceptsSidePhoto class="pc-side-photo--right" :image="photos.redCliffs" portrait />
             </div>
           </div>

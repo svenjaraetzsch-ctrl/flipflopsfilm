@@ -32,11 +32,11 @@
       <div class="row justify-content-center">
         <div class="col-lg-11">
           <div class="row">
-            <div class="col-lg-5">
+            <div class="col-lg-6">
               <span class="sub-title bord mb-30">{{ $t('crew.expertise_label') }}</span>
               <PhotoConceptsSidePhoto :image="photos.roqueNublo" :detail="photos.waterfall" />
             </div>
-            <div class="col-lg-7">
+            <div class="col-lg-5 offset-lg-1">
               <div class="text">
                 <h5 class="mb-30 fw-400 line-height-40">{{ $t('crew.expertise_h5') }}</h5>
                 <p class="fz-18">{{ $t('crew.expertise_p') }}</p>

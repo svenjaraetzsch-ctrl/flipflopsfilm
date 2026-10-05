@@ -1,14 +1,14 @@
 <template>
   <section class="about section-padding">
     <div class="container">
-      <div class="row pb-100 bord-thin-bottom mb-80">
-        <div class="col-lg-4">
+      <div class="row pb-100 mb-80">
+        <div class="col-lg-6">
           <div class="sec-head">
             <span class="sub-title bord mb-30">{{ $t('home.company_label') }}</span>
           </div>
           <PhotoConceptsSidePhoto :image="photos.ferry" :detail="photos.fernWalk" />
         </div>
-        <div class="col-lg-7 offset-lg-1">
+        <div class="col-lg-5 offset-lg-1">
           <div>
             <h3 class="text-u text-indent">{{ $t('home.company_heading') }}</h3>
             <div class="text mt-30">
@@ -18,7 +18,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-7">
+        <div class="col-lg-5">
           <div class="cont">
             <div class="accordion bord">
               <div v-for="(item, index) in believeItems" :key="item.id" class="item mb-20 wow fadeInUp" @click="openAccordion($event, index)"
@@ -34,7 +34,7 @@
             </div>
           </div>
         </div>
-        <div class="col-lg-5">
+        <div class="col-lg-6 offset-lg-1">
           <!-- Shows the photo of the value that is open on the left. -->
           <PhotoConceptsSwapPhoto class="pc-swap--right" :images="believePhotos" :active="activeBelief" />
         </div>
