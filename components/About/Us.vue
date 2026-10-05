@@ -6,6 +6,7 @@
           <div class="sec-head">
             <span class="sub-title bord mb-30">{{ $t('home.company_label') }}</span>
           </div>
+          <PhotoConceptsSidePhoto :image="photos.ferry" :detail="photos.fernWalk" />
         </div>
         <div class="col-lg-7 offset-lg-1">
           <div>
@@ -21,11 +22,13 @@
           <div class="sec-head">
             <span class="sub-title bord mb-30">{{ $t('home.believe_label') }}</span>
           </div>
+          <!-- Shows the photo of the value that is open below. -->
+          <PhotoConceptsSwapPhoto :images="believePhotos" :active="activeBelief" />
         </div>
         <div class="col-lg-7 offset-lg-1">
           <div class="cont">
             <div class="accordion bord">
-              <div v-for="(item, index) in believeItems" :key="item.id" class="item mb-20 wow fadeInUp" @click="openAccordion"
+              <div v-for="(item, index) in believeItems" :key="item.id" class="item mb-20 wow fadeInUp" @click="openAccordion($event, index)"
                 :data-wow-delay="`${((index * 0.2) + 0.1).toFixed(1)}s`">
                 <div class="title">
                   <h4>{{ item.title }}</h4>
@@ -58,7 +61,9 @@
 </style>
 
 <script setup>
-import { computed } from 'vue'
+import { computed, ref } from 'vue'
+import { photos } from '@/data/PhotoConcepts/photos'
+
 const { tm, rt } = useI18n()
 
 const believeItems = computed(() =>
@@ -69,7 +74,13 @@ const believeItems = computed(() =>
   }))
 )
 
-const openAccordion = (event) => {
+// One photo per value, in the order of believe_items: Local First,
+// Relationships Matter, One Team, Solutions Over Obstacles.
+const believePhotos = [photos.villageStreet, photos.juniperRest, photos.valleyVillage, photos.hairpins]
+const activeBelief = ref(0)
+
+const openAccordion = (event, index) => {
+  if (typeof index === 'number') activeBelief.value = index
   document.querySelectorAll('.accordion .item').forEach((el) => {
     el.classList.remove('active')
     el.querySelector('.accordion-info').style.display = 'none'

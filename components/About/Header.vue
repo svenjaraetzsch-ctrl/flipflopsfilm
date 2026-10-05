@@ -1,5 +1,6 @@
 <template>
-  <header class="land-header valign">
+  <header class="land-header valign pc-photo-header">
+    <PhotoConceptsHeaderPhoto :image="photos.sunriseClouds" />
     <div class="container">
       <div class="row justify-content-center">
         <div class="col-lg-11">
@@ -19,3 +20,7 @@
   }
 }
 </style>
+
+<script setup>
+import { photos } from '@/data/PhotoConcepts/photos'
+</script>
