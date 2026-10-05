@@ -34,7 +34,7 @@
           <div class="row">
             <div class="col-lg-5">
               <span class="sub-title bord mb-30">{{ $t('tax.opportunity_label') }}</span>
-              <PhotoConceptsSidePhoto :image="photos.waterfall" shape="portrait" />
+              <PhotoConceptsSidePhoto :image="photos.seaOfClouds" :detail="photos.cave" />
             </div>
             <div class="col-lg-7">
               <div class="text">

@@ -6,7 +6,7 @@
           <div class="row">
             <div class="col-lg-5">
               <span class="sub-title bord mb-30">{{ $t('crew.network_section_label') }}</span>
-              <PhotoConceptsSidePhoto :image="photos.cofete" shape="landscape" />
+              <PhotoConceptsSidePhoto :image="photos.cofete" />
             </div>
             <div class="col-lg-7">
               <div class="accordion bord">

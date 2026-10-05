@@ -6,7 +6,7 @@
           <div class="row">
             <div class="col-lg-5">
               <span class="sub-title bord mb-30">{{ $t('tax.approach_label') }}</span>
-              <PhotoConceptsSidePhoto :image="photos.famara" shape="landscape" />
+              <PhotoConceptsSidePhoto :image="photos.famara" />
             </div>
             <div class="col-lg-7">
               <div class="text">
