@@ -50,7 +50,7 @@ useHead({
    grain as the photographs, so footage and stills read as one family. The
    layers sit inside the clipped frame, so they open up together with it. */
 .pc-hero .pc-bleed__img {
-  filter: sepia(0.25) saturate(0.7) contrast(0.9) brightness(1.03);
+  filter: var(--pc-film-filter);
 }
 
 .pc-hero .pc-bleed__frame::before {

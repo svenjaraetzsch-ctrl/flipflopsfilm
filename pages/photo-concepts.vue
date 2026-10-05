@@ -113,7 +113,7 @@ useHead({
 }
 
 .pc-filmic img {
-  filter: sepia(0.25) saturate(0.7) contrast(0.9) brightness(1.03);
+  filter: var(--pc-film-filter);
 }
 
 .pc-filmic::before {

@@ -244,3 +244,11 @@ footer .logo .logo-svg-wrap {
   footer .container.pt-80 { padding-top: 35px !important; }
   footer .row.mt-80 { margin-top: 35px !important; }
 }
+
+/* ====================== [ Film look for photography ] ====================== */
+
+/* The grade that brings existing photos and the hero video close to Daniel
+   Bonhoff's soft, warm film images. One value, used everywhere. */
+:root {
+  --pc-film-filter: sepia(0.25) saturate(0.7) contrast(0.9) brightness(1.03);
+}
