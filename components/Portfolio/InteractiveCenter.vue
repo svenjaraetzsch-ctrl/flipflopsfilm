@@ -1,27 +1,38 @@
 <template>
-  <section class="interactive-center logo-hover-section">
-    <!-- The photo of the hovered service fades in, dimmed, behind everything. -->
-    <div class="bg-photos" aria-hidden="true">
+  <section class="interactive-center logo-hover-section" :class="{ 'is-hovering': hoverIndex > -1 }">
+    <!-- Full-bleed photo of the hovered service: film-graded, slow zoom, grain. -->
+    <div class="svc-stage" aria-hidden="true">
       <img
         v-for="(image, i) in serviceImages"
         :key="image.src"
-        :class="{ active: hoverIndex === i }"
+        :ref="(el) => (bgImgs[i] = el)"
+        class="svc-stage__img"
         :src="image.src"
         :srcset="image.srcset"
         sizes="100vw"
         alt=""
         decoding="async"
       />
+      <div class="svc-stage__shade"></div>
+      <div class="svc-stage__grain"></div>
     </div>
 
-    <div class="bg-logo">
-      <div
-        class="logo-mask"
-        :style="{
-          backgroundColor: activeColor,
-          opacity: isHovering ? 0.45 : 0.06
-        }"
-      ></div>
+    <!-- The logo as a window onto the islands: the service photos take turns
+         inside it at rest; on hover it opens out into the full background. -->
+    <div class="svc-logo" aria-hidden="true">
+      <div ref="logoWindow" class="svc-logo__window">
+        <div ref="logoInner" class="svc-logo__inner">
+          <img
+            v-for="(image, i) in serviceImages"
+            :key="image.md"
+            :ref="(el) => (logoImgs[i] = el)"
+            class="svc-logo__img"
+            :src="image.md"
+            alt=""
+            decoding="async"
+          />
+        </div>
+      </div>
     </div>
 
     <div class="container text-center">
@@ -29,8 +40,9 @@
         v-for="(item, i) in mergedData"
         :key="item.id"
         class="item block"
-        @mouseenter="activeColor = item.color; isHovering = true; hoverIndex = i"
-        @mouseleave="activeColor = '#ffffff'; isHovering = false; hoverIndex = -1"
+        :class="{ 'is-active': hoverIndex === i, 'is-dim': hoverIndex > -1 && hoverIndex !== i }"
+        @mouseenter="enter(i)"
+        @mouseleave="leave"
       >
         <NuxtLink :to="localePath(item.link)" class="block__link animsition-link">
           <div class="cont">
@@ -44,14 +56,13 @@
 </template>
 
 <script setup>
-import { ref, computed } from 'vue'
+import { ref, computed, onBeforeUnmount } from 'vue'
 import staticData from '@/data/Portfolio/interactive-center.json'
 import { serviceImages } from '@/data/PhotoConcepts/photos'
+import { useScrollFx } from '@/composables/useScrollFx'
 
 const { tm, rt } = useI18n()
 const localePath = useLocalePath()
-const activeColor = ref('#ffffff')
-const isHovering = ref(false)
 const hoverIndex = ref(-1)
 
 const mergedData = computed(() => {
@@ -65,6 +76,90 @@ const mergedData = computed(() => {
     }
   })
 })
+
+const bgImgs = []
+const logoImgs = []
+const logoWindow = ref(null)
+const logoInner = ref(null)
+
+let ready = false
+let reduced = false
+let cycle = null
+let current = 0
+let leaveTimer = null
+
+const canHover = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches
+
+// Rest state: one photo after another inside the logo, crossfading.
+const showInLogo = (i) => {
+  logoImgs.forEach((el, j) => gsap.to(el, { autoAlpha: j === i ? 1 : 0, duration: 1.4, ease: 'sine.inOut', overwrite: 'auto' }))
+  current = i
+}
+
+const startCycle = () => {
+  if (reduced || cycle) return
+  cycle = gsap.delayedCall(3.2, function next() {
+    showInLogo((current + 1) % logoImgs.length)
+    cycle = gsap.delayedCall(3.2, next)
+  })
+}
+
+const stopCycle = () => {
+  cycle?.kill()
+  cycle = null
+}
+
+useScrollFx(() => {
+  reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches
+  gsap.set(bgImgs, { autoAlpha: 0 })
+  gsap.set(logoImgs, { autoAlpha: 0 })
+  gsap.set(logoImgs[0], { autoAlpha: 1 })
+  if (!reduced) {
+    gsap.to(logoInner.value, { scale: 1.12, duration: 9, ease: 'sine.inOut', yoyo: true, repeat: -1 })
+  }
+  ready = true
+  startCycle()
+  return stopCycle
+})
+
+const enter = (i) => {
+  if (!ready || !canHover()) return
+  clearTimeout(leaveTimer)
+  const opening = hoverIndex.value === -1
+  hoverIndex.value = i
+  stopCycle()
+
+  // The logo opens out and gives way to the full photo.
+  if (opening) {
+    gsap.to(logoWindow.value, { scale: 1.6, autoAlpha: 0, duration: 0.9, ease: 'power3.out', overwrite: 'auto' })
+  }
+  bgImgs.forEach((el, j) => {
+    if (j === i) {
+      gsap.to(el, { autoAlpha: 1, duration: 0.8, ease: 'power2.out', overwrite: 'auto' })
+      if (!reduced) gsap.fromTo(el, { scale: 1.14 }, { scale: 1, duration: 2.6, ease: 'power2.out' })
+    } else {
+      gsap.to(el, { autoAlpha: 0, duration: 0.6, ease: 'power2.out', overwrite: 'auto' })
+    }
+  })
+  // Come back to the rest state on the photo the visitor last looked at.
+  logoImgs.forEach((el, j) => gsap.set(el, { autoAlpha: j === i ? 1 : 0 }))
+  current = i
+}
+
+// A short delay so moving from one service to the next doesn't flash
+// back to the logo in between.
+const leave = () => {
+  if (!ready || !canHover()) return
+  clearTimeout(leaveTimer)
+  leaveTimer = setTimeout(() => {
+    hoverIndex.value = -1
+    gsap.to(bgImgs, { autoAlpha: 0, duration: 0.7, ease: 'power2.out', overwrite: 'auto' })
+    gsap.to(logoWindow.value, { scale: 1, autoAlpha: 1, duration: 0.9, ease: 'power3.out', overwrite: 'auto' })
+    startCycle()
+  }, 90)
+}
+
+onBeforeUnmount(() => clearTimeout(leaveTimer))
 </script>
 
 <style scoped>
@@ -73,49 +168,97 @@ const mergedData = computed(() => {
   overflow: hidden;
 }
 
-.bg-photos {
+/* ---- Full-bleed photo ---- */
+.svc-stage {
   position: absolute;
-  inset: 0;
+  /* 2px short of the bottom edge, and faded out towards it, so a moving
+     photo can never leave a hairline at the seam with the next section. */
+  inset: 0 0 2px 0;
   z-index: 0;
+  overflow: hidden;
   pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 70%, transparent 100%);
 }
 
-.bg-photos img {
+.svc-stage__img {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
   filter: var(--pc-film-filter);
-  opacity: 0;
-  transform: scale(1.06);
-  transition: opacity 0.7s ease, transform 1.6s ease;
+  will-change: transform, opacity;
 }
 
-.bg-photos img.active {
-  opacity: 0.32;
-  transform: scale(1);
-}
-
-.bg-logo {
+.svc-stage__shade {
   position: absolute;
   inset: 0;
+  background:
+    radial-gradient(ellipse at center, rgba(32, 29, 29, 0.35) 0%, rgba(32, 29, 29, 0.75) 100%),
+    linear-gradient(to bottom, rgba(32, 29, 29, 0.6) 0%, rgba(32, 29, 29, 0.25) 35%, rgba(32, 29, 29, 0.4) 100%);
+  opacity: 0;
+  transition: opacity 0.6s ease;
+}
+
+.svc-stage__grain {
+  position: absolute;
+  inset: -100%;
+  background-image: url(/assets/imgs/noise.png);
+  mix-blend-mode: overlay;
+  opacity: 0;
+  animation: grain 8s steps(10) infinite;
+  transition: opacity 0.6s ease;
+}
+
+.is-hovering .svc-stage__shade {
+  opacity: 1;
+}
+
+.is-hovering .svc-stage__grain {
+  opacity: 0.3;
+}
+
+/* ---- Logo window ---- */
+.svc-logo {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
   display: flex;
   justify-content: center;
   align-items: center;
   pointer-events: none;
-  z-index: 1;
+  /* Rest strength of the logo window; GSAP animates the window inside
+     between 1 and 0, so this stays the ceiling. */
+  opacity: 0.45;
 }
 
-.logo-mask {
-  width: 500px;
-  height: 500px;
+/* Large, so the photo inside reads as a landscape and the logo as one bold
+   shape rather than cutting the picture into small pieces. */
+.svc-logo__window {
+  width: min(1040px, 130vw);
+  aspect-ratio: 657 / 493;
+  overflow: hidden;
   -webkit-mask: url('/assets/imgs/logos/icon-transparent.png') center / contain no-repeat;
   mask: url('/assets/imgs/logos/icon-transparent.png') center / contain no-repeat;
-  background-color: #ffffff;
-  transition: background-color 0.4s ease, opacity 0.4s ease;
 }
 
+.svc-logo__inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.svc-logo__img {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: var(--pc-film-filter);
+}
+
+/* ---- Titles ---- */
 .container {
   position: relative;
   z-index: 2;
@@ -123,10 +266,21 @@ const mergedData = computed(() => {
 
 .item {
   cursor: pointer;
+  transition: opacity 0.45s ease;
 }
 
-.item:hover h4 {
-  color: var(--main-color);
+/* Keeps the small descriptions readable over the photo in the logo. */
+.item p {
+  text-shadow: 0 1px 14px rgba(0, 0, 0, 0.8);
+}
+
+.item.is-dim {
+  opacity: 0.3;
+}
+
+.item.is-active h4 {
+  color: #fff;
+  -webkit-text-stroke-color: transparent;
 }
 
 @media (max-width: 768px) {
