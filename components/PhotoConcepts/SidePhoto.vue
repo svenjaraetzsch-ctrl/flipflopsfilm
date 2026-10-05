@@ -3,7 +3,10 @@
        (concept 05). With `detail`, a square frame plus a smaller print that
        drifts at its own speed; without, a single frame that drifts gently.
        Frames unveil upwards once they are well into view. -->
-  <div class="pc-side-photo" :class="detail ? 'pc-side-photo--duo' : 'pc-side-photo--single'">
+  <div
+    class="pc-side-photo"
+    :class="[detail ? 'pc-side-photo--duo' : 'pc-side-photo--single', { 'pc-side-photo--portrait': portrait }]"
+  >
     <div ref="drift" class="pc-side-photo__main">
       <div ref="frame" class="pc-side-photo__frame">
         <img
@@ -39,7 +42,9 @@ import { useScrollFx } from '@/composables/useScrollFx'
 const props = defineProps({
   image: { type: Object, required: true },
   // Optional second, smaller photo overlapping the first.
-  detail: { type: Object, default: null }
+  detail: { type: Object, default: null },
+  // Single photo as a portrait frame instead of a landscape one.
+  portrait: { type: Boolean, default: false }
 })
 
 const drift = ref(null)
@@ -97,6 +102,14 @@ useScrollFx(() => {
   aspect-ratio: 3 / 2;
 }
 
+.pc-side-photo--portrait.pc-side-photo--single .pc-side-photo__main {
+  width: 62%;
+}
+
+.pc-side-photo--portrait.pc-side-photo--single .pc-side-photo__frame {
+  aspect-ratio: 4 / 5;
+}
+
 /* Right-hand column beside the text instead of under a label */
 .pc-side-photo--right {
   margin-top: 0;
@@ -143,6 +156,14 @@ useScrollFx(() => {
 
   .pc-side-photo--single .pc-side-photo__frame {
     aspect-ratio: 16 / 10;
+  }
+
+  .pc-side-photo--portrait.pc-side-photo--single .pc-side-photo__main {
+    width: 78%;
+  }
+
+  .pc-side-photo--portrait.pc-side-photo--single .pc-side-photo__frame {
+    aspect-ratio: 4 / 5;
   }
 
   .pc-side-photo--duo .pc-side-photo__main {

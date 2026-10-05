@@ -19,6 +19,7 @@ export const photos = {
   coast: img('El Hierro', 'coast', 1800, 1199, 'Aerial view of a long volcanic coastline under a band of cloud'),
   arch: img('El Hierro', 'arch', 1800, 1200, 'Lava rock arch with waves breaking through it'),
   cave: img('El Hierro', 'cave', 1199, 1800, 'Sunlit rock pool inside a sea cave'),
+  redCliffs: img('El Hierro', 'red-cliffs', 1200, 1800, 'Red cliffs dropping to a rocky shore and the sea'),
 
   cofete: img('Fuerteventura', 'cofete', 1800, 1200, 'Long empty beach below a mountain ridge, waves rolling in'),
   reflection: img('Fuerteventura', 'reflection', 1800, 1206, 'Red mountains mirrored on wet sand at sunset'),
