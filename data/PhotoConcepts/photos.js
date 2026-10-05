@@ -52,7 +52,6 @@ export const photos = {
   laGeria: img('Lanzarote', 'la-geria', 1800, 1199, 'Vines in black volcanic pits behind low stone walls'),
   palm: img('Lanzarote', 'palm', 1800, 1800, 'A single palm tree on a wide volcanic plain'),
   sunsetShore: img('Lanzarote', 'sunset-shore', 1800, 1200, 'Waves running up a beach at sunset'),
-  sunriseClouds: img('Lanzarote', 'sunrise-clouds', 1800, 1200, 'The sun rising over a sea of clouds'),
 
   seaOfClouds: img('Tenerife', 'sea-of-clouds', 1800, 1208, 'Pine-covered ridges rising out of a sea of clouds'),
   sunsetPeaks: img('Tenerife', 'sunset-peaks', 1800, 1206, 'Two peaks and a village above the clouds at dusk'),
