@@ -18,14 +18,7 @@
         </div>
       </div>
       <div class="row">
-        <div class="col-lg-4">
-          <div class="sec-head">
-            <span class="sub-title bord mb-30">{{ $t('home.believe_label') }}</span>
-          </div>
-          <!-- Shows the photo of the value that is open below. -->
-          <PhotoConceptsSwapPhoto :images="believePhotos" :active="activeBelief" />
-        </div>
-        <div class="col-lg-7 offset-lg-1">
+        <div class="col-lg-7">
           <div class="cont">
             <div class="accordion bord">
               <div v-for="(item, index) in believeItems" :key="item.id" class="item mb-20 wow fadeInUp" @click="openAccordion($event, index)"
@@ -40,6 +33,10 @@
               </div>
             </div>
           </div>
+        </div>
+        <div class="col-lg-5">
+          <!-- Shows the photo of the value that is open on the left. -->
+          <PhotoConceptsSwapPhoto class="pc-swap--right" :images="believePhotos" :active="activeBelief" />
         </div>
       </div>
     </div>

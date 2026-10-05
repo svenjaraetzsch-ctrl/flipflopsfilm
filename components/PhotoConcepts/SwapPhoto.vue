@@ -74,10 +74,21 @@ useScrollFx(() => {
   transform: scale(1);
 }
 
+/* Right-hand column beside a list instead of under a label */
+.pc-swap--right {
+  margin-top: 0;
+  margin-left: auto;
+}
+
 @media (max-width: 991px) {
   .pc-swap {
     width: 78%;
     margin: 10px 0 40px;
+  }
+
+  /* Comes after the list when stacked */
+  .pc-swap--right {
+    margin: 40px 0 0 auto;
   }
 }
 
