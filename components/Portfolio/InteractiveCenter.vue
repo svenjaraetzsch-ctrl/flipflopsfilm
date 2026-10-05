@@ -7,10 +7,12 @@
         <div ref="logoInner" class="svc-logo__inner">
           <img
             v-for="(image, i) in serviceImages"
-            :key="image.md"
+            :key="image.src"
             :ref="(el) => (logoImgs[i] = el)"
             class="svc-logo__img"
-            :src="image.md"
+            :src="image.src"
+            :srcset="image.srcset"
+            sizes="min(1040px, 130vw)"
             alt=""
             decoding="async"
           />
@@ -152,8 +154,10 @@ onBeforeUnmount(() => clearTimeout(leaveTimer))
   width: min(1040px, 130vw);
   aspect-ratio: 657 / 493;
   overflow: hidden;
-  -webkit-mask: url('/assets/imgs/logos/icon-transparent.png') center / contain no-repeat;
-  mask: url('/assets/imgs/logos/icon-transparent.png') center / contain no-repeat;
+  -webkit-mask: url('/assets/imgs/logos/icon.svg') center / contain no-repeat;
+  mask: url('/assets/imgs/logos/icon.svg') center / contain no-repeat;
+  /* Vector mask (public/assets/imgs/logos/icon.svg): sharp at any size,
+     unlike the 657px icon PNG it replaces here. */
 }
 
 .svc-logo__inner {
