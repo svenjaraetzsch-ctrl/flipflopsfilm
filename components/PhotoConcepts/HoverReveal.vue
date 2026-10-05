@@ -30,8 +30,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
-import { useScrollFx } from '@/composables/useScrollFx'
+import { useFloatReveal } from '@/composables/useFloatReveal'
 import { hierro } from '@/data/PhotoConcepts/hierro'
 
 // The live services list (locales/en.json → services_items).
@@ -42,50 +41,7 @@ const rows = [
   { title: 'Crew & Operations', sub: 'Trusted crews and smooth operations.', image: hierro.sabina }
 ]
 
-const area = ref(null)
-const float = ref(null)
-const floatImgs = []
-
-let moveX = null
-let moveY = null
-let active = -1
-let lastX = 0
-
-const canHover = () => window.matchMedia('(hover: hover) and (pointer: fine)').matches
-
-useScrollFx(() => {
-  gsap.set(float.value, { autoAlpha: 0, scale: 0.85 })
-  gsap.set(floatImgs, { autoAlpha: 0 })
-  moveX = gsap.quickTo(float.value, 'x', { duration: 0.6, ease: 'power3' })
-  moveY = gsap.quickTo(float.value, 'y', { duration: 0.6, ease: 'power3' })
-})
-
-const onMove = (e) => {
-  if (!moveX || !canHover()) return
-  const box = area.value.getBoundingClientRect()
-  const x = e.clientX - box.left - float.value.offsetWidth / 2
-  const y = e.clientY - box.top - float.value.offsetHeight / 2
-  moveX(x)
-  moveY(y)
-  // A slight tilt in the direction of travel makes the print feel handled.
-  gsap.to(float.value, { rotation: gsap.utils.clamp(-8, 8, (e.clientX - lastX) * 0.6), duration: 0.5 })
-  lastX = e.clientX
-}
-
-const show = (i) => {
-  if (!moveX || !canHover() || i === active) return
-  if (active > -1) gsap.to(floatImgs[active], { autoAlpha: 0, duration: 0.3 })
-  gsap.to(floatImgs[i], { autoAlpha: 1, duration: 0.3 })
-  gsap.to(float.value, { autoAlpha: 1, scale: 1, duration: 0.4, ease: 'power3.out' })
-  active = i
-}
-
-const hide = () => {
-  if (!moveX) return
-  gsap.to(float.value, { autoAlpha: 0, scale: 0.85, rotation: 0, duration: 0.35 })
-  if (active > -1) gsap.to(floatImgs[active], { autoAlpha: 0, duration: 0.35 })
-  active = -1
-}
+const { area, float, imgs: floatImgs, onMove, show, hide } = useFloatReveal()
 </script>
 
 <style scoped>

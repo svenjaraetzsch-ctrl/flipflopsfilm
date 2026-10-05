@@ -1,5 +1,7 @@
 <template>
-  <div ref="pin" class="pc-strip">
+  <div ref="pin" class="pc-strip" :class="{ 'pc-strip--with-head': $slots.default }">
+    <!-- Optional heading that stays in view while the reel runs. -->
+    <div v-if="$slots.default" class="pc-strip__head container"><slot /></div>
     <div ref="track" class="pc-strip__track">
       <figure v-for="(frame, i) in frames" :key="frame.src" class="pc-strip__frame">
         <img
@@ -26,16 +28,21 @@ import { ref } from 'vue'
 import { useScrollFx } from '@/composables/useScrollFx'
 import { hierro } from '@/data/PhotoConcepts/hierro'
 
-const frames = [
-  hierro.village,
-  hierro.beach,
-  hierro.serpentine,
-  hierro.arch,
-  hierro.forest,
-  hierro.chapel,
-  hierro.cave,
-  hierro.rocks
-]
+defineProps({
+  frames: {
+    type: Array,
+    default: () => [
+      hierro.village,
+      hierro.beach,
+      hierro.serpentine,
+      hierro.arch,
+      hierro.forest,
+      hierro.chapel,
+      hierro.cave,
+      hierro.rocks
+    ]
+  }
+})
 
 const pin = ref(null)
 const track = ref(null)
@@ -66,10 +73,22 @@ useScrollFx(() => {
 
 <style scoped>
 .pc-strip {
+  position: relative;
   height: 100vh;
   display: flex;
   align-items: center;
   overflow: hidden;
+}
+
+.pc-strip__head {
+  position: absolute;
+  top: 110px;
+  left: 0;
+  right: 0;
+}
+
+.pc-strip--with-head .pc-strip__track {
+  margin-top: 8vh;
 }
 
 .pc-strip__track {
@@ -103,6 +122,19 @@ useScrollFx(() => {
 }
 
 @media (max-width: 991px) {
+  /* The strip is the horizontal scroller on phones; sticky keeps the heading
+     put while the frames are swiped. */
+  .pc-strip__head {
+    position: sticky;
+    top: auto;
+    left: 0;
+    margin-bottom: 30px;
+  }
+
+  .pc-strip--with-head .pc-strip__track {
+    margin-top: 0;
+  }
+
   .pc-strip {
     height: auto;
     display: block;
