@@ -156,6 +156,18 @@ const markShown = () => {
   saveLast(shown)
 }
 
+// While the menu is open the page behind it must not scroll: otherwise it
+// moves underneath, its scrollbar shows next to the menu and the navbar
+// logo shrinks. ScrollSmoother (desktop) scrolls programmatically, so it is
+// paused too; the gutter keeps the layout from shifting.
+const lockPage = (lock) => {
+  const smoother = typeof ScrollSmoother !== 'undefined' && ScrollSmoother.get()
+  smoother?.paused(lock)
+  const html = document.documentElement
+  html.style.overflow = lock ? 'hidden' : ''
+  html.style.scrollbarGutter = lock ? 'stable' : ''
+}
+
 onMounted(() => {
   shown = readLast()
   // Load the photo once the page itself has settled, not during page load.
@@ -170,8 +182,12 @@ onMounted(() => {
     if (open && !wasOpen) {
       if (!photo.value) pickNext()
       markShown()
+      lockPage(true)
     }
-    if (wasOpen && !open) setTimeout(pickNext, 600)
+    if (wasOpen && !open) {
+      lockPage(false)
+      setTimeout(pickNext, 600)
+    }
     wasOpen = open
   })
   observer.observe(menuEl.value, { attributes: true, attributeFilter: ['class'] })
@@ -179,6 +195,7 @@ onMounted(() => {
 
 onBeforeUnmount(() => {
   observer?.disconnect()
+  lockPage(false)
   if (window.cancelIdleCallback && typeof idle === 'number') window.cancelIdleCallback(idle)
   clearTimeout(idle)
 })
@@ -214,12 +231,28 @@ const handleMouseLeave = (event) => {
 .hamenu {
   display: flex;
   flex-direction: column;
+  /* Scrolling inside the menu (small phones) must not reach the page. */
+  overscroll-behavior: contain;
 }
 
+/* Desktop windows tall enough for the whole menu: no scrolling inside it.
+   The theme's decorative vertical line (200vh tall) otherwise made it
+   scrollable, because globals.css allows menu scrolling for small phones.
+   Shorter windows keep scrolling so nothing gets cut off. */
+@media (min-width: 992px) and (min-height: 720px) {
+  .hamenu {
+    overflow: hidden !important;
+  }
+}
+
+/* Fill the menu exactly (h-100 plus the menu's own padding made it 96px
+   taller than the screen, which gave the menu its own scrollbar). */
 .hamenu .container {
   position: relative;
   z-index: 1;
   flex: 1;
+  height: auto !important;
+  min-height: 0;
   padding-top: 100px;
   padding-bottom: 32px;
 }
