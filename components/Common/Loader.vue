@@ -36,5 +36,8 @@ onMounted(() => {
   // Not every page has a <header> / header .container; skip to avoid GSAP "target not found"
   if (document.querySelector("header")) tl.from("header", { y: 200 }, "-=1.5");
   if (document.querySelector("header .container")) tl.from("header .container", { y: 40, opacity: 0, delay: 0.3 }, "-=1.5");
+  // ScrollTriggers measured while the header was still shifted by the intro
+  // are 200px off; measure again once everything has settled.
+  tl.call(() => { if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh(); });
 });
 </script>
