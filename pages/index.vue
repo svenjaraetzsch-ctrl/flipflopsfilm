@@ -14,7 +14,7 @@
           <CreativeAgencyTestimonials />
           <PhotoConceptsHomeServices />
         </div>
-        <PhotoConceptsHomeContact />
+        <PhotoConceptsContact />
       </main>
       <CommonFooter1 />
     </div>
