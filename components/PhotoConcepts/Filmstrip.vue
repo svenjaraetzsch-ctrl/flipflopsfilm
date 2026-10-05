@@ -16,7 +16,6 @@
         />
         <figcaption>
           <span>{{ String(i + 1).padStart(2, '0') }} / {{ String(frames.length).padStart(2, '0') }}</span>
-          <span>{{ frame.island }}</span>
         </figcaption>
       </figure>
     </div>

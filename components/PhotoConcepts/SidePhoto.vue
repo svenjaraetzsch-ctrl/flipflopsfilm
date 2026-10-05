@@ -15,7 +15,6 @@
         decoding="async"
       />
     </div>
-    <figcaption>{{ image.island }}</figcaption>
   </figure>
 </template>
 
@@ -66,14 +65,6 @@ useScrollFx(() => {
   height: 100%;
   object-fit: cover;
   display: block;
-}
-
-.pc-side-photo figcaption {
-  margin-top: 12px;
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
 }
 
 /* Stacked layout on phones and tablets: label, photo, then the text. */

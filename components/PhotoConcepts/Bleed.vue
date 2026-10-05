@@ -28,8 +28,8 @@
       />
     </div>
     <div v-if="image" class="pc-bleed__caption container">
-      <span>{{ caption || image.island }}</span>
-      <span>Photo · Daniel Bonhoff</span>
+      <span v-if="caption">{{ caption }}</span>
+      <span class="pc-bleed__credit">Photo · Daniel Bonhoff</span>
     </div>
   </div>
 </template>
@@ -110,5 +110,9 @@ useScrollFx(() => {
   color: rgba(255, 255, 255, 0.85);
   text-shadow: 0 1px 12px rgba(0, 0, 0, 0.5);
   pointer-events: none;
+}
+
+.pc-bleed__credit {
+  margin-left: auto;
 }
 </style>
