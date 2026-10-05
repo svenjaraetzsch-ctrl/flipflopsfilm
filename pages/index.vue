@@ -6,13 +6,16 @@
     <CommonMenu />
     <div id="smooth-content">
       <!-- photo-concepts branch: the home page with Daniel Bonhoff's images woven
-           in (concepts 01, 04, 06, 07 from /photo-concepts). Not on main. -->
+           in (concepts 01, 02, 04, 06, 07 from /photo-concepts). Not on main. -->
       <main class="main-bg pc-home">
         <div class="main-box main-bg ontop">
           <PhotoConceptsHomeHero />
           <CreativeAgencyAbout />
           <CreativeAgencyTestimonials />
           <PhotoConceptsHomeServices />
+          <section class="pc-home-strip">
+            <PhotoConceptsFilmstrip :frames="stripFrames" />
+          </section>
         </div>
         <PhotoConceptsHomeContact />
       </main>
@@ -22,7 +25,11 @@
 </template>
 
 <script setup>
+import { photos } from '@/data/PhotoConcepts/photos'
+
 usePageSeo('home')
+
+const stripFrames = [photos.canyon, photos.meadow, photos.laGeria, photos.reflection, photos.treeRoad, photos.arch]
 
 useHead({
   bodyAttrs: {
@@ -68,5 +75,12 @@ useHead({
   opacity: 0.35;
   mix-blend-mode: overlay;
   animation: grain 8s steps(10) infinite;
+}
+
+/* On phones the reel is a swipe row of its natural height, so give it room. */
+@media (max-width: 991px) {
+  .pc-home-strip {
+    padding: 80px 0;
+  }
 }
 </style>
