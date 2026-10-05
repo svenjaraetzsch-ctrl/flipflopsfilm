@@ -20,6 +20,7 @@ export const photos = {
   arch: img('El Hierro', 'arch', 1800, 1200, 'Lava rock arch with waves breaking through it'),
   cave: img('El Hierro', 'cave', 1199, 1800, 'Sunlit rock pool inside a sea cave'),
   redCliffs: img('El Hierro', 'red-cliffs', 1200, 1800, 'Red cliffs dropping to a rocky shore and the sea'),
+  juniperRest: img('El Hierro', 'juniper-rest', 1800, 1200, 'Two people resting under a wind-bent juniper by the sea'),
 
   cofete: img('Fuerteventura', 'cofete', 1800, 1200, 'Long empty beach below a mountain ridge, waves rolling in'),
   reflection: img('Fuerteventura', 'reflection', 1800, 1206, 'Red mountains mirrored on wet sand at sunset'),
@@ -32,24 +33,32 @@ export const photos = {
   roqueNublo: img('Gran Canaria', 'roque-nublo', 1214, 1800, 'Rock pinnacle on a mountain ridge at golden hour'),
   seaStacks: img('Gran Canaria', 'sea-stacks', 1800, 1200, 'A woman on a cliff edge looking out at sea stacks'),
   cliffCoast: img('Gran Canaria', 'cliff-coast', 1800, 1200, 'Warm-lit cliffs along a calm coastline'),
+  roofTent: img('Gran Canaria', 'roof-tent', 1800, 1206, 'An off-road car with a roof tent parked in the mountains'),
+  villageStreet: img('Gran Canaria', 'village-street', 1800, 1200, 'A quiet village street with old houses'),
+  hairpins: img('Gran Canaria', 'hairpins', 1800, 1199, 'Aerial view of hairpin bends on a mountain road'),
 
   agando: img('La Gomera', 'agando', 1800, 1200, 'Volcanic rock spire above a winding mountain road'),
   laurelForest: img('La Gomera', 'laurel-forest', 1800, 1200, 'Dense green laurel forest with ferns'),
   treeRoad: img('La Gomera', 'tree-road', 1800, 1207, 'Road running through a tunnel of trees'),
+  ferry: img('La Gomera', 'ferry', 1800, 1200, 'The deck rail of a ferry crossing between the islands'),
+  mirador: img('La Gomera', 'mirador', 1200, 1800, 'A person on a glass viewing platform high above the sea'),
 
   caldera: img('La Palma', 'caldera', 1800, 1200, 'Deep forested gorge below jagged peaks'),
   meadow: img('La Palma', 'meadow', 1800, 1200, 'Woman in a white dress in a meadow of wildflowers'),
   waterfall: img('La Palma', 'waterfall', 1200, 1800, 'Waterfall falling into a dark rock gorge'),
+  fernWalk: img('La Palma', 'fern-walk', 1200, 1800, 'A person walking through a dense fern forest'),
 
   famara: img('Lanzarote', 'famara', 1800, 1199, 'Road along the foot of high cliffs above a long beach'),
   laGeria: img('Lanzarote', 'la-geria', 1800, 1199, 'Vines in black volcanic pits behind low stone walls'),
   palm: img('Lanzarote', 'palm', 1800, 1800, 'A single palm tree on a wide volcanic plain'),
   sunsetShore: img('Lanzarote', 'sunset-shore', 1800, 1200, 'Waves running up a beach at sunset'),
+  sunriseClouds: img('Lanzarote', 'sunrise-clouds', 1800, 1200, 'The sun rising over a sea of clouds'),
 
   seaOfClouds: img('Tenerife', 'sea-of-clouds', 1800, 1208, 'Pine-covered ridges rising out of a sea of clouds'),
   sunsetPeaks: img('Tenerife', 'sunset-peaks', 1800, 1206, 'Two peaks and a village above the clouds at dusk'),
   teideCaldera: img('Tenerife', 'teide-caldera', 1800, 1208, 'Wide volcanic plain below the rim of the Teide caldera'),
-  pineRoad: img('Tenerife', 'pine-road', 1800, 1208, 'Empty road curving through a tall pine forest')
+  pineRoad: img('Tenerife', 'pine-road', 1800, 1208, 'Empty road curving through a tall pine forest'),
+  valleyVillage: img('Tenerife', 'valley-village', 1800, 1207, 'A small village in a steep green valley')
 }
 
 // Shared by the services hover on home and concept 04, in the order of
