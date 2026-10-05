@@ -91,9 +91,10 @@
 </template>
 
 <script setup>
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, useId } from 'vue'
 
-const clipId = `lc-${Math.random().toString(36).slice(2, 7)}`
+// useId is identical on server and client; Math.random caused hydration mismatches
+const clipId = `lc-${useId()}`
 const sweepRect = ref(null)
 const svgRef = ref(null)
 const W = 590

@@ -35,15 +35,22 @@
 <script setup>
 import data from '@/data/Locations/grid.json'
 
-const shuffle = (array) => {
+// Seeded so server and client produce the same order (Math.random caused
+// hydration mismatches, and the static build froze one random order anyway).
+const shuffle = (array, seed) => {
   const arr = [...array]
+  let s = seed
+  const rand = () => {
+    s = (s * 1664525 + 1013904223) % 4294967296
+    return s / 4294967296
+  }
   for (let i = arr.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
+    const j = Math.floor(rand() * (i + 1));
     [arr[i], arr[j]] = [arr[j], arr[i]]
   }
   return arr
 }
 
-const leftImages = shuffle(data)
-const rightImages = shuffle(data)
+const leftImages = shuffle(data, 7)
+const rightImages = shuffle(data, 42)
 </script>

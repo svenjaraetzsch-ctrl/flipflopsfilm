@@ -33,7 +33,8 @@ onMounted(() => {
     document.body.style.height = '';
     document.documentElement.style.overflow = '';
   }});
-  tl.from("header", { y: 200 }, "-=1.5");
-  tl.from("header .container", { y: 40, opacity: 0, delay: 0.3 }, "-=1.5");
+  // Not every page has a <header> / header .container; skip to avoid GSAP "target not found"
+  if (document.querySelector("header")) tl.from("header", { y: 200 }, "-=1.5");
+  if (document.querySelector("header .container")) tl.from("header .container", { y: 40, opacity: 0, delay: 0.3 }, "-=1.5");
 });
 </script>

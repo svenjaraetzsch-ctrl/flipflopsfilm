@@ -20,9 +20,9 @@ export default defineNuxtConfig({
     detectBrowserLanguage: false,
     langDir: 'locales/',
     locales: [
-      { code: 'en', iso: 'en', name: 'English', file: 'en.json' },
-      { code: 'de', iso: 'de', name: 'Deutsch', file: 'de.json' },
-      { code: 'es', iso: 'es', name: 'Español', file: 'es.json' }
+      { code: 'en', language: 'en', name: 'English', file: 'en.json' },
+      { code: 'de', language: 'de', name: 'Deutsch', file: 'de.json' },
+      { code: 'es', language: 'es', name: 'Español', file: 'es.json' }
     ],
     compilation: {
       strictMessage: false,
@@ -61,6 +61,14 @@ export default defineNuxtConfig({
 
   alias: {
     '@': fileURLToPath(new URL('./', import.meta.url))
+  },
+
+  vite: {
+    // Vue >= 3.4 warns in the browser console when this compile-time flag is
+    // undefined; Nuxt 3.6 predates it, so define it explicitly.
+    define: {
+      __VUE_PROD_HYDRATION_MISMATCH_DETAILS__: false
+    }
   },
 
   app: {
