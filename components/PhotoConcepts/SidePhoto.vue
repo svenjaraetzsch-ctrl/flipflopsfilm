@@ -97,6 +97,15 @@ useScrollFx(() => {
   aspect-ratio: 3 / 2;
 }
 
+/* Right-hand column beside the text instead of under a label */
+.pc-side-photo--right {
+  margin-top: 0;
+}
+
+.pc-side-photo--right .pc-side-photo__main {
+  margin-left: auto;
+}
+
 /* Duo: a square frame with a smaller print over its lower right corner */
 .pc-side-photo--duo {
   padding-bottom: 12%;
@@ -142,6 +151,11 @@ useScrollFx(() => {
 
   .pc-side-photo__small {
     right: 0;
+  }
+
+  /* Comes after the text when stacked */
+  .pc-side-photo--right {
+    margin: 40px 0 0;
   }
 }
 </style>
