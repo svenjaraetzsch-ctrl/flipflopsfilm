@@ -15,7 +15,7 @@
             text="A single photograph takes over the whole screen between two sections — a pause in the reading, like cutting to a wide shot. As it scrolls in, the frame opens up and the image settles out of a slow zoom."
             where="Home, between the introduction and “What we believe”; between the blocks of each service page."
           />
-          <PhotoConceptsBleed :image="hierro.coast" />
+          <PhotoConceptsBleed :image="photos.cofete" />
         </section>
 
         <section id="c02">
@@ -59,7 +59,7 @@
         </section>
 
         <div class="pc-again">
-          <PhotoConceptsBleed :image="hierro.redCliff" caption="01 again · a second break further down" />
+          <PhotoConceptsBleed :image="photos.famara" caption="01 again · a second break further down" />
         </div>
 
         <section id="c06">
@@ -91,7 +91,7 @@
 </template>
 
 <script setup>
-import { hierro } from '@/data/PhotoConcepts/hierro'
+import { photos } from '@/data/PhotoConcepts/photos'
 
 // Internal proposal for the client, deployed only to the staging domain.
 // Kept out of search engines.

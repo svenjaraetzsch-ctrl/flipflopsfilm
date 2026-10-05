@@ -16,7 +16,7 @@
         />
         <figcaption>
           <span>{{ String(i + 1).padStart(2, '0') }} / {{ String(frames.length).padStart(2, '0') }}</span>
-          <span>El Hierro</span>
+          <span>{{ frame.island }}</span>
         </figcaption>
       </figure>
     </div>
@@ -26,20 +26,20 @@
 <script setup>
 import { ref } from 'vue'
 import { useScrollFx } from '@/composables/useScrollFx'
-import { hierro } from '@/data/PhotoConcepts/hierro'
+import { photos } from '@/data/PhotoConcepts/photos'
 
 defineProps({
   frames: {
     type: Array,
     default: () => [
-      hierro.village,
-      hierro.beach,
-      hierro.serpentine,
-      hierro.arch,
-      hierro.forest,
-      hierro.chapel,
-      hierro.cave,
-      hierro.rocks
+      photos.serpentine,
+      photos.meadow,
+      photos.palm,
+      photos.canyon,
+      photos.arch,
+      photos.laGeria,
+      photos.treeRoad,
+      photos.waterfall
     ]
   }
 })

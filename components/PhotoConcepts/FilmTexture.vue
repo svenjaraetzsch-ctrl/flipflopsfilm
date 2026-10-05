@@ -43,16 +43,16 @@
 
 <script setup>
 import { ref } from 'vue'
-import { hierro } from '@/data/PhotoConcepts/hierro'
+import { photos } from '@/data/PhotoConcepts/photos'
 
 const existing = '/assets/imgs/locations/folder/04.jpeg'
 
 // Existing site photos with the treatment, next to Daniel's originals.
 const tiles = [
   { src: '/assets/imgs/locations/folder/10.jpeg', alt: 'Existing site photo: volcanic road', label: 'Existing · treated', treated: true },
-  { src: hierro.crater.md, alt: hierro.crater.alt, label: 'Daniel Bonhoff', treated: false },
+  { src: photos.pineRoad.md, alt: photos.pineRoad.alt, label: 'Daniel Bonhoff', treated: false },
   { src: '/assets/imgs/locations/folder/06.jpeg', alt: 'Existing site photo', label: 'Existing · treated', treated: true },
-  { src: hierro.coast.md, alt: hierro.coast.alt, label: 'Daniel Bonhoff', treated: false }
+  { src: photos.coast.md, alt: photos.coast.alt, label: 'Daniel Bonhoff', treated: false }
 ]
 
 const box = ref(null)

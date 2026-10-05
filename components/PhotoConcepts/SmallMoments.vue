@@ -5,7 +5,7 @@
         <figure class="pc-moment">
           <div class="pc-moment__screen pc-moment__screen--menu">
             <div class="pc-filmic pc-moment__bg">
-              <img :src="hierro.fog.md" :alt="hierro.fog.alt" loading="lazy" decoding="async" />
+              <img :src="photos.laurelForest.md" :alt="photos.laurelForest.alt" loading="lazy" decoding="async" />
             </div>
             <ul class="pc-moment__menu">
               <li v-for="item in menu" :key="item">{{ item }}</li>
@@ -19,7 +19,7 @@
         <figure class="pc-moment">
           <div class="pc-moment__screen pc-moment__screen--contact">
             <div class="pc-moment__bg">
-              <img :src="hierro.arch.md" :alt="hierro.arch.alt" loading="lazy" decoding="async" />
+              <img :src="photos.sunsetPeaks.md" :alt="photos.sunsetPeaks.alt" loading="lazy" decoding="async" />
             </div>
             <div class="pc-moment__cta">
               <span class="sub-title">Get in touch</span>
@@ -35,7 +35,7 @@
 </template>
 
 <script setup>
-import { hierro } from '@/data/PhotoConcepts/hierro'
+import { photos } from '@/data/PhotoConcepts/photos'
 
 const menu = ['Home', 'Services', 'Locations', 'About', "FAQ's"]
 </script>

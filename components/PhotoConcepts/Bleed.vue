@@ -15,7 +15,7 @@
       />
     </div>
     <div class="pc-bleed__caption container">
-      <span>{{ caption }}</span>
+      <span>{{ caption || image.island }}</span>
       <span>Photo · Daniel Bonhoff</span>
     </div>
   </div>
@@ -27,7 +27,7 @@ import { useScrollFx } from '@/composables/useScrollFx'
 
 defineProps({
   image: { type: Object, required: true },
-  caption: { type: String, default: 'El Hierro' }
+  caption: { type: String, default: '' }
 })
 
 const wrap = ref(null)

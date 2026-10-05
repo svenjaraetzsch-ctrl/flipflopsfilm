@@ -11,7 +11,7 @@
         <div class="main-box main-bg ontop">
           <CreativeAgencyHeader />
           <CreativeAgencyAbout />
-          <PhotoConceptsBleed :image="hierro.coast" />
+          <PhotoConceptsBleed :image="photos.famara" />
           <CreativeAgencyTestimonials />
           <PhotoConceptsHomeServices />
           <section class="pc-home-strip">
@@ -28,11 +28,11 @@
 </template>
 
 <script setup>
-import { hierro } from '@/data/PhotoConcepts/hierro'
+import { photos } from '@/data/PhotoConcepts/photos'
 
 usePageSeo('home')
 
-const stripFrames = [hierro.village, hierro.redCliff, hierro.forest, hierro.cave, hierro.rocks, hierro.fog]
+const stripFrames = [photos.canyon, photos.meadow, photos.laGeria, photos.reflection, photos.treeRoad, photos.arch]
 
 useHead({
   bodyAttrs: {

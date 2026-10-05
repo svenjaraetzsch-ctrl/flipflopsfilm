@@ -25,8 +25,8 @@
         </ul>
 
         <p class="pc-plan__note">
-          Test set shown here: El Hierro, 13 images. The final selection would mix all five
-          island folders. Photography © Daniel Bonhoff.
+          Shown here: a first selection of 21 photographs, three from each of the seven islands.
+          The final twenty can be swapped freely. Photography © Daniel Bonhoff.
         </p>
       </div>
     </div>

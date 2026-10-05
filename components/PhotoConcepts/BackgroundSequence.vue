@@ -39,29 +39,29 @@
 <script setup>
 import { ref } from 'vue'
 import { useScrollFx } from '@/composables/useScrollFx'
-import { hierro } from '@/data/PhotoConcepts/hierro'
+import { photos } from '@/data/PhotoConcepts/photos'
 
 // Copy taken from the live "What we believe" block (locales/en.json).
 const steps = [
   {
     title: 'Local First',
     text: 'The strongest productions are built on local knowledge. Understanding the people, culture and practical realities of a location creates smoother workflows and better creative outcomes.',
-    image: hierro.village
+    image: photos.caldera
   },
   {
     title: 'Relationships Matter',
     text: 'Great productions are built on trust. Long-term partnerships with clients, crew, suppliers and creative collaborators let us solve challenges before they become problems.',
-    image: hierro.sabina
+    image: photos.laurelForest
   },
   {
     title: 'One Team',
     text: "We don't see a distinction between local and international teams. Every project works best when communication is clear and everyone moves towards the same goal.",
-    image: hierro.fog
+    image: photos.seaOfClouds
   },
   {
     title: 'Solutions Over Obstacles',
     text: 'Production rarely follows a perfect plan. We stay flexible, adapt quickly and find practical solutions that keep projects moving without compromising quality.',
-    image: hierro.crater
+    image: photos.reflection
   }
 ]
 

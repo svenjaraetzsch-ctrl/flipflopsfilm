@@ -4,12 +4,12 @@
   <div class="pc-home-contact">
     <div class="pc-home-contact__bg">
       <img
-        :src="hierro.arch.src"
-        :srcset="hierro.arch.srcset"
+        :src="photos.sunsetPeaks.src"
+        :srcset="photos.sunsetPeaks.srcset"
         sizes="100vw"
-        :width="hierro.arch.w"
-        :height="hierro.arch.h"
-        :alt="hierro.arch.alt"
+        :width="photos.sunsetPeaks.w"
+        :height="photos.sunsetPeaks.h"
+        :alt="photos.sunsetPeaks.alt"
         loading="lazy"
         decoding="async"
       />
@@ -19,7 +19,7 @@
 </template>
 
 <script setup>
-import { hierro } from '@/data/PhotoConcepts/hierro'
+import { photos } from '@/data/PhotoConcepts/photos'
 </script>
 
 <style scoped>

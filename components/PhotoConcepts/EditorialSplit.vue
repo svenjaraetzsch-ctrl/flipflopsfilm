@@ -14,12 +14,12 @@
         <div :ref="(el) => (frames[0] = el)" class="pc-split__frame pc-split__frame--tall">
           <img
             :ref="(el) => (inners[0] = el)"
-            :src="hierro.beach.src"
-            :srcset="hierro.beach.srcset"
+            :src="photos.roqueNublo.src"
+            :srcset="photos.roqueNublo.srcset"
             sizes="(max-width: 991px) 100vw, 45vw"
-            :width="hierro.beach.w"
-            :height="hierro.beach.h"
-            :alt="hierro.beach.alt"
+            :width="photos.roqueNublo.w"
+            :height="photos.roqueNublo.h"
+            :alt="photos.roqueNublo.alt"
             loading="lazy"
             decoding="async"
           />
@@ -33,22 +33,22 @@
           <div :ref="(el) => (frames[1] = el)" class="pc-split__frame pc-split__frame--square">
             <img
               :ref="(el) => (inners[1] = el)"
-              :src="hierro.forest.src"
-              :srcset="hierro.forest.srcset"
+              :src="photos.palm.src"
+              :srcset="photos.palm.srcset"
               sizes="(max-width: 991px) 80vw, 38vw"
-              :width="hierro.forest.w"
-              :height="hierro.forest.h"
-              :alt="hierro.forest.alt"
+              :width="photos.palm.w"
+              :height="photos.palm.h"
+              :alt="photos.palm.alt"
               loading="lazy"
               decoding="async"
             />
           </div>
           <div ref="drift" class="pc-split__small">
             <img
-              :src="hierro.cave.md"
-              :width="hierro.cave.w"
-              :height="hierro.cave.h"
-              :alt="hierro.cave.alt"
+              :src="photos.cave.md"
+              :width="photos.cave.w"
+              :height="photos.cave.h"
+              :alt="photos.cave.alt"
               loading="lazy"
               decoding="async"
             />
@@ -70,7 +70,7 @@
 <script setup>
 import { ref } from 'vue'
 import { useScrollFx } from '@/composables/useScrollFx'
-import { hierro } from '@/data/PhotoConcepts/hierro'
+import { photos } from '@/data/PhotoConcepts/photos'
 
 const frames = []
 const inners = []

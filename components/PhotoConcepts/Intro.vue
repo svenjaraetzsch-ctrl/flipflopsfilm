@@ -10,8 +10,9 @@
           <p>
             Seven ways Daniel Bonhoff's photographs could run through the Flip Flops Film
             site — not as a location catalogue, but as part of its look and rhythm. Every idea
-            below is built with the site's real design and the El Hierro test set, so what you
-            see is how it would actually behave. They work on their own or combined.
+            below is built with the site's real design and a first selection of 21 photographs,
+            three from each island, so what you see is how it would actually behave. They work
+            on their own or combined.
           </p>
           <ol class="pc-intro__index">
             <li v-for="(item, i) in index" :key="item">

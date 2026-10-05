@@ -4,7 +4,7 @@
     <CreativeAgencyAwards />
     <div ref="float" class="pc-home-services__float" aria-hidden="true">
       <img
-        v-for="(image, i) in images"
+        v-for="(image, i) in serviceImages"
         :key="image.src"
         :ref="(el) => (imgs[i] = el)"
         :src="image.md"
@@ -19,11 +19,7 @@
 <script setup>
 import { onMounted, onBeforeUnmount } from 'vue'
 import { useFloatReveal } from '@/composables/useFloatReveal'
-import { hierro } from '@/data/PhotoConcepts/hierro'
-
-// Same order as data/CreativeAgency/awards.json: Production Services,
-// Locations, Tax Incentives, Crew & Operations.
-const images = [hierro.serpentine, hierro.beach, hierro.chapel, hierro.sabina]
+import { serviceImages } from '@/data/PhotoConcepts/photos'
 
 const { area, float, imgs, onMove, show, hide } = useFloatReveal()
 

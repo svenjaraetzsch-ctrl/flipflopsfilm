@@ -31,14 +31,14 @@
 
 <script setup>
 import { useFloatReveal } from '@/composables/useFloatReveal'
-import { hierro } from '@/data/PhotoConcepts/hierro'
+import { serviceImages } from '@/data/PhotoConcepts/photos'
 
 // The live services list (locales/en.json → services_items).
 const rows = [
-  { title: 'Production Services', sub: 'Full-service support from prep to wrap.', image: hierro.serpentine },
-  { title: 'Locations', sub: 'Scouting and securing unique filming locations.', image: hierro.beach },
-  { title: 'Tax Incentives', sub: 'Guidance on permits and rebates.', image: hierro.chapel },
-  { title: 'Crew & Operations', sub: 'Trusted crews and smooth operations.', image: hierro.sabina }
+  { title: 'Production Services', sub: 'Full-service support from prep to wrap.', image: serviceImages[0] },
+  { title: 'Locations', sub: 'Scouting and securing unique filming locations.', image: serviceImages[1] },
+  { title: 'Tax Incentives', sub: 'Guidance on permits and rebates.', image: serviceImages[2] },
+  { title: 'Crew & Operations', sub: 'Trusted crews and smooth operations.', image: serviceImages[3] }
 ]
 
 const { area, float, imgs: floatImgs, onMove, show, hide } = useFloatReveal()
