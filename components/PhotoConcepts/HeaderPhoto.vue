@@ -39,10 +39,17 @@ useScrollFx(() => {
 <style scoped>
 .pc-header-photo {
   position: absolute;
-  inset: 0;
+  /* Stops 2px short of the header's bottom edge. At fractional scroll
+     positions Chrome let one pixel row of the moving photo slip past the
+     clip at that edge, which showed as a thin bright line while scrolling.
+     The bottom of the photo is transparent anyway (mask below), so the
+     2px are invisible. */
+  inset: 0 0 2px 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
+  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 94%);
+  mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 94%);
 }
 
 .pc-header-photo img {
@@ -56,8 +63,8 @@ useScrollFx(() => {
   will-change: transform;
 }
 
-/* Darker at the top for the navigation, open in the middle, and fully back
-   to the page colour at the bottom so the content below sits on plain dark. */
+/* Darker at the top for the navigation and open in the middle; the mask
+   above takes it back to the page colour at the bottom. */
 .pc-header-photo::after {
   content: '';
   position: absolute;
@@ -66,8 +73,7 @@ useScrollFx(() => {
     to bottom,
     rgba(32, 29, 29, 0.75) 0%,
     rgba(32, 29, 29, 0.45) 40%,
-    rgba(32, 29, 29, 0.6) 70%,
-    #201D1D 100%
+    rgba(32, 29, 29, 0.6) 70%
   );
 }
 </style>
