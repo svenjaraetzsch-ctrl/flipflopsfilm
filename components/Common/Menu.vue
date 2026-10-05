@@ -1,14 +1,13 @@
 <template>
   <div ref="menuEl" class="hamenu">
     <!-- A dimmed photo behind the links, from a different island each time
-         the menu opens (concept 07). Chosen and loaded on the client only. -->
+         the menu opens (concept 07). Chosen and loaded on the client only;
+         the 900px version is enough at 40% behind the links. -->
     <div class="hamenu-photo" aria-hidden="true">
       <img
         v-if="photo"
         :key="photo.src"
-        :src="photo.src"
-        :srcset="photo.srcset"
-        sizes="100vw"
+        :src="photo.md"
         alt=""
         decoding="async"
       />
@@ -58,7 +57,7 @@
           </div>
         </div>
 
-        <div class="col-lg-4 d-none d-lg-flex align-items-center">
+        <div class="col-lg-4 d-none d-lg-flex align-items-center menu-info-col">
           <div class="cont-info">
             <div class="item mb-50">
               <h6 class="text-u fw-600 mb-20">{{ $t('menu.our_offices') }}</h6>
@@ -156,16 +155,31 @@ const markShown = () => {
   saveLast(shown)
 }
 
-// While the menu is open the page behind it must not scroll: otherwise it
-// moves underneath, its scrollbar shows next to the menu and the navbar
-// logo shrinks. ScrollSmoother (desktop) scrolls programmatically, so it is
-// paused too; the gutter keeps the layout from shifting.
+// While the menu is open the page behind it must not scroll (it would move
+// underneath, show its scrollbar next to the menu and shrink the navbar logo).
+// Desktop: ScrollSmoother drives the page, so pause it and hide the page
+// scrollbar, keeping its gutter so nothing shifts sideways.
+// Phones (no smoother): the usual body lock: fix the body at its current
+// offset and restore the scroll position on close; overflow alone does not
+// stop touch scrolling on iOS.
+let lockedY = 0
 const lockPage = (lock) => {
-  const smoother = typeof ScrollSmoother !== 'undefined' && ScrollSmoother.get()
-  smoother?.paused(lock)
   const html = document.documentElement
-  html.style.overflow = lock ? 'hidden' : ''
-  html.style.scrollbarGutter = lock ? 'stable' : ''
+  const body = document.body
+  const smoother = typeof ScrollSmoother !== 'undefined' && ScrollSmoother.get()
+  if (smoother) {
+    smoother.paused(lock)
+    html.style.overflow = lock ? 'hidden' : ''
+    html.style.scrollbarGutter = lock ? 'stable' : ''
+    return
+  }
+  if (lock) {
+    lockedY = window.scrollY
+    Object.assign(body.style, { position: 'fixed', top: `-${lockedY}px`, left: '0', right: '0', width: '100%' })
+  } else if (body.style.position === 'fixed') {
+    Object.assign(body.style, { position: '', top: '', left: '', right: '', width: '' })
+    window.scrollTo(0, lockedY)
+  }
 }
 
 onMounted(() => {
@@ -231,18 +245,52 @@ const handleMouseLeave = (event) => {
 .hamenu {
   display: flex;
   flex-direction: column;
-  /* Scrolling inside the menu (small phones) must not reach the page. */
+  /* Scrolling inside the menu (only when its content is taller than the
+     screen) must not reach the page. */
   overscroll-behavior: contain;
+  /* Slide down with a transform instead of animating `top` (which the theme
+     and navbar did): no layout on every frame, so the opening is smooth.
+     The navbar's inline `top` is overridden; the "open" class drives it. */
+  top: 0 !important;
+  transform: translate3d(0, -100%, 0);
+  visibility: hidden;
+  transition: transform 0.5s cubic-bezier(1, 0, 0.55, 1), visibility 0s linear 0.5s !important;
 }
 
-/* Desktop windows tall enough for the whole menu: no scrolling inside it.
-   The theme's decorative vertical line (200vh tall) otherwise made it
-   scrollable, because globals.css allows menu scrolling for small phones.
-   Shorter windows keep scrolling so nothing gets cut off. */
-@media (min-width: 992px) and (min-height: 720px) {
-  .hamenu {
-    overflow: hidden !important;
-  }
+.hamenu.open {
+  transform: none;
+  visibility: visible;
+  transition: transform 0.5s cubic-bezier(1, 0, 0.55, 1), visibility 0s !important;
+}
+
+/* The theme's vertical divider is 200vh tall and made the menu scrollable
+   into empty space. Drawn instead on the info column, from the very top to
+   the very bottom of the menu (menu padding 120/30 + container padding
+   100/32), so it never reaches past the screen. */
+.hamenu .cont-info::after {
+  display: none !important;
+}
+
+.menu-info-col {
+  position: relative;
+}
+
+.menu-info-col::before {
+  content: '';
+  position: absolute;
+  left: -15px;
+  top: -220px;
+  bottom: -62px;
+  width: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  transform: scaleY(0);
+  transform-origin: top;
+  transition: transform 1s ease;
+}
+
+.hamenu.open .menu-info-col::before {
+  transform: scaleY(1);
+  transition-delay: 1s;
 }
 
 /* Fill the menu exactly (h-100 plus the menu's own padding made it 96px
@@ -257,7 +305,19 @@ const handleMouseLeave = (event) => {
   padding-bottom: 32px;
 }
 
-/* Background photo: fades in after the menu has slid down, then drifts. */
+/* Low desktop windows (e.g. a laptop with the browser toolbar): less space
+   above the links so the menu still fits without scrolling. */
+@media (min-width: 992px) and (max-height: 760px) {
+  .hamenu .container {
+    padding-top: 20px;
+  }
+
+  .menu-info-col::before {
+    top: -140px;
+  }
+}
+
+/* Background photo: fades in after the menu has slid down. */
 .hamenu-photo {
   position: absolute;
   inset: 0;
@@ -272,13 +332,11 @@ const handleMouseLeave = (event) => {
   object-fit: cover;
   filter: var(--pc-film-filter);
   opacity: 0;
-  transform: scale(1.08);
-  transition: opacity 1.2s ease 0.5s, transform 8s ease-out 0.5s;
+  transition: opacity 1.2s ease 0.5s;
 }
 
 .hamenu.open .hamenu-photo img {
   opacity: 0.4;
-  transform: scale(1);
 }
 
 /* Darker on the left, where the links are. */
@@ -296,7 +354,6 @@ const handleMouseLeave = (event) => {
 
 @media (prefers-reduced-motion: reduce) {
   .hamenu-photo img {
-    transform: none;
     transition: opacity 0.6s ease 0.3s;
   }
 }
