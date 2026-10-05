@@ -2,7 +2,7 @@
   <!-- A quiet background photo for a page header: dimmed, film-graded, fading
        into the page at the bottom, drifting slightly as the header scrolls away.
        Place it as the first child of a header that has class "pc-photo-header". -->
-  <div ref="wrap" class="pc-header-photo" aria-hidden="true">
+  <div ref="wrap" class="pc-header-photo" :style="shift ? { '--shift': shift } : null" aria-hidden="true">
     <img
       ref="img"
       :src="image.src"
@@ -21,7 +21,10 @@ import { ref } from 'vue'
 import { useScrollFx } from '@/composables/useScrollFx'
 
 defineProps({
-  image: { type: Object, required: true }
+  image: { type: Object, required: true },
+  // Desktop only: widen the photo and move it left by this much (e.g. '16%')
+  // to take a subject out from behind the centred title.
+  shift: { type: String, default: '' }
 })
 
 const wrap = ref(null)
@@ -61,6 +64,13 @@ useScrollFx(() => {
   object-fit: cover;
   filter: var(--pc-film-filter);
   will-change: transform;
+}
+
+@media (min-width: 992px) {
+  .pc-header-photo img {
+    left: calc(-1 * var(--shift, 0%));
+    width: calc(100% + var(--shift, 0%));
+  }
 }
 
 /* Darker at the top for the navigation and open in the middle; the mask

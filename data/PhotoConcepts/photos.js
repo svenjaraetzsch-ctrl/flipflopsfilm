@@ -24,6 +24,8 @@ export const photos = {
   cofete: img('Fuerteventura', 'cofete', 1800, 1200, 'Long empty beach below a mountain ridge, waves rolling in'),
   reflection: img('Fuerteventura', 'reflection', 1800, 1206, 'Red mountains mirrored on wet sand at sunset'),
   desertRoad: img('Fuerteventura', 'desert-road', 1800, 1200, 'Woman sitting on a car bonnet on a straight desert road'),
+  ridge: img('Fuerteventura', 'ridge', 1800, 1206, 'Mountain ridge in warm side light under a band of cloud'),
+  sunsetWalk: img('Fuerteventura', 'sunset-walk', 1800, 1206, 'A person and a dog walking along the shore at sunset'),
 
   serpentine: img('Gran Canaria', 'serpentine', 1800, 1199, 'Aerial view of a hairpin road on a dry mountainside'),
   canyon: img('Gran Canaria', 'canyon', 1800, 1200, 'Walls of a narrow canyon with red and ochre stripes'),
