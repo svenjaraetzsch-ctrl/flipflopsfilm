@@ -15,7 +15,9 @@
           <CrewOperationsAccordion />
           <!--<TaxIncentivesBottomImage />-->
         </div>
-        <CrewOperationsNextProject />
+        <PhotoConceptsBackdrop :image="photos.teideCaldera">
+          <CrewOperationsNextProject />
+        </PhotoConceptsBackdrop>
       </main>
       <CommonFooter1 />
     </div>
@@ -23,6 +25,8 @@
 </template>
 
 <script setup>
+import { photos } from '@/data/PhotoConcepts/photos'
+
 //= Page Meta
 definePageMeta({
   layout: "preview",

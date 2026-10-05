@@ -14,7 +14,7 @@
           <CreativeAgencyTestimonials />
           <PhotoConceptsHomeServices />
         </div>
-        <PhotoConceptsContact />
+        <PhotoConceptsContact :image="photos.reflection" />
       </main>
       <CommonFooter1 />
     </div>
@@ -22,6 +22,8 @@
 </template>
 
 <script setup>
+import { photos } from '@/data/PhotoConcepts/photos'
+
 usePageSeo('home')
 
 useHead({

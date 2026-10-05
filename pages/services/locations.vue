@@ -11,7 +11,7 @@
                 <LocationsTopContent></LocationsTopContent>
                 <LocationsGrid></LocationsGrid>
             </div>
-            <PhotoConceptsContact />
+            <PhotoConceptsContact :image="photos.seaStacks" />
         </main>
       
         <CommonFooter1 />
@@ -20,6 +20,8 @@
 </template>
 
 <script setup>
+import { photos } from '@/data/PhotoConcepts/photos'
+
 //= Page Metadata
 definePageMeta({
   layout: "preview",

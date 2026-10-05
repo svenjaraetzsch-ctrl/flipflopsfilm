@@ -13,7 +13,7 @@
           
         </div>
 
-        <PhotoConceptsContact />
+        <PhotoConceptsContact :image="photos.sunsetShore" />
       </main>
 
       <CommonFooter1 />
@@ -22,6 +22,8 @@
 </template>
 
 <script setup>
+import { photos } from '@/data/PhotoConcepts/photos'
+
 usePageSeo('services')
 
 useHead({

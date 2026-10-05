@@ -30,6 +30,8 @@ export const photos = {
   serpentine: img('Gran Canaria', 'serpentine', 1800, 1199, 'Aerial view of a hairpin road on a dry mountainside'),
   canyon: img('Gran Canaria', 'canyon', 1800, 1200, 'Walls of a narrow canyon with red and ochre stripes'),
   roqueNublo: img('Gran Canaria', 'roque-nublo', 1214, 1800, 'Rock pinnacle on a mountain ridge at golden hour'),
+  seaStacks: img('Gran Canaria', 'sea-stacks', 1800, 1200, 'A woman on a cliff edge looking out at sea stacks'),
+  cliffCoast: img('Gran Canaria', 'cliff-coast', 1800, 1200, 'Warm-lit cliffs along a calm coastline'),
 
   agando: img('La Gomera', 'agando', 1800, 1200, 'Volcanic rock spire above a winding mountain road'),
   laurelForest: img('La Gomera', 'laurel-forest', 1800, 1200, 'Dense green laurel forest with ferns'),
@@ -42,9 +44,11 @@ export const photos = {
   famara: img('Lanzarote', 'famara', 1800, 1199, 'Road along the foot of high cliffs above a long beach'),
   laGeria: img('Lanzarote', 'la-geria', 1800, 1199, 'Vines in black volcanic pits behind low stone walls'),
   palm: img('Lanzarote', 'palm', 1800, 1800, 'A single palm tree on a wide volcanic plain'),
+  sunsetShore: img('Lanzarote', 'sunset-shore', 1800, 1200, 'Waves running up a beach at sunset'),
 
   seaOfClouds: img('Tenerife', 'sea-of-clouds', 1800, 1208, 'Pine-covered ridges rising out of a sea of clouds'),
   sunsetPeaks: img('Tenerife', 'sunset-peaks', 1800, 1206, 'Two peaks and a village above the clouds at dusk'),
+  teideCaldera: img('Tenerife', 'teide-caldera', 1800, 1208, 'Wide volcanic plain below the rim of the Teide caldera'),
   pineRoad: img('Tenerife', 'pine-road', 1800, 1208, 'Empty road curving through a tall pine forest')
 }
 

@@ -15,7 +15,9 @@
           <TaxIncentivesBottomContent />
           <!--<TaxIncentivesBottomImage />-->
         </div>
-        <TaxIncentivesNextProject />
+        <PhotoConceptsBackdrop :image="photos.cliffCoast">
+          <TaxIncentivesNextProject />
+        </PhotoConceptsBackdrop>
       </main>
       <CommonFooter1 />
     </div>
@@ -23,6 +25,8 @@
 </template>
 
 <script setup>
+import { photos } from '@/data/PhotoConcepts/photos'
+
 //= Page Meta
 definePageMeta({
   layout: "preview",
