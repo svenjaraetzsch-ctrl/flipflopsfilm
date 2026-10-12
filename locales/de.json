@@ -162,6 +162,11 @@
     "h5": "Weniger Ortswechsel, mehr visuelle Vielfalt und mehr Zeit, wo es am meisten zählt: am Set.",
     "p": "Innerhalb weniger Stunden wandeln sich die Landschaften von mondvulkanischem Terrain und windgepeitschten Küsten zu dichten Wäldern, Wüstenstraßen und zeitlosen Dörfern. Drehorte, die normalerweise mehrere Länder erfordern würden, lassen sich oft innerhalb einer einzigen Region finden."
   },
+  "compare": {
+    "original": "Original",
+    "cinematic": "Cinematic Look",
+    "label": "Original mit dem Cinematic Look vergleichen"
+  },
   "services": {
     "header": "Produktionsleistungen",
     "header_p": "Der Erfolg einer Produktion wird oft lange vor dem Start der Kameras definiert. Durch sorgfältige Vorbereitung, lokales Know-how und jahrelange praktische Erfahrung helfen wir, die Bedingungen zu schaffen, die es Produktionen ermöglichen, sich auf das Wesentliche zu konzentrieren.",

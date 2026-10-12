@@ -1,20 +1,7 @@
 <template>
   <div ref="wrap" class="pc-bleed">
     <div ref="frame" class="pc-bleed__frame">
-      <video
-        v-if="video"
-        ref="img"
-        class="pc-bleed__img"
-        autoplay
-        muted
-        loop
-        playsinline
-        preload="auto"
-      >
-        <source :src="video" type="video/mp4" />
-      </video>
       <img
-        v-else
         ref="img"
         class="pc-bleed__img"
         :src="image.src"
@@ -27,7 +14,7 @@
         decoding="async"
       />
     </div>
-    <div v-if="image" class="pc-bleed__caption container">
+    <div class="pc-bleed__caption container">
       <span v-if="caption">{{ caption }}</span>
       <span class="pc-bleed__credit">Photo · Daniel Bonhoff</span>
     </div>
@@ -38,15 +25,9 @@
 import { ref } from 'vue'
 import { useScrollFx } from '@/composables/useScrollFx'
 
-const props = defineProps({
-  // Pass either a photo from data/PhotoConcepts/photos.js or a video URL.
-  image: { type: Object, default: null },
-  video: { type: String, default: '' },
-  caption: { type: String, default: '' },
-  // For a frame that is already on screen when the page loads (the hero):
-  // run the effect from the very top of the page instead of from when the
-  // frame enters the viewport, so it starts fully framed.
-  atTop: { type: Boolean, default: false }
+defineProps({
+  image: { type: Object, required: true },
+  caption: { type: String, default: '' }
 })
 
 const wrap = ref(null)
@@ -54,23 +35,22 @@ const frame = ref(null)
 const img = ref(null)
 
 useScrollFx(() => {
-  const start = props.atTop ? 0 : 'top bottom'
   // The frame opens from an inset window to full screen as it scrolls in…
   gsap.fromTo(frame.value,
     { clipPath: 'inset(14% 10% 14% 10%)' },
     {
       clipPath: 'inset(0% 0% 0% 0%)',
       ease: 'none',
-      scrollTrigger: { trigger: wrap.value, start, end: 'top top', scrub: true }
+      scrollTrigger: { trigger: wrap.value, start: 'top bottom', end: 'top top', scrub: true }
     }
   )
-  // …while the picture settles out of a slow zoom over the whole pass.
+  // …while the photo settles out of a slow zoom over the whole pass.
   gsap.fromTo(img.value,
     { scale: 1.25 },
     {
       scale: 1,
       ease: 'none',
-      scrollTrigger: { trigger: wrap.value, start, end: 'bottom top', scrub: true }
+      scrollTrigger: { trigger: wrap.value, start: 'top bottom', end: 'bottom top', scrub: true }
     }
   )
 })
