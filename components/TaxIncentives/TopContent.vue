@@ -18,13 +18,15 @@
           <div class="col-md-6 col-lg-3">
             <div class="item mb-30">
               <span class="opacity-8 mb-5">{{ $t('tax.min_spend_label') }}</span>
-              <h6>{{ $t('tax.min_spend_value') }}</h6>
+              <h6>{{ $t('tax.min_spend_live') }}</h6>
+              <h6>{{ $t('tax.min_spend_animation') }}</h6>
             </div>
           </div>
           <div class="col-md-6 col-lg-3">
             <div class="item">
               <span class="opacity-8 mb-5">{{ $t('tax.max_rebate_label') }}</span>
-              <h6>{{ $t('tax.max_rebate_value') }}</h6>
+              <h6>{{ $t('tax.max_rebate_film') }}</h6>
+              <h6>{{ $t('tax.max_rebate_series') }}</h6>
             </div>
           </div>
         </div>
@@ -52,3 +54,10 @@
 <script setup>
 import { photos } from '@/data/PhotoConcepts/photos'
 </script>
+
+<style scoped>
+/* Minimum spend and maximum rebate list two figures each, one under the other */
+.info .item h6 + h6 {
+  margin-top: 10px;
+}
+</style>
