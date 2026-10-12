@@ -48,9 +48,7 @@ export default defineNuxtConfig({
     // not an empty <div>. crawlLinks follows internal links to discover routes.
     prerender: {
       crawlLinks: true,
-      // /photo-concepts is a client proposal that nothing links to, so the
-      // crawler can't find it on its own.
-      routes: ['/', '/photo-concepts', '/de/photo-concepts', '/es/photo-concepts'],
+      routes: ['/'],
       // Don't abort the whole build on a single dead link (the theme demo data
       // still references non-existent pages, e.g. /creative-portfolio). Broken
       // links are logged. TODO: set back to true once demo pages/data are pruned.
