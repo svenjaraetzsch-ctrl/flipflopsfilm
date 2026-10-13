@@ -162,6 +162,11 @@
     "h5": "Fewer company moves, greater visual variety and more time where it matters most: on set.",
     "p": "Within a few hours, landscapes shift from lunar volcanic terrain and windswept coastlines to dense forests, desert roads and timeless villages. Locations that would normally require multiple countries can often be found within a single region."
   },
+  "compare": {
+    "original": "Original",
+    "cinematic": "Cinematic look",
+    "label": "Compare the original with the cinematic look"
+  },
   "services": {
     "header": "Production Services",
     "header_p": "The success of a production is often defined long before the cameras start rolling. Through careful preparation, local insight and years of hands-on experience, we help create the conditions that allow productions to focus on what matters most.",
