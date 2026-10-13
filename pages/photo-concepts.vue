@@ -104,42 +104,6 @@ useHead({
 </script>
 
 <style>
-/* Shared "film" look (concepts 06 and 07): softer contrast, warmer and less
-   saturated, a vignette and moving grain from the theme's own noise texture. */
-.pc-filmic {
-  position: relative;
-  overflow: hidden;
-  height: 100%;
-}
-
-.pc-filmic img {
-  filter: var(--pc-film-filter);
-}
-
-.pc-filmic::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  background:
-    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 50%, rgba(30, 20, 12, 0.5) 100%),
-    rgba(215, 170, 115, 0.16);
-  mix-blend-mode: multiply;
-}
-
-.pc-filmic::after {
-  content: '';
-  position: absolute;
-  inset: -100%;
-  z-index: 2;
-  pointer-events: none;
-  background-image: url(/assets/imgs/noise.png);
-  opacity: 0.35;
-  mix-blend-mode: overlay;
-  animation: grain 8s steps(10) infinite;
-}
-
 .pc-again {
   margin-top: 160px;
 }
