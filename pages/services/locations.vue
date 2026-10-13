@@ -9,7 +9,7 @@
                 
                 <LocationsHeader />
                 <LocationsTopContent></LocationsTopContent>
-                <LocationsGrid></LocationsGrid>
+                <LocationsGallery />
             </div>
             <PhotoConceptsContact :image="photos.seaStacks" />
         </main>

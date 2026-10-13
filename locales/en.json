@@ -162,7 +162,143 @@
     "header": "Locations",
     "label": "Endless Visual Possibilities",
     "h5": "Fewer company moves, greater visual variety and more time where it matters most: on set.",
-    "p": "Within a few hours, landscapes shift from lunar volcanic terrain and windswept coastlines to dense forests, desert roads and timeless villages. Locations that would normally require multiple countries can often be found within a single region."
+    "p": "Within a few hours, landscapes shift from lunar volcanic terrain and windswept coastlines to dense forests, desert roads and timeless villages. Locations that would normally require multiple countries can often be found within a single region.",
+    "gallery": {
+      "islands": "Islands",
+      "themes": "Themes",
+      "region": "Locations Gallery: map of the Canary Islands with {count} photos",
+      "tax_label": "Tax rebate",
+      "tax_value": "Up to 54%",
+      "season_label": "Filming season",
+      "season_value": "Year-round",
+      "photos": "{count} photos",
+      "filmed": "Filmed here",
+      "found_on": "Found on",
+      "airport": "Airport",
+      "highest": "Highest point",
+      "area": "Area",
+      "back": "Back to map",
+      "prev_island": "Previous island",
+      "next_island": "Next island",
+      "prev_theme": "Previous theme",
+      "next_theme": "Next theme",
+      "other_islands": "Other islands",
+      "other_themes": "Other themes",
+      "open": "{name}, {count} photos. Open",
+      "open_island": "Open {name}",
+      "photos_of": "Photos of {name}",
+      "photo_of": "{name}, photo {n} of {total}",
+      "prev_photo": "Previous photo",
+      "next_photo": "Next photo",
+      "close": "Close",
+      "north": "N",
+      "west": "W",
+      "title_light": "Canary",
+      "title_bold": "Islands",
+      "hint_mouse": "Click an island or a theme to open it",
+      "hint_touch": "Tap an island or a theme to open it",
+      "island_no": "Island {n} / {total}",
+      "theme_no": "Theme {n} / {total}"
+    },
+    "islands": {
+      "elHierro": {
+        "name": "El Hierro",
+        "intro": "The smallest, most remote island: black lava coasts, wind-bent juniper forests and quiet roads.",
+        "highlights": [
+          "UNESCO Biosphere Reserve and Geopark",
+          "Natural sea pools, lava arches and steep cliffs",
+          "Setting of the crime series Hierro"
+        ]
+      },
+      "laPalma": {
+        "name": "La Palma",
+        "intro": "The green island: laurel forests, waterfalls and the deep Caldera de Taburiente, plus fresh lava fields from the 2021 eruption.",
+        "highlights": [
+          "Caldera de Taburiente National Park",
+          "Lava fields from the 2021 eruption",
+          "Starlight Reserve with clear night skies"
+        ]
+      },
+      "laGomera": {
+        "name": "La Gomera",
+        "intro": "Deep ravines, terraced valleys and rock spires, crowned by the misty laurel forest of Garajonay.",
+        "highlights": [
+          "Garajonay National Park, UNESCO World Heritage",
+          "Valle Gran Rey: a terraced palm valley down to the sea",
+          "Home of Silbo, the whistled language of The Whistlers"
+        ]
+      },
+      "tenerife": {
+        "name": "Tenerife",
+        "intro": "The largest island and the archipelago's production hub: Spain's highest peak, lunar plains, pine forests and a modern capital.",
+        "highlights": [
+          "Teide National Park: lunar landscapes above 2,000 m",
+          "In winter, snow, a sea of clouds and the beach on one day",
+          "Santa Cruz played Athens in Jason Bourne"
+        ]
+      },
+      "granCanaria": {
+        "name": "Gran Canaria",
+        "intro": "A continent in miniature: deep canyons, mountain villages, dunes, a colonial old town and a big port city.",
+        "highlights": [
+          "Roque Nublo and the canyons of the interior",
+          "Las Palmas played Casablanca in Allied",
+          "Hairpin mountain roads made for car shoots"
+        ]
+      },
+      "fuerteventura": {
+        "name": "Fuerteventura",
+        "intro": "Endless beaches and bare desert mountains: the archipelago's Sahara, with wide horizons and few people.",
+        "highlights": [
+          "The Corralejo dunes and the long beach of Cofete",
+          "Ancient Egypt in Exodus, the Sahara in Allied",
+          "An alien planet in Solo: A Star Wars Story"
+        ]
+      },
+      "lanzarote": {
+        "name": "Lanzarote",
+        "intro": "Shaped by eruptions and by César Manrique: lava seas, craters, black vineyards and wild surf beaches.",
+        "highlights": [
+          "Timanfaya National Park: fire mountains and lava seas",
+          "La Geria: vines in black volcanic ash",
+          "Prehistoric earth in One Million Years B.C."
+        ]
+      }
+    },
+    "themes": {
+      "volcanic": {
+        "name": "Volcanic",
+        "intro": "Lava fields, craters and lunar plains, from Teide to Timanfaya."
+      },
+      "desert": {
+        "name": "Desert & dunes",
+        "intro": "Dunes, stony plains and bare ridges that read as the Sahara or the Middle East."
+      },
+      "forest": {
+        "name": "Forest & water",
+        "intro": "Laurel and pine forests, ferns, waterfalls and mountain lakes: green worlds far from the beach image."
+      },
+      "mountains": {
+        "name": "Mountains & valleys",
+        "intro": "Canyons, rock spires, high ridges and green valleys with meadows."
+      },
+      "coast": {
+        "name": "Coast",
+        "intro": "Long beaches, surf, sea stacks, cliffs and natural pools: the Atlantic in every mood."
+      },
+      "roads": {
+        "name": "Roads",
+        "intro": "Hairpin passes, forest roads, desert straights and coastal routes, made for car shoots."
+      },
+      "towns": {
+        "name": "Towns & villages",
+        "intro": "White villages, colonial old towns, harbours and modern city streets."
+      },
+      "abandoned": {
+        "name": "Lost places",
+        "intro": "Abandoned churches, ghost villages and military relics with a raw character."
+      }
+    }
   },
   "compare": {
     "original": "Original",

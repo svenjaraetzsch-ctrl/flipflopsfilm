@@ -162,7 +162,143 @@
     "header": "Locations",
     "label": "Endlose visuelle Möglichkeiten",
     "h5": "Weniger Ortswechsel, mehr visuelle Vielfalt und mehr Zeit, wo es am meisten zählt: am Set.",
-    "p": "Innerhalb weniger Stunden wandeln sich die Landschaften von mondvulkanischem Terrain und windgepeitschten Küsten zu dichten Wäldern, Wüstenstraßen und zeitlosen Dörfern. Drehorte, die normalerweise mehrere Länder erfordern würden, lassen sich oft innerhalb einer einzigen Region finden."
+    "p": "Innerhalb weniger Stunden wandeln sich die Landschaften von mondvulkanischem Terrain und windgepeitschten Küsten zu dichten Wäldern, Wüstenstraßen und zeitlosen Dörfern. Drehorte, die normalerweise mehrere Länder erfordern würden, lassen sich oft innerhalb einer einzigen Region finden.",
+    "gallery": {
+      "islands": "Inseln",
+      "themes": "Themen",
+      "region": "Locations Gallery: Karte der Kanarischen Inseln mit {count} Fotos",
+      "tax_label": "Steuerrückerstattung",
+      "tax_value": "Bis zu 54%",
+      "season_label": "Drehsaison",
+      "season_value": "Ganzjährig",
+      "photos": "{count} Fotos",
+      "filmed": "Hier gedreht",
+      "found_on": "Zu finden auf",
+      "airport": "Flughafen",
+      "highest": "Höchster Punkt",
+      "area": "Fläche",
+      "back": "Zurück zur Karte",
+      "prev_island": "Vorherige Insel",
+      "next_island": "Nächste Insel",
+      "prev_theme": "Vorheriges Thema",
+      "next_theme": "Nächstes Thema",
+      "other_islands": "Weitere Inseln",
+      "other_themes": "Weitere Themen",
+      "open": "{name}, {count} Fotos. Öffnen",
+      "open_island": "{name} öffnen",
+      "photos_of": "Fotos von {name}",
+      "photo_of": "{name}, Foto {n} von {total}",
+      "prev_photo": "Vorheriges Foto",
+      "next_photo": "Nächstes Foto",
+      "close": "Schließen",
+      "north": "N",
+      "west": "W",
+      "title_light": "Kanarische",
+      "title_bold": "Inseln",
+      "hint_mouse": "Eine Insel oder ein Thema anklicken, um es zu öffnen",
+      "hint_touch": "Eine Insel oder ein Thema antippen, um es zu öffnen",
+      "island_no": "Insel {n} / {total}",
+      "theme_no": "Thema {n} / {total}"
+    },
+    "islands": {
+      "elHierro": {
+        "name": "El Hierro",
+        "intro": "Die kleinste und abgelegenste Insel: schwarze Lavaküsten, windgebeugte Wacholderwälder und ruhige Straßen.",
+        "highlights": [
+          "UNESCO-Biosphärenreservat und Geopark",
+          "Naturbecken, Lavabögen und steile Klippen",
+          "Schauplatz der Krimiserie Hierro"
+        ]
+      },
+      "laPalma": {
+        "name": "La Palma",
+        "intro": "Die grüne Insel: Lorbeerwälder, Wasserfälle und die tiefe Caldera de Taburiente, dazu frische Lavafelder vom Ausbruch 2021.",
+        "highlights": [
+          "Nationalpark Caldera de Taburiente",
+          "Lavafelder vom Vulkanausbruch 2021",
+          "Starlight-Reservat mit klarem Nachthimmel"
+        ]
+      },
+      "laGomera": {
+        "name": "La Gomera",
+        "intro": "Tiefe Schluchten, Terrassentäler und Felsnadeln, gekrönt vom nebligen Lorbeerwald von Garajonay.",
+        "highlights": [
+          "Nationalpark Garajonay, UNESCO-Welterbe",
+          "Valle Gran Rey: ein Palmental in Terrassen bis zum Meer",
+          "Heimat des Silbo, der Pfeifsprache aus The Whistlers"
+        ]
+      },
+      "tenerife": {
+        "name": "Teneriffa",
+        "intro": "Die größte Insel und das Produktionszentrum der Kanaren: Spaniens höchster Gipfel, Mondlandschaften, Kiefernwälder und eine moderne Hauptstadt.",
+        "highlights": [
+          "Teide-Nationalpark: Mondlandschaften über 2.000 m",
+          "Im Winter Schnee, Wolkenmeer und Strand an einem Tag",
+          "Santa Cruz spielte Athen in Jason Bourne"
+        ]
+      },
+      "granCanaria": {
+        "name": "Gran Canaria",
+        "intro": "Ein Kontinent im Kleinen: tiefe Schluchten, Bergdörfer, Dünen, eine koloniale Altstadt und eine große Hafenstadt.",
+        "highlights": [
+          "Roque Nublo und die Schluchten im Inselinneren",
+          "Las Palmas spielte Casablanca in Allied – Vertraute Feinde",
+          "Serpentinen wie gemacht für Autodrehs"
+        ]
+      },
+      "fuerteventura": {
+        "name": "Fuerteventura",
+        "intro": "Endlose Strände und kahle Wüstenberge: die Sahara der Kanaren, mit weitem Horizont und wenig Menschen.",
+        "highlights": [
+          "Die Dünen von Corralejo und der lange Strand von Cofete",
+          "Das alte Ägypten in Exodus: Götter und Könige, die Sahara in Allied",
+          "Ein fremder Planet in Solo: A Star Wars Story"
+        ]
+      },
+      "lanzarote": {
+        "name": "Lanzarote",
+        "intro": "Geformt von Vulkanausbrüchen und von César Manrique: Lavameere, Krater, schwarze Weinberge und wilde Surfstrände.",
+        "highlights": [
+          "Nationalpark Timanfaya: Feuerberge und Lavameere",
+          "La Geria: Reben in schwarzer Vulkanasche",
+          "Urzeit in Eine Million Jahre vor unserer Zeit"
+        ]
+      }
+    },
+    "themes": {
+      "volcanic": {
+        "name": "Vulkanlandschaften",
+        "intro": "Lavafelder, Krater und Mondlandschaften, vom Teide bis Timanfaya."
+      },
+      "desert": {
+        "name": "Wüste & Dünen",
+        "intro": "Dünen, Steinebenen und kahle Bergrücken, die als Sahara oder Naher Osten funktionieren."
+      },
+      "forest": {
+        "name": "Wald & Wasser",
+        "intro": "Lorbeer- und Kiefernwälder, Farne, Wasserfälle und Bergseen: grüne Welten weit weg vom Strandklischee."
+      },
+      "mountains": {
+        "name": "Berge & Täler",
+        "intro": "Schluchten, Felsnadeln, hohe Grate und grüne Täler mit Wiesen."
+      },
+      "coast": {
+        "name": "Küste",
+        "intro": "Lange Strände, Brandung, Felstürme, Klippen und Naturbecken: der Atlantik in jeder Stimmung."
+      },
+      "roads": {
+        "name": "Straßen",
+        "intro": "Serpentinen, Waldstraßen, Wüstengeraden und Küstenstraßen, wie gemacht für Autodrehs."
+      },
+      "towns": {
+        "name": "Orte & Städte",
+        "intro": "Weiße Dörfer, koloniale Altstädte, Häfen und moderne Stadtstraßen."
+      },
+      "abandoned": {
+        "name": "Lost Places",
+        "intro": "Verlassene Kirchen, Geisterdörfer und militärische Relikte mit rauem Charakter."
+      }
+    }
   },
   "compare": {
     "original": "Original",
