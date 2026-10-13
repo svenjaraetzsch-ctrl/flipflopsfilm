@@ -6,7 +6,7 @@
     "locations": "Localizaciones",
     "about": "Nosotros",
     "crew_operations": "Equipo & Producción",
-    "faqs": "FAQ''s"
+    "faqs": "FAQ's"
   },
   "menu": {
     "our_offices": "Nuestras Oficinas",
@@ -164,11 +164,6 @@
     "h5": "Menos desplazamientos, mayor variedad visual y más tiempo donde más importa: en el set.",
     "p": "En pocas horas, los paisajes pasan de terrenos volcánicos lunares y costas azotadas por el viento a densos bosques, carreteras desérticas y pueblos atemporales. Las localizaciones que normalmente requerirían varios países a menudo se pueden encontrar dentro de una sola región."
   },
-  "compare": {
-    "original": "Original",
-    "cinematic": "Look cinematográfico",
-    "label": "Comparar el original con el look cinematográfico"
-  },
   "services": {
     "header": "Servicios de Producción",
     "header_p": "El éxito de una producción se define a menudo mucho antes de que las cámaras comiencen a rodar. A través de una preparación cuidadosa, conocimiento local y años de experiencia práctica, ayudamos a crear las condiciones que permiten a las producciones centrarse en lo que más importa.",
@@ -180,7 +175,7 @@
     "single_p": "Cada proyecto depende de la preparación, la coordinación y las personas adecuadas en el lugar correcto. Nuestros servicios están diseñados para apoyar las producciones en cada etapa del proceso."
   },
   "faqs": {
-    "label": "FAQ''s",
+    "label": "FAQ's",
     "items": [
       {
         "id": 1,

@@ -48,8 +48,6 @@ import data from '@/data/Locations/grid.json';
   height: 100%;
   object-fit: cover;
   display: block;
-  /* Film look, so these photos sit in the same family as Daniel Bonhoff's. */
-  filter: var(--pc-film-filter);
 }
 
 /* Nummer */

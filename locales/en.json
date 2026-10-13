@@ -6,7 +6,7 @@
     "locations": "Locations",
     "about": "About",
     "crew_operations": "Crew & Operations",
-    "faqs": "FAQ''s"
+    "faqs": "FAQ's"
   },
   "menu": {
     "our_offices": "Our Offices",
@@ -43,7 +43,7 @@
     {
       "id": 1,
       "title": "Leading Tax Incentives",
-      "content": "Benefit from some of Europe''s most competitive film incentives and maximise your production budget through strategic planning and local expertise."
+      "content": "Benefit from some of Europe's most competitive film incentives and maximise your production budget through strategic planning and local expertise."
     },
     {
       "id": 2,
@@ -75,7 +75,7 @@
     {
       "id": 3,
       "title": "One Team",
-      "content": "We don''t see a distinction between local and international teams. Every project works best when communication is clear, responsibilities are shared and everyone moves towards the same goal."
+      "content": "We don't see a distinction between local and international teams. Every project works best when communication is clear, responsibilities are shared and everyone moves towards the same goal."
     },
     {
       "id": 4,
@@ -87,7 +87,7 @@
     "header_tagline": "At the heart of Flip Flops Film are the people, partnerships and shared values that have shaped the company from the very beginning.",
     "company_label": "WHO WE ARE",
     "company_heading": "BUILT ON PRODUCTION EXPERTISE AND TRUSTED PARTNERSHIPS.",
-    "company_text": "Flip Flops Film was founded by David Turpin and André Dolezal, bringing together Spanish production management expertise and international line production experience. What started as a shared passion for filmmaking has grown into a trusted production partner, helping clients navigate Spain''s unique opportunities with practical knowledge, personal involvement and a commitment to getting things done right.",
+    "company_text": "Flip Flops Film was founded by David Turpin and André Dolezal, bringing together Spanish production management expertise and international line production experience. What started as a shared passion for filmmaking has grown into a trusted production partner, helping clients navigate Spain's unique opportunities with practical knowledge, personal involvement and a commitment to getting things done right.",
     "believe_label": "What we believe",
     "contact_label": "— Contact Us",
     "contact_heading": "Get In",
@@ -95,7 +95,7 @@
     "form_name": "Name",
     "form_email": "Email",
     "form_message": "Message",
-    "form_submit": "Let''s Talk",
+    "form_submit": "Let's Talk",
     "hero_title1": "FILM PRODUCTION",
     "hero_title2": "SERVICES",
     "services_label": "What we offer",
@@ -114,10 +114,10 @@
     "max_rebate_film": "Up to €36,000,000 for feature films",
     "max_rebate_series": "Up to €18,000,000 per episode for series",
     "opportunity_label": "The Opportunity",
-    "opportunity_h5": "Spain has become one of Europe''s leading destinations for international productions, offering a combination of financial incentives, diverse filming locations and highly experienced production professionals. Depending on the region and project structure, productions may qualify for substantial rebates on eligible local expenditure.",
+    "opportunity_h5": "Spain has become one of Europe's leading destinations for international productions, offering a combination of financial incentives, diverse filming locations and highly experienced production professionals. Depending on the region and project structure, productions may qualify for substantial rebates on eligible local expenditure.",
     "opportunity_p": "The Canary Islands currently offer some of the most competitive production incentives in Europe, while mainland Spain provides attractive rebate opportunities for feature films, television productions and international co-productions. Combined with established infrastructure and year-round filming conditions, Spain continues to attract productions from around the world.",
     "approach_label": "Our Approach",
-    "approach_p": "Every production is unique, and incentive eligibility depends on a range of creative, operational and financial factors. Our role is to help clients understand available opportunities, evaluate project requirements and develop a production strategy that makes the most of Spain''s incentive framework while ensuring a smooth production process.",
+    "approach_p": "Every production is unique, and incentive eligibility depends on a range of creative, operational and financial factors. Our role is to help clients understand available opportunities, evaluate project requirements and develop a production strategy that makes the most of Spain's incentive framework while ensuring a smooth production process.",
     "next_link": "About Flip Flops Film"
   },
   "crew": {
@@ -164,11 +164,6 @@
     "h5": "Fewer company moves, greater visual variety and more time where it matters most: on set.",
     "p": "Within a few hours, landscapes shift from lunar volcanic terrain and windswept coastlines to dense forests, desert roads and timeless villages. Locations that would normally require multiple countries can often be found within a single region."
   },
-  "compare": {
-    "original": "Original",
-    "cinematic": "Cinematic look",
-    "label": "Compare the original with the cinematic look"
-  },
   "services": {
     "header": "Production Services",
     "header_p": "The success of a production is often defined long before the cameras start rolling. Through careful preparation, local insight and years of hands-on experience, we help create the conditions that allow productions to focus on what matters most.",
@@ -180,12 +175,12 @@
     "single_p": "Every project relies on preparation, coordination and the right people in the right place. Our services are designed to support productions at every stage of the journey."
   },
   "faqs": {
-    "label": "FAQ''s",
+    "label": "FAQ's",
     "items": [
       {
         "id": 1,
         "title": "How can we get in touch?",
-        "content": "The easiest way is through our contact form or by email. We''d be happy to discuss your project, answer questions and explore how we can support your production in Spain or the Canary Islands."
+        "content": "The easiest way is through our contact form or by email. We'd be happy to discuss your project, answer questions and explore how we can support your production in Spain or the Canary Islands."
       },
       {
         "id": 2,
@@ -210,7 +205,7 @@
       {
         "id": 6,
         "title": "Can you support small productions as well as large shoots?",
-        "content": "Yes. Our services scale according to each project''s requirements, from lean commercial productions to large international film and television projects."
+        "content": "Yes. Our services scale according to each project's requirements, from lean commercial productions to large international film and television projects."
       },
       {
         "id": 7,
@@ -250,7 +245,7 @@
       {
         "id": 14,
         "title": "How important is local knowledge?",
-        "content": "Local expertise often reveals solutions, alternatives and opportunities that don''t appear in databases, location libraries or scouting decks."
+        "content": "Local expertise often reveals solutions, alternatives and opportunities that don't appear in databases, location libraries or scouting decks."
       },
       {
         "id": 15,
@@ -290,7 +285,7 @@
       {
         "id": 22,
         "title": "How do incentives influence location decisions?",
-        "content": "Incentives can be an important factor, but they work best when combined with locations, infrastructure and crews that support the project''s creative goals."
+        "content": "Incentives can be an important factor, but they work best when combined with locations, infrastructure and crews that support the project's creative goals."
       },
       {
         "id": 23,

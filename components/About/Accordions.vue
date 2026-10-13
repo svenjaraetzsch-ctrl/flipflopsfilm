@@ -4,14 +4,6 @@
       <div class="row">
         <div class="col-lg-6 d-flex align-items-center justify-content-center">
           <div class="exp valign text-center">
-            <!-- A photo inside the circle, quiet behind the number. -->
-            <img
-              class="exp-photo"
-              :src="photos.seaOfClouds.md"
-              alt=""
-              loading="lazy"
-              decoding="async"
-            />
             <div class="full-width">
               <h2>15+</h2>
               <h6 class="sub-title">{{ $t('common.years_in_production') }}</h6>
@@ -55,8 +47,6 @@
 
 <script setup>
 import { computed } from 'vue'
-import { photos } from '@/data/PhotoConcepts/photos'
-
 const { tm, rt } = useI18n()
 
 const whyItems = computed(() =>
@@ -80,32 +70,6 @@ function openAccordion(event) {
 </script>
 
 <style scoped>
-.exp {
-  position: relative;
-  overflow: hidden;
-}
-
-.exp-photo {
-  position: absolute;
-  inset: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: var(--pc-film-filter);
-  opacity: 0.35;
-  transform: scale(1.15);
-  transition: transform 6s ease-out, opacity 1s ease;
-}
-
-.exp:hover .exp-photo {
-  opacity: 0.5;
-  transform: scale(1);
-}
-
-.exp .full-width {
-  position: relative;
-}
-
 @media (max-width: 768px) {
   section {
     padding-top: 30px !important;

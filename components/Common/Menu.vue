@@ -1,18 +1,5 @@
 <template>
-  <div ref="menuEl" class="hamenu">
-    <!-- A dimmed photo behind the links, from a different island each time
-         the menu opens (concept 07). Chosen and loaded on the client only;
-         the 900px version is enough at 40% behind the links. -->
-    <div class="hamenu-photo" aria-hidden="true">
-      <img
-        v-if="photo"
-        :key="photo.src"
-        :src="photo.md"
-        alt=""
-        decoding="async"
-      />
-    </div>
-
+  <div class="hamenu">
     <div class="container h-100 d-flex flex-column">
       <div class="row flex-grow-1">
         <div class="col-lg-8 d-flex flex-column justify-content-center">
@@ -57,7 +44,7 @@
           </div>
         </div>
 
-        <div class="col-lg-4 d-none d-lg-flex align-items-center menu-info-col">
+        <div class="col-lg-4 d-none d-lg-flex align-items-center">
           <div class="cont-info">
             <div class="item mb-50">
               <h6 class="text-u fw-600 mb-20">{{ $t('menu.our_offices') }}</h6>
@@ -117,102 +104,8 @@
 </template>
 
 <script setup>
-import { ref, onMounted, onBeforeUnmount } from 'vue'
-import { menuPhotos } from '@/data/PhotoConcepts/photos'
-
 const localePath = useLocalePath()
 const route = useRoute()
-
-const menuEl = ref(null)
-const photo = ref(null)
-let shown = -1 // island last actually seen in the open menu
-let next = -1 // island loaded and waiting for the next open
-let observer = null
-let idle = null
-
-// Every navigation is a full page load, so the island last seen is kept
-// for the session; storage can be unavailable, so it is optional.
-const LAST_KEY = 'ff-menu-photo'
-const readLast = () => { try { return Number(sessionStorage.getItem(LAST_KEY) ?? -1) } catch { return -1 } }
-const saveLast = (i) => { try { sessionStorage.setItem(LAST_KEY, String(i)) } catch {} }
-
-// Load any island except the one seen last time.
-const pickNext = () => {
-  const n = menuPhotos.length
-  let i
-  if (!(shown >= 0 && shown < n)) {
-    i = Math.floor(Math.random() * n)
-  } else {
-    i = Math.floor(Math.random() * (n - 1))
-    if (i >= shown) i++
-  }
-  next = i
-  photo.value = menuPhotos[i]
-}
-
-const markShown = () => {
-  shown = next
-  saveLast(shown)
-}
-
-// While the menu is open the page behind it must not scroll (it would move
-// underneath, show its scrollbar next to the menu and shrink the navbar logo).
-// Desktop: ScrollSmoother drives the page, so pause it and hide the page
-// scrollbar, keeping its gutter so nothing shifts sideways.
-// Phones (no smoother): the usual body lock: fix the body at its current
-// offset and restore the scroll position on close; overflow alone does not
-// stop touch scrolling on iOS.
-let lockedY = 0
-const lockPage = (lock) => {
-  const html = document.documentElement
-  const body = document.body
-  const smoother = typeof ScrollSmoother !== 'undefined' && ScrollSmoother.get()
-  if (smoother) {
-    smoother.paused(lock)
-    html.style.overflow = lock ? 'hidden' : ''
-    html.style.scrollbarGutter = lock ? 'stable' : ''
-    return
-  }
-  if (lock) {
-    lockedY = window.scrollY
-    Object.assign(body.style, { position: 'fixed', top: `-${lockedY}px`, left: '0', right: '0', width: '100%' })
-  } else if (body.style.position === 'fixed') {
-    Object.assign(body.style, { position: '', top: '', left: '', right: '', width: '' })
-    window.scrollTo(0, lockedY)
-  }
-}
-
-onMounted(() => {
-  shown = readLast()
-  // Load the photo once the page itself has settled, not during page load.
-  const load = () => { if (!photo.value) pickNext() }
-  idle = window.requestIdleCallback ? window.requestIdleCallback(load, { timeout: 2500 }) : setTimeout(load, 1500)
-
-  // The navbar opens and closes the menu by toggling the "open" class.
-  // After each close, prepare the next island for the next open.
-  let wasOpen = false
-  observer = new MutationObserver(() => {
-    const open = menuEl.value.classList.contains('open')
-    if (open && !wasOpen) {
-      if (!photo.value) pickNext()
-      markShown()
-      lockPage(true)
-    }
-    if (wasOpen && !open) {
-      lockPage(false)
-      setTimeout(pickNext, 600)
-    }
-    wasOpen = open
-  })
-  observer.observe(menuEl.value, { attributes: true, attributeFilter: ['class'] })
-})
-
-onBeforeUnmount(() => {
-  observer?.disconnect()
-  lockPage(false)
-  if (window.cancelIdleCallback && typeof idle === 'number') window.cancelIdleCallback(idle)
-  clearTimeout(idle)
-})
 
 const closeMenu = () => {
   document.querySelector('.hamenu').classList.remove('open')
@@ -245,117 +138,12 @@ const handleMouseLeave = (event) => {
 .hamenu {
   display: flex;
   flex-direction: column;
-  /* Scrolling inside the menu (only when its content is taller than the
-     screen) must not reach the page. */
-  overscroll-behavior: contain;
-  /* Slide down with a transform instead of animating `top` (which the theme
-     and navbar did): no layout on every frame, so the opening is smooth.
-     The navbar's inline `top` is overridden; the "open" class drives it. */
-  top: 0 !important;
-  transform: translate3d(0, -100%, 0);
-  visibility: hidden;
-  transition: transform 0.5s cubic-bezier(1, 0, 0.55, 1), visibility 0s linear 0.5s !important;
 }
 
-.hamenu.open {
-  transform: none;
-  visibility: visible;
-  transition: transform 0.5s cubic-bezier(1, 0, 0.55, 1), visibility 0s !important;
-}
-
-/* The theme's vertical divider is 200vh tall and made the menu scrollable
-   into empty space. Drawn instead on the info column, from the very top to
-   the very bottom of the menu (menu padding 120/30 + container padding
-   100/32), so it never reaches past the screen. */
-.hamenu .cont-info::after {
-  display: none !important;
-}
-
-.menu-info-col {
-  position: relative;
-}
-
-.menu-info-col::before {
-  content: '';
-  position: absolute;
-  left: -15px;
-  top: -220px;
-  bottom: -62px;
-  width: 1px;
-  background: rgba(255, 255, 255, 0.1);
-  transform: scaleY(0);
-  transform-origin: top;
-  transition: transform 1s ease;
-}
-
-.hamenu.open .menu-info-col::before {
-  transform: scaleY(1);
-  transition-delay: 1s;
-}
-
-/* Fill the menu exactly (h-100 plus the menu's own padding made it 96px
-   taller than the screen, which gave the menu its own scrollbar). */
 .hamenu .container {
-  position: relative;
-  z-index: 1;
   flex: 1;
-  height: auto !important;
-  min-height: 0;
   padding-top: 100px;
   padding-bottom: 32px;
-}
-
-/* Low desktop windows (e.g. a laptop with the browser toolbar): less space
-   above the links so the menu still fits without scrolling. */
-@media (min-width: 992px) and (max-height: 760px) {
-  .hamenu .container {
-    padding-top: 20px;
-  }
-
-  .menu-info-col::before {
-    top: -140px;
-  }
-}
-
-/* Background photo: fades in after the menu has slid down. */
-.hamenu-photo {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-  pointer-events: none;
-}
-
-.hamenu-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  filter: var(--pc-film-filter);
-  opacity: 0;
-  transition: opacity 1.2s ease 0.5s;
-}
-
-.hamenu.open .hamenu-photo img {
-  opacity: 0.4;
-}
-
-/* Darker on the left, where the links are. */
-.hamenu-photo::after {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    to right,
-    rgba(32, 29, 29, 0.85) 0%,
-    rgba(32, 29, 29, 0.35) 65%,
-    rgba(32, 29, 29, 0.55) 100%
-  );
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .hamenu-photo img {
-    transition: opacity 0.6s ease 0.3s;
-  }
 }
 
 /* Mobile bottom bar: socials + lang side by side */

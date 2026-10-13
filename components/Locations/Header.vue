@@ -54,10 +54,3 @@ const shuffle = (array, seed) => {
 const leftImages = shuffle(data, 7)
 const rightImages = shuffle(data, 42)
 </script>
-
-<style scoped>
-/* Film look, so these photos sit in the same family as Daniel Bonhoff's. */
-.img-marq img {
-  filter: var(--pc-film-filter);
-}
-</style>
