@@ -6,7 +6,7 @@
           <div class="sec-head">
             <span class="sub-title bord mb-30">{{ $t('home.company_label') }}</span>
           </div>
-          <PhotoConceptsSidePhoto :image="photos.ferry" :detail="photos.fernWalk" />
+          <PhotoConceptsSidePhoto :image="photos.dirtTrack" :detail="photos.roqueNublo" />
         </div>
         <div class="col-lg-5 offset-lg-1">
           <div>
@@ -73,7 +73,7 @@ const believeItems = computed(() =>
 
 // One photo per value, in the order of believe_items: Local First,
 // Relationships Matter, One Team, Solutions Over Obstacles.
-const believePhotos = [photos.villageStreet, photos.juniperRest, photos.valleyVillage, photos.hairpins]
+const believePhotos = [photos.villageStreet, photos.treeRoad, photos.valleyVillage, photos.serpentine]
 const activeBelief = ref(0)
 
 const openAccordion = (event, index) => {

@@ -293,10 +293,6 @@
       "towns": {
         "name": "Towns & villages",
         "intro": "White villages, colonial old towns, harbours and modern city streets."
-      },
-      "abandoned": {
-        "name": "Lost places",
-        "intro": "Abandoned churches, ghost villages and military relics with a raw character."
       }
     }
   },

@@ -15,7 +15,7 @@
           <CreativeAgencyTestimonials />
           <CreativeAgencyAwards />
         </div>
-        <PhotoConceptsContact :image="photos.reflection" />
+        <PhotoConceptsContact :image="photos.cofete" />
       </main>
       <CommonFooter1 />
     </div>

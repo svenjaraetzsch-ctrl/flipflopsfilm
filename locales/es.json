@@ -293,10 +293,6 @@
       "towns": {
         "name": "Pueblos y ciudades",
         "intro": "Pueblos blancos, cascos coloniales, puertos y calles de ciudad modernas."
-      },
-      "abandoned": {
-        "name": "Lugares abandonados",
-        "intro": "Iglesias abandonadas, pueblos fantasma y restos militares con carácter crudo."
       }
     }
   },

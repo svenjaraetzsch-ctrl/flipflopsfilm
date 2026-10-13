@@ -11,7 +11,7 @@
                 <LocationsTopContent></LocationsTopContent>
                 <LocationsGallery />
             </div>
-            <PhotoConceptsContact :image="photos.seaStacks" />
+            <PhotoConceptsContact :image="photos.caldera" />
         </main>
       
         <CommonFooter1 />

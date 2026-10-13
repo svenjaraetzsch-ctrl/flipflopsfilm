@@ -1,6 +1,6 @@
 <template>
   <header class="pc-photo-header">
-    <PhotoConceptsHeaderPhoto :image="photos.sunsetWalk" shift="18%" />
+    <PhotoConceptsHeaderPhoto :image="photos.dirtTrack" shift="18%" />
     <div class="caption">
       <div class="text-center">
         <h1>{{ $t('crew.header') }}</h1>

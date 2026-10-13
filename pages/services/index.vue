@@ -13,7 +13,7 @@
           
         </div>
 
-        <PhotoConceptsContact :image="photos.sunsetShore" />
+        <PhotoConceptsContact :image="photos.famara" />
       </main>
 
       <CommonFooter1 />

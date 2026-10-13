@@ -15,7 +15,7 @@
           <TaxIncentivesBottomContent />
           <!--<TaxIncentivesBottomImage />-->
         </div>
-        <PhotoConceptsBackdrop :image="photos.cliffCoast">
+        <PhotoConceptsBackdrop :image="photos.coast">
           <TaxIncentivesNextProject />
         </PhotoConceptsBackdrop>
       </main>

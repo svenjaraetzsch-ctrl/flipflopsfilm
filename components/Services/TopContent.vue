@@ -4,7 +4,7 @@
       <div class="row">
         <div class="col-lg-6">
           <span class="sub-title bord mb-30">{{ $t('services.top_label') }}</span>
-          <PhotoConceptsSidePhoto :image="photos.roofTent" :detail="photos.mirador" />
+          <PhotoConceptsSidePhoto :image="photos.caldera" :detail="photos.roques" />
         </div>
         <div class="col-lg-5 offset-lg-1">
           <div class="text">

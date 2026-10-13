@@ -19,7 +19,7 @@
               </div>
             </div>
             <div class="col-lg-6 offset-lg-1">
-              <PhotoConceptsSidePhoto class="pc-side-photo--right" :image="photos.redCliffs" portrait />
+              <PhotoConceptsSidePhoto class="pc-side-photo--right" :image="photos.fernForest" portrait />
             </div>
           </div>
         </div>

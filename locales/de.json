@@ -293,10 +293,6 @@
       "towns": {
         "name": "Orte & Städte",
         "intro": "Weiße Dörfer, koloniale Altstädte, Häfen und moderne Stadtstraßen."
-      },
-      "abandoned": {
-        "name": "Lost Places",
-        "intro": "Verlassene Kirchen, Geisterdörfer und militärische Relikte mit rauem Charakter."
       }
     }
   },
