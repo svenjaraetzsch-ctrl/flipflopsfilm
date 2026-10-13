@@ -1,6 +1,6 @@
 // The Locations Gallery: the island map as its surface, in map units (about a
-// kilometre each); per island a collage of its photos laid out on and around
-// its coastline, and per theme a collage of the theme's photos.
+// kilometre each), and per island and per theme its photos composed as on a
+// page of a photo book.
 import { islands } from '@/data/PhotoConcepts/photos'
 import { shapes, graciosa, routes, view, project } from '@/data/Locations/islandMap'
 import { themes } from '@/data/Locations/themes'
@@ -19,17 +19,6 @@ const place = {
   Lanzarote: { label: [430, 42, 'w'] }
 }
 
-// Outline path data ("M x y l dx dy … z", as in islandMap.js) to points
-const toPoints = (d) => {
-  const n = d.match(/-?(?:\d+\.?\d*|\.\d+)/g).map(Number)
-  const pts = [[n[0], n[1]]]
-  for (let i = 2; i + 1 < n.length; i += 2) {
-    const [x, y] = pts[pts.length - 1]
-    pts.push([x + n[i], y + n[i + 1]])
-  }
-  return pts
-}
-
 let offset = 0
 export const isles = islands.map((item, index) => {
   const s = shapes[item.name]
@@ -42,7 +31,6 @@ export const isles = islands.map((item, index) => {
     // Degrees and minutes, the compass letters added per language
     coords: [...s.coords.matchAll(/(\d+°\d+′)/g)].map((m) => m[1]),
     d: s.d,
-    points: toPoints(s.d),
     box: { x, y, w, h },
     centre: { x: x + w / 2, y: y + h / 2 },
     ...place[item.name]
@@ -89,141 +77,159 @@ export const routeLines = routes.map((r) => {
   }
 })
 
-// mulberry32: a tiny seeded generator, so a collage comes out the same every
-// time
-const seeded = (seed) => () => {
-  seed = (seed + 0x6d2b79f5) | 0
-  let t = Math.imul(seed ^ (seed >>> 15), 1 | seed)
-  t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t
-  return ((t ^ (t >>> 14)) >>> 0) / 4294967296
-}
-
-const segDist = (px, py, ax, ay, bx, by) => {
-  const dx = bx - ax
-  const dy = by - ay
-  const l = dx * dx + dy * dy
-  const t = l ? Math.max(0, Math.min(1, ((px - ax) * dx + (py - ay) * dy) / l)) : 0
-  const ex = ax + t * dx - px
-  const ey = ay + t * dy - py
-  return Math.sqrt(ex * ex + ey * ey)
-}
-
-const inside = (px, py, poly) => {
-  let c = false
-  for (let i = 0, j = poly.length - 1; i < poly.length; j = i++) {
-    const [xi, yi] = poly[i]
-    const [xj, yj] = poly[j]
-    if (yi > py !== yj > py && px < ((xj - xi) * (py - yi)) / (yj - yi) + xi) c = !c
-  }
-  return c
-}
-
 // Each photo with its place in the whole set (an id), its island and its
 // position within its island
 const placed = new Map()
 isles.forEach((isle) => isle.photos.forEach((p, k) => placed.set(p, { id: isle.first + k, island: isle.name, cluster: isle.index })))
 
-// A collage, fitted into a box of the given aspect (width over height, that
-// of the free part of the window), in layout units (the box is 1000 wide).
-// Each photo, the lead (larger) first, takes the best free spot: for an
-// island on its land first, then as close to its coast as possible (so the
-// collage takes on a little of the island's shape), and otherwise as close to
-// the middle as possible, plus a little seeded noise. If they don't all fit,
-// every photo is made a little smaller and the layout starts again. Computed
-// when first needed, in the browser only.
-const build = (list, poly, seed) => (aspect) => {
-  const n = list.length
+// A composition, as on the page of a photo book: the photos on a calm grid
+// with even gutters and aligned edges, the lead (the first landscape photo)
+// clearly the largest. A layout is a tree of rows (children side by side, of
+// one height) and columns (children stacked, of one width); for every node
+// its width is a linear function of its height, w = a·h + b, so the sizes
+// that make all edges meet are exact. Of a set of arrangements (the lead
+// beside or above the others, the others in a column, a row or a small grid)
+// the one that fills the free part of the window best wins, as long as no
+// photo turns into a thumbnail. All in layout units: the box is 1000 wide.
+const GUTTER = 22
+
+const leaf = (photo, i, s = 1) => ({ leaf: true, photo, i, s, a: (photo.w / photo.h) * s, b: 0 })
+const row = (kids) => ({ row: true, kids, a: kids.reduce((n, k) => n + k.a, 0), b: kids.reduce((n, k) => n + k.b, 0) + GUTTER * (kids.length - 1) })
+const col = (kids) => {
+  const inv = kids.reduce((n, k) => n + 1 / k.a, 0)
+  const a = 1 / inv
+  return { col: true, kids, a, b: a * (kids.reduce((n, k) => n + k.b / k.a, 0) - GUTTER * (kids.length - 1)) }
+}
+const group = (kind, kids) => (kids.length === 1 ? kids[0] : kind === 'row' ? row(kids) : col(kids))
+
+// Places a node at x, y with the given height; collects the photos' boxes
+const lay = (node, x, y, h, out) => {
+  const w = node.a * h + node.b
+  if (node.leaf) {
+    // (a smaller second photo sits at the foot of the row)
+    out[node.i] = { x, y: y + h * (1 - node.s), w, h: h * node.s }
+  } else if (node.row) {
+    let cx = x
+    for (const k of node.kids) {
+      lay(k, cx, y, h, out)
+      cx += k.a * h + k.b + GUTTER
+    }
+  } else {
+    let cy = y
+    for (const k of node.kids) {
+      const kh = (w - k.b) / k.a
+      lay(k, x, cy, kh, out)
+      cy += kh + GUTTER
+    }
+  }
+  return w
+}
+
+// The ways to set out the photos beside the lead: in one column or one row,
+// in rows of two or three stacked, or in columns of two or three side by side
+const splits = (n, sizes) => {
+  const out = []
+  const walk = (left, acc) => {
+    if (!left) return out.push(acc)
+    for (const k of sizes) if (k <= left) walk(left - k, [...acc, k])
+  }
+  walk(n, [])
+  return out
+}
+const arrangements = (items) => {
+  const n = items.length
+  const res = []
+  if (n <= 3) res.push(col(items))
+  if (n <= 4) res.push(row(items))
+  for (const parts of [...splits(n, [2, 3]), ...splits(n, [1, 2])]) {
+    if (parts.length < 2 || parts.length > 4) continue
+    let at = 0
+    const groups = parts.map((k) => items.slice(at, (at += k)))
+    res.push(col(groups.map((g) => group('row', g))))
+    res.push(row(groups.map((g) => group('col', g))))
+  }
+  return res
+}
+
+const compose = (list) => (aspect) => {
   const BW = 1000
   const BH = Math.round(BW / aspect)
-  const x0 = -BW / 2
-  const y0 = -BH / 2
+  const leadAt = Math.max(0, list.findIndex((p) => p.w / p.h >= 1.2))
+  const lead = leaf(list[leadAt], leadAt)
+  const others = list.map((p, i) => i).filter((i) => i !== leadAt).map((i) => leaf(list[i], i))
+  // The others in their own order, and with the upright photos first or
+  // last, so a portrait can stand beside the lead
+  const upright = (l) => l.photo.w / l.photo.h < 1.2
+  const orders = [others, [...others.filter(upright), ...others.filter((l) => !upright(l))], [...others.filter((l) => !upright(l)), ...others.filter(upright)]]
 
-  // Candidate centres on a jittered grid over the box, best first
-  const noise = seeded(seed)
-  const step = 14
-  const cands = []
-  for (let y = y0 + step / 2; y < -y0; y += step) {
-    for (let x = x0 + step / 2; x < -x0; x += step) {
-      const jx = x + (noise() - 0.5) * step * 0.8
-      const jy = y + (noise() - 0.5) * step * 0.8
-      let near = 0
-      if (poly) {
-        let d = Infinity
-        for (let p = 0, q = poly.length - 1; p < poly.length; q = p++) {
-          d = Math.min(d, segDist(jx, jy, poly[q][0], poly[q][1], poly[p][0], poly[p][1]))
-        }
-        near = inside(jx, jy, poly) ? 0 : d
+  const options = []
+  if (!others.length) options.push(lead)
+  else if (others.length === 1) {
+    // Two photos: the lead, and the other beside it, a size smaller
+    options.push(row([lead, leaf(others[0].photo, others[0].i, 0.62)]), col([lead, others[0]]))
+  } else {
+    for (const rest of orders) {
+      for (const sub of arrangements(rest)) options.push(row([lead, sub]), col([lead, sub]))
+      // The lead with one or two photos beside it, the others below
+      for (let k = 1; k < Math.min(3, rest.length); k++) {
+        const top = row([lead, group('col', rest.slice(0, k))])
+        const below = rest.slice(k)
+        options.push(col([top, group('row', below)]))
+        if (below.length >= 3) for (const sub of arrangements(below)) if (sub.col) options.push(col([top, sub]))
       }
-      // (a wider box spreads sideways rather than into a disc)
-      const r = Math.sqrt((jx / aspect) ** 2 * 1.4 + jy * jy)
-      cands.push({ x: jx, y: jy, score: near + 0.12 * r + noise() * 34 })
     }
   }
-  cands.sort((p, q) => p.score - q.score)
 
-  // Many photos: closer together and more even in size, so none gets small
-  const many = n > 24
-  const GAP = many ? 10 : 14
-  const layout = (fill) => {
-    const rnd = seeded(seed * 31 + 7)
-    const unit = (fill * BW * BH) / (n + 1.6)
-    const out = []
-    for (let pi = 0; pi < n; pi++) {
-      const r = list[pi].w / list[pi].h
-      const area = pi === 0 ? unit * (many ? 2.3 : 2.6) : unit * (many ? 0.9 + 0.2 * rnd() : 0.78 + 0.44 * rnd())
-      const w = Math.sqrt(area * r)
-      const h = w / r
-      const spot = cands.find(
-        (c) =>
-          c.x - w / 2 >= x0 + 4 &&
-          c.x + w / 2 <= -x0 - 4 &&
-          c.y - h / 2 >= y0 + 4 &&
-          c.y + h / 2 <= -y0 - 4 &&
-          !out.some((t) => c.x - w / 2 < t.x + t.w + GAP && c.x + w / 2 + GAP > t.x && c.y - h / 2 < t.y + t.h + GAP && c.y + h / 2 + GAP > t.y)
-      )
-      if (!spot) return null
-      out.push({ x: spot.x - w / 2, y: spot.y - h / 2, w, h })
-    }
-    return out
+  let best = null
+  for (const node of options) {
+    const h = Math.min(BH, (BW - node.b) / node.a)
+    const boxes = []
+    const w = lay(node, 0, 0, h, boxes)
+    const areas = boxes.map((t) => t.w * t.h)
+    const leadArea = areas[leadAt]
+    const rest = areas.filter((_, i) => i !== leadAt)
+    const fill = areas.reduce((n, v) => n + v, 0) / (BW * BH)
+    const small = rest.length ? Math.min(...rest.map((v) => v / leadArea)) : 1
+    const tooSmall = Math.min(...boxes.map((t) => Math.min(t.w, t.h))) < BW * 0.12
+    // Fill the space, keep the others from shrinking too far, the lead
+    // clearly first, no thumbnails
+    let score = fill * Math.pow(small, 0.2)
+    if (rest.length && Math.max(...rest) > leadArea * 0.7) score *= 0.4
+    if (tooSmall) score *= 0.5
+    if (!best || score > best.score) best = { score, boxes, w, h }
   }
 
-  let fill = 0.62
-  let boxes = layout(fill)
-  while (!boxes && fill > 0.2) {
-    fill *= 0.94
-    boxes = layout(fill)
-  }
-
+  // Centred in the box
+  const ox = -BW / 2 + (BW - best.w) / 2
+  const oy = -BH / 2 + (BH - best.h) / 2
   const tiles = list.map((photo, index) => {
-    const t = boxes[index]
+    const t = best.boxes[index]
     return {
       ...photo,
       ...placed.get(photo),
       index,
-      x: Math.round(t.x),
-      y: Math.round(t.y),
+      x: Math.round(ox + t.x),
+      y: Math.round(oy + t.y),
       w: Math.round(t.w),
       h: Math.round(t.h)
     }
   })
-  return { tiles, box: { x: x0, y: y0, w: BW, h: BH } }
+  return { tiles, box: { x: -BW / 2, y: -BH / 2, w: BW, h: BH } }
 }
 
 const cache = {}
 const memo = (key, make) => cache[key] || (cache[key] = make())
 const roundAspect = (a) => Math.round(Math.max(0.6, Math.min(2.4, a)) * 10) / 10
 
-// An island's collage. k: layout units per map unit, to place it over the
-// island on the map (the island fills about half the box).
+// An island's composition. k: layout units per map unit, which sets how far
+// the camera comes down to the island (it fills about half the box).
 export const collage = (i, aspect = 1.45) => {
   const a = roundAspect(aspect)
   return memo(`i${i}|${a}`, () => {
     const isle = isles[i]
     const BW = 1000
-    const share = isle.photos.length > 24 ? 0.44 : 0.54
-    const k = Math.min((BW * share) / isle.box.w, ((BW / a) * (share + 0.1)) / isle.box.h)
-    const poly = isle.points.map(([x, y]) => [(x - isle.centre.x) * k, (y - isle.centre.y) * k])
-    return { ...build(isle.photos, poly, 4099 + i * 7919)(a), k }
+    const k = Math.min((BW * 0.54) / isle.box.w, ((BW / a) * 0.64) / isle.box.h)
+    return { ...compose(isle.photos)(a), k }
   })
 }
 
@@ -243,5 +249,5 @@ export const themeSets = themes.map((theme, i) => {
 
 export const themeCollage = (i, aspect = 1.45) => {
   const a = roundAspect(aspect)
-  return memo(`t${i}|${a}`, () => build(themeSets[i].photos, null, 6151 + i * 3571)(a))
+  return memo(`t${i}|${a}`, () => compose(themeSets[i].photos)(a))
 }

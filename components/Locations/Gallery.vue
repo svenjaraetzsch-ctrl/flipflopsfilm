@@ -28,7 +28,7 @@
             {{ t('locations.gallery.island_no', { n: pad(current + 1), total: pad(isles.length) }) }}
             <span>{{ t('locations.gallery.photos', { count: isle.photos.length }) }}</span>
           </p>
-          <h3 :id="`loc-gallery-title-i${current}`" class="loc-gallery__title f-xbold" tabindex="-1">
+          <h3 :id="`loc-gallery-title-i${current}`" class="loc-gallery__title f-xbold" :style="titleStyle(islandName(isle.name))" tabindex="-1">
             <span v-if="split(islandName(isle.name)).light" class="f-ultra-light d-block">{{ split(islandName(isle.name)).light }}</span>{{ split(islandName(isle.name)).bold }}
           </h3>
           <p v-if="islandText.intro" class="loc-gallery__lead">{{ islandText.intro }}</p>
@@ -64,7 +64,7 @@
             {{ t('locations.gallery.theme_no', { n: pad(currentTheme + 1), total: pad(themeSets.length) }) }}
             <span>{{ t('locations.gallery.photos', { count: theme.photos.length }) }}</span>
           </p>
-          <h3 :id="`loc-gallery-title-t${currentTheme}`" class="loc-gallery__title f-xbold" tabindex="-1">
+          <h3 :id="`loc-gallery-title-t${currentTheme}`" class="loc-gallery__title f-xbold" :style="titleStyle(themeText(theme.key).name)" tabindex="-1">
             <span v-if="split(themeText(theme.key).name).light" class="f-ultra-light d-block">{{ split(themeText(theme.key).name).light }}</span>{{ split(themeText(theme.key).name).bold }}
           </h3>
           <p v-if="themeText(theme.key).intro" class="loc-gallery__lead">{{ themeText(theme.key).intro }}</p>
@@ -300,7 +300,7 @@
           :key="tile.src"
           type="button"
           class="loc-gallery__cell"
-          :class="{ 'is-lead': tile.index === 0 }"
+          :class="{ 'is-lead': tile.index === gridLead, 'is-wide': tile.index === gridWide }"
           :data-id="tile.id"
           :aria-label="`${tile.alt} (${islandName(tile.island)})`"
           @click="open(tile, level === 'island' ? 'i' : 't', level === 'island' ? current : currentTheme)"
@@ -308,7 +308,7 @@
           <img
             :src="tile.sm"
             :srcset="`${tile.sm} 480w, ${tile.md} 900w`"
-            :sizes="tile.index === 0 ? '100vw' : '(max-width: 559px) 50vw, 33vw'"
+            :sizes="tile.index === gridLead || tile.index === gridWide ? '100vw' : '50vw'"
             :width="tile.w"
             :height="tile.h"
             alt=""
@@ -449,6 +449,13 @@ const split = (name = '') => {
   return { light: words.slice(0, -1).join(' '), bold: words[words.length - 1] }
 }
 
+// A long word (an island's name: "Fuerteventura") a size smaller rather than
+// hyphenated; very long common nouns may still break
+const titleStyle = (name = '') => {
+  const longest = Math.max(...name.split(' ').map((w) => w.length))
+  return longest > 11 ? { '--fit': Math.max(0.75, 11 / longest).toFixed(3) } : null
+}
+
 const archipelago = (archipelagoFacts || []).filter((f) => f && f.label && f.value)
 
 // ---------------------------------------------------------------------------
@@ -526,6 +533,14 @@ const tileStyle = (tile) => ({ left: tile.x + 'px', top: tile.y + 'px', width: t
 const islandTiles = (i) => isles[i].photos.map((p, k) => ({ ...p, id: isles[i].first + k, island: isles[i].name, cluster: i, index: k }))
 const themeTiles = (i) => themeCollage(i, 1.4).tiles
 const gridTiles = computed(() => (level.value === 'island' ? islandTiles(current.value) : themeTiles(currentTheme.value)))
+// In the grid, as in the composition, the first landscape photo leads across
+// the full width; the others go two by two, and an odd one out at the end
+// takes the full width too, so no cell stands alone.
+const gridLead = computed(() => Math.max(0, gridTiles.value.findIndex((p) => p.w / p.h >= 1.2)))
+const gridWide = computed(() => {
+  const rest = gridTiles.value.filter((p) => p.index !== gridLead.value)
+  return rest.length % 2 ? rest[rest.length - 1].index : -1
+})
 
 // Larger islands first, so the smaller ones' hit areas lie on top
 const hitOrder = isles
@@ -1938,8 +1953,9 @@ onBeforeUnmount(() => {
 
 /* The name: the two-weight heading of the site, smaller */
 .loc-gallery__title {
+  --fit: 1;
   margin: 12px 0 0;
-  font-size: 40px;
+  font-size: calc(40px * var(--fit));
   line-height: 1;
   text-transform: uppercase;
   outline: none;
@@ -2153,27 +2169,66 @@ onBeforeUnmount(() => {
   transform: translateY(-8px);
 }
 
+/* Short windows (a laptop at 720px): the panel a step tighter, so the window
+   need hardly grow for it */
+@media (min-width: 992px) and (max-height: 820px) {
+  .loc-gallery__panel {
+    top: 88px;
+  }
+
+  .loc-gallery__title {
+    font-size: calc(34px * var(--fit));
+  }
+
+  .loc-gallery__lead {
+    margin-top: 16px;
+    font-size: 18px;
+    line-height: 1.5;
+  }
+
+  .loc-gallery__points,
+  .loc-gallery__data,
+  .loc-gallery__block {
+    margin-top: 16px;
+  }
+
+  .loc-gallery__points li {
+    padding: 8px 0;
+  }
+
+  .loc-gallery__points li,
+  .loc-gallery__filmed li {
+    font-size: 14px;
+    line-height: 1.5;
+  }
+}
+
 /* ---------- Smaller screens: the photos as a grid below the map ---------- */
 
 .loc-gallery__grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 8px;
   margin-top: 8px;
 }
 
 .loc-gallery__cell {
   position: relative;
-  aspect-ratio: 4 / 3;
+  aspect-ratio: 4 / 5;
   padding: 0;
   border: 0;
   overflow: hidden;
   background: rgba(255, 255, 255, 0.05);
 }
 
-.loc-gallery__cell.is-lead {
+.loc-gallery__cell.is-lead,
+.loc-gallery__cell.is-wide {
   grid-column: span 2;
-  grid-row: span 2;
+  aspect-ratio: 3 / 2;
+}
+
+.loc-gallery__cell.is-lead {
+  order: -1;
 }
 
 .loc-gallery__cell img {
@@ -2250,22 +2305,25 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 559px) {
-  .loc-gallery__grid {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .loc-gallery__cell.is-lead {
-    grid-row: span 1;
-    aspect-ratio: 3 / 2;
-  }
-
   .loc-gallery__no {
     display: none;
   }
 
   .loc-gallery__step {
     flex: 1;
+    min-width: 0;
     max-width: calc(50% - 4px);
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  /* A long name ("Vulkanlandschaften") breaks rather than pushes out */
+  .loc-gallery__step span {
+    min-width: 0;
+    font-size: 14px;
+    -webkit-hyphens: auto;
+    hyphens: auto;
+    overflow-wrap: break-word;
   }
 
 }
@@ -2445,7 +2503,7 @@ onBeforeUnmount(() => {
   }
 
   .loc-gallery__title {
-    font-size: 30px;
+    font-size: calc(30px * var(--fit));
   }
 
   .loc-gallery__lead {
