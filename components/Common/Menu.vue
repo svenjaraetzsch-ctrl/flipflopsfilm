@@ -1,7 +1,7 @@
 <template>
   <div ref="menuEl" class="hamenu">
     <!-- A dimmed photo behind the links, from a different island each time
-         the menu opens (concept 07). Chosen and loaded on the client only;
+         the menu opens. Chosen and loaded on the client only;
          the 900px version is enough at 40% behind the links. -->
     <div class="hamenu-photo" aria-hidden="true">
       <img

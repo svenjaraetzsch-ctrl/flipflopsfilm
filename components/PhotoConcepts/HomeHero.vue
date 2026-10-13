@@ -1,7 +1,7 @@
 <template>
   <!-- Same title as CreativeAgency/Header.vue. Below it the video opens from an
        inset window to full screen as the page scrolls and settles out of a
-       slow zoom (photo concept 01), with a compare line on it: the original
+       slow zoom, with a compare line on it: the original
        left of the line, the cinematic look right of it. -->
   <header class="crev-header pc-hero">
     <div class="container">

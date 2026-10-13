@@ -1,8 +1,8 @@
 <template>
-  <!-- An editorial photo for the empty label column next to a block of text
-       (concept 05). With `detail`, a square frame plus a smaller print that
-       drifts at its own speed; without, a single frame that drifts gently.
-       Frames unveil upwards once they are well into view. -->
+  <!-- An editorial photo for the empty label column next to a block of text.
+       With `detail`, a square frame plus a smaller print that drifts at its
+       own speed; without, a single frame that drifts gently. Frames unveil
+       upwards once they are well into view. -->
   <div
     class="pc-side-photo"
     :class="[detail ? 'pc-side-photo--duo' : 'pc-side-photo--single', { 'pc-side-photo--portrait': portrait }]"

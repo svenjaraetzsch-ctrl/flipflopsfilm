@@ -253,9 +253,9 @@ footer .logo .logo-svg-wrap {
   --pc-film-filter: sepia(0.25) saturate(0.7) contrast(0.9) brightness(1.03);
 }
 
-/* The full "film" treatment (photo concepts 06 and 07, the cinematic side of
-   the Locations gallery): the grade above plus a warm wash, a vignette and
-   moving grain from the theme's own noise texture. */
+/* The full "film" treatment (the large view of the Locations Gallery): the
+   grade above plus a warm wash, a vignette and moving grain from the theme's
+   own noise texture. */
 .pc-filmic {
   position: relative;
   overflow: hidden;
