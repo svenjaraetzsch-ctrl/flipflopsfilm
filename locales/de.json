@@ -6,7 +6,7 @@
     "locations": "Locations",
     "about": "Über uns",
     "crew_operations": "Crew & Produktion",
-    "faqs": "FAQ''s"
+    "faqs": "FAQ's"
   },
   "menu": {
     "our_offices": "Unsere Büros",
@@ -173,7 +173,7 @@
     "single_p": "Jedes Projekt ist auf Vorbereitung, Koordination und die richtigen Personen angewiesen. Unsere Leistungen sind darauf ausgerichtet, Produktionen in jeder Phase der Reise zu unterstützen."
   },
   "faqs": {
-    "label": "FAQ''s",
+    "label": "FAQ's",
     "items": [
       {
         "id": 1,

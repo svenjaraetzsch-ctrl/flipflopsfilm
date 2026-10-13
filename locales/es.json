@@ -6,7 +6,7 @@
     "locations": "Localizaciones",
     "about": "Nosotros",
     "crew_operations": "Equipo & Producción",
-    "faqs": "FAQ''s"
+    "faqs": "FAQ's"
   },
   "menu": {
     "our_offices": "Nuestras Oficinas",
@@ -173,7 +173,7 @@
     "single_p": "Cada proyecto depende de la preparación, la coordinación y las personas adecuadas en el lugar correcto. Nuestros servicios están diseñados para apoyar las producciones en cada etapa del proceso."
   },
   "faqs": {
-    "label": "FAQ''s",
+    "label": "FAQ's",
     "items": [
       {
         "id": 1,
