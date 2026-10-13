@@ -174,9 +174,6 @@
       "photos": "{count} fotos",
       "filmed": "Rodado aquí",
       "found_on": "Presente en",
-      "airport": "Aeropuerto",
-      "highest": "Punto más alto",
-      "area": "Superficie",
       "back": "Volver al mapa",
       "prev_island": "Isla anterior",
       "next_island": "Isla siguiente",
@@ -203,66 +200,31 @@
     "islands": {
       "elHierro": {
         "name": "El Hierro",
-        "intro": "La isla más pequeña y remota: costas de lava negra, sabinares doblados por el viento y carreteras tranquilas.",
-        "highlights": [
-          "Reserva de la Biosfera y Geoparque de la UNESCO",
-          "Piscinas naturales, arcos de lava y acantilados",
-          "Escenario de la serie policíaca Hierro"
-        ]
+        "intro": "La isla más pequeña y remota: costas de lava negra, sabinares doblados por el viento y carreteras tranquilas."
       },
       "laPalma": {
         "name": "La Palma",
-        "intro": "La isla verde: laurisilva, cascadas y la profunda Caldera de Taburiente, además de coladas recientes de la erupción de 2021.",
-        "highlights": [
-          "Parque Nacional de la Caldera de Taburiente",
-          "Coladas de lava de la erupción de 2021",
-          "Reserva Starlight con cielos nocturnos limpios"
-        ]
+        "intro": "La isla verde: laurisilva, cascadas y la profunda Caldera de Taburiente, además de coladas recientes de la erupción de 2021."
       },
       "laGomera": {
         "name": "La Gomera",
-        "intro": "Barrancos profundos, valles en terrazas y roques, coronados por la laurisilva brumosa de Garajonay.",
-        "highlights": [
-          "Parque Nacional de Garajonay, Patrimonio Mundial de la UNESCO",
-          "Valle Gran Rey: un valle de palmeras en terrazas hasta el mar",
-          "Cuna del silbo gomero, protagonista de La Gomera (The Whistlers)"
-        ]
+        "intro": "Barrancos profundos, valles en terrazas y roques, coronados por la laurisilva brumosa de Garajonay."
       },
       "tenerife": {
         "name": "Tenerife",
-        "intro": "La isla más grande y el centro de producción del archipiélago: el pico más alto de España, llanuras lunares, pinares y una capital moderna.",
-        "highlights": [
-          "Parque Nacional del Teide: paisajes lunares a más de 2.000 m",
-          "En invierno, nieve, mar de nubes y playa en un mismo día",
-          "Santa Cruz hizo de Atenas en Jason Bourne"
-        ]
+        "intro": "La isla más grande y el centro de producción del archipiélago: el pico más alto de España, llanuras lunares, pinares y una capital moderna."
       },
       "granCanaria": {
         "name": "Gran Canaria",
-        "intro": "Un continente en miniatura: barrancos profundos, pueblos de montaña, dunas, un casco colonial y una gran ciudad portuaria.",
-        "highlights": [
-          "El Roque Nublo y los barrancos del interior",
-          "Las Palmas hizo de Casablanca en Aliados",
-          "Carreteras de montaña con curvas, hechas para rodajes de coches"
-        ]
+        "intro": "Un continente en miniatura: barrancos profundos, pueblos de montaña, dunas, un casco colonial y una gran ciudad portuaria."
       },
       "fuerteventura": {
         "name": "Fuerteventura",
-        "intro": "Playas infinitas y montañas desérticas: el Sáhara del archipiélago, con horizontes amplios y poca gente.",
-        "highlights": [
-          "Las dunas de Corralejo y la larga playa de Cofete",
-          "El antiguo Egipto en Exodus: Dioses y reyes, el Sáhara en Aliados",
-          "Un planeta alienígena en Han Solo: Una historia de Star Wars"
-        ]
+        "intro": "Playas infinitas y montañas desérticas: el Sáhara del archipiélago, con horizontes amplios y poca gente."
       },
       "lanzarote": {
         "name": "Lanzarote",
-        "intro": "Moldeada por las erupciones y por César Manrique: mares de lava, cráteres, viñedos negros y playas salvajes de surf.",
-        "highlights": [
-          "Parque Nacional de Timanfaya: montañas de fuego y mares de lava",
-          "La Geria: viñas en ceniza volcánica negra",
-          "La Tierra prehistórica en Hace un millón de años"
-        ]
+        "intro": "Moldeada por las erupciones y por César Manrique: mares de lava, cráteres, viñedos negros y playas salvajes de surf."
       }
     },
     "themes": {

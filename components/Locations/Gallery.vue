@@ -32,23 +32,6 @@
             <span v-if="split(islandName(isle.name)).light" class="f-ultra-light d-block">{{ split(islandName(isle.name)).light }}</span>{{ split(islandName(isle.name)).bold }}
           </h3>
           <p v-if="islandText.intro" class="loc-gallery__lead">{{ islandText.intro }}</p>
-          <ol v-if="islandText.highlights.length" class="loc-gallery__points">
-            <li v-for="(h, k) in islandText.highlights" :key="h"><span aria-hidden="true">{{ pad(k + 1) }}</span>{{ h }}</li>
-          </ol>
-          <dl v-if="facts.airport || facts.height || facts.area" class="loc-gallery__data">
-            <div v-if="facts.airport">
-              <dt>{{ t('locations.gallery.airport') }}</dt>
-              <dd>{{ facts.airport }}</dd>
-            </div>
-            <div v-if="facts.height">
-              <dt>{{ t('locations.gallery.highest') }}</dt>
-              <dd>{{ num(facts.height) }} m<template v-if="facts.summit"> · {{ facts.summit }}</template></dd>
-            </div>
-            <div v-if="facts.area">
-              <dt>{{ t('locations.gallery.area') }}</dt>
-              <dd>{{ num(facts.area) }} km²</dd>
-            </div>
-          </dl>
           <div v-if="facts.filmed.length" class="loc-gallery__block">
             <p class="loc-gallery__sub">{{ t('locations.gallery.filmed') }}</p>
             <ul class="loc-gallery__filmed">
@@ -400,31 +383,24 @@ import { ref, reactive, computed, onMounted, onBeforeUnmount, nextTick } from 'v
 import { isles, total, graticule, routeLines, collage, themeSets, themeCollage, graciosa, view } from '@/data/Locations/mapGallery'
 import { islandFacts, archipelagoFacts } from '@/data/Locations/islandFacts'
 
-const { t, tm, rt, locale } = useI18n()
+const { t } = useI18n()
 
 const pad = (n) => String(n).padStart(2, '0')
 const wrap = (i, n) => (i + n) % n
 
 // ---------------------------------------------------------------------------
-// Words and numbers, per language. The facts may be incomplete: every field
-// falls back to empty.
+// Words, per language. The facts may be incomplete: every field falls back to
+// empty.
 
-const words = (key) => {
-  const v = tm(key)
-  return Array.isArray(v) ? v.map((m) => rt(m)) : []
-}
 const keyOf = (name) => islandFacts?.[name]?.key
 const islandName = (name) => (keyOf(name) ? t(`locations.islands.${keyOf(name)}.name`) : name)
 const islandWords = (name) => ({
-  intro: keyOf(name) ? t(`locations.islands.${keyOf(name)}.intro`) : '',
-  highlights: keyOf(name) ? words(`locations.islands.${keyOf(name)}.highlights`) : []
+  intro: keyOf(name) ? t(`locations.islands.${keyOf(name)}.intro`) : ''
 })
 const themeText = (key) => ({
   name: t(`locations.themes.${key}.name`),
   intro: t(`locations.themes.${key}.intro`)
 })
-const numberFormat = computed(() => new Intl.NumberFormat(locale.value))
-const num = (n) => numberFormat.value.format(n)
 // "Allied (2016) · Gran Canaria": the title, the year (set muted) and where,
 // in the current language
 const filmedLine = (line) => {
@@ -504,7 +480,7 @@ const isle = computed(() => isles[current.value])
 const theme = computed(() => themeSets[currentTheme.value])
 const facts = computed(() => {
   const f = islandFacts?.[isle.value.name] || {}
-  return { filmed: f.filmed || [], airport: f.airport || '', summit: f.summit || '', height: f.height || 0, area: f.area || 0 }
+  return { filmed: f.filmed || [] }
 })
 const islandText = computed(() => islandWords(isle.value.name))
 
@@ -1979,35 +1955,12 @@ onBeforeUnmount(() => {
 }
 
 /* Body: the site's paragraph text */
-.loc-gallery__points li,
 .loc-gallery__filmed li {
   font-family: 'Poppins', sans-serif;
   font-size: 15px;
   font-weight: 300;
   line-height: 1.6;
   color: #ddd;
-}
-
-.loc-gallery__points {
-  margin: 24px 0 0;
-  padding: 0;
-  list-style: none;
-  border-top: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-.loc-gallery__points li {
-  display: grid;
-  grid-template-columns: 32px minmax(0, 1fr);
-  padding: 12px 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.loc-gallery__points li > span {
-  padding-top: 3px;
-  font-family: 'Mona-Sans Regular', sans-serif;
-  font-size: 12px;
-  letter-spacing: 1px;
-  color: var(--sand);
 }
 
 .loc-gallery__block {
@@ -2042,20 +1995,9 @@ onBeforeUnmount(() => {
   margin-top: 6px;
 }
 
-/* Data: the info items of the Tax Incentives page, shared by the facts of
-   the archipelago and of an island */
-/* (the summit takes the room the short airport codes and areas leave) */
-.loc-gallery__data {
-  display: grid;
-  grid-template-columns: auto minmax(0, 1fr) auto;
-  gap: 20px;
-  margin: 24px 0 0;
-  -webkit-hyphens: manual;
-  hyphens: manual;
-}
-
-.loc-gallery__arch dt,
-.loc-gallery__data dt {
+/* Data: the info items of the Tax Incentives page, for the facts of the
+   archipelago */
+.loc-gallery__arch dt {
   margin: 0 0 4px;
   font-size: 14px;
   font-weight: normal;
@@ -2063,8 +2005,7 @@ onBeforeUnmount(() => {
   opacity: 0.8;
 }
 
-.loc-gallery__arch dd,
-.loc-gallery__data dd {
+.loc-gallery__arch dd {
   margin: 0;
   font-size: 18px;
   font-weight: 500;
@@ -2186,17 +2127,10 @@ onBeforeUnmount(() => {
     line-height: 1.5;
   }
 
-  .loc-gallery__points,
-  .loc-gallery__data,
   .loc-gallery__block {
     margin-top: 16px;
   }
 
-  .loc-gallery__points li {
-    padding: 8px 0;
-  }
-
-  .loc-gallery__points li,
   .loc-gallery__filmed li {
     font-size: 14px;
     line-height: 1.5;
@@ -2509,14 +2443,6 @@ onBeforeUnmount(() => {
   .loc-gallery__lead {
     margin-top: 16px;
     font-size: 18px;
-  }
-
-  .loc-gallery__data {
-    gap: 12px;
-  }
-
-  .loc-gallery__data dd {
-    font-size: 16px;
   }
 
   .loc-gallery__heading {
