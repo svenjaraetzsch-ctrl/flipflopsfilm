@@ -48,10 +48,6 @@ export const photos = {
   valleyVillage: img('Tenerife', 'valley-village', 1800, 1207, 'A small village in a steep green valley')
 }
 
-// The services overview (its logo window), in the order of
-// data/CreativeAgency/awards.json.
-export const serviceImages = [photos.dirtTrack, photos.agando, photos.serpentine, photos.treeRoad]
-
 // Behind the menu links, one calm photo per island.
 export const menuPhotos = [
   photos.coast,
