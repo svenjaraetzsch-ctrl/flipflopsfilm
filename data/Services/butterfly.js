@@ -2,13 +2,6 @@
 // Its four wings are the four services. Names and descriptions come from
 // `services_items` in the locale files; only wording without a key is here.
 
-// The line above the butterfly, in the brand voice
-export const intro = {
-  en: 'Four wings, one team. Everything an international production needs to shoot in Spain: relaxed like the islands, precise like a call sheet.',
-  de: 'Vier Flügel, ein Team. Alles, was eine internationale Produktion für den Dreh in Spanien braucht: entspannt wie die Inseln, präzise wie eine Dispo.',
-  es: 'Cuatro alas, un solo equipo. Todo lo que una producción internacional necesita para rodar en España: la calma de las islas y la precisión de una orden de rodaje.'
-}
-
 export const listLabel = {
   en: 'Our services',
   de: 'Unsere Leistungen',

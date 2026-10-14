@@ -14,7 +14,7 @@
         <div class="container">
           <div class="row justify-content-center">
             <div class="col-lg-8 text-center">
-              <h5 class="fw-400 line-height-40">{{ intro }}</h5>
+              <h5 class="fw-400 line-height-40">{{ $t('services.top_h5') }}</h5>
             </div>
           </div>
         </div>
@@ -142,14 +142,15 @@
       </div>
     </section>
 
-    <!-- Production Services, as on the live Services page -->
-    <ServicesTopContent />
+    <!-- Production Services, as on the live Services page; its usual lead is
+         the line above the butterfly, so the text's first sentence leads here -->
+    <ServicesTopContent lead-from-text />
   </div>
 </template>
 
 <script setup>
 import { ref, computed, onMounted, onBeforeUnmount, resolveComponent } from 'vue'
-import { intro as introText, listLabel as listLabelText, onThisPage, wings } from '@/data/Services/butterfly'
+import { listLabel as listLabelText, onThisPage, wings } from '@/data/Services/butterfly'
 import { useScrollFx } from '@/composables/useScrollFx'
 
 const NuxtLink = resolveComponent('NuxtLink')
@@ -157,7 +158,6 @@ const { locale, tm, rt } = useI18n()
 const localePath = useLocalePath()
 
 const pick = (text) => text[locale.value] || text.en
-const intro = computed(() => pick(introText))
 const listLabel = computed(() => pick(listLabelText))
 const onPage = computed(() => pick(onThisPage))
 
