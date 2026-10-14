@@ -1,6 +1,7 @@
 <template>
-  <!-- A quiet background photo for a page header: dimmed, film-graded, fading
-       into the page at the bottom, drifting slightly as the header scrolls away.
+  <!-- A background photo for a page header: film-graded and dimmed like the
+       photo behind the contact block, so the title reads clearly; it fills
+       the header to its edges and drifts slightly as the header scrolls away.
        Place it as the first child of a header that has class "pc-photo-header". -->
   <div ref="wrap" class="pc-header-photo" :style="shift ? { '--shift': shift } : null" aria-hidden="true">
     <img
@@ -42,17 +43,10 @@ useScrollFx(() => {
 <style scoped>
 .pc-header-photo {
   position: absolute;
-  /* Stops 2px short of the header's bottom edge. At fractional scroll
-     positions Chrome let one pixel row of the moving photo slip past the
-     clip at that edge, which showed as a thin bright line while scrolling.
-     The bottom of the photo is transparent anyway (mask below), so the
-     2px are invisible. */
-  inset: 0 0 2px 0;
+  inset: 0;
   z-index: 0;
   overflow: hidden;
   pointer-events: none;
-  -webkit-mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 94%);
-  mask-image: linear-gradient(to bottom, #000 0%, #000 55%, transparent 94%);
 }
 
 .pc-header-photo img {
@@ -73,18 +67,12 @@ useScrollFx(() => {
   }
 }
 
-/* Darker at the top for the navigation and open in the middle; the mask
-   above takes it back to the page colour at the bottom. */
+/* The same dimming as the photo behind the contact block (Backdrop.vue) */
 .pc-header-photo::after {
   content: '';
   position: absolute;
   inset: 0;
-  background: linear-gradient(
-    to bottom,
-    rgba(32, 29, 29, 0.75) 0%,
-    rgba(32, 29, 29, 0.45) 40%,
-    rgba(32, 29, 29, 0.6) 70%
-  );
+  background: linear-gradient(to bottom, rgba(32, 29, 29, 0.55), rgba(32, 29, 29, 0.75));
 }
 </style>
 

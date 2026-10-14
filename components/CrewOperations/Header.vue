@@ -1,5 +1,5 @@
 <template>
-  <header class="pc-photo-header pc-page-head">
+  <header class="pc-photo-header">
     <PhotoConceptsHeaderPhoto :image="photos.dirtTrack" shift="18%" />
     <div class="caption">
       <div class="text-center">
