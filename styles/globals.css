@@ -294,3 +294,75 @@ footer .logo .logo-svg-wrap {
   mix-blend-mode: overlay;
   animation: grain 8s steps(10) infinite;
 }
+
+/* ====================== [ Page titles ] ====================== */
+
+/* One title on every page: the cut, size and distance from the top of the
+   About page title (Mona-Sans Medium, 60px, starting 200px from the top;
+   40px / 160px and 32px / 120px on smaller screens). Used by every page
+   header with a title, with or without a photo behind it. */
+.pc-page-head {
+  padding-top: 0;
+}
+
+.pc-page-head .caption {
+  padding-top: 200px;
+  padding-bottom: 160px;
+}
+
+.pc-page-head .caption h1 {
+  margin: 0;
+  font-family: 'Mona-Sans Medium', sans-serif;
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* The home title (its own, larger statement) starts at the same height */
+.crev-header {
+  padding-top: 200px;
+}
+
+/* Without a photo the text that follows can come closer */
+.pc-page-head--plain .caption {
+  padding-bottom: 60px;
+}
+
+@media (max-width: 991px) {
+  .pc-page-head .caption {
+    padding-top: 160px;
+    padding-bottom: 100px;
+  }
+
+  .pc-page-head .caption h1 {
+    font-size: 40px;
+  }
+
+  .crev-header {
+    padding-top: 160px;
+  }
+
+  .pc-page-head--plain .caption {
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pc-page-head .caption {
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+
+  .pc-page-head .caption h1 {
+    font-size: 32px;
+  }
+
+  .crev-header {
+    padding-top: 120px;
+  }
+
+  .pc-page-head--plain .caption {
+    padding-bottom: 30px;
+  }
+}

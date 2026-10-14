@@ -78,8 +78,8 @@
               {{ t('locations.gallery.island_no', { n: pad(current + 1), total: pad(isles.length) }) }}
               <span>{{ t('locations.gallery.photos', { count: isle.photos.length }) }}</span>
             </p>
-            <h3 :id="`loc-gallery-title-i${current}`" class="loc-gallery__title f-xbold" :style="titleStyle(islandName(isle.name))" tabindex="-1">
-              <span v-if="split(islandName(isle.name)).light" class="f-ultra-light d-block">{{ split(islandName(isle.name)).light }}</span>{{ split(islandName(isle.name)).bold }}
+            <h3 :id="`loc-gallery-title-i${current}`" class="loc-gallery__title" :style="titleStyle(islandName(isle.name))" tabindex="-1">
+              {{ islandName(isle.name) }}
             </h3>
             <p v-if="islandText.intro" class="loc-gallery__lead">{{ islandText.intro }}</p>
             <div v-if="facts.filmed.length" class="loc-gallery__block">
@@ -97,8 +97,8 @@
               {{ t('locations.gallery.theme_no', { n: pad(currentTheme + 1), total: pad(themeSets.length) }) }}
               <span>{{ t('locations.gallery.photos', { count: theme.photos.length }) }}</span>
             </p>
-            <h3 :id="`loc-gallery-title-t${currentTheme}`" class="loc-gallery__title f-xbold" :style="titleStyle(themeText(theme.key).name)" tabindex="-1">
-              <span v-if="split(themeText(theme.key).name).light" class="f-ultra-light d-block">{{ split(themeText(theme.key).name).light }}</span>{{ split(themeText(theme.key).name).bold }}
+            <h3 :id="`loc-gallery-title-t${currentTheme}`" class="loc-gallery__title" :style="titleStyle(themeText(theme.key).name)" tabindex="-1">
+              {{ themeText(theme.key).name }}
             </h3>
             <p v-if="themeText(theme.key).intro" class="loc-gallery__lead">{{ themeText(theme.key).intro }}</p>
             <div class="loc-gallery__block">
@@ -261,7 +261,7 @@
              style of the Tax Incentives page -->
         <div v-if="!columns" ref="cartEl" class="loc-gallery__head">
           <!-- With a page title, the map's heading is the page's h1 -->
-          <h1 v-if="title" class="loc-gallery__heading loc-gallery__heading--page f-xbold">{{ title }}</h1>
+          <h1 v-if="title" class="loc-gallery__heading loc-gallery__heading--page">{{ title }}</h1>
           <h2 v-else class="loc-gallery__heading f-xbold">
             <span class="f-ultra-light d-block">{{ t('locations.gallery.title_light') }}</span>{{ t('locations.gallery.title_bold') }}
           </h2>
@@ -485,13 +485,6 @@ const filmedLine = (line) => {
           .join(', ')
       : ''
   }
-}
-
-// A name in the two weights of the site's headings: all but the last word
-// light, the last word bold ("Gran / Canaria", "Desert & / dunes")
-const split = (name = '') => {
-  const words = name.split(' ')
-  return { light: words.slice(0, -1).join(' '), bold: words[words.length - 1] }
 }
 
 // A long word (an island's name: "Fuerteventura") a size smaller rather than
@@ -1779,8 +1772,18 @@ onBeforeUnmount(() => {
   text-transform: uppercase;
 }
 
+/* As the page's title: the site's page title (.pc-page-head in globals) */
 .loc-gallery__heading--page {
-  font-size: 64px;
+  font-family: 'Mona-Sans Medium', sans-serif;
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 1.2;
+}
+
+@media (max-width: 991px) {
+  .loc-gallery__heading--page {
+    font-size: 40px;
+  }
 }
 
 .loc-gallery__arch {
@@ -2091,12 +2094,14 @@ onBeforeUnmount(() => {
   margin: 0 8px 0 2px;
 }
 
-/* The name: the two-weight heading of the site, smaller */
+/* The name: the cut of the site's page titles, smaller */
 .loc-gallery__title {
   --fit: 1;
   margin: 12px 0 0;
+  font-family: 'Mona-Sans Medium', sans-serif;
+  font-weight: 500;
   font-size: calc(40px * var(--fit));
-  line-height: 1;
+  line-height: 1.2;
   text-transform: uppercase;
   outline: none;
 }
@@ -2614,7 +2619,7 @@ onBeforeUnmount(() => {
   }
 
   .loc-gallery__heading--page {
-    font-size: 34px;
+    font-size: 32px;
   }
 
   .loc-gallery__arch {

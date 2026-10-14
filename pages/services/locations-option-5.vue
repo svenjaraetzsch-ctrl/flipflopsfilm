@@ -43,14 +43,21 @@ useHead({
 </script>
 
 <style scoped>
-/* Clear of the fixed navigation */
+/* The map's heading starts where every page title starts (.pc-page-head
+   in globals: 200px from the top, 160px and 120px on smaller screens) */
 .loc-option__map-first {
-  padding-top: 120px;
+  padding-top: 158px;
 }
 
 @media (max-width: 991px) {
   .loc-option__map-first {
-    padding-top: 100px;
+    padding-top: 124px;
+  }
+}
+
+@media (max-width: 768px) {
+  .loc-option__map-first {
+    padding-top: 84px;
   }
 }
 </style>

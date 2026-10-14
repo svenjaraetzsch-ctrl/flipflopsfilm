@@ -1,5 +1,5 @@
 <template>
-  <header class="pc-photo-header">
+  <header class="pc-photo-header pc-page-head">
     <PhotoConceptsHeaderPhoto :image="photos.ridge" />
     <div class="caption">
       <div class="text-center">
