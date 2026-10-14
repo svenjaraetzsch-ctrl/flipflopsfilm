@@ -54,4 +54,11 @@ defineProps({
   position: relative;
   background: transparent;
 }
+
+/* Outlined letters (the theme's .stroke) break up against a photo and read
+   like a rendering error, so over a photo they are solid. */
+.pc-backdrop :deep(.stroke) {
+  color: #fff;
+  -webkit-text-stroke: 0;
+}
 </style>
