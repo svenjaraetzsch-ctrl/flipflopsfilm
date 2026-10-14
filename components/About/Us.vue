@@ -6,7 +6,7 @@
           <div class="sec-head">
             <span class="sub-title bord mb-30">{{ $t('home.company_label') }}</span>
           </div>
-          <PhotoConceptsSidePhoto :image="photos.dirtTrack" :detail="photos.roqueNublo" />
+          <PhotoConceptsSidePhoto :image="photos.dirtTrack" />
         </div>
         <div class="col-lg-5 offset-lg-1">
           <div>

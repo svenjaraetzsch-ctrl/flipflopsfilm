@@ -159,12 +159,14 @@ useScrollFx(() => {
     aspect-ratio: 16 / 10;
   }
 
+  /* Portraits too run the full width on a phone, cropped to the same frame:
+     an inset photo left an odd empty strip beside it. */
   .pc-side-photo--portrait.pc-side-photo--single .pc-side-photo__main {
-    width: 78%;
+    width: 100%;
   }
 
   .pc-side-photo--portrait.pc-side-photo--single .pc-side-photo__frame {
-    aspect-ratio: 4 / 5;
+    aspect-ratio: 16 / 10;
   }
 
   .pc-side-photo--duo .pc-side-photo__main {

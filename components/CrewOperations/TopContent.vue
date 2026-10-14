@@ -34,7 +34,7 @@
           <div class="row">
             <div class="col-lg-6">
               <span class="sub-title bord mb-30">{{ $t('crew.expertise_label') }}</span>
-              <PhotoConceptsSidePhoto :image="photos.roqueNublo" :detail="photos.waterfall" />
+              <PhotoConceptsSidePhoto :image="photos.roqueNublo" />
             </div>
             <div class="col-lg-5 offset-lg-1">
               <div class="text">

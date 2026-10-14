@@ -106,9 +106,11 @@ useScrollFx(() => {
     margin: 10px 0 40px;
   }
 
-  /* Comes after the list when stacked */
+  /* Beside a list (the values on About) the photo only works next to it:
+     stacked below, it changed out of sight. Phones and tablets show the list
+     alone. */
   .pc-swap--right {
-    margin: 40px 0 0 auto;
+    display: none;
   }
 }
 
