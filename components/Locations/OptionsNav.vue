@@ -1,6 +1,6 @@
 <template>
-  <!-- Review only: switches between the three proposals for the Locations
-       page. Fixed to the bottom of the screen. -->
+  <!-- Review only: switches between the proposals for the Locations page.
+       Fixed to the bottom of the screen. -->
   <nav class="loc-options" aria-label="Proposals">
     <span class="loc-options__label">Locations page</span>
     <NuxtLink
@@ -25,7 +25,8 @@ const localePath = useLocalePath()
 const options = [
   { no: 1, name: 'Map only' },
   { no: 2, name: 'Photo header' },
-  { no: 3, name: 'Text header + band' }
+  { no: 3, name: 'Text header + band' },
+  { no: 4, name: 'Integrated' }
 ]
 </script>
 
@@ -100,7 +101,7 @@ const options = [
   }
 
   .loc-options a {
-    padding: 8px 12px;
+    padding: 8px 11px;
   }
 
   .loc-options a em {

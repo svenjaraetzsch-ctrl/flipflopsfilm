@@ -7,76 +7,119 @@
        the window, next to what the island or theme offers a production.
        "Back to map" (or Esc) flies up again. Nothing is dragged: the page
        scrolls as usual. On smaller screens the photos follow as a grid below
-       the (then folded) map. -->
-  <section class="loc-gallery" :class="{ 'is-compact': compact, 'is-detail': level !== 'map' }">
+       the (then folded) map.
+       "integrated": no window of its own. The map is drawn straight onto the
+       page, in the right-hand column of the site's grid; the left-hand
+       column holds the page's introduction, the facts and the themes, and
+       in place of them the island's or theme's panel. -->
+  <section class="loc-gallery" :class="{ 'is-compact': compact, 'is-detail': level !== 'map', 'is-integrated': integrated }">
     <div class="container loc-gallery__wrap">
-      <Transition name="loc-gallery-fade">
-        <button v-if="level !== 'map'" type="button" class="loc-gallery__back" @click="backToMap($event)">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
-          {{ t('locations.gallery.back') }}
-        </button>
-      </Transition>
+      <!-- Integrated: the introduction of the page, the facts as on the Tax
+           Incentives page, and the themes -->
+      <div v-if="integrated" class="loc-gallery__intro">
+        <span class="sub-title bord">{{ t('locations.label') }}</span>
+        <h5 class="fw-400 line-height-40">{{ t('locations.h5') }}</h5>
+        <p class="fz-18">{{ t('locations.p') }}</p>
+        <div v-if="archipelago.length" class="loc-gallery__info">
+          <div v-for="f in archipelago" :key="f.label" class="item">
+            <span class="opacity-8 mb-5">{{ t(`locations.gallery.${f.label}`) }}</span>
+            <h6>{{ t(`locations.gallery.${f.value}`) }}</h6>
+          </div>
+        </div>
+        <div v-if="!compact" class="loc-gallery__index loc-gallery__index--flow" :class="{ 'is-matching': matches !== null }">
+          <h6 class="loc-gallery__index-title sub-title">{{ t('locations.gallery.themes') }}</h6>
+          <ul :aria-label="t('locations.gallery.themes')">
+            <li v-for="set in themeSets" :key="set.key">
+              <button
+                type="button"
+                :class="{ 'is-lit': hoverTheme === set.index, 'is-match': matches && matches.includes(set.index) }"
+                :tabindex="level === 'map' ? 0 : -1"
+                :aria-label="t('locations.gallery.open', { name: themeText(set.key).name, count: set.photos.length })"
+                @click="openTheme(set.index, $event)"
+                @pointerenter="enterTheme($event, set.index)"
+                @pointerleave="leave"
+                @focus="onFocus($event, 'theme', set.index)"
+                @blur="leave"
+              >
+                <span>{{ themeText(set.key).name }}</span>
+                <svg viewBox="0 0 18 18" aria-hidden="true"><path d="M5 13L13 5M6.5 5H13v6.5" /></svg>
+              </button>
+            </li>
+          </ul>
+        </div>
+      </div>
 
-      <!-- What the island or the theme offers a production, as an open
-           column in the type of the page around it: a label, the name in two
-           weights, a lead sentence, then blocks on fine rules. Panels cross-
-           fade (both briefly in place), so the next one can be measured
-           before the camera sets off. -->
-      <TransitionGroup name="loc-gallery-panel">
-        <section v-if="level === 'island'" :key="`i${current}`" class="loc-gallery__panel" :aria-labelledby="`loc-gallery-title-i${current}`">
-          <p class="loc-gallery__sub">
-            {{ t('locations.gallery.island_no', { n: pad(current + 1), total: pad(isles.length) }) }}
-            <span>{{ t('locations.gallery.photos', { count: isle.photos.length }) }}</span>
-          </p>
-          <h3 :id="`loc-gallery-title-i${current}`" class="loc-gallery__title f-xbold" :style="titleStyle(islandName(isle.name))" tabindex="-1">
-            <span v-if="split(islandName(isle.name)).light" class="f-ultra-light d-block">{{ split(islandName(isle.name)).light }}</span>{{ split(islandName(isle.name)).bold }}
-          </h3>
-          <p v-if="islandText.intro" class="loc-gallery__lead">{{ islandText.intro }}</p>
-          <div v-if="facts.filmed.length" class="loc-gallery__block">
-            <p class="loc-gallery__sub">{{ t('locations.gallery.filmed') }}</p>
-            <ul class="loc-gallery__filmed">
-              <li v-for="f in facts.filmed" :key="f">
-                {{ filmedLine(f).title }}<span v-if="filmedLine(f).year">{{ filmedLine(f).year }}</span>
-              </li>
-            </ul>
-          </div>
-        </section>
+      <!-- The way back and the panel (no box of their own unless
+           integrated, where they take the place of the introduction) -->
+      <div class="loc-gallery__side">
+        <Transition name="loc-gallery-fade">
+          <button v-if="level !== 'map'" type="button" class="loc-gallery__back" @click="backToMap($event)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
+            {{ t('locations.gallery.back') }}
+          </button>
+        </Transition>
 
-        <section v-else-if="level === 'theme'" :key="`t${currentTheme}`" class="loc-gallery__panel" :aria-labelledby="`loc-gallery-title-t${currentTheme}`">
-          <p class="loc-gallery__sub">
-            {{ t('locations.gallery.theme_no', { n: pad(currentTheme + 1), total: pad(themeSets.length) }) }}
-            <span>{{ t('locations.gallery.photos', { count: theme.photos.length }) }}</span>
-          </p>
-          <h3 :id="`loc-gallery-title-t${currentTheme}`" class="loc-gallery__title f-xbold" :style="titleStyle(themeText(theme.key).name)" tabindex="-1">
-            <span v-if="split(themeText(theme.key).name).light" class="f-ultra-light d-block">{{ split(themeText(theme.key).name).light }}</span>{{ split(themeText(theme.key).name).bold }}
-          </h3>
-          <p v-if="themeText(theme.key).intro" class="loc-gallery__lead">{{ themeText(theme.key).intro }}</p>
-          <div class="loc-gallery__block">
-            <p class="loc-gallery__sub">{{ t('locations.gallery.found_on') }}</p>
-            <ul class="loc-gallery__found">
-              <li v-for="j in theme.on" :key="j">
-                <button
-                  type="button"
-                  :aria-label="t('locations.gallery.open_island', { name: islandName(isles[j].name) })"
-                  @click="flyIn(j, $event)"
-                  @pointerenter="enterIsland($event, j)"
-                  @pointerleave="leave"
-                >
-                  {{ islandName(isles[j].name) }}
-                </button>
-              </li>
-            </ul>
-          </div>
-          <div v-if="theme.filmed.length" class="loc-gallery__block">
-            <p class="loc-gallery__sub">{{ t('locations.gallery.filmed') }}</p>
-            <ul class="loc-gallery__filmed">
-              <li v-for="f in theme.filmed" :key="f">
-                {{ filmedLine(f).title }}<span v-if="filmedLine(f).year">{{ filmedLine(f).year }}</span><small v-if="filmedLine(f).where" class="loc-gallery__where">{{ filmedLine(f).where }}</small>
-              </li>
-            </ul>
-          </div>
-        </section>
-      </TransitionGroup>
+        <!-- What the island or the theme offers a production, as an open
+             column in the type of the page around it: a label, the name in two
+             weights, a lead sentence, then blocks on fine rules. Panels cross-
+             fade (both briefly in place), so the next one can be measured
+             before the camera sets off. -->
+        <TransitionGroup name="loc-gallery-panel">
+          <section v-if="level === 'island'" :key="`i${current}`" class="loc-gallery__panel" :aria-labelledby="`loc-gallery-title-i${current}`">
+            <p class="loc-gallery__sub">
+              {{ t('locations.gallery.island_no', { n: pad(current + 1), total: pad(isles.length) }) }}
+              <span>{{ t('locations.gallery.photos', { count: isle.photos.length }) }}</span>
+            </p>
+            <h3 :id="`loc-gallery-title-i${current}`" class="loc-gallery__title f-xbold" :style="titleStyle(islandName(isle.name))" tabindex="-1">
+              <span v-if="split(islandName(isle.name)).light" class="f-ultra-light d-block">{{ split(islandName(isle.name)).light }}</span>{{ split(islandName(isle.name)).bold }}
+            </h3>
+            <p v-if="islandText.intro" class="loc-gallery__lead">{{ islandText.intro }}</p>
+            <div v-if="facts.filmed.length" class="loc-gallery__block">
+              <p class="loc-gallery__sub">{{ t('locations.gallery.filmed') }}</p>
+              <ul class="loc-gallery__filmed">
+                <li v-for="f in facts.filmed" :key="f">
+                  {{ filmedLine(f).title }}<span v-if="filmedLine(f).year">{{ filmedLine(f).year }}</span>
+                </li>
+              </ul>
+            </div>
+          </section>
+
+          <section v-else-if="level === 'theme'" :key="`t${currentTheme}`" class="loc-gallery__panel" :aria-labelledby="`loc-gallery-title-t${currentTheme}`">
+            <p class="loc-gallery__sub">
+              {{ t('locations.gallery.theme_no', { n: pad(currentTheme + 1), total: pad(themeSets.length) }) }}
+              <span>{{ t('locations.gallery.photos', { count: theme.photos.length }) }}</span>
+            </p>
+            <h3 :id="`loc-gallery-title-t${currentTheme}`" class="loc-gallery__title f-xbold" :style="titleStyle(themeText(theme.key).name)" tabindex="-1">
+              <span v-if="split(themeText(theme.key).name).light" class="f-ultra-light d-block">{{ split(themeText(theme.key).name).light }}</span>{{ split(themeText(theme.key).name).bold }}
+            </h3>
+            <p v-if="themeText(theme.key).intro" class="loc-gallery__lead">{{ themeText(theme.key).intro }}</p>
+            <div class="loc-gallery__block">
+              <p class="loc-gallery__sub">{{ t('locations.gallery.found_on') }}</p>
+              <ul class="loc-gallery__found">
+                <li v-for="j in theme.on" :key="j">
+                  <button
+                    type="button"
+                    :aria-label="t('locations.gallery.open_island', { name: islandName(isles[j].name) })"
+                    @click="flyIn(j, $event)"
+                    @pointerenter="enterIsland($event, j)"
+                    @pointerleave="leave"
+                  >
+                    {{ islandName(isles[j].name) }}
+                  </button>
+                </li>
+              </ul>
+            </div>
+            <div v-if="theme.filmed.length" class="loc-gallery__block">
+              <p class="loc-gallery__sub">{{ t('locations.gallery.filmed') }}</p>
+              <ul class="loc-gallery__filmed">
+                <li v-for="f in theme.filmed" :key="f">
+                  {{ filmedLine(f).title }}<span v-if="filmedLine(f).year">{{ filmedLine(f).year }}</span><small v-if="filmedLine(f).where" class="loc-gallery__where">{{ filmedLine(f).where }}</small>
+                </li>
+              </ul>
+            </div>
+          </section>
+        </TransitionGroup>
+      </div>
 
       <div
         ref="stage"
@@ -178,7 +221,7 @@
           </template>
         </template>
 
-        <div class="loc-gallery__shade" aria-hidden="true"></div>
+        <div v-if="!integrated" class="loc-gallery__shade" aria-hidden="true"></div>
 
         <!-- Map furniture that keeps its size on screen, placed by the
              script: degrees at the edges and the islands' names (buttons) -->
@@ -208,7 +251,7 @@
 
         <!-- The title, and the facts for the whole archipelago in the info
              style of the Tax Incentives page -->
-        <div ref="cartEl" class="loc-gallery__head">
+        <div v-if="!integrated" ref="cartEl" class="loc-gallery__head">
           <h2 class="loc-gallery__heading f-xbold">
             <span class="f-ultra-light d-block">{{ t('locations.gallery.title_light') }}</span>{{ t('locations.gallery.title_bold') }}
           </h2>
@@ -220,14 +263,14 @@
           </dl>
         </div>
 
-        <p class="loc-gallery__hint">
+        <p ref="hintEl" class="loc-gallery__hint">
           <span class="loc-gallery__hint-mouse">{{ t('locations.gallery.hint_mouse') }}</span>
           <span class="loc-gallery__hint-touch">{{ t('locations.gallery.hint_touch') }}</span>
         </p>
 
         <!-- Larger screens: the themes, in a column beside the map -->
         <Transition name="loc-gallery-fade">
-          <div v-if="!compact && level === 'map'" class="loc-gallery__index" :class="{ 'is-matching': matches !== null }">
+          <div v-if="!compact && level === 'map' && !integrated" class="loc-gallery__index" :class="{ 'is-matching': matches !== null }">
             <h6 class="loc-gallery__index-title sub-title">{{ t('locations.gallery.themes') }}</h6>
             <ul :aria-label="t('locations.gallery.themes')">
               <li v-for="set in themeSets" :key="set.key">
@@ -304,7 +347,7 @@
       </div>
 
       <!-- To the islands (or themes) either side, apart from the way back -->
-      <nav v-if="level !== 'map'" class="loc-gallery__steps" :aria-label="t(level === 'island' ? 'locations.gallery.other_islands' : 'locations.gallery.other_themes')">
+      <nav v-if="level !== 'map'" ref="stepsEl" class="loc-gallery__steps" :aria-label="t(level === 'island' ? 'locations.gallery.other_islands' : 'locations.gallery.other_themes')">
         <button type="button" class="loc-gallery__step" @click="step(-1, $event)">
           <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
           <span><small>{{ t(level === 'island' ? 'locations.gallery.prev_island' : 'locations.gallery.prev_theme') }}</small>{{ stepName(-1) }}</span>
@@ -317,15 +360,16 @@
       </nav>
 
       <!-- The large view: over the window on larger screens, over the whole
-           screen on smaller ones (moved to the end of the page body there,
-           since the page's main element is a stacking context below the
-           site's header). The photo flies out of its place and back. -->
-      <Teleport to="body" :disabled="!compact">
+           screen on smaller ones and when integrated (moved to the end of
+           the page body there, since the page's main element is a stacking
+           context below the site's header). The photo flies out of its
+           place and back. -->
+      <Teleport to="body" :disabled="!fixedView">
         <div
           v-if="viewing"
           ref="viewEl"
           class="loc-gallery__view"
-          :class="{ 'is-closing': closing, 'is-fixed': compact }"
+          :class="{ 'is-closing': closing, 'is-fixed': fixedView }"
           role="dialog"
           aria-modal="true"
           :aria-label="t('locations.gallery.photo_of', { name: viewSetName, n: viewing.index + 1, total: viewTiles.length })"
@@ -379,9 +423,16 @@
 </template>
 
 <script setup>
-import { ref, reactive, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
+import { ref, reactive, computed, watch, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { isles, total, graticule, routeLines, collage, themeSets, themeCollage, graciosa, view } from '@/data/Locations/mapGallery'
 import { islandFacts, archipelagoFacts } from '@/data/Locations/islandFacts'
+import { useScrollFx } from '@/composables/useScrollFx'
+
+const props = defineProps({
+  // Without a window of its own, in the columns of the page (see the
+  // comment at the top of the template)
+  integrated: { type: Boolean, default: false }
+})
 
 const { t } = useI18n()
 
@@ -438,20 +489,23 @@ const archipelago = (archipelagoFacts || []).filter((f) => f && f.label && f.val
 // State
 
 // Height of the window at the island or theme level on smaller screens, where
-// it folds into a bar above the photos (with the way back)
-const HEADER = 72
+// it folds into a bar above the photos (with the way back). Integrated, the
+// way back sits in the page instead, and the window folds away entirely.
+const HEADER = props.integrated ? 0 : 72
 // Larger screens: the list of themes on the left, and above the map the
 // title (see .loc-gallery__head), in pixels
 const COLUMN = 300
 const TITLE = 176
 
 const stage = ref(null)
+const stepsEl = ref(null)
 const mapEl = ref(null)
 const scaleEl = ref(null)
 const viewEl = ref(null)
 const figEl = ref(null)
 const closeBtn = ref(null)
 const cartEl = ref(null)
+const hintEl = ref(null)
 const groupEls = []
 const themeEls = []
 const nameEls = []
@@ -555,14 +609,22 @@ let goal = 0
 const goalH = () => goal || H
 
 // The part of the window the photos are fitted into, beside the panel and
-// above the navigation (larger screens)
-const freeArea = () => [384, 24, W - 24, goalH() - 92]
+// above the navigation (larger screens); integrated, the whole right-hand
+// column
+const freeArea = () => (props.integrated ? [8, 8, W - 8, goalH() - 8] : [384, 24, W - 24, goalH() - 92])
 
 // Larger screens: the window's own height (85vh, as in the CSS), grown when
 // an island's or theme's panel needs more room than that
 const baseHeight = () => Math.round(Math.min(1000, Math.max(540, window.innerHeight * 0.85)))
 const fitStage = () => {
   if (compact.value) return
+  if (props.integrated) {
+    // Its height is set by the CSS and stays as it is
+    goal = H
+    const [l, t2, r, b] = freeArea()
+    aspect.value = Math.round(((r - l) / (b - t2)) * 10) / 10
+    return
+  }
   const panel = level.value !== 'map' ? panelEl() : null
   const need = panel ? panel.offsetTop + panel.offsetHeight + 32 : 0
   const h = Math.max(baseHeight(), need)
@@ -594,6 +656,11 @@ const mapTarget = () => {
     return { x: view.x + view.w / 2 - 12 / z, y: view.y + view.h / 2 - (narrowTop() + (view.h * z) / 2 - h / 2) / z, z }
   }
   const h = compact.value ? overviewHeight() : goalH()
+  // Integrated (larger screens): across the column, at its top
+  if (props.integrated && !compact.value) {
+    const z = Math.min((W - 24) / view.w, (h - 60) / view.h)
+    return { x: view.x + view.w / 2, y: view.y + view.h / 2 - (12 + (view.h * z) / 2 - h / 2) / z, z }
+  }
   // Below the title, and on larger screens beside the list of themes
   const [l, top, r, b] = compact.value ? [30, 16 + titleHeight() + 30, W - 30, h - 40] : [COLUMN + 20, TITLE + 24, W - 24, h - 44]
   const z = Math.min((r - l) / view.w, (b - top) / view.h)
@@ -635,7 +702,7 @@ const themeFit = (i) => {
 const measure = () => {
   compact.value = window.innerWidth < 992
   W = stage.value.clientWidth
-  narrow.value = W < 700
+  narrow.value = compact.value && W < 700
   if (compact.value) {
     goal = stageHeight()
     stage.value.style.height = goal + 'px'
@@ -700,6 +767,7 @@ const flyIn = async (i, e) => {
     visited.value[i] = true
   }
   const wasTheme = level.value === 'theme'
+  if (props.integrated) toSectionTop()
   level.value = 'island'
   current.value = i
   detail = { kind: 'i', i }
@@ -722,7 +790,7 @@ const flyIn = async (i, e) => {
     const a = isles[from].centre
     const b = isles[i].centre
     const d = Math.sqrt((a.x - b.x) ** 2 + (a.y - b.y) ** 2)
-    const fit = (Math.min(W, compact.value ? HEADER : H) * 0.8) / (d + 40)
+    const fit = (Math.min(W, compact.value ? Math.max(HEADER, 72) : H) * 0.8) / (d + 40)
     dip = Math.max(0, Math.min(0.8, 1 - fit / Math.sqrt(cam.z * to.z)))
   }
   // From a theme: straight in, over the theme's photos fading out
@@ -744,6 +812,7 @@ const openTheme = async (i, e) => {
     visitedThemes.value[i] = true
   }
   const fromTheme = level.value === 'theme'
+  if (props.integrated) toSectionTop()
   level.value = 'theme'
   currentTheme.value = i
   detail = { kind: 't', i }
@@ -898,8 +967,17 @@ const render = (r = descent()) => {
   })
 
   // The title
-  cartEl.value.style.opacity = o.toFixed(3)
-  show(cartEl.value, o > 0.02)
+  if (cartEl.value) {
+    cartEl.value.style.opacity = o.toFixed(3)
+    show(cartEl.value, o > 0.02)
+  }
+
+  // Integrated (larger screens): the hint right under the map
+  if (props.integrated && hintEl.value) {
+    const y = toScreen(0, view.y + view.h)[1]
+    hintEl.value.style.transform = compact.value ? '' : `translate3d(0, ${Math.round(y)}px, 0)`
+    hintEl.value.style.opacity = o.toFixed(3)
+  }
 
   // Degrees along the top of the map and the right edge, like a printed
   // chart (not under the title or the list of themes)
@@ -1016,8 +1094,10 @@ const tileEl = (tile) => {
 const scaleOf = () => (viewSet.kind === 'i' ? islandTarget(viewSet.i).z / islandCollage(viewSet.i).k : themeFit(viewSet.i).s)
 
 // The view lies over the window (larger screens) or the whole screen
+// (smaller screens, and integrated, where there is no window)
+const fixedView = computed(() => compact.value || props.integrated)
 const frame = () => {
-  if (compact.value) return { x: 0, y: 0, w: window.innerWidth, h: window.innerHeight }
+  if (fixedView.value) return { x: 0, y: 0, w: window.innerWidth, h: window.innerHeight }
   const r = stage.value.getBoundingClientRect()
   return { x: r.left, y: r.top, w: r.width, h: r.height }
 }
@@ -1064,10 +1144,14 @@ const preload = (tile) => {
   }
 }
 
+// The page stays put under the view (ScrollSmoother, on larger screens,
+// scrolls by itself and is paused)
 const lockScroll = (on) => {
   if (on === lockedScroll) return
   lockedScroll = on
   document.documentElement.style.overflow = on ? 'hidden' : ''
+  const smoother = typeof ScrollSmoother !== 'undefined' && ScrollSmoother.get()
+  if (smoother && !compact.value) smoother.paused(on)
 }
 
 const loadInView = (tile) => {
@@ -1085,7 +1169,7 @@ const open = async (tile, kind, i) => {
   viewLoaded.value = false
   viewing.value = tile
   preload(tile)
-  if (compact.value) lockScroll(true)
+  if (fixedView.value) lockScroll(true)
   await nextTick()
   closeBtn.value?.focus({ preventScroll: true })
   if (reduced) return
@@ -1273,12 +1357,70 @@ onMounted(() => {
     if (level.value === 'map') Object.assign(cam, mapTarget())
     kick()
   })
-  headObs.observe(cartEl.value)
+  if (cartEl.value) headObs.observe(cartEl.value)
 
   nextTick(() => {
     render()
     kick()
   })
+})
+
+// Integrated, on larger screens: the right-hand column (the map, or the
+// photos and the way to the next one) stays in view while the left-hand one
+// is read, as position: sticky would (which ScrollSmoother's moving content
+// rules out). It travels as far as the left-hand column is taller than what
+// is shown on the right.
+const PIN_TOP = 110
+let pinY = 0
+let pin = null
+const pinTo = (y) => {
+  pinY = y
+  const v = y ? `translate3d(0, ${y}px, 0)` : ''
+  if (stage.value) stage.value.style.transform = v
+  if (stepsEl.value) stepsEl.value.style.transform = v
+}
+const shownHeight = () => {
+  if (level.value !== 'map') return stage.value.offsetHeight + 92
+  const t2 = mapTarget()
+  return Math.round(12 + view.h * t2.z + 56)
+}
+const follow = () => {
+  if (!pin) return
+  const intro = stage.value.parentElement.querySelector('.loc-gallery__intro')
+  const travel = Math.max(0, intro.offsetHeight - shownHeight())
+  pinTo(Math.round(Math.max(0, Math.min(travel, pin.scroll() - pin.start))))
+}
+// (what is shown, and the way to the next one, come and go with the level)
+watch(level, () => nextTick(follow))
+
+// Opening an island or a theme from further down the section brings its
+// top (where the panel starts) back into view
+const toSectionTop = () => {
+  if (!pin || pin.scroll() <= pin.start + 4) return
+  const smoother = typeof ScrollSmoother !== 'undefined' && ScrollSmoother.get()
+  if (smoother) smoother.scrollTo(pin.start, !reduced)
+  else window.scrollTo({ top: pin.start, behavior: reduced ? 'instant' : 'smooth' })
+}
+
+useScrollFx(() => {
+  if (!props.integrated) return
+  const mm = gsap.matchMedia()
+  mm.add('(min-width: 992px)', () => {
+    const wrapEl = stage.value.parentElement
+    pin = ScrollTrigger.create({
+      trigger: wrapEl,
+      start: `top top+=${PIN_TOP}`,
+      end: () => `+=${wrapEl.offsetHeight}`,
+      invalidateOnRefresh: true,
+      onUpdate: follow,
+      onRefresh: follow
+    })
+    return () => {
+      pin = null
+      pinTo(0)
+    }
+  })
+  return () => mm.revert()
 })
 
 onBeforeUnmount(() => {
@@ -2510,6 +2652,166 @@ onBeforeUnmount(() => {
 
   .loc-gallery__arrow--next {
     right: 14px;
+  }
+}
+
+/* ---------- Integrated: in the columns of the page ---------- */
+
+/* The way back and the panel: no box of their own unless integrated */
+.loc-gallery__side {
+  display: contents;
+}
+
+.loc-gallery.is-integrated {
+  padding: 0 0 120px;
+}
+
+/* No window: the map straight on the page. (The window's empty part may
+   pass over what follows while it travels, so only what is in it takes the
+   pointer.) */
+.is-integrated .loc-gallery__stage {
+  border: 0;
+  background: none;
+  pointer-events: none;
+}
+
+.is-integrated .loc-gallery__label,
+.is-integrated .loc-gallery__tile {
+  pointer-events: auto;
+}
+
+.is-integrated .loc-gallery__grat,
+.is-integrated .loc-gallery__deg,
+.is-integrated .loc-gallery__legend {
+  display: none;
+}
+
+/* Lines that run past the column on the way down fade out at its edge
+   rather than end at a line */
+.is-integrated .loc-gallery__map {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 40px, #000 calc(100% - 40px), transparent),
+    linear-gradient(to bottom, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 40px, #000 calc(100% - 40px), transparent),
+    linear-gradient(to bottom, transparent, #000 40px, #000 calc(100% - 40px), transparent);
+  mask-composite: intersect;
+}
+
+/* The introduction of the page, as in its text sections */
+.loc-gallery__intro .sub-title.bord {
+  display: inline-block;
+  margin-bottom: 30px;
+}
+
+.loc-gallery__intro h5 {
+  margin-bottom: 30px;
+}
+
+/* The facts, as on the Tax Incentives page */
+.loc-gallery__info {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px 56px;
+  margin-top: 40px;
+  padding-top: 30px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.loc-gallery__info .item span {
+  display: block;
+}
+
+.loc-gallery__index--flow {
+  position: static;
+  width: auto;
+  margin-top: 56px;
+}
+
+@media (min-width: 992px) {
+  /* The columns of the text sections around it: col-lg-11 > col-lg-5 and
+     col-lg-7, here as one grid, so the parts can share a row */
+  .is-integrated .loc-gallery__wrap {
+    --stage-h: clamp(420px, calc(100vh - 250px), 680px);
+    display: grid;
+    grid-template-columns: calc((100% + 24px) * 55 / 144 - 24px) calc((100% + 24px) * 77 / 144 - 24px);
+    column-gap: 24px;
+    justify-content: center;
+    align-items: start;
+  }
+
+  /* The introduction and, in its place, the panel: one cell, so the
+     section keeps its height when they swap */
+  .is-integrated .loc-gallery__intro,
+  .is-integrated .loc-gallery__side {
+    grid-area: 1 / 1;
+  }
+
+  .is-integrated .loc-gallery__intro {
+    transition: opacity 0.4s ease, visibility 0.4s;
+  }
+
+  .is-integrated.is-detail .loc-gallery__intro {
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  .is-integrated .loc-gallery__side {
+    display: grid;
+    align-content: start;
+    justify-items: start;
+  }
+
+  .is-integrated .loc-gallery__back {
+    position: static;
+    grid-row: 1;
+    margin-bottom: 48px;
+    box-shadow: none;
+  }
+
+  .is-integrated .loc-gallery__panel {
+    position: static;
+    grid-row: 2;
+    grid-column: 1;
+    width: auto;
+    max-width: 480px;
+  }
+
+  .is-integrated .loc-gallery__stage {
+    grid-area: 1 / 2;
+    height: var(--stage-h);
+    min-height: 0;
+    max-height: none;
+    transition: none;
+  }
+
+  /* The hint right under the map (placed by the script) */
+  .is-integrated .loc-gallery__hint {
+    top: 8px;
+    bottom: auto;
+    left: 12px;
+  }
+
+  /* The way to the next one right under the photos */
+  .is-integrated .loc-gallery__steps {
+    position: static;
+    grid-area: 1 / 2;
+    justify-self: end;
+    margin-top: calc(var(--stage-h) + 20px);
+  }
+}
+
+@media (max-width: 991px) {
+  .is-integrated .loc-gallery__intro {
+    order: 0;
+    margin-bottom: 32px;
+  }
+
+  .is-integrated .loc-gallery__back {
+    position: static;
+    order: 2;
+    align-self: flex-start;
+    margin-top: 8px;
+    box-shadow: none;
   }
 }
 

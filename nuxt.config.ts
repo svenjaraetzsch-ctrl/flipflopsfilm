@@ -52,7 +52,7 @@ export default defineNuxtConfig({
       // other, so the crawler is pointed at them here.
       routes: [
         '/',
-        ...[1, 2, 3].flatMap((n) => ['', '/de', '/es'].map((l) => `${l}/services/locations-option-${n}`))
+        ...[1, 2, 3, 4].flatMap((n) => ['', '/de', '/es'].map((l) => `${l}/services/locations-option-${n}`))
       ],
       // Don't abort the whole build on a single dead link (the theme demo data
       // still references non-existent pages, e.g. /creative-portfolio). Broken
