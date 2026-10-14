@@ -7,9 +7,11 @@
         <main class="main-bg">
             <div class="main-box main-bg ontop">
                 
+                <!-- The map comes straight after the title, so it is part of
+                     the first screen; the introduction follows it. -->
                 <LocationsHeader />
-                <LocationsTopContent></LocationsTopContent>
                 <LocationsGallery />
+                <LocationsTopContent></LocationsTopContent>
             </div>
             <PhotoConceptsContact :image="photos.caldera" />
         </main>
