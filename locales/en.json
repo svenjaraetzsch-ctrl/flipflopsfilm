@@ -191,7 +191,9 @@
       "hint_mouse": "Click an island or a theme to open it",
       "hint_touch": "Tap an island or a theme to open it",
       "island_no": "Island {n} / {total}",
-      "theme_no": "Theme {n} / {total}"
+      "theme_no": "Theme {n} / {total}",
+      "title_light": "Canary",
+      "title_bold": "Islands"
     },
     "islands": {
       "elHierro": {

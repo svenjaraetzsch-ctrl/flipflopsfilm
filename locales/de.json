@@ -191,7 +191,9 @@
       "hint_mouse": "Eine Insel oder ein Thema anklicken, um es zu öffnen",
       "hint_touch": "Eine Insel oder ein Thema antippen, um es zu öffnen",
       "island_no": "Insel {n} / {total}",
-      "theme_no": "Thema {n} / {total}"
+      "theme_no": "Thema {n} / {total}",
+      "title_light": "Kanarische",
+      "title_bold": "Inseln"
     },
     "islands": {
       "elHierro": {

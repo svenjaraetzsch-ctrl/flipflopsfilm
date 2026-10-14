@@ -1,14 +1,5 @@
 <template>
-  <header class="pc-photo-header">
-    <PhotoConceptsHeaderPhoto :image="photos.ridge" />
-    <div class="caption">
-      <div class="text-center">
-        <h1>{{ $t('tax.header') }}</h1>
-      </div>
-    </div>
-  </header>
+  <!-- The service pages share one header: the title between the running
+       location photos (as on Locations) -->
+  <CommonMarqueeHeader :title="$t('tax.header')" />
 </template>
-
-<script setup>
-import { photos } from '@/data/PhotoConcepts/photos'
-</script>

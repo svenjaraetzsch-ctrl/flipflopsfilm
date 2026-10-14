@@ -201,10 +201,12 @@
           </button>
         </div>
 
-        <!-- The page title (the page's h1), and the facts for the whole
-             archipelago in the info style of the Tax Incentives page -->
+        <!-- The map's heading, and the facts for the whole archipelago in the
+             info style of the Tax Incentives page -->
         <div ref="cartEl" class="loc-gallery__head">
-          <h1 class="loc-gallery__heading">{{ title || t('locations.header') }}</h1>
+          <h2 class="loc-gallery__heading f-xbold">
+            <span class="f-ultra-light d-block">{{ t('locations.gallery.title_light') }}</span>{{ t('locations.gallery.title_bold') }}
+          </h2>
           <dl v-if="archipelago.length" class="loc-gallery__arch">
             <div v-for="f in archipelago" :key="f.label">
               <dt>{{ t(`locations.gallery.${f.label}`) }}</dt>
@@ -371,12 +373,6 @@
 import { ref, reactive, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { isles, total, routeLines, collage, themeSets, themeCollage, graciosa, view } from '@/data/Locations/mapGallery'
 import { islandFacts, archipelagoFacts } from '@/data/Locations/islandFacts'
-
-defineProps({
-  // The heading above the map, the page's h1 (by default the title of the
-  // Locations page)
-  title: { type: String, default: '' }
-})
 
 const { t } = useI18n()
 
@@ -1549,19 +1545,11 @@ onBeforeUnmount(() => {
   visibility: hidden;
 }
 
-/* The site's page title (.pc-page-head in globals) */
+/* "Canary / Islands" in the two weights of the site's big statements */
 .loc-gallery__heading {
-  font-family: 'Mona-Sans Medium', sans-serif;
-  font-weight: 500;
-  font-size: 60px;
-  line-height: 1.2;
+  font-size: 40px;
+  line-height: 1;
   text-transform: uppercase;
-}
-
-@media (max-width: 991px) {
-  .loc-gallery__heading {
-    font-size: 40px;
-  }
 }
 
 .loc-gallery__arch {
@@ -2352,7 +2340,7 @@ onBeforeUnmount(() => {
   }
 
   .loc-gallery__heading {
-    font-size: 32px;
+    font-size: 30px;
   }
 
   .loc-gallery__arch {

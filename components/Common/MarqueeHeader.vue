@@ -2,7 +2,7 @@
   <!-- A page title between two walls of location photos running past in
        perspective (Vincent's photos, data/Locations/grid.json). Needs the
        preview layout, which carries the styles for header .img-marq. -->
-  <header class="pc-page-head">
+  <header>
     <div class="caption">
       <div class="text-center">
         <h1 :class="{ 'pc-sr-only': hideTitle }">{{ title }}</h1>

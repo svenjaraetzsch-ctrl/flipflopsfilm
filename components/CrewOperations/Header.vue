@@ -1,14 +1,5 @@
 <template>
-  <header class="pc-photo-header">
-    <PhotoConceptsHeaderPhoto :image="photos.dirtTrack" shift="18%" />
-    <div class="caption">
-      <div class="text-center">
-        <h1>{{ $t('crew.header') }}</h1>
-      </div>
-    </div>
-  </header>
+  <!-- The service pages share one header: the title between the running
+       location photos (as on Locations) -->
+  <CommonMarqueeHeader :title="$t('crew.header')" />
 </template>
-
-<script setup>
-import { photos } from '@/data/PhotoConcepts/photos'
-</script>
