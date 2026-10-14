@@ -1,46 +1,33 @@
 // Proposal 1 for the Services overview: the Flip Flops butterfly is the menu.
-// Its four wings are the four services. Titles and one-line descriptions come
-// from `services_items` in the locale files; only the extra wording is here.
+// Its four wings are the four services. Names and descriptions come from
+// `services_items` in the locale files; only wording without a key is here.
 
-// The line above the butterfly, in the brand voice
-export const intro = {
-  en: {
-    lead: 'Four wings, one team.',
-    rest: 'Everything an international production needs to shoot in Spain: relaxed like the islands, precise like a call sheet.'
-  },
-  de: {
-    lead: 'Vier Flügel, ein Team.',
-    rest: 'Alles, was eine internationale Produktion für den Dreh in Spanien braucht: entspannt wie die Inseln, präzise wie eine Dispo.'
-  },
-  es: {
-    lead: 'Cuatro alas, un solo equipo.',
-    rest: 'Todo lo que una producción internacional necesita para rodar en España: la calma de las islas y la precisión de una orden de rodaje.'
-  }
+// The page's statement, set as a page title
+export const statement = {
+  en: 'Four wings, one team.',
+  de: 'Vier Flügel, ein Team.',
+  es: 'Cuatro alas, un solo equipo.'
 }
 
-// Production Services has no page of its own: its wing leads down to its text
+// Column headings of the list, as on Home (where they are in English only)
+export const columns = {
+  service: { en: 'Service', de: 'Leistung', es: 'Servicio' },
+  description: { en: 'Description', de: 'Beschreibung', es: 'Descripción' }
+}
+
+// Production Services has no page of its own: its row leads down to its text
 export const onThisPage = {
   en: 'further down this page',
   de: 'weiter unten auf dieser Seite',
   es: 'más abajo en esta página'
 }
 
-export const listLabel = {
-  en: 'Our services',
-  de: 'Unsere Leistungen',
-  es: 'Nuestros servicios'
-}
-
-// One wing per service, in the order of `services_items`. Coordinates are in
-// the logo's own units (the ring is 33.3 across), measured from the centre of
-// the ring: `anchor` is the dot on the wing, `line` the height of the label's
-// rule. The leader runs from the dot at 45° to that height, then out to the
-// edge of the page.
+// One wing per service, in the order of `services_items`: the upper wings
+// (the two clapperboards) first, then the lower ones. Production Services is
+// the first clapperboard: every shoot starts and ends with the slate.
 export const wings = [
-  // The first clapperboard wing: every shoot starts and ends with the slate,
-  // from prep to wrap. Scrolls down to the Production Services text.
-  { wing: 'ul', side: 'left', target: 'production-services', anchor: [-9, -5.8], line: -12.4 },
-  { wing: 'ur', side: 'right', link: '/services/locations', anchor: [9, -5.8], line: -12.4 },
-  { wing: 'll', side: 'left', link: '/services/tax-incentives', anchor: [-4.9, 8], line: 13.8 },
-  { wing: 'lr', side: 'right', link: '/services/crew-operations', anchor: [4.9, 8], line: 13.8 }
+  { wing: 'ul', target: 'production-services' },
+  { wing: 'ur', link: '/services/locations' },
+  { wing: 'll', link: '/services/tax-incentives' },
+  { wing: 'lr', link: '/services/crew-operations' }
 ]
