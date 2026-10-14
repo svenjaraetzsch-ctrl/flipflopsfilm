@@ -366,3 +366,13 @@ footer .logo .logo-svg-wrap {
     padding-bottom: 30px;
   }
 }
+
+/* Text only for search engines and screen readers */
+.pc-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
+}

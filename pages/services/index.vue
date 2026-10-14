@@ -7,7 +7,7 @@
     <div id="smooth-content">
       <main class="main-bg">
         <div class="main-box main-bg ontop">
-          <CommonMarqueeHeader :title="$t('nav.services')" />
+          <CommonMarqueeHeader :title="$t('nav.services')" hide-title />
           <PortfolioInteractiveCenter class="pc-after-header" />
           <ServicesTopContent></ServicesTopContent>
           

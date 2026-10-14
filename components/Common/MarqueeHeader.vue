@@ -5,7 +5,7 @@
   <header class="pc-page-head">
     <div class="caption">
       <div class="text-center">
-        <h1>{{ title }}</h1>
+        <h1 :class="{ 'pc-sr-only': hideTitle }">{{ title }}</h1>
       </div>
     </div>
 
@@ -39,7 +39,10 @@
 import data from '@/data/Locations/grid.json'
 
 defineProps({
-  title: { type: String, required: true }
+  title: { type: String, required: true },
+  // The title only for search engines and screen readers; the photos alone
+  // open the page
+  hideTitle: { type: Boolean, default: false }
 })
 
 // Seeded so server and client produce the same order (Math.random caused

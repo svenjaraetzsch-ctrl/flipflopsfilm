@@ -48,11 +48,11 @@ export default defineNuxtConfig({
     // not an empty <div>. crawlLinks follows internal links to discover routes.
     prerender: {
       crawlLinks: true,
-      // The three proposals for the Locations page are only linked from each
+      // The proposals for the Services overview are only linked from each
       // other, so the crawler is pointed at them here.
       routes: [
         '/',
-        ...[1, 2, 3, 4, 5].flatMap((n) => ['', '/de', '/es'].map((l) => `${l}/services/locations-option-${n}`))
+        ...[1, 2, 3].flatMap((n) => ['', '/de', '/es'].map((l) => `${l}/services/overview-${n}`))
       ],
       // Don't abort the whole build on a single dead link (the theme demo data
       // still references non-existent pages, e.g. /creative-portfolio). Broken
