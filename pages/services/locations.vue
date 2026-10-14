@@ -9,7 +9,7 @@
                 
                 <!-- The map comes straight after the title, so it is part of
                      the first screen; the introduction follows it. -->
-                <LocationsHeader />
+                <CommonMarqueeHeader :title="$t('locations.header')" />
                 <LocationsGallery />
                 <LocationsTopContent></LocationsTopContent>
             </div>

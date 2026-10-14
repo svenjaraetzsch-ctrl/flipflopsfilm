@@ -100,6 +100,11 @@ body,
   padding-top: 180px !important;
 }
 
+/* Below a page header the list needs no clearance for the navigation */
+.interactive-center.pc-after-header {
+  padding-top: 40px !important;
+}
+
 .land-header {
   padding-top: 200px !important;
 }

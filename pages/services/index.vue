@@ -7,7 +7,8 @@
     <div id="smooth-content">
       <main class="main-bg">
         <div class="main-box main-bg ontop">
-          <PortfolioInteractiveCenter />
+          <CommonMarqueeHeader :title="$t('nav.services')" />
+          <PortfolioInteractiveCenter class="pc-after-header" />
           <ServicesTopContent></ServicesTopContent>
           
           
@@ -23,6 +24,10 @@
 
 <script setup>
 import { photos } from '@/data/PhotoConcepts/photos'
+
+definePageMeta({
+  layout: 'preview'
+})
 
 usePageSeo('services')
 
