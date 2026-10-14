@@ -8,15 +8,23 @@
        "Back to map" (or Esc) flies up again. Nothing is dragged: the page
        scrolls as usual. On smaller screens the photos follow as a grid below
        the (then folded) map.
-       "integrated": no window of its own. The map is drawn straight onto the
-       page, in the right-hand column of the site's grid; the left-hand
-       column holds the page's introduction, the facts and the themes, and
-       in place of them the island's or theme's panel. -->
-  <section class="loc-gallery" :class="{ 'is-compact': compact, 'is-detail': level !== 'map', 'is-integrated': integrated }">
+       Three layouts (the prop "layout"):
+       - "window": all of this in a window of its own, with a frame.
+       - "columns" (also the prop "integrated"): no window. The map is drawn
+         straight onto the page, in the right-hand column of the site's
+         grid; the left-hand column holds the page's introduction, the facts
+         and the themes, and in place of them the island's or theme's panel.
+       - "open": laid out as "window", the map as large, but with no window:
+         everything straight on the page, in line with the site's container.
+       -->
+  <section
+    class="loc-gallery"
+    :class="{ 'is-compact': compact, 'is-detail': level !== 'map', 'is-integrated': columns, 'is-open': openLayout }"
+  >
     <div class="container loc-gallery__wrap">
       <!-- Integrated: the introduction of the page, the facts as on the Tax
            Incentives page, and the themes -->
-      <div v-if="integrated" class="loc-gallery__intro">
+      <div v-if="columns" class="loc-gallery__intro">
         <span class="sub-title bord">{{ t('locations.label') }}</span>
         <h5 class="fw-400 line-height-40">{{ t('locations.h5') }}</h5>
         <p class="fz-18">{{ t('locations.p') }}</p>
@@ -50,7 +58,7 @@
       </div>
 
       <!-- The way back and the panel (no box of their own unless
-           integrated, where they take the place of the introduction) -->
+           in columns, where they take the place of the introduction) -->
       <div class="loc-gallery__side">
         <Transition name="loc-gallery-fade">
           <button v-if="level !== 'map'" type="button" class="loc-gallery__back" @click="backToMap($event)">
@@ -221,7 +229,7 @@
           </template>
         </template>
 
-        <div v-if="!integrated" class="loc-gallery__shade" aria-hidden="true"></div>
+        <div v-if="windowed" class="loc-gallery__shade" aria-hidden="true"></div>
 
         <!-- Map furniture that keeps its size on screen, placed by the
              script: degrees at the edges and the islands' names (buttons) -->
@@ -251,7 +259,7 @@
 
         <!-- The title, and the facts for the whole archipelago in the info
              style of the Tax Incentives page -->
-        <div v-if="!integrated" ref="cartEl" class="loc-gallery__head">
+        <div v-if="!columns" ref="cartEl" class="loc-gallery__head">
           <h2 class="loc-gallery__heading f-xbold">
             <span class="f-ultra-light d-block">{{ t('locations.gallery.title_light') }}</span>{{ t('locations.gallery.title_bold') }}
           </h2>
@@ -270,7 +278,7 @@
 
         <!-- Larger screens: the themes, in a column beside the map -->
         <Transition name="loc-gallery-fade">
-          <div v-if="!compact && level === 'map' && !integrated" class="loc-gallery__index" :class="{ 'is-matching': matches !== null }">
+          <div v-if="!compact && level === 'map' && !columns" class="loc-gallery__index" :class="{ 'is-matching': matches !== null }">
             <h6 class="loc-gallery__index-title sub-title">{{ t('locations.gallery.themes') }}</h6>
             <ul :aria-label="t('locations.gallery.themes')">
               <li v-for="set in themeSets" :key="set.key">
@@ -360,7 +368,7 @@
       </nav>
 
       <!-- The large view: over the window on larger screens, over the whole
-           screen on smaller ones and when integrated (moved to the end of
+           screen on smaller ones and without a window (moved to the end of
            the page body there, since the page's main element is a stacking
            context below the site's header). The photo flies out of its
            place and back. -->
@@ -429,10 +437,15 @@ import { islandFacts, archipelagoFacts } from '@/data/Locations/islandFacts'
 import { useScrollFx } from '@/composables/useScrollFx'
 
 const props = defineProps({
-  // Without a window of its own, in the columns of the page (see the
-  // comment at the top of the template)
+  // 'window', 'columns' or 'open' (see the comment at the top of the
+  // template)
+  layout: { type: String, default: 'window' },
+  // The same as layout="columns"
   integrated: { type: Boolean, default: false }
 })
+const columns = props.integrated || props.layout === 'columns'
+const openLayout = !columns && props.layout === 'open'
+const windowed = !columns && !openLayout
 
 const { t } = useI18n()
 
@@ -491,7 +504,7 @@ const archipelago = (archipelagoFacts || []).filter((f) => f && f.label && f.val
 // Height of the window at the island or theme level on smaller screens, where
 // it folds into a bar above the photos (with the way back). Integrated, the
 // way back sits in the page instead, and the window folds away entirely.
-const HEADER = props.integrated ? 0 : 72
+const HEADER = columns ? 0 : 72
 // Larger screens: the list of themes on the left, and above the map the
 // title (see .loc-gallery__head), in pixels
 const COLUMN = 300
@@ -611,14 +624,14 @@ const goalH = () => goal || H
 // The part of the window the photos are fitted into, beside the panel and
 // above the navigation (larger screens); integrated, the whole right-hand
 // column
-const freeArea = () => (props.integrated ? [8, 8, W - 8, goalH() - 8] : [384, 24, W - 24, goalH() - 92])
+const freeArea = () => (columns ? [8, 8, W - 8, goalH() - 8] : [384, 24, W - 24, goalH() - 92])
 
 // Larger screens: the window's own height (85vh, as in the CSS), grown when
 // an island's or theme's panel needs more room than that
 const baseHeight = () => Math.round(Math.min(1000, Math.max(540, window.innerHeight * 0.85)))
 const fitStage = () => {
   if (compact.value) return
-  if (props.integrated) {
+  if (columns) {
     // Its height is set by the CSS and stays as it is
     goal = H
     const [l, t2, r, b] = freeArea()
@@ -657,7 +670,7 @@ const mapTarget = () => {
   }
   const h = compact.value ? overviewHeight() : goalH()
   // Integrated (larger screens): across the column, at its top
-  if (props.integrated && !compact.value) {
+  if (columns && !compact.value) {
     const z = Math.min((W - 24) / view.w, (h - 60) / view.h)
     return { x: view.x + view.w / 2, y: view.y + view.h / 2 - (12 + (view.h * z) / 2 - h / 2) / z, z }
   }
@@ -767,7 +780,7 @@ const flyIn = async (i, e) => {
     visited.value[i] = true
   }
   const wasTheme = level.value === 'theme'
-  if (props.integrated) toSectionTop()
+  if (columns) toSectionTop()
   level.value = 'island'
   current.value = i
   detail = { kind: 'i', i }
@@ -812,7 +825,7 @@ const openTheme = async (i, e) => {
     visitedThemes.value[i] = true
   }
   const fromTheme = level.value === 'theme'
-  if (props.integrated) toSectionTop()
+  if (columns) toSectionTop()
   level.value = 'theme'
   currentTheme.value = i
   detail = { kind: 't', i }
@@ -973,7 +986,7 @@ const render = (r = descent()) => {
   }
 
   // Integrated (larger screens): the hint right under the map
-  if (props.integrated && hintEl.value) {
+  if (columns && hintEl.value) {
     const y = toScreen(0, view.y + view.h)[1]
     hintEl.value.style.transform = compact.value ? '' : `translate3d(0, ${Math.round(y)}px, 0)`
     hintEl.value.style.opacity = o.toFixed(3)
@@ -1094,8 +1107,8 @@ const tileEl = (tile) => {
 const scaleOf = () => (viewSet.kind === 'i' ? islandTarget(viewSet.i).z / islandCollage(viewSet.i).k : themeFit(viewSet.i).s)
 
 // The view lies over the window (larger screens) or the whole screen
-// (smaller screens, and integrated, where there is no window)
-const fixedView = computed(() => compact.value || props.integrated)
+// (smaller screens, and where there is no window)
+const fixedView = computed(() => compact.value || !windowed)
 const frame = () => {
   if (fixedView.value) return { x: 0, y: 0, w: window.innerWidth, h: window.innerHeight }
   const r = stage.value.getBoundingClientRect()
@@ -1403,7 +1416,7 @@ const toSectionTop = () => {
 }
 
 useScrollFx(() => {
-  if (!props.integrated) return
+  if (!columns) return
   const mm = gsap.matchMedia()
   mm.add('(min-width: 992px)', () => {
     const wrapEl = stage.value.parentElement
@@ -2812,6 +2825,48 @@ onBeforeUnmount(() => {
     align-self: flex-start;
     margin-top: 8px;
     box-shadow: none;
+  }
+}
+
+/* ---------- Open: laid out as the window, the map as large, but with no
+   window: straight on the page, in line with the container ---------- */
+
+.is-open .loc-gallery__stage {
+  border: 0;
+  background: none;
+}
+
+.is-open .loc-gallery__grat,
+.is-open .loc-gallery__deg,
+.is-open .loc-gallery__legend {
+  display: none;
+}
+
+/* Lines that run past the area on the way down fade out at its edge rather
+   than end at a line */
+.is-open .loc-gallery__map {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent),
+    linear-gradient(to bottom, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+  -webkit-mask-composite: source-in;
+  mask-image: linear-gradient(to right, transparent, #000 24px, #000 calc(100% - 24px), transparent),
+    linear-gradient(to bottom, transparent, #000 24px, #000 calc(100% - 24px), transparent);
+  mask-composite: intersect;
+}
+
+@media (min-width: 992px) {
+  /* The themes, the way back and the panel at the container's left edge,
+     the way to the next one at its right edge */
+  .is-open .loc-gallery__index {
+    left: 0;
+  }
+
+  .is-open .loc-gallery__back,
+  .is-open .loc-gallery__panel {
+    left: var(--gutter);
+  }
+
+  .is-open .loc-gallery__steps {
+    right: var(--gutter);
   }
 }
 

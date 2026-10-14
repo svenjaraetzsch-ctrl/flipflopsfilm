@@ -26,7 +26,8 @@ const options = [
   { no: 1, name: 'Map only' },
   { no: 2, name: 'Photo header' },
   { no: 3, name: 'Text header + band' },
-  { no: 4, name: 'Integrated' }
+  { no: 4, name: 'Integrated' },
+  { no: 5, name: 'Open map' }
 ]
 </script>
 
