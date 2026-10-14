@@ -260,7 +260,9 @@
         <!-- The title, and the facts for the whole archipelago in the info
              style of the Tax Incentives page -->
         <div v-if="!columns" ref="cartEl" class="loc-gallery__head">
-          <h2 class="loc-gallery__heading f-xbold">
+          <!-- With a page title, the map's heading is the page's h1 -->
+          <h1 v-if="title" class="loc-gallery__heading loc-gallery__heading--page f-xbold">{{ title }}</h1>
+          <h2 v-else class="loc-gallery__heading f-xbold">
             <span class="f-ultra-light d-block">{{ t('locations.gallery.title_light') }}</span>{{ t('locations.gallery.title_bold') }}
           </h2>
           <dl v-if="archipelago.length" class="loc-gallery__arch">
@@ -441,7 +443,10 @@ const props = defineProps({
   // template)
   layout: { type: String, default: 'window' },
   // The same as layout="columns"
-  integrated: { type: Boolean, default: false }
+  integrated: { type: Boolean, default: false },
+  // Shown as the page's h1 in place of the "Canary Islands" heading, for a
+  // page that opens with the map
+  title: { type: String, default: '' }
 })
 const columns = props.integrated || props.layout === 'columns'
 const openLayout = !columns && props.layout === 'open'
@@ -1774,6 +1779,10 @@ onBeforeUnmount(() => {
   text-transform: uppercase;
 }
 
+.loc-gallery__heading--page {
+  font-size: 64px;
+}
+
 .loc-gallery__arch {
   display: flex;
   flex-wrap: wrap;
@@ -2602,6 +2611,10 @@ onBeforeUnmount(() => {
 
   .loc-gallery__heading {
     font-size: 30px;
+  }
+
+  .loc-gallery__heading--page {
+    font-size: 34px;
   }
 
   .loc-gallery__arch {

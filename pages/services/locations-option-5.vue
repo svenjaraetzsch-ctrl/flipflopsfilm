@@ -9,10 +9,10 @@
             <div class="main-box main-bg ontop">
                 <!-- Option 5: the map opens the page, as large as in option 1,
                      but with no window: straight on the page, in line with
-                     the container. The description follows below. -->
-                <h1 class="loc-option__h1">{{ $t('locations.header') }}</h1>
+                     the container, its heading the page title. The
+                     description follows below. -->
                 <div class="loc-option__map-first">
-                  <LocationsGallery layout="open" />
+                  <LocationsGallery layout="open" :title="$t('locations.header')" />
                 </div>
                 <LocationsTopContent />
             </div>
@@ -43,17 +43,6 @@ useHead({
 </script>
 
 <style scoped>
-/* The page's title for search engines and screen readers; the map's own
-   "Canary Islands" heading is what is seen. */
-.loc-option__h1 {
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  overflow: hidden;
-  clip-path: inset(50%);
-  white-space: nowrap;
-}
-
 /* Clear of the fixed navigation */
 .loc-option__map-first {
   padding-top: 120px;
