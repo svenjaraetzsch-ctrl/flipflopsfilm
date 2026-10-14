@@ -7,7 +7,6 @@
     <div id="smooth-content">
       <main class="main-bg">
         <div class="main-box main-bg ontop">
-          <h1 class="pc-sr-only">{{ $t('nav.services') }}</h1>
           <ServicesOverviewButterfly />
         </div>
         <PhotoConceptsContact :image="photos.famara" />
