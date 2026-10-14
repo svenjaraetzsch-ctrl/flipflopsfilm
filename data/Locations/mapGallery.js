@@ -41,18 +41,6 @@ export const isles = islands.map((item, index) => {
 
 export const total = offset
 
-// Parallels and meridians every degree, drawn well past the map, since the
-// camera can look beyond it when down at an island
-export const graticule = []
-for (const lat of [27, 28, 29, 30]) {
-  const y = +project(-18, lat)[1].toFixed(1)
-  graticule.push({ key: `lat${lat}`, d: `M-400 ${y}H900`, deg: lat, dir: 'n', axis: 'y', at: y })
-}
-for (const lon of [-19, -18, -17, -16, -15, -14, -13]) {
-  const x = +project(lon, 28)[0].toFixed(1)
-  graticule.push({ key: `lon${lon}`, d: `M${x} -300V600`, deg: -lon, dir: 'w', axis: 'x', at: x })
-}
-
 // The ferry lines, purely as a picture of the connections: gentle arcs
 // between the ports (bend > 0 bows them to the left of the direction of
 // travel). Rounded, since Math.cos (in project) may differ in the last digit

@@ -163,7 +163,6 @@
     "label": "Posibilidades Visuales Infinitas",
     "h5": "Menos desplazamientos, mayor variedad visual y más tiempo donde más importa: en el set.",
     "p": "En pocas horas, los paisajes pasan de terrenos volcánicos lunares y costas azotadas por el viento a densos bosques, carreteras desérticas y pueblos atemporales. Las localizaciones que normalmente requerirían varios países a menudo se pueden encontrar dentro de una sola región.",
-    "band_label": "Más de las islas",
     "gallery": {
       "islands": "Islas",
       "themes": "Temas",
@@ -189,10 +188,6 @@
       "prev_photo": "Foto anterior",
       "next_photo": "Foto siguiente",
       "close": "Cerrar",
-      "north": "N",
-      "west": "O",
-      "title_light": "Islas",
-      "title_bold": "Canarias",
       "hint_mouse": "Haga clic en una isla o un tema para abrirlo",
       "hint_touch": "Toque una isla o un tema para abrirlo",
       "island_no": "Isla {n} / {total}",

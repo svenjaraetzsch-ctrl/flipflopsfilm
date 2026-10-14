@@ -163,7 +163,6 @@
     "label": "Endless Visual Possibilities",
     "h5": "Fewer company moves, greater visual variety and more time where it matters most: on set.",
     "p": "Within a few hours, landscapes shift from lunar volcanic terrain and windswept coastlines to dense forests, desert roads and timeless villages. Locations that would normally require multiple countries can often be found within a single region.",
-    "band_label": "More from the islands",
     "gallery": {
       "islands": "Islands",
       "themes": "Themes",
@@ -189,10 +188,6 @@
       "prev_photo": "Previous photo",
       "next_photo": "Next photo",
       "close": "Close",
-      "north": "N",
-      "west": "W",
-      "title_light": "Canary",
-      "title_bold": "Islands",
       "hint_mouse": "Click an island or a theme to open it",
       "hint_touch": "Tap an island or a theme to open it",
       "island_no": "Island {n} / {total}",

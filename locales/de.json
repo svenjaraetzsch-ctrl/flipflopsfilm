@@ -163,7 +163,6 @@
     "label": "Endlose visuelle Möglichkeiten",
     "h5": "Weniger Ortswechsel, mehr visuelle Vielfalt und mehr Zeit, wo es am meisten zählt: am Set.",
     "p": "Innerhalb weniger Stunden wandeln sich die Landschaften von mondvulkanischem Terrain und windgepeitschten Küsten zu dichten Wäldern, Wüstenstraßen und zeitlosen Dörfern. Drehorte, die normalerweise mehrere Länder erfordern würden, lassen sich oft innerhalb einer einzigen Region finden.",
-    "band_label": "Mehr von den Inseln",
     "gallery": {
       "islands": "Inseln",
       "themes": "Themen",
@@ -189,10 +188,6 @@
       "prev_photo": "Vorheriges Foto",
       "next_photo": "Nächstes Foto",
       "close": "Schließen",
-      "north": "N",
-      "west": "W",
-      "title_light": "Kanarische",
-      "title_bold": "Inseln",
       "hint_mouse": "Eine Insel oder ein Thema anklicken, um es zu öffnen",
       "hint_touch": "Eine Insel oder ein Thema antippen, um es zu öffnen",
       "island_no": "Insel {n} / {total}",
