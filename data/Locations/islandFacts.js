@@ -31,10 +31,3 @@ export const islandFacts = {
     filmed: ['One Million Years B.C. (1966)', 'Broken Embraces (2009)', 'In the Heart of the Sea (2015)']
   }
 }
-
-// For the whole archipelago, shown on the overview: the label and value keys
-// under locations.gallery. The rebate is the figure on the Tax Incentives page.
-export const archipelagoFacts = [
-  { label: 'tax_label', value: 'tax_value' },
-  { label: 'season_label', value: 'season_value' }
-]

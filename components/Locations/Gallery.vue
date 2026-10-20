@@ -12,10 +12,14 @@
        map. -->
   <section class="loc-gallery" :class="{ 'is-compact': compact, 'is-detail': !overview }">
     <div class="container loc-gallery__wrap">
-      <Transition name="loc-gallery-fade">
-        <button v-if="!overview || upToSpain" type="button" class="loc-gallery__back" :class="{ 'is-up': upToSpain }" @click="goBack($event)">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
-          {{ upToSpain ? t('locations.mainland.all_spain') : t('locations.gallery.back') }}
+      <!-- One button in one place: on the islands' map it switches to mainland
+           Spain, on the map of Spain to the Canary Islands; down at an island,
+           a place or a theme it leads back to the map it belongs to -->
+      <Transition name="loc-gallery-fade" mode="out-in">
+        <button :key="level === 'map' || level === 'spain' ? level : 'back'" type="button" class="loc-gallery__back" :class="{ 'is-up': overview }" @click="goBack($event)">
+          <svg v-if="overview" viewBox="0 0 18 18" aria-hidden="true"><path d="M5 13L13 5M6.5 5H13v6.5" /></svg>
+          <svg v-else viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
+          {{ level === 'map' ? t('locations.mainland.label') : level === 'spain' ? t('locations.mainland.canaries') : t('locations.gallery.back') }}
         </button>
       </Transition>
 
@@ -88,8 +92,8 @@
           </div>
         </section>
 
-        <!-- A place on the mainland (review proposals): as an island, without
-             photos (the map stays in view) -->
+        <!-- A place on the mainland: as an island, without photos (the map
+             stays in view) -->
         <section v-else-if="level === 'base' && base" :key="`b${currentBase}`" class="loc-gallery__panel" :aria-labelledby="`loc-gallery-title-b${currentBase}`">
           <p class="loc-gallery__sub">{{ t('locations.mainland.label') }}</p>
           <h3 :id="`loc-gallery-title-b${currentBase}`" class="loc-gallery__title" :style="titleStyle(baseName(base.key))" tabindex="-1">
@@ -131,15 +135,12 @@
               <line x1="0" y1="0" x2="0" y2="2.6" />
             </pattern>
           </defs>
-          <!-- Mainland Spain (review proposals), Portugal only as a faint
-               outline; the frame round the islands (all of Spain) or the line
-               to the mainland (side by side) -->
-          <g v-if="ml" class="loc-gallery__mainland">
+          <!-- Mainland Spain, beside the islands (all of Spain; on phones below
+               them), Portugal only by its coast, faint -->
+          <g ref="mainlandEl" class="loc-gallery__mainland">
             <path class="loc-gallery__neighbour" :d="ml.portugal" />
             <path class="loc-gallery__land" :d="ml.spain" />
             <path class="loc-gallery__land" :d="ml.balearics" />
-            <rect v-if="ml.frame" ref="frameEl" class="loc-gallery__frame" :x="ml.frame.x" :y="ml.frame.y" :width="ml.frame.w" :height="ml.frame.h" />
-            <path v-if="ml.link" class="loc-gallery__route" :class="{ 'is-active': linkLit }" :d="ml.link" />
           </g>
           <g class="loc-gallery__routes">
             <path v-for="r in routeLines" :key="r.key" class="loc-gallery__route" :class="{ 'is-active': routeLit(r) }" :d="r.d" />
@@ -169,16 +170,6 @@
             @pointerenter="enterIsland($event, i)"
             @pointerleave="leave"
             @click="flyIn(i, $event)"
-          />
-          <!-- All of Spain: the islands are entered through their frame -->
-          <rect
-            v-if="ml && ml.frame && level === 'spain'"
-            class="loc-gallery__frame-hit"
-            :x="ml.frame.x"
-            :y="ml.frame.y"
-            :width="ml.frame.w"
-            :height="ml.frame.h"
-            @click="toArchipelago($event)"
           />
         </svg>
 
@@ -236,7 +227,7 @@
             type="button"
             class="loc-gallery__label"
             :class="[`is-${item.label[2]}`, { 'is-lit': lit.includes(item.index) }]"
-            :tabindex="level === 'map' ? 0 : -1"
+            :tabindex="overview ? 0 : -1"
             :aria-label="t('locations.gallery.open', { name: islandName(item.name), count: item.photos.length })"
             @click="flyIn(item.index, $event)"
             @pointerenter="enterIsland($event, item.index)"
@@ -246,60 +237,15 @@
           >
             <span>{{ islandName(item.name) }}</span>
           </button>
-          <!-- The places on the mainland, and (all of Spain) the islands' frame -->
-          <template v-if="ml">
-            <button
-              v-for="(b, i) in ml.bases"
-              :key="b.key"
-              :ref="(el) => (baseEls[i] = el)"
-              type="button"
-              class="loc-gallery__label loc-gallery__base"
-              :class="{ 'is-lit': litBases.includes(i) || (level === 'base' && currentBase === i) }"
-              :tabindex="overview && mainland !== 'corner' ? 0 : -1"
-              :aria-label="t('locations.mainland.open_base', { name: baseName(b.key) })"
-              @click="flyBase(i, $event)"
-              @pointerenter="enterBase($event, i)"
-              @pointerleave="leave"
-              @focus="onFocus($event, 'base', i)"
-              @blur="leave"
-            >
-              <span>{{ baseName(b.key) }}</span>
-            </button>
-            <button
-              v-if="ml.frame"
-              ref="frameLabel"
-              type="button"
-              class="loc-gallery__label loc-gallery__frame-label"
-              :tabindex="level === 'spain' ? 0 : -1"
-              :aria-label="t('locations.mainland.open_canaries')"
-              @click="toArchipelago($event)"
-            >
-              <span>{{ t('locations.mainland.canaries') }}</span>
-            </button>
-          </template>
-        </div>
-
-        <!-- Proposal 1: a small map of Spain in the corner, the islands framed
-             at its lower left; its places fly the camera to the mainland -->
-        <div v-if="mainland === 'corner'" ref="locEl" class="loc-gallery__locator">
-          <svg :viewBox="locatorMap.viewBox.join(' ')" aria-hidden="true" focusable="false">
-            <path class="loc-gallery__neighbour" :d="locatorMap.portugal" />
-            <path class="loc-gallery__land" :d="locatorMap.spain" />
-            <path class="loc-gallery__land" :d="locatorMap.balearics" />
-            <rect class="loc-gallery__frame" :x="locatorMap.frame.x" :y="locatorMap.frame.y" :width="locatorMap.frame.w" :height="locatorMap.frame.h" />
-            <g :transform="`translate(${locatorMap.islands.x} ${locatorMap.islands.y})`">
-              <path v-for="item in isles" :key="item.name" class="loc-gallery__land" :d="item.d" />
-            </g>
-          </svg>
+          <!-- The places on the mainland, and the islands' name (all of Spain) -->
           <button
-            v-for="(b, i) in locatorMap.bases"
+            v-for="(b, i) in ml.bases"
             :key="b.key"
-            :ref="(el) => (locEls[i] = el)"
+            :ref="(el) => (baseEls[i] = el)"
             type="button"
             class="loc-gallery__label loc-gallery__base"
-            :class="{ 'is-lit': litBases.includes(i) }"
-            :style="locatorAt(b)"
-            :tabindex="overview ? 0 : -1"
+            :class="{ 'is-lit': litBases.includes(i) || (level === 'base' && currentBase === i) }"
+            :tabindex="level === 'spain' ? 0 : -1"
             :aria-label="t('locations.mainland.open_base', { name: baseName(b.key) })"
             @click="flyBase(i, $event)"
             @pointerenter="enterBase($event, i)"
@@ -309,12 +255,22 @@
           >
             <span>{{ baseName(b.key) }}</span>
           </button>
+          <button
+            ref="canariesLabel"
+            type="button"
+            class="loc-gallery__label loc-gallery__group-label"
+            :tabindex="level === 'spain' ? 0 : -1"
+            :aria-label="t('locations.mainland.open_canaries')"
+            @click="toArchipelago($event)"
+          >
+            <span>{{ t('locations.mainland.canaries') }}</span>
+          </button>
         </div>
 
         <!-- The page title over the map, in the title style of the other
-             service pages, "Canary Islands" small above it (in line with
-             "Themes" beside it), and the facts for the whole archipelago in
-             the info style of the Tax Incentives page -->
+             service pages, the map's name small above it ("Canary Islands"
+             or "Spain"), and the facts in the info style of the Tax
+             Incentives page -->
         <div ref="cartEl" class="loc-gallery__head">
           <span class="loc-gallery__place sub-title">{{ placeName }}</span>
           <h1 class="loc-gallery__heading">{{ t('locations.header') }}</h1>
@@ -333,7 +289,7 @@
 
         <!-- Larger screens: the themes, in a column beside the map -->
         <Transition name="loc-gallery-fade">
-          <div v-if="!compact && overview" ref="indexEl" class="loc-gallery__index" :class="{ 'is-matching': matches !== null }">
+          <div v-if="!compact && overview" class="loc-gallery__index" :class="{ 'is-matching': matches !== null }">
             <h6 class="loc-gallery__index-title sub-title">{{ t('locations.gallery.themes') }}</h6>
             <ul :aria-label="t('locations.gallery.themes')">
               <li v-for="set in themeSets" :key="set.key">
@@ -483,16 +439,8 @@
 <script setup>
 import { ref, reactive, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { isles, total, routeLines, collage, themeSets, themeCollage, graciosa, view } from '@/data/Locations/mapGallery'
-import { islandFacts, archipelagoFacts } from '@/data/Locations/islandFacts'
-import { mainlandMap, locator as locatorMap } from '@/data/Locations/mainland'
-
-const props = defineProps({
-  // Review proposals for mainland Spain: 'corner' (a small map of Spain in
-  // the corner), 'spain' (all of Spain first, the islands framed beside the
-  // peninsula) or 'side' (islands and mainland side by side). Empty: the
-  // islands only.
-  mainland: { type: String, default: '' }
-})
+import { islandFacts } from '@/data/Locations/islandFacts'
+import { mainlandFor } from '@/data/Locations/mainland'
 
 const { t } = useI18n()
 
@@ -536,7 +484,6 @@ const titleStyle = (name = '') => {
   return longest > 11 ? { '--fit': Math.max(0.75, 11 / longest).toFixed(3) } : null
 }
 
-const archipelago = (archipelagoFacts || []).filter((f) => f && f.label && f.value)
 
 // The places on the mainland
 const baseName = (key) => t(`locations.mainland.${key}.name`)
@@ -564,11 +511,8 @@ const groupEls = []
 const themeEls = []
 const nameEls = []
 const baseEls = []
-const locEls = []
-const locEl = ref(null)
-const indexEl = ref(null)
-const frameEl = ref(null)
-const frameLabel = ref(null)
+const canariesLabel = ref(null)
+const mainlandEl = ref(null)
 
 // The hatching of a lit island (one gallery per page, so a fixed id)
 const hatchId = 'loc-gallery-hatch'
@@ -579,10 +523,9 @@ let near = false
 // Phones: the title block above the map rather than in its sea
 const narrow = ref(false)
 const compact = ref(false)
-// 'map': the overview of the islands (or, side by side, of islands and
-// mainland); 'spain': all of Spain, above it; 'island', 'theme', 'base': down
-// at one of them
-const level = ref(props.mainland === 'spain' ? 'spain' : 'map')
+// 'map': the overview of the islands, where the gallery opens; 'spain': all
+// of Spain, out from it; 'island', 'theme', 'base': down at one of them
+const level = ref('map')
 // The overview last shown, which "Back" returns to
 const overviewLevel = ref(level.value)
 const isOverview = (l = level.value) => l === 'map' || l === 'spain'
@@ -605,36 +548,23 @@ const facts = computed(() => {
 })
 const islandText = computed(() => islandWords(isle.value.name))
 
-// Mainland Spain placed for the proposal (on phones side by side becomes one
-// above the other)
-const ml = computed(() => (props.mainland ? mainlandMap(props.mainland, narrow.value) : null))
-const base = computed(() => ml.value?.bases[currentBase.value] || null)
-const basesWith = (key) => (ml.value ? ml.value.bases.map((b, i) => (b.themes.includes(key) ? i : -1)).filter((i) => i >= 0) : [])
-// Up from the islands to all of Spain
-const upToSpain = computed(() => props.mainland === 'spain' && level.value === 'map')
-const spainShown = computed(() => props.mainland === 'side' || (props.mainland === 'spain' && overviewLevel.value === 'spain'))
+// The places on the mainland (all of Spain)
+// Mainland Spain beside the islands (below them where the area is narrower)
+const stacked = ref(false)
+const ml = computed(() => mainlandFor(stacked.value))
+const base = computed(() => ml.value.bases[currentBase.value])
+const basesWith = (key) => ml.value.bases.map((b, i) => (b.themes.includes(key) ? i : -1)).filter((i) => i >= 0)
+const spainShown = computed(() => overviewLevel.value === 'spain')
 const placeName = computed(() =>
   spainShown.value ? t('locations.mainland.spain') : `${t('locations.gallery.title_light')} ${t('locations.gallery.title_bold')}`
 )
-const factRows = computed(() =>
-  spainShown.value
-    ? [
-        { label: t('locations.mainland.tax_canaries_label'), value: t('locations.gallery.tax_value') },
-        { label: t('locations.mainland.tax_mainland_label'), value: t('locations.mainland.tax_mainland_value') },
-        { label: t('locations.gallery.season_label'), value: t('locations.gallery.season_value') }
-      ]
-    : archipelago.map((f) => ({ label: t(`locations.gallery.${f.label}`), value: t(`locations.gallery.${f.value}`) }))
-)
-const hintText = (kind) => {
-  if (props.mainland === 'spain' && level.value === 'spain') return t(`locations.mainland.hint_spain_${kind}`)
-  if (props.mainland === 'side') return t(`locations.mainland.hint_side_${kind}`)
-  return t(`locations.gallery.hint_${kind}`)
-}
-// A place of the small map in the corner, in per cent of it
-const locatorAt = (b) => {
-  const [x, y, w, h] = locatorMap.viewBox
-  return { left: `${(((b.x - x) / w) * 100).toFixed(2)}%`, top: `${(((b.y - y) / h) * 100).toFixed(2)}%` }
-}
+// The same facts over both maps: the two rebates and the season
+const factRows = computed(() => [
+  { label: t('locations.mainland.tax_canaries_label'), value: t('locations.gallery.tax_value') },
+  { label: t('locations.mainland.tax_mainland_label'), value: t('locations.mainland.tax_mainland_value') },
+  { label: t('locations.gallery.season_label'), value: t('locations.gallery.season_value') }
+])
+const hintText = (kind) => t(level.value === 'spain' ? `locations.mainland.hint_spain_${kind}` : `locations.gallery.hint_${kind}`)
 
 // The map and the themes point at each other: a theme pointed at lights all
 // the islands it is found on, an island pointed at the themes found on it.
@@ -646,17 +576,15 @@ const themesOn = (i) => themeSets.filter((set) => set.on.includes(i)).map((set) 
 const matches = computed(() => {
   if (!overview.value) return null
   if (hoverIsland.value !== null) return themesOn(hoverIsland.value)
-  if (hoverBase.value !== null && ml.value) return themeSets.filter((set) => ml.value.bases[hoverBase.value].themes.includes(set.key)).map((set) => set.index)
+  if (hoverBase.value !== null) return themeSets.filter((set) => ml.value.bases[hoverBase.value].themes.includes(set.key)).map((set) => set.index)
   return null
 })
 // A theme pointed at lights the places on the mainland it is found at too
 const litBases = computed(() => {
-  if (!ml.value) return []
   if (hoverTheme.value !== null) return basesWith(themeSets[hoverTheme.value].key)
   return hoverBase.value !== null ? [hoverBase.value] : []
 })
-// The line to the mainland (side by side) lights with Madrid or Lanzarote
-const linkLit = computed(() => litBases.value.includes(0) || lit.value.some((i) => isles[i].name === 'Lanzarote'))
+
 // Their ferry lines turn sand too: an island's own; for a theme those between
 // two of its islands
 const routeLit = (r) => {
@@ -742,20 +670,16 @@ const fitStage = () => {
 // it while the area changes size: the title, then the map across the full
 // width.
 const titleHeight = () => cartEl.value?.offsetHeight || 0
-// (Proposal 1 on smaller screens: the small map of Spain between the title and
-// the map)
-const locatorRoom = () => (props.mainland === 'corner' && compact.value ? (locEl.value?.offsetHeight || 0) + 14 : 0)
-const narrowTop = () => 16 + titleHeight() + locatorRoom() + 20
+const narrowTop = () => 16 + titleHeight() + 20
 // (A margin on either side, wider on the left, so names west of an island
 // stay inside.)
-// The area an overview shows, in map units: the islands, islands and
-// mainland (side by side) or all of Spain
-const extentOf = (l = level.value) => (l === 'spain' ? ml.value.spainView : ml.value ? ml.value.overview : view)
+// The area an overview shows, in map units: the islands or all of Spain
+const extentOf = (l = level.value) => (l === 'spain' ? ml.value.spainView : view)
 const narrowZoom = (v = extentOf()) => (W - 56) / v.w
 const overviewHeight = (v = extentOf()) =>
   narrow.value
     ? Math.round(narrowTop() + narrowZoom(v) * v.h + 48)
-    : Math.round(Math.max(460 + titleHeight() + locatorRoom(), window.innerHeight * 0.75))
+    : Math.round(Math.max(460 + titleHeight(), window.innerHeight * 0.75))
 const stageHeight = () => (!isOverview() ? HEADER : overviewHeight())
 
 const fitTarget = (v) => {
@@ -766,13 +690,13 @@ const fitTarget = (v) => {
   }
   const h = compact.value ? overviewHeight(v) : goalH()
   // Below the title, and on larger screens beside the list of themes
-  const [l, top, r, b] = compact.value ? [30, 16 + titleHeight() + locatorRoom() + 30, W - 30, h - 40] : [COLUMN + 20, TOP + titleHeight() + 24, W - 24, h - 44]
+  const [l, top, r, b] = compact.value ? [30, 16 + titleHeight() + 30, W - 30, h - 40] : [COLUMN + 20, TOP + titleHeight() + 24, W - 24, h - 44]
   const z = Math.min((r - l) / v.w, (b - top) / v.h)
   // (centred across, and close under the title rather than centred down)
   const my = top + Math.min((b - top) / 2, (v.h * z) / 2 + 24)
   return { x: v.x + v.w / 2 - ((l + r) / 2 - W / 2) / z, y: v.y + v.h / 2 - (my - h / 2) / z, z }
 }
-// The overview of the islands (side by side: with the mainland)
+// The overview of the islands
 const mapTarget = () => fitTarget(extentOf('map'))
 // All of Spain
 const spainTarget = () => fitTarget(extentOf('spain'))
@@ -827,6 +751,7 @@ const measure = () => {
   compact.value = window.innerWidth < 992
   W = stage.value.clientWidth
   narrow.value = compact.value && W < 700
+  stacked.value = window.innerWidth < 1200
   if (compact.value) {
     goal = stageHeight()
     stage.value.style.height = goal + 'px'
@@ -970,7 +895,10 @@ const backToMap = (e) => {
       : level.value === 'base'
         ? { kind: 'base', i: currentBase.value }
         : { kind: 'theme', i: currentTheme.value }
-  level.value = overviewLevel.value
+  // A place on the mainland belongs to the map of Spain, an island to the
+  // islands' map; a theme goes back to where it was opened
+  const to = level.value === 'base' ? 'spain' : level.value === 'island' ? 'map' : overviewLevel.value
+  level.value = overviewLevel.value = to
   rising = true
   if (compact.value) {
     goal = overviewHeight()
@@ -983,42 +911,45 @@ const backToMap = (e) => {
 }
 let focusOnArrival = null
 
-// "Back": from the islands up to all of Spain (proposal 2), otherwise back to
-// the overview
-const goBack = (e) => (upToSpain.value ? toSpain(e) : backToMap(e))
+// The button top left: from the islands' map to the map of Spain and back,
+// otherwise back to the map
+const goBack = (e) => (level.value === 'map' ? toSpain(e) : level.value === 'spain' ? toArchipelago(e) : backToMap(e))
 
-// All of Spain (proposal 2): down to the islands through their frame, and up
-// again
-const toArchipelago = (e) => {
+// All of Spain: out from the islands, and back down to them (the button or
+// their name)
+// (The title changes with the level, the facts with it, and on smaller
+// screens the map goes below it: the camera aims once it has.)
+const toArchipelago = async (e) => {
   if (viewing.value || level.value !== 'spain') return
   level.value = overviewLevel.value = 'map'
   hoverIsland.value = hoverTheme.value = hoverBase.value = null
+  await nextTick()
   if (compact.value) {
     goal = overviewHeight()
     stage.value.style.height = goal + 'px'
     scrollToStage()
   }
   flyTo(mapTarget())
-  if (e && e.detail === 0) focusOnArrival = { kind: 'island', i: 3 }
+  if (!e || e.detail === 0) focusOnArrival = { kind: 'island', i: 3 }
 }
-const toSpain = (e) => {
+const toSpain = async (e) => {
   if (viewing.value || level.value !== 'map') return
   level.value = overviewLevel.value = 'spain'
   hoverIsland.value = hoverTheme.value = hoverBase.value = null
+  await nextTick()
   if (compact.value) {
     goal = overviewHeight()
     stage.value.style.height = goal + 'px'
     scrollToStage()
   }
   flyTo(spainTarget())
-  if (!e || e.detail === 0) focusOnArrival = { kind: 'frame' }
+  if (!e || e.detail === 0) focusOnArrival = { kind: 'canaries' }
 }
 
-// To a place on the mainland (from an overview, an island, a theme or the
-// other place). The map stays; from the islands to the mainland at its real
-// distance (proposal 1) the camera pulls far back on the way.
+// To a place on the mainland (from all of Spain, a theme or the other place).
+// The map stays; on a long way the camera pulls back on the way.
 const flyBase = async (i, e) => {
-  if (viewing.value || !ml.value) return
+  if (viewing.value) return
   if (level.value === 'base' && currentBase.value === i) return
   level.value = 'base'
   currentBase.value = i
@@ -1107,8 +1038,8 @@ const tick = (now) => {
     focusOnArrival = null
     nextTick(() => {
       if (f.kind === 'island') nameEls[f.i]?.focus({ preventScroll: true })
-      else if (f.kind === 'base') (props.mainland === 'corner' ? locEls : baseEls)[f.i]?.focus({ preventScroll: true })
-      else if (f.kind === 'frame') frameLabel.value?.focus({ preventScroll: true })
+      else if (f.kind === 'base') baseEls[f.i]?.focus({ preventScroll: true })
+      else if (f.kind === 'canaries') canariesLabel.value?.focus({ preventScroll: true })
       else {
         const list = stage.value.parentElement.querySelectorAll('.loc-gallery__index button, .loc-gallery__chips button')
         list[f.i]?.focus({ preventScroll: true })
@@ -1148,52 +1079,39 @@ const render = (r = descent()) => {
   mapEl.value.style.opacity = lines.toFixed(3)
   show(mapEl.value, lines > 0.01)
 
-  // All of Spain (proposal 2): how far out towards it the camera is, 0 at the
-  // islands, 1 at all of Spain. Out there the islands' names give way to
-  // their frame.
-  let sp = 0
-  if (props.mainland === 'spain') {
-    const mz = mapTarget().z
-    sp = Math.max(0, Math.min(1, Math.log(mz / z) / Math.log(mz / spainTarget().z)))
-  }
+  // How far out towards all of Spain the camera is: 0 at the islands, 1 at
+  // all of Spain, where the places on the mainland and the islands' name
+  // show
+  const mz = mapTarget().z
+  const sp = Math.max(0, Math.min(1, Math.log(mz / z) / Math.log(mz / spainTarget().z)))
 
   isles.forEach((item, i) => {
     const n = nameEls[i]
     const np = toScreen(item.label[0], item.label[1])
-    const a = o * (1 - sp)
+    const a = o
     n.style.transform = `translate3d(${np[0].toFixed(1)}px, ${np[1].toFixed(1)}px, 0)`
     n.style.opacity = a.toFixed(3)
     show(n, a > 0.02)
   })
 
-  if (ml.value) {
-    ml.value.bases.forEach((b, i) => {
-      const n = baseEls[i]
-      if (!n) return
-      const np = toScreen(b.x, b.y)
-      const a = keep ? 1 : props.mainland === 'spain' ? o * sp : o
-      n.style.transform = `translate3d(${np[0].toFixed(1)}px, ${np[1].toFixed(1)}px, 0)`
-      n.style.opacity = a.toFixed(3)
-      show(n, a > 0.02)
-    })
-    if (ml.value.frame) {
-      const f = ml.value.frame
-      const np = toScreen(f.x, f.y)
-      if (frameEl.value) frameEl.value.style.opacity = sp.toFixed(3)
-      if (frameLabel.value) {
-        frameLabel.value.style.transform = `translate3d(${np[0].toFixed(1)}px, ${np[1].toFixed(1)}px, 0)`
-        frameLabel.value.style.opacity = (o * sp).toFixed(3)
-        show(frameLabel.value, o * sp > 0.02)
-      }
-    }
-  }
-  if (locEl.value) {
-    locEl.value.style.opacity = o.toFixed(3)
-    // (larger screens: under the list of themes; smaller ones: below the title)
-    const list = indexEl.value
-    locEl.value.style.top = compact.value ? `${16 + titleHeight() + 14}px` : list ? `${list.offsetTop + list.offsetHeight + 44}px` : ''
-    show(locEl.value, o > 0.02)
-  }
+  // The places on the mainland (all of Spain, or down at one of them) and
+  // the islands' name
+  ml.value.bases.forEach((b, i) => {
+    const n = baseEls[i]
+    if (!n) return
+    const np = toScreen(b.x, b.y)
+    const a = keep ? 1 : o * sp
+    n.style.transform = `translate3d(${np[0].toFixed(1)}px, ${np[1].toFixed(1)}px, 0)`
+    n.style.opacity = a.toFixed(3)
+    show(n, a > 0.02)
+  })
+  // The mainland only out at all of Spain (or down at one of its places), so
+  // it never shows at the edge of the islands' map
+  mainlandEl.value.style.opacity = (keep ? 1 : sp).toFixed(3)
+  const fp = toScreen(ml.value.canaries.x, ml.value.canaries.y)
+  canariesLabel.value.style.transform = `translate3d(${fp[0].toFixed(1)}px, ${fp[1].toFixed(1)}px, 0)`
+  canariesLabel.value.style.opacity = (o * sp).toFixed(3)
+  show(canariesLabel.value, o * sp > 0.02)
 
   // The title
   cartEl.value.style.opacity = o.toFixed(3)
@@ -1450,7 +1368,7 @@ const onKey = (e) => {
     else if (e.key === 'ArrowRight') stepView(1)
     else return
     e.preventDefault()
-  } else if (e.key === 'Escape' && (!isOverview() || upToSpain.value)) {
+  } else if (e.key === 'Escape' && level.value !== 'map') {
     e.preventDefault()
     goBack()
   }
@@ -1704,7 +1622,7 @@ onBeforeUnmount(() => {
   pointer-events: none;
 }
 
-/* ---------- Mainland Spain (review proposals) ---------- */
+/* ---------- Mainland Spain (all of Spain) ---------- */
 
 /* At a place on the mainland the map stays in view, but gives way beside the
    panel, so no line runs through its text */
@@ -1730,20 +1648,6 @@ onBeforeUnmount(() => {
   stroke-linejoin: round;
 }
 
-/* All of Spain: the islands in a dashed frame, as on Spanish maps */
-.loc-gallery__frame {
-  fill: none;
-  stroke: rgba(255, 255, 255, 0.35);
-  stroke-width: calc(var(--u) * 1px);
-  stroke-dasharray: calc(var(--u) * 5px) calc(var(--u) * 5px);
-}
-
-.loc-gallery__frame-hit {
-  fill: transparent;
-  pointer-events: all;
-  cursor: pointer;
-}
-
 /* A place: a dot on the spot, the name beside it */
 .loc-gallery__base::after {
   content: '';
@@ -1760,47 +1664,8 @@ onBeforeUnmount(() => {
   transform: translate(8px, -50%);
 }
 
-.loc-gallery__frame-label span {
+.loc-gallery__group-label span {
   transform: translateY(calc(-100% - 6px));
-}
-
-/* Proposal 1: the small map of Spain, under the list of themes in its
-   column (placed by the script) */
-.loc-gallery__locator {
-  position: absolute;
-  top: 480px;
-  left: 0;
-  z-index: 3;
-  width: 270px;
-}
-
-.loc-gallery__stage:not(.is-ready) .loc-gallery__locator {
-  visibility: hidden;
-}
-
-.loc-gallery__locator svg {
-  display: block;
-  width: 100%;
-  height: auto;
-  overflow: visible;
-}
-
-.loc-gallery__locator .loc-gallery__land,
-.loc-gallery__locator .loc-gallery__neighbour,
-.loc-gallery__locator .loc-gallery__frame {
-  stroke-width: 1px;
-  vector-effect: non-scaling-stroke;
-}
-
-/* The frame of this map: in sand */
-.loc-gallery__locator .loc-gallery__frame {
-  stroke: var(--sand);
-  stroke-dasharray: 3 3;
-}
-
-.loc-gallery__locator .loc-gallery__label {
-  position: absolute;
-  will-change: auto;
 }
 
 /* The outlines draw themselves when the map first comes into view */
@@ -2024,7 +1889,8 @@ onBeforeUnmount(() => {
    fill white on hover */
 .loc-gallery__index {
   position: absolute;
-  top: 22px;
+  /* under the button, where the panels start too */
+  top: 96px;
   left: 0;
   z-index: 4;
   width: 270px;
@@ -2218,13 +2084,6 @@ onBeforeUnmount(() => {
   transition: background-color 0.3s ease, transform 0.3s ease;
 }
 
-/* All of Spain (proposal 2): up from the islands, top right, apart from the
-   list of themes */
-.loc-gallery__back.is-up {
-  left: auto;
-  right: var(--gutter);
-}
-
 .loc-gallery__back:hover {
   background: #fff;
 }
@@ -2344,8 +2203,8 @@ onBeforeUnmount(() => {
   margin-top: 6px;
 }
 
-/* Data: the info items of the Tax Incentives page, for the facts of the
-   archipelago */
+/* Data: the info items of the Tax Incentives page, for the facts over the
+   map */
 .loc-gallery__arch dt {
   margin: 0 0 4px;
   font-size: 14px;
@@ -2528,11 +2387,6 @@ onBeforeUnmount(() => {
     padding-top: 144px;
   }
 
-  .loc-gallery__locator {
-    left: 16px;
-    width: 170px;
-  }
-
   .loc-gallery__heading {
     font-size: 50px;
   }
@@ -2555,8 +2409,8 @@ onBeforeUnmount(() => {
     left: calc(var(--gutter) + 12px);
   }
 
-  /* All of Spain (proposal 2): below the map, before the themes, so it keeps
-     clear of the title */
+  /* Smaller screens, on the two maps: below the map, before the themes, so it
+     keeps clear of the title */
   .loc-gallery.is-compact .loc-gallery__back.is-up {
     position: static;
     order: 2;
