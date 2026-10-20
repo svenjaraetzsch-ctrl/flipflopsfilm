@@ -32,8 +32,8 @@ import { computed } from 'vue'
 import { photos } from '@/data/PhotoConcepts/photos'
 
 defineProps({
-  // For a page that shows the usual lead higher up (the Butterfly proposal):
-  // the section is set as on About, headed by the text's first sentence
+  // For the Butterfly proposal, which leaves the usual lead out: the section
+  // is set as on About, headed by the text's first sentence
   headingFromText: { type: Boolean, default: false }
 })
 
