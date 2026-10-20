@@ -201,12 +201,13 @@
           </button>
         </div>
 
-        <!-- The map's heading, and the facts for the whole archipelago in the
-             info style of the Tax Incentives page -->
+        <!-- The page title over the map, in the title style of the other
+             service pages, "Canary Islands" small above it (in line with
+             "Themes" beside it), and the facts for the whole archipelago in
+             the info style of the Tax Incentives page -->
         <div ref="cartEl" class="loc-gallery__head">
-          <h2 class="loc-gallery__heading f-xbold">
-            <span class="f-ultra-light d-block">{{ t('locations.gallery.title_light') }}</span>{{ t('locations.gallery.title_bold') }}
-          </h2>
+          <span class="loc-gallery__place sub-title">{{ t('locations.gallery.title_light') }} {{ t('locations.gallery.title_bold') }}</span>
+          <h1 class="loc-gallery__heading">{{ t('locations.header') }}</h1>
           <dl v-if="archipelago.length" class="loc-gallery__arch">
             <div v-for="f in archipelago" :key="f.label">
               <dt>{{ t(`locations.gallery.${f.label}`) }}</dt>
@@ -424,10 +425,12 @@ const archipelago = (archipelagoFacts || []).filter((f) => f && f.label && f.val
 // Height of the map's area at the island or theme level on smaller screens,
 // where it folds into a bar above the photos (with the way back)
 const HEADER = 72
-// Larger screens: the list of themes on the left, and above the map the
-// title (see .loc-gallery__head), in pixels
+// Larger screens: the width of the list of themes on the left, in pixels
+// (the map starts below the title, see .loc-gallery__head)
 const COLUMN = 300
-const TITLE = 176
+// Distance of the title and of the list of themes from the top of the map's
+// area (see .loc-gallery__head)
+const TOP = 22
 
 const stage = ref(null)
 const mapEl = ref(null)
@@ -576,7 +579,7 @@ const mapTarget = () => {
   }
   const h = compact.value ? overviewHeight() : goalH()
   // Below the title, and on larger screens beside the list of themes
-  const [l, top, r, b] = compact.value ? [30, 16 + titleHeight() + 30, W - 30, h - 40] : [COLUMN + 20, TITLE + 24, W - 24, h - 44]
+  const [l, top, r, b] = compact.value ? [30, 16 + titleHeight() + 30, W - 30, h - 40] : [COLUMN + 20, TOP + titleHeight() + 24, W - 24, h - 44]
   const z = Math.min((r - l) / view.w, (b - top) / view.h)
   // (centred across, and close under the title rather than centred down)
   const my = top + Math.min((b - top) / 2, (view.h * z) / 2 + 24)
@@ -1257,7 +1260,9 @@ onBeforeUnmount(() => {
 <style scoped>
 .loc-gallery {
   --sand: #C8B49A;
-  padding: 20px 0 100px;
+  /* The first line 200px from the top, as on About (less the title's
+     distance from the top of the map's area) */
+  padding: 178px 0 100px;
 }
 
 .loc-gallery__wrap {
@@ -1545,11 +1550,17 @@ onBeforeUnmount(() => {
   visibility: hidden;
 }
 
-/* "Canary / Islands" in the two weights of the site's big statements */
+/* The page title as on the other service pages (Tax Incentives, Crew &
+   Operations: header .caption h1 of the preview layout) */
 .loc-gallery__heading {
-  font-size: 40px;
+  margin: 10px 0 0;
+  font-size: 70px;
   line-height: 1;
   text-transform: uppercase;
+}
+
+.loc-gallery__place {
+  display: block;
 }
 
 .loc-gallery__arch {
@@ -2081,6 +2092,14 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 991px) {
+  .loc-gallery {
+    padding-top: 144px;
+  }
+
+  .loc-gallery__heading {
+    font-size: 50px;
+  }
+
   .loc-gallery.is-compact .loc-gallery__wrap {
     display: flex;
     flex-direction: column;
@@ -2325,6 +2344,10 @@ onBeforeUnmount(() => {
 }
 
 @media (max-width: 767px) {
+  .loc-gallery {
+    padding-top: 104px;
+  }
+
   .loc-gallery__stage {
     height: 70vh;
     min-height: 460px;
@@ -2340,7 +2363,7 @@ onBeforeUnmount(() => {
   }
 
   .loc-gallery__heading {
-    font-size: 30px;
+    font-size: 35px;
   }
 
   .loc-gallery__arch {

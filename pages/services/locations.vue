@@ -6,9 +6,8 @@
     <div id="smooth-content">
         <main class="main-bg">
             <div class="main-box main-bg ontop">
-                <!-- The title between the running location photos, then the map
-                     and the description below it -->
-                <CommonMarqueeHeader :title="$t('locations.header')" />
+                <!-- The map opens the page, with the page title over it, and the
+                     description below it -->
                 <LocationsGallery />
                 <LocationsTopContent />
             </div>
