@@ -10,7 +10,7 @@
        flies up again. Nothing is dragged: the page scrolls as usual. On
        smaller screens the photos follow as a grid below the (then folded)
        map. -->
-  <section class="loc-gallery" :class="{ 'is-compact': compact, 'is-detail': !overview }">
+  <section ref="rootEl" class="loc-gallery" :class="{ 'is-compact': compact, 'is-detail': !overview }">
     <div class="container loc-gallery__wrap">
       <!-- Down at an island, a place or a theme: back to the map it belongs to -->
       <Transition name="loc-gallery-fade">
@@ -358,33 +358,43 @@
         </button>
       </div>
 
-      <!-- To the islands (or themes) either side, apart from the way back -->
-      <!-- The map's navigation in one bar: on the map the switch between the
-           islands and all of Spain; down at a location (the islands, then the
-           places on the mainland, west to east) or a theme, the ones either
-           side -->
-      <nav class="loc-gallery__bar" :class="{ 'is-detail': !overview }" :aria-label="overview ? t('locations.mainland.maps') : t(level === 'theme' ? 'locations.gallery.other_themes' : 'locations.mainland.other_locations')">
-        <template v-if="overview">
-          <span class="loc-gallery__bar-label">{{ t('locations.mainland.maps') }}</span>
-          <button type="button" :class="{ 'is-active': level === 'map' }" :aria-pressed="level === 'map'" @click="toArchipelago($event)">
-            {{ t('locations.mainland.canaries') }}
-          </button>
-          <button type="button" :class="{ 'is-active': level === 'spain' }" :aria-pressed="level === 'spain'" @click="toSpain($event)">
-            {{ t('locations.mainland.all_spain') }}
-          </button>
-        </template>
-        <template v-else>
-          <button type="button" :aria-label="`${t(level === 'theme' ? 'locations.gallery.prev_theme' : 'locations.mainland.prev_location')}: ${stepName(-1)}`" @click="step(-1, $event)">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
-            <em>{{ stepName(-1) }}</em>
-          </button>
-          <span class="loc-gallery__bar-no">{{ pad(stepNo + 1) }} / {{ pad(stepTotal) }}</span>
-          <button type="button" :aria-label="`${t(level === 'theme' ? 'locations.gallery.next_theme' : 'locations.mainland.next_location')}: ${stepName(1)}`" @click="step(1, $event)">
-            <em>{{ stepName(1) }}</em>
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
-          </button>
-        </template>
-      </nav>
+      <!-- The map's navigation in one bar, fixed to the foot of the screen
+           while the map is in view (moved to the page body, as the large
+           view: the page itself is moved by the smooth scrolling). On the map
+           the switch between the islands and all of Spain; down at a location
+           (the islands, then the places on the mainland, west to east) or a
+           theme, the ones either side. -->
+      <Teleport to="body">
+        <nav
+          class="loc-gallery__bar"
+          :class="{ 'is-shown': barShown && !viewing }"
+          :aria-label="overview ? t('locations.mainland.maps') : t(level === 'theme' ? 'locations.gallery.other_themes' : 'locations.mainland.other_locations')"
+        >
+          <template v-if="overview">
+            <span class="loc-gallery__bar-label">{{ t('locations.mainland.maps') }}</span>
+            <button type="button" :class="{ 'is-active': level === 'map' }" :aria-pressed="level === 'map'" @click="toArchipelago($event)">
+              <span class="loc-gallery__bar-no">01</span><em>{{ t('locations.mainland.canaries') }}</em>
+            </button>
+            <button type="button" :class="{ 'is-active': level === 'spain' }" :aria-pressed="level === 'spain'" @click="toSpain($event)">
+              <span class="loc-gallery__bar-no">02</span><em>{{ t('locations.mainland.all_spain') }}</em>
+            </button>
+          </template>
+          <template v-else>
+            <span class="loc-gallery__bar-label">{{ level === 'theme' ? t('locations.gallery.themes') : t('locations.mainland.places_label') }}</span>
+            <button type="button" class="is-step" :aria-label="`${t(level === 'theme' ? 'locations.gallery.prev_theme' : 'locations.mainland.prev_location')}: ${stepName(-1)}`" @click="step(-1, $event)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+              <em>{{ stepName(-1) }}</em>
+            </button>
+            <span class="loc-gallery__bar-current is-active" aria-current="true">
+              <span class="loc-gallery__bar-no">{{ pad(stepNo + 1) }} / {{ pad(stepTotal) }}</span><em>{{ stepName(0) }}</em>
+            </span>
+            <button type="button" class="is-step" :aria-label="`${t(level === 'theme' ? 'locations.gallery.next_theme' : 'locations.mainland.next_location')}: ${stepName(1)}`" @click="step(1, $event)">
+              <em>{{ stepName(1) }}</em>
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+            </button>
+          </template>
+        </nav>
+      </Teleport>
 
       <!-- The large view: over the whole screen (moved to the end of the
            page body, since the page's main element is a stacking context
@@ -524,6 +534,9 @@ const themeEls = []
 const nameEls = []
 const baseEls = []
 const canariesLabel = ref(null)
+const rootEl = ref(null)
+// The map's bar shows while the gallery is in the middle of the screen
+const barShown = ref(false)
 
 // The hatching of a lit island (one gallery per page, so a fixed id)
 const hatchId = 'loc-gallery-hatch'
@@ -670,7 +683,8 @@ const freeArea = () => [384, 24, W - 24, goalH() - 92]
 // than that
 const baseHeight = () => Math.round(Math.min(1000, Math.max(540, Math.min(window.innerHeight * 0.85, window.innerHeight - 190))))
 // Room above the area for the site's fixed header, when the page scrolls it
-// into view, and at its foot for the map's bar (larger screens)
+// into view, and at its foot for the map's bar, fixed to the foot of the
+// screen (larger screens)
 const HEADER_ROOM = 112
 const BAR_ROOM = 88
 // (All of Spain is about as tall as it is wide: the area grows towards the
@@ -1445,6 +1459,7 @@ let resizeObs = null
 let headObs = null
 let nearObs = null
 let viewObs = null
+let barObs = null
 let idle = null
 let lastWidth = 0
 
@@ -1512,6 +1527,9 @@ onMounted(() => {
   )
   viewObs.observe(stage.value)
 
+  barObs = new IntersectionObserver(([entry]) => (barShown.value = entry.isIntersecting), { rootMargin: '-35% 0px -35% 0px' })
+  barObs.observe(rootEl.value)
+
   // On smaller screens the title sets where the map goes; it changes height
   // with the width, and once the site's fonts have loaded.
   headObs = new ResizeObserver(() => {
@@ -1539,6 +1557,7 @@ onBeforeUnmount(() => {
   headObs?.disconnect()
   nearObs?.disconnect()
   viewObs?.disconnect()
+  barObs?.disconnect()
 })
 </script>
 
@@ -2257,24 +2276,32 @@ onBeforeUnmount(() => {
   line-height: 1.35;
 }
 
-/* The map's navigation, in the style of the site's switch bars: one pill
-   centred under the map, its buttons pills inside it */
 .loc-gallery__bar {
-  position: absolute;
-  left: calc(var(--gutter) + 384px + (100% - 2 * var(--gutter) - 408px) / 2);
-  bottom: 18px;
-  z-index: 5;
+  --sand: #C8B49A;
+  position: fixed;
+  left: 50%;
+  bottom: 22px;
+  z-index: 90;
   display: flex;
   align-items: center;
   gap: 4px;
-  max-width: calc(100% - 2 * var(--gutter) - 408px);
+  max-width: calc(100vw - 24px);
   padding: 6px;
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 40px;
   background: rgba(32, 29, 29, 0.86);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
-  transform: translateX(-50%);
+  opacity: 0;
+  visibility: hidden;
+  transform: translate(-50%, 12px);
+  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+}
+
+.loc-gallery__bar.is-shown {
+  opacity: 1;
+  visibility: visible;
+  transform: translate(-50%, 0);
 }
 
 .loc-gallery__bar-label {
@@ -2286,9 +2313,10 @@ onBeforeUnmount(() => {
   white-space: nowrap;
 }
 
-.loc-gallery__bar button {
+.loc-gallery__bar button,
+.loc-gallery__bar-current {
   display: flex;
-  align-items: center;
+  align-items: baseline;
   gap: 8px;
   min-width: 0;
   padding: 9px 16px;
@@ -2298,23 +2326,36 @@ onBeforeUnmount(() => {
   color: rgba(255, 255, 255, 0.6);
   font-size: 13px;
   white-space: nowrap;
-  cursor: pointer;
   transition: color 0.3s ease, background-color 0.3s ease;
 }
 
-.loc-gallery__bar button:hover,
-.loc-gallery__bar button.is-active {
-  color: #fff;
+.loc-gallery__bar button {
+  cursor: pointer;
 }
 
-.loc-gallery__bar button.is-active {
-  background: rgba(255, 255, 255, 0.1);
+.loc-gallery__bar button.is-step {
+  align-items: center;
+}
+
+.loc-gallery__bar-no {
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--sand);
 }
 
 .loc-gallery__bar em {
   overflow: hidden;
   font-style: normal;
   text-overflow: ellipsis;
+}
+
+.loc-gallery__bar button:hover,
+.loc-gallery__bar .is-active {
+  color: #fff;
+}
+
+.loc-gallery__bar .is-active {
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .loc-gallery__bar svg {
@@ -2326,12 +2367,34 @@ onBeforeUnmount(() => {
   stroke-width: 1.5;
 }
 
-.loc-gallery__bar-no {
-  padding: 0 6px;
-  font-size: 11px;
-  letter-spacing: 1px;
-  color: var(--sand);
-  white-space: nowrap;
+/* Phones: numbers only, the active name beside its number */
+@media (max-width: 767px) {
+  .loc-gallery__bar {
+    left: 12px;
+    bottom: 14px;
+    transform: translateY(12px);
+  }
+
+  .loc-gallery__bar.is-shown {
+    transform: none;
+  }
+
+  .loc-gallery__bar-label {
+    display: none;
+  }
+
+  .loc-gallery__bar button,
+  .loc-gallery__bar-current {
+    padding: 8px 12px;
+  }
+
+  .loc-gallery__bar em {
+    display: none;
+  }
+
+  .loc-gallery__bar .is-active em {
+    display: inline;
+  }
 }
 
 .loc-gallery__bar button:focus-visible,
@@ -2474,7 +2537,7 @@ onBeforeUnmount(() => {
   }
 
   .loc-gallery__chips {
-    order: 3;
+    order: 2;
   }
 
   .loc-gallery__head {
@@ -2492,34 +2555,8 @@ onBeforeUnmount(() => {
     order: 3;
   }
 
-  /* In the page: on the map below it (before the themes), down at a
-     location or a theme below the photos */
-  .loc-gallery__bar {
-    position: static;
-    order: 2;
-    align-self: flex-start;
-    max-width: 100%;
-    margin: 4px 0 20px;
-    transform: none;
-  }
-
-  .loc-gallery__bar.is-detail {
-    order: 4;
-    align-self: stretch;
-    justify-content: space-between;
-    margin: 16px 0 0;
-  }
 }
 
-@media (max-width: 559px) {
-  .loc-gallery__bar-label {
-    display: none;
-  }
-
-  .loc-gallery__bar button {
-    padding: 8px 12px;
-  }
-}
 
 /* ---------- Large view ---------- */
 

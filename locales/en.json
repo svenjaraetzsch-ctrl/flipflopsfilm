@@ -217,6 +217,7 @@
       "open_base": "Open {name}",
       "open_canaries": "Open the map of the Canary Islands",
       "maps": "Map",
+      "places_label": "Locations",
       "prev_location": "Previous location",
       "next_location": "Next location",
       "other_locations": "Other locations"

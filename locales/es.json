@@ -217,6 +217,7 @@
       "open_base": "Abrir {name}",
       "open_canaries": "Abrir el mapa de las Islas Canarias",
       "maps": "Mapa",
+      "places_label": "Lugares",
       "prev_location": "Lugar anterior",
       "next_location": "Lugar siguiente",
       "other_locations": "Otros lugares"
