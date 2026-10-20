@@ -128,8 +128,10 @@
           <!-- Mainland Spain where it really lies, Portugal and Morocco only by
                their coasts, faint -->
           <g class="loc-gallery__mainland">
-            <path class="loc-gallery__neighbour" :d="ml.portugal" />
-            <path class="loc-gallery__neighbour" :d="ml.morocco" />
+            <g ref="neighboursEl">
+              <path class="loc-gallery__neighbour" :d="ml.portugal" />
+              <path class="loc-gallery__neighbour" :d="ml.morocco" />
+            </g>
             <path class="loc-gallery__land" :d="ml.spain" />
             <path class="loc-gallery__land" :d="ml.balearics" />
           </g>
@@ -161,6 +163,17 @@
             @pointerenter="enterIsland($event, i)"
             @pointerleave="leave"
             @click="flyIn(i, $event)"
+          />
+          <!-- All of Spain: the islands are small out there, so they are one
+               target, into their own map -->
+          <rect
+            v-if="level === 'spain'"
+            class="loc-gallery__group-hit"
+            :x="view.x"
+            :y="view.y - 20"
+            :width="view.w"
+            :height="view.h + 30"
+            @click="toArchipelago($event)"
           />
         </svg>
 
@@ -532,6 +545,7 @@ const themeEls = []
 const nameEls = []
 const baseEls = []
 const canariesLabel = ref(null)
+const neighboursEl = ref(null)
 // The map's bar sticks to the foot of the screen while the gallery is in
 // view, and stays at the gallery's foot once that is above the screen's: it
 // then leaves with the gallery as the page scrolls on (see placeBar)
@@ -1164,6 +1178,9 @@ const render = (r = descent()) => {
     n.style.opacity = a.toFixed(3)
     show(n, a > 0.02)
   })
+  // Portugal's and Morocco's coasts only on the way out to all of Spain (on
+  // the islands' map Morocco's would be a stray line at the edge)
+  neighboursEl.value.style.opacity = (keep ? 1 : sp).toFixed(3)
   const fp = toScreen(ml.canaries.x, ml.canaries.y)
   canariesLabel.value.style.transform = `translate3d(${fp[0].toFixed(1)}px, ${fp[1].toFixed(1)}px, 0)`
   canariesLabel.value.style.opacity = (o * sp).toFixed(3)
@@ -1475,7 +1492,11 @@ const placeBar = () => {
   const vh = window.innerHeight
   barEl.value.style.setProperty('--shift', `${Math.min(0, Math.round(r.bottom - vh))}px`)
   const shown = r.top < vh - 160 && r.bottom > 140
-  if (barShown.value !== shown) barShown.value = shown
+  if (barShown.value !== shown) {
+    barShown.value = shown
+    // (on phones the site's "to the top" button would sit on the bar)
+    document.body.classList.toggle('loc-bar-shown', shown)
+  }
   barRaf = requestAnimationFrame(placeBar)
 }
 let idle = null
@@ -1550,7 +1571,10 @@ onMounted(() => {
   barObs = new IntersectionObserver(([entry]) => {
     barNear = entry.isIntersecting
     if (barNear && !barRaf) barRaf = requestAnimationFrame(placeBar)
-    if (!barNear) barShown.value = false
+    if (!barNear) {
+      barShown.value = false
+      document.body.classList.remove('loc-bar-shown')
+    }
   })
   barObs.observe(wrapEl.value)
 
@@ -1583,6 +1607,7 @@ onBeforeUnmount(() => {
   viewObs?.disconnect()
   barObs?.disconnect()
   cancelAnimationFrame(barRaf)
+  document.body.classList.remove('loc-bar-shown')
 })
 </script>
 
@@ -1748,6 +1773,12 @@ onBeforeUnmount(() => {
 
 .loc-gallery__base span {
   transform: translate(8px, -50%);
+}
+
+.loc-gallery__group-hit {
+  fill: transparent;
+  pointer-events: all;
+  cursor: pointer;
 }
 
 .loc-gallery__group-label span {
@@ -2372,11 +2403,16 @@ onBeforeUnmount(() => {
   stroke-width: 1.5;
 }
 
-/* Phones: numbers only, the active name beside its number */
+/* Phones: a tab bar across the screen, with targets of at least 44px. On
+   the map both maps by name, side by side; down at a location or a theme the
+   way back, the arrows either side (their names would not fit) and the
+   current one between them. */
 @media (max-width: 767px) {
   .loc-gallery__bar {
     left: 12px;
-    bottom: 14px;
+    right: 12px;
+    bottom: 12px;
+    max-width: none;
     transform: translateY(var(--shift));
   }
 
@@ -2386,16 +2422,34 @@ onBeforeUnmount(() => {
 
   .loc-gallery__bar button,
   .loc-gallery__bar-current {
+    justify-content: center;
+    min-height: 44px;
     padding: 8px 12px;
   }
 
-  .loc-gallery__bar em {
+  /* the two maps share the width */
+  .loc-gallery__bar > button:not(.is-step):not(.loc-gallery__bar-back) {
+    flex: 1 1 0;
+  }
+
+  .loc-gallery__bar .is-step em {
     display: none;
   }
 
-  .loc-gallery__bar .is-active em,
-  .loc-gallery__bar .loc-gallery__bar-back em {
-    display: inline;
+  .loc-gallery__bar .is-step {
+    width: 44px;
+    padding: 0;
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  .loc-gallery__bar .is-step svg {
+    width: 18px;
+    height: 18px;
+  }
+
+  .loc-gallery__bar-current {
+    flex: 1 1 0;
+    align-items: center;
   }
 }
 
@@ -2510,6 +2564,9 @@ onBeforeUnmount(() => {
   .loc-gallery.is-compact .loc-gallery__wrap {
     display: flex;
     flex-direction: column;
+    /* room for the map's bar at the gallery's end, so it never covers the
+       last themes or photos once it stops following the screen */
+    padding-bottom: 84px;
   }
 
   /* Its height is set by the script (see stageHeight) */

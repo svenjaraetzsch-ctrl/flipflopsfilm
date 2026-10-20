@@ -1,7 +1,7 @@
 <template>
   <section class="section-padding">
     <div class="container">
-      <div class="info mb-80 pb-20 bord-thin-bottom">
+      <div class="info mb-80 pb-20">
         <div class="row">
           <div class="col-md-6 col-lg-3">
             <div class="item mb-30">
