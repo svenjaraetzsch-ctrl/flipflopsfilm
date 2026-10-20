@@ -139,6 +139,7 @@
                them), Portugal only by its coast, faint -->
           <g ref="mainlandEl" class="loc-gallery__mainland">
             <path class="loc-gallery__neighbour" :d="ml.portugal" />
+            <path v-if="ml.morocco" class="loc-gallery__neighbour" :d="ml.morocco" />
             <path class="loc-gallery__land" :d="ml.spain" />
             <path class="loc-gallery__land" :d="ml.balearics" />
           </g>
@@ -442,6 +443,12 @@ import { isles, total, routeLines, collage, themeSets, themeCollage, graciosa, v
 import { islandFacts } from '@/data/Locations/islandFacts'
 import { mainlandFor } from '@/data/Locations/mainland'
 
+const props = defineProps({
+  // Version 2 (review): islands and mainland as one map, at the same scale
+  // and where they really lie
+  oneMap: { type: Boolean, default: false }
+})
+
 const { t } = useI18n()
 
 const pad = (n) => String(n).padStart(2, '0')
@@ -551,7 +558,7 @@ const islandText = computed(() => islandWords(isle.value.name))
 // The places on the mainland (all of Spain)
 // Mainland Spain beside the islands (below them where the area is narrower)
 const stacked = ref(false)
-const ml = computed(() => mainlandFor(stacked.value))
+const ml = computed(() => mainlandFor(stacked.value, props.oneMap))
 const base = computed(() => ml.value.bases[currentBase.value])
 const basesWith = (key) => ml.value.bases.map((b, i) => (b.themes.includes(key) ? i : -1)).filter((i) => i >= 0)
 const spainShown = computed(() => overviewLevel.value === 'spain')
@@ -654,10 +661,18 @@ const freeArea = () => [384, 24, W - 24, goalH() - 92]
 // Larger screens: the area's own height (85vh, as in the CSS), grown when an
 // island's or theme's panel needs more room than that
 const baseHeight = () => Math.round(Math.min(1000, Math.max(540, window.innerHeight * 0.85)))
+// (Version 2, the one map: all of Spain is about as tall as it is wide, so
+// the area grows towards the width beside the themes, but no taller than the
+// screen, so the whole map is in view at once)
+const oneMapHeight = () => {
+  const v = ml.value.spainView
+  const want = Math.round(TOP + titleHeight() + 24 + ((W - COLUMN - 44) * v.h) / v.w + 44)
+  return Math.min(want, window.innerHeight - 90)
+}
 const fitStage = () => {
   if (compact.value) return
   const panel = !isOverview() ? panelEl() : null
-  const need = panel ? panel.offsetTop + panel.offsetHeight + 32 : 0
+  const need = panel ? panel.offsetTop + panel.offsetHeight + 32 : level.value === 'spain' && props.oneMap ? oneMapHeight() : 0
   const h = Math.max(baseHeight(), need)
   goal = h
   stage.value.style.height = h === baseHeight() ? '' : h + 'px'
@@ -797,6 +812,15 @@ const scrollToStage = () => {
   window.scrollTo({ top: window.scrollY + r.top - 108, behavior: reduced ? 'instant' : 'smooth' })
 }
 
+// Larger screens (the one map): scrolls just far enough for the area, at the
+// height it is growing to, to be in view whole below the site's header
+const revealStage = () => {
+  const r = stage.value.getBoundingClientRect()
+  const over = r.top + goalH() - window.innerHeight + 16
+  if (over <= 0) return
+  window.scrollTo({ top: window.scrollY + Math.min(over, r.top - 80), behavior: reduced ? 'instant' : 'smooth' })
+}
+
 // The panel on show (another may still be fading out)
 const panelEl = () => stage.value?.parentElement.querySelector('.loc-gallery__panel:not(.loc-gallery-panel-leave-active)')
 
@@ -928,7 +952,7 @@ const toArchipelago = async (e) => {
     goal = overviewHeight()
     stage.value.style.height = goal + 'px'
     scrollToStage()
-  }
+  } else fitStage()
   flyTo(mapTarget())
   if (!e || e.detail === 0) focusOnArrival = { kind: 'island', i: 3 }
 }
@@ -941,6 +965,9 @@ const toSpain = async (e) => {
     goal = overviewHeight()
     stage.value.style.height = goal + 'px'
     scrollToStage()
+  } else {
+    fitStage()
+    if (props.oneMap) revealStage()
   }
   flyTo(spainTarget())
   if (!e || e.detail === 0) focusOnArrival = { kind: 'canaries' }
@@ -1088,7 +1115,9 @@ const render = (r = descent()) => {
   isles.forEach((item, i) => {
     const n = nameEls[i]
     const np = toScreen(item.label[0], item.label[1])
-    const a = o
+    // (on the one map the islands are too small out at all of Spain for
+    // their names: there only "Canary Islands" stands)
+    const a = props.oneMap ? o * (1 - sp) : o
     n.style.transform = `translate3d(${np[0].toFixed(1)}px, ${np[1].toFixed(1)}px, 0)`
     n.style.opacity = a.toFixed(3)
     show(n, a > 0.02)
@@ -1107,7 +1136,7 @@ const render = (r = descent()) => {
   })
   // The mainland only out at all of Spain (or down at one of its places), so
   // it never shows at the edge of the islands' map
-  mainlandEl.value.style.opacity = (keep ? 1 : sp).toFixed(3)
+  mainlandEl.value.style.opacity = (keep || props.oneMap ? 1 : sp).toFixed(3)
   const fp = toScreen(ml.value.canaries.x, ml.value.canaries.y)
   canariesLabel.value.style.transform = `translate3d(${fp[0].toFixed(1)}px, ${fp[1].toFixed(1)}px, 0)`
   canariesLabel.value.style.opacity = (o * sp).toFixed(3)
