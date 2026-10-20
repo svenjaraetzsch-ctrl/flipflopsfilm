@@ -189,15 +189,9 @@
       "prev_photo": "Previous photo",
       "next_photo": "Next photo",
       "close": "Close",
-      "hint_mouse": "Click an island or a theme to open it",
-      "hint_touch": "Tap an island or a theme to open it",
-      "island_no": "Island {n} / {total}",
-      "theme_no": "Theme {n} / {total}",
-      "title_light": "Canary",
-      "title_bold": "Islands"
+      "theme_no": "Theme {n} / {total}"
     },
     "mainland": {
-      "spain": "Spain",
       "label": "Mainland Spain",
       "canaries": "Canary Islands",
       "all_spain": "All of Spain",
@@ -212,8 +206,6 @@
       "tax_canaries_label": "Rebate, Canary Islands",
       "tax_mainland_label": "Rebate, mainland",
       "tax_mainland_value": "Up to 30%",
-      "hint_spain_mouse": "Click the Canary Islands, a place or a theme to open it",
-      "hint_spain_touch": "Tap the Canary Islands, a place or a theme to open it",
       "open_base": "Open {name}",
       "open_canaries": "Open the map of the Canary Islands",
       "maps": "Map",

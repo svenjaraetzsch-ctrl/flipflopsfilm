@@ -189,15 +189,9 @@
       "prev_photo": "Vorheriges Foto",
       "next_photo": "Nächstes Foto",
       "close": "Schließen",
-      "hint_mouse": "Eine Insel oder ein Thema anklicken, um es zu öffnen",
-      "hint_touch": "Eine Insel oder ein Thema antippen, um es zu öffnen",
-      "island_no": "Insel {n} / {total}",
-      "theme_no": "Thema {n} / {total}",
-      "title_light": "Kanarische",
-      "title_bold": "Inseln"
+      "theme_no": "Thema {n} / {total}"
     },
     "mainland": {
-      "spain": "Spanien",
       "label": "Spanisches Festland",
       "canaries": "Kanarische Inseln",
       "all_spain": "Ganz Spanien",
@@ -212,8 +206,6 @@
       "tax_canaries_label": "Rückerstattung Kanaren",
       "tax_mainland_label": "Rückerstattung Festland",
       "tax_mainland_value": "Bis zu 30%",
-      "hint_spain_mouse": "Die Kanaren, einen Ort oder ein Thema zum Öffnen anklicken",
-      "hint_spain_touch": "Die Kanaren, einen Ort oder ein Thema zum Öffnen antippen",
       "open_base": "{name} öffnen",
       "open_canaries": "Karte der Kanarischen Inseln öffnen",
       "maps": "Karte",

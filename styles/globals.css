@@ -370,15 +370,6 @@ h3.text-u {
   overflow-wrap: break-word;
 }
 
-/* Locations: while the map's bar shows at the foot of a phone's screen, the
-   "to the top" button steps aside */
-@media (max-width: 767px) {
-  body.loc-bar-shown .progress-wrap {
-    opacity: 0 !important;
-    visibility: hidden !important;
-  }
-}
-
 /* Text only for search engines and screen readers */
 .pc-sr-only {
   position: absolute !important;

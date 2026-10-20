@@ -42,21 +42,17 @@ const r1 = (n) => Math.round(n * 10) / 10
 const place = (d, { s, x, y }) =>
   d.replace(/(-?\d+(?:\.\d+)?) (-?\d+(?:\.\d+)?)/g, (_, a, b) => `${r1(a * s + x)} ${r1(b * s + y)}`)
 
-const union = (a, b, m = 0) => {
-  const x = Math.min(a.x, b.x) - m
-  const y = Math.min(a.y, b.y) - m
-  return { x, y, w: Math.max(a.x + a.w, b.x + b.w) + m - x, h: Math.max(a.y + a.h, b.y + b.h) + m - y }
-}
-
-// All of Spain as one map, as it really is: the peninsula and the islands at
-// the same scale and where they lie, Morocco's coast faint between them (on
-// the islands' map, north of 27° N), so the distances are right. Both maps
-// meet at the Strait of Gibraltar: Tarifa is at (1243.2, -725.8) on the
-// islands' map and at (340.7, 883.0) on the peninsula's.
-const MOROCCO = 'M478.5 259.8L488.0 234.0 495.9 214.1 502.2 200.1 506.9 192.1 510.0 190.0 512.9 187.3 515.6 184.0 518.0 180.0 520.3 175.3 527.5 170.7 539.5 166.1 556.4 161.6 578.2 157.2 598.0 152.2 616.0 146.7 632.0 140.7 646.1 134.1 659.3 126.2 671.5 117.1 682.7 106.6 693.0 94.8 703.8 84.4 714.9 75.2 726.5 67.3 738.5 60.7 749.5 53.7 759.5 46.1 768.5 38.0 776.5 29.5 786.1 17.4 797.4 1.7 810.3 -17.6 824.9 -40.5 836.0 -59.6 843.8 -74.9 848.3 -86.3 849.3 -94.1 849.6 -100.8 849.0 -106.5 847.6 -111.3 845.4 -115.2 842.6 -118.8 839.2 -122.1 835.2 -125.3 830.6 -128.1 827.7 -131.6 826.3 -135.5 826.5 -139.9 828.4 -144.9 829.6 -152.5 830.1 -163.0 829.9 -176.2 829.0 -192.1 829.4 -206.3 831.2 -218.8 834.3 -229.5 838.7 -238.6 843.8 -247.4 849.7 -256.0 856.4 -264.4 863.8 -272.6 869.9 -279.9 874.6 -286.3 878.1 -291.9 880.2 -296.6 881.9 -302.8 883.2 -310.4 884.0 -319.5 884.5 -330.0 887.2 -339.9 892.2 -349.4 899.5 -358.4 909.1 -366.8 918.4 -375.8 927.3 -385.4 936.0 -395.5 944.2 -406.2 956.6 -416.7 973.0 -427.1 993.4 -437.3 1017.9 -447.3 1040.0 -457.0 1059.6 -466.4 1076.8 -475.4 1091.5 -484.0 1104.8 -493.7 1116.7 -504.6 1127.2 -516.5 1136.2 -529.6 1144.7 -542.6 1152.5 -555.6 1159.6 -568.5 1166.2 -581.3 1173.3 -597.2 1181.0 -616.0 1189.3 -637.9 1198.2 -662.8 1206.9 -681.7 1215.3 -694.7 1223.6 -701.8 1231.6 -702.9 1238.8 -704.4 1245.3 -706.4 1251.0 -708.8 1256.0 -711.7 1259.7 -713.8 1262.1 -715.2 1263.4 -715.9M1269.0 -707.4L1269.6 -705.5 1270.7 -701.9 1272.3 -696.4 1274.5 -689.2 1277.3 -682.5 1280.6 -676.6 1284.6 -671.3 1289.1 -666.7 1295.1 -661.8 1302.7 -656.5 1311.9 -651.0 1322.7 -645.2 1332.5 -640.4 1341.3 -636.7 1349.1 -634.1 1356.0 -632.6 1363.8 -632.2 1372.5 -633.0 1382.0 -635.1 1392.5 -638.3 1400.5 -640.4 1405.9 -641.2 1408.8 -641.0 1409.1 -639.5 1410.1 -638.4 1411.7 -637.6 1413.9 -637.1 1416.7 -637.0 1419.4 -637.4 1421.9 -638.5 1424.3 -640.1 1426.5 -642.4 1430.2 -643.4 1435.4 -643.2 1442.2 -641.8 1450.5 -639.1 1458.4 -637.8 1466.1 -637.7 1473.3 -639.0 1480.3 -641.6 1486.2 -644.7 1491.0 -648.2 1494.7 -652.1 1497.4 -656.5 1499.5 -659.0 1501.1 -659.6 1502.1 -658.2 1502.6 -654.9 1503.0 -652.5 1503.3 -650.9 1503.4 -650.0M1506.6 -644.2L1506.7 -643.5 1506.8 -642.1 1507.0 -640.0 1507.3 -637.1 1508.0 -634.6 1509.1 -632.5 1510.7 -630.7 1512.7 -629.2 1514.7 -628.1 1516.6 -627.3 1518.4 -626.9 1520.2 -626.7 1520.7 -627.5 1520.0 -629.2 1518.1 -631.9 1514.9 -635.5 1513.8 -637.2 1514.8 -637.1 1517.9 -635.1 1523.1 -631.3 1528.6 -628.7 1534.2 -627.4 1540.1 -627.3 1546.1 -628.5 1551.9 -629.0 1557.3 -628.7 1562.4 -627.7 1567.2 -626.0 1570.7 -624.8 1573.1 -623.9 1574.3 -623.5'
-const [bx, by, bw, bh] = LOCAL.box
-const at = { s: 1, x: r1(1243.2 - 340.7), y: r1(-725.8 - 883.0) }
-const box = { x: bx + at.x, y: by + at.y, w: bw, h: bh }
+// All of Spain on one map, the islands as the focus: the peninsula at the
+// islands' scale, but nearer to them than it really is (the sea between
+// shortened), and only its southern half, up to just above Madrid (the map
+// fades out above that, see the Gallery's mask). Its south-west corner (Cabo
+// de São Vicente, at (52, 772) on its own map) sits just north-east of the
+// islands. No Morocco: with the sea shortened its coast would no longer fit.
+const at = { s: 1, x: 600 - 52, y: 20 - 772 }
+const placed = bases.map((b) => ({ ...b, x: r1(b.at[0] + at.x), y: r1(b.at[1] + at.y) }))
+const madrid = placed.find((b) => b.key === 'madrid')
+// East to just past Cabo de la Nao (838 on the peninsula's map)
+const east = 880 + at.x
 
 // Everything the map needs, in map units of the islands' map (islandMap.js):
 // the placed outlines, the places, where the name "Canary Islands" goes and
@@ -66,8 +62,9 @@ export const mainland = {
   spain: place(LOCAL.spain, at),
   balearics: place(LOCAL.balearics, at),
   portugal: place(LOCAL.portugal, at),
-  morocco: MOROCCO,
-  bases: bases.map((b) => ({ ...b, x: r1(b.at[0] + at.x), y: r1(b.at[1] + at.y) })),
+  bases: placed,
   canaries: { x: view.x, y: view.y },
-  spainView: union(view, box, 40)
+  // (on phones below them: above, the name would run into Portugal's coast)
+  canariesBelow: { x: view.x + 12, y: view.y + view.h + 8 },
+  spainView: { x: view.x - 36, y: madrid.y - 100, w: east - (view.x - 36), h: view.y + view.h + 24 - (madrid.y - 100) }
 }

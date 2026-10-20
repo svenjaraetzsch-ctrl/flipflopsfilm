@@ -189,15 +189,9 @@
       "prev_photo": "Foto anterior",
       "next_photo": "Foto siguiente",
       "close": "Cerrar",
-      "hint_mouse": "Haga clic en una isla o un tema para abrirlo",
-      "hint_touch": "Toque una isla o un tema para abrirlo",
-      "island_no": "Isla {n} / {total}",
-      "theme_no": "Tema {n} / {total}",
-      "title_light": "Islas",
-      "title_bold": "Canarias"
+      "theme_no": "Tema {n} / {total}"
     },
     "mainland": {
-      "spain": "España",
       "label": "España Peninsular",
       "canaries": "Islas Canarias",
       "all_spain": "Toda España",
@@ -212,8 +206,6 @@
       "tax_canaries_label": "Reembolso Canarias",
       "tax_mainland_label": "Reembolso península",
       "tax_mainland_value": "Hasta un 30%",
-      "hint_spain_mouse": "Haga clic en Canarias, un lugar o un tema para abrirlo",
-      "hint_spain_touch": "Toque Canarias, un lugar o un tema para abrirlo",
       "open_base": "Abrir {name}",
       "open_canaries": "Abrir el mapa de las Islas Canarias",
       "maps": "Mapa",
