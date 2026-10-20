@@ -33,19 +33,19 @@
           </div>
         </div>
       </div>
-      <div class="row justify-content-center">
-        <div class="col-lg-11">
-          <div class="row">
-            <div class="col-lg-6">
-              <span class="sub-title bord mb-30">{{ $t('tax.opportunity_label') }}</span>
-              <PhotoConceptsSidePhoto :image="photos.seaOfClouds" />
-            </div>
-            <div class="col-lg-5 offset-lg-1">
-              <div class="text">
-                <h5 class="mb-30 fw-400 line-height-40">{{ $t('tax.opportunity_h5') }}</h5>
-                <p class="fz-18">{{ $t('tax.opportunity_p') }}</p>
-              </div>
-            </div>
+      <!-- Set as the first section of About (AboutUs): the label and a photo
+           on the left, a heading in capitals and the text on the right -->
+      <div class="row">
+        <div class="col-lg-6">
+          <div class="sec-head">
+            <span class="sub-title bord mb-30">{{ $t('tax.opportunity_label') }}</span>
+          </div>
+          <PhotoConceptsSidePhoto :image="photos.seaOfClouds" />
+        </div>
+        <div class="col-lg-5 offset-lg-1">
+          <h3 class="text-u text-indent">{{ opportunity[0] }}</h3>
+          <div class="text mt-30">
+            <p>{{ opportunity[1] }}</p>
           </div>
         </div>
       </div>
@@ -54,7 +54,16 @@
 </template>
 
 <script setup>
+import { computed } from 'vue'
 import { photos } from '@/data/PhotoConcepts/photos'
+
+const { t } = useI18n()
+
+// [heading, text]: the rest of the lead and the text as one paragraph
+const opportunity = computed(() => [
+  t('tax.opportunity_heading'),
+  `${t('tax.opportunity_text')} ${t('tax.opportunity_p')}`
+])
 
 // Minimum spend and maximum rebate are full sentences in every language
 // ("Up to €36,000,000 for feature films", "Bis zu 36.000.000 € für

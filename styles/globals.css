@@ -100,11 +100,6 @@ body,
   padding-top: 180px !important;
 }
 
-/* Below a page header the list needs no clearance for the navigation */
-.interactive-center.pc-after-header {
-  padding-top: 40px !important;
-}
-
 .land-header {
   padding-top: 200px !important;
 }
@@ -365,6 +360,14 @@ footer .logo .logo-svg-wrap {
   .pc-page-head--plain .caption {
     padding-bottom: 30px;
   }
+}
+
+/* Section headings in capitals (h3.text-u, as on About): a word too long
+   for its column breaks rather than running out of it. Long German
+   compounds carry a soft hyphen at the joint in the locale file
+   (Produktions-unterstützung), so they break there first. */
+h3.text-u {
+  overflow-wrap: break-word;
 }
 
 /* Text only for search engines and screen readers */

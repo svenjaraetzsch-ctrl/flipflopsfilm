@@ -7,11 +7,9 @@
     <div id="smooth-content">
       <main class="main-bg">
         <div class="main-box main-bg ontop">
-          <CommonMarqueeHeader :title="$t('nav.services')" hide-title />
-          <PortfolioInteractiveCenter class="pc-after-header" />
-          <ServicesTopContent></ServicesTopContent>
-          
-          
+          <!-- No visible title: the butterfly opens the page -->
+          <h1 class="pc-sr-only">{{ $t('nav.services') }}</h1>
+          <ServicesButterfly />
         </div>
 
         <PhotoConceptsContact :image="photos.famara" />

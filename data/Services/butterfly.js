@@ -1,4 +1,4 @@
-// Proposal 1 for the Services overview: the Flip Flops butterfly is the menu.
+// The Services page: the Flip Flops butterfly is the menu.
 // Its four wings are the four services. Names and descriptions come from
 // `services_items` in the locale files; only wording without a key is here.
 

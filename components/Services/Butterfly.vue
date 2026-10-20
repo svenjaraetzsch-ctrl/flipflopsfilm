@@ -1,11 +1,11 @@
 <template>
-  <!-- Proposal 1 for the Services overview: the Flip Flops butterfly is the
-       menu. Its four wings are the four services, named beside them; pointing
-       at a service (or its wing) lights the wing in the logo's sand.
-       Production Services, which has no page of its own, is the first
-       clapperboard wing and leads down to its text. Type and spacing as on
-       About: the services as its list titles (h4 and p), the Production
-       Services section as its first section. -->
+  <!-- The Services page: the Flip Flops butterfly is the menu. Its four
+       wings are the four services, named beside them; pointing at a service
+       (or its wing) lights the wing in the logo's sand. Production Services,
+       which has no page of its own, is the first clapperboard wing and leads
+       down to its text. Type and spacing as on About: the services as its
+       list titles (h4 and p), the Production Services section as its first
+       section. -->
   <div
     class="bf"
     :class="{ 'is-armed': armed, 'is-drawn': drawn, 'has-active': active !== null }"
@@ -119,9 +119,8 @@
       </div>
     </section>
 
-    <!-- Production Services, set as the first section of About: its usual
-         lead is the statement above, so the text's first sentence heads it -->
-    <ServicesTopContent heading-from-text />
+    <!-- Production Services, set as the first section of About -->
+    <ServicesTopContent />
   </div>
 </template>
 

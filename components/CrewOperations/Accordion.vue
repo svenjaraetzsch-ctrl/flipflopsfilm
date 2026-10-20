@@ -1,27 +1,25 @@
 <template>
   <section class="section-padding">
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-11">
-          <div class="row">
-            <div class="col-lg-5">
-              <div class="accordion bord">
-                <div v-for="(item, index) in networkItems" :key="item.id" class="item mb-20 wow fadeInUp" @click="openAccordion"
-                  :data-wow-delay="`${((index * 0.2) + 0.1).toFixed(1)}s`">
-                  <div class="title">
-                    <h4>{{ item.title }}</h4>
-                    <span class="ico"></span>
-                  </div>
-                  <div class="accordion-info">
-                    <p>{{ item.content }}</p>
-                  </div>
-                </div>
+      <!-- Set as the values on About: the list on the left, a photo on the
+           right -->
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="accordion bord">
+            <div v-for="(item, index) in networkItems" :key="item.id" class="item mb-20 wow fadeInUp" @click="openAccordion"
+              :data-wow-delay="`${((index * 0.2) + 0.1).toFixed(1)}s`">
+              <div class="title">
+                <h4>{{ item.title }}</h4>
+                <span class="ico"></span>
+              </div>
+              <div class="accordion-info">
+                <p>{{ item.content }}</p>
               </div>
             </div>
-            <div class="col-lg-6 offset-lg-1">
-              <PhotoConceptsSidePhoto class="pc-side-photo--right" :image="photos.fernForest" portrait />
-            </div>
           </div>
+        </div>
+        <div class="col-lg-6 offset-lg-1">
+          <PhotoConceptsSidePhoto class="pc-side-photo--right" :image="photos.fernForest" portrait />
         </div>
       </div>
     </div>
