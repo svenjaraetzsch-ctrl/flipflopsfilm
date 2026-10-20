@@ -215,7 +215,11 @@
       "hint_spain_mouse": "Eine Insel, einen Ort oder ein Thema anklicken, um es zu öffnen",
       "hint_spain_touch": "Eine Insel, einen Ort oder ein Thema antippen, um es zu öffnen",
       "open_base": "{name} öffnen",
-      "open_canaries": "Karte der Kanarischen Inseln öffnen"
+      "open_canaries": "Karte der Kanarischen Inseln öffnen",
+      "maps": "Karte",
+      "prev_location": "Vorheriger Ort",
+      "next_location": "Nächster Ort",
+      "other_locations": "Weitere Orte"
     },
     "islands": {
       "elHierro": {

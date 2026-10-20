@@ -215,7 +215,11 @@
       "hint_spain_mouse": "Click an island, a place or a theme to open it",
       "hint_spain_touch": "Tap an island, a place or a theme to open it",
       "open_base": "Open {name}",
-      "open_canaries": "Open the map of the Canary Islands"
+      "open_canaries": "Open the map of the Canary Islands",
+      "maps": "Map",
+      "prev_location": "Previous location",
+      "next_location": "Next location",
+      "other_locations": "Other locations"
     },
     "islands": {
       "elHierro": {

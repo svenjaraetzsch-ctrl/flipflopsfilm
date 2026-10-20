@@ -215,7 +215,11 @@
       "hint_spain_mouse": "Haga clic en una isla, un lugar o un tema para abrirlo",
       "hint_spain_touch": "Toque una isla, un lugar o un tema para abrirlo",
       "open_base": "Abrir {name}",
-      "open_canaries": "Abrir el mapa de las Islas Canarias"
+      "open_canaries": "Abrir el mapa de las Islas Canarias",
+      "maps": "Mapa",
+      "prev_location": "Lugar anterior",
+      "next_location": "Lugar siguiente",
+      "other_locations": "Otros lugares"
     },
     "islands": {
       "elHierro": {

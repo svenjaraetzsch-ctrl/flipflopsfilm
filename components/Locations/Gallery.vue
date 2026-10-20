@@ -12,14 +12,11 @@
        map. -->
   <section class="loc-gallery" :class="{ 'is-compact': compact, 'is-detail': !overview }">
     <div class="container loc-gallery__wrap">
-      <!-- One button in one place: on the islands' map it switches to mainland
-           Spain, on the map of Spain to the Canary Islands; down at an island,
-           a place or a theme it leads back to the map it belongs to -->
-      <Transition name="loc-gallery-fade" mode="out-in">
-        <button :key="level === 'map' || level === 'spain' ? level : 'back'" type="button" class="loc-gallery__back" :class="{ 'is-up': overview }" @click="goBack($event)">
-          <svg v-if="overview" viewBox="0 0 18 18" aria-hidden="true"><path d="M5 13L13 5M6.5 5H13v6.5" /></svg>
-          <svg v-else viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
-          {{ level === 'map' ? t('locations.mainland.label') : level === 'spain' ? t('locations.mainland.canaries') : t('locations.gallery.back') }}
+      <!-- Down at an island, a place or a theme: back to the map it belongs to -->
+      <Transition name="loc-gallery-fade">
+        <button v-if="!overview" type="button" class="loc-gallery__back" @click="goBack($event)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
+          {{ t('locations.gallery.back') }}
         </button>
       </Transition>
 
@@ -31,7 +28,7 @@
       <TransitionGroup name="loc-gallery-panel">
         <section v-if="level === 'island'" :key="`i${current}`" class="loc-gallery__panel" :aria-labelledby="`loc-gallery-title-i${current}`">
           <p class="loc-gallery__sub">
-            {{ t('locations.gallery.island_no', { n: pad(current + 1), total: pad(isles.length) }) }}
+            {{ t('locations.mainland.canaries') }}
             <span>{{ t('locations.gallery.photos', { count: isle.photos.length }) }}</span>
           </p>
           <h3 :id="`loc-gallery-title-i${current}`" class="loc-gallery__title" :style="titleStyle(islandName(isle.name))" tabindex="-1">
@@ -135,11 +132,11 @@
               <line x1="0" y1="0" x2="0" y2="2.6" />
             </pattern>
           </defs>
-          <!-- Mainland Spain, beside the islands (all of Spain; on phones below
-               them), Portugal only by its coast, faint -->
-          <g ref="mainlandEl" class="loc-gallery__mainland">
+          <!-- Mainland Spain where it really lies, Portugal and Morocco only by
+               their coasts, faint -->
+          <g class="loc-gallery__mainland">
             <path class="loc-gallery__neighbour" :d="ml.portugal" />
-            <path v-if="ml.morocco" class="loc-gallery__neighbour" :d="ml.morocco" />
+            <path class="loc-gallery__neighbour" :d="ml.morocco" />
             <path class="loc-gallery__land" :d="ml.spain" />
             <path class="loc-gallery__land" :d="ml.balearics" />
           </g>
@@ -270,8 +267,8 @@
 
         <!-- The page title over the map, in the title style of the other
              service pages, the map's name small above it ("Canary Islands"
-             or "Spain"), and the facts in the info style of the Tax
-             Incentives page -->
+             or "Spain"), the facts in the info style of the Tax Incentives
+             page, and a quiet hint under them -->
         <div ref="cartEl" class="loc-gallery__head">
           <span class="loc-gallery__place sub-title">{{ placeName }}</span>
           <h1 class="loc-gallery__heading">{{ t('locations.header') }}</h1>
@@ -281,12 +278,11 @@
               <dd>{{ f.value }}</dd>
             </div>
           </dl>
+          <p class="loc-gallery__hint">
+            <span class="loc-gallery__hint-mouse">{{ hintText('mouse') }}</span>
+            <span class="loc-gallery__hint-touch">{{ hintText('touch') }}</span>
+          </p>
         </div>
-
-        <p class="loc-gallery__hint">
-          <span class="loc-gallery__hint-mouse">{{ hintText('mouse') }}</span>
-          <span class="loc-gallery__hint-touch">{{ hintText('touch') }}</span>
-        </p>
 
         <!-- Larger screens: the themes, in a column beside the map -->
         <Transition name="loc-gallery-fade">
@@ -363,16 +359,31 @@
       </div>
 
       <!-- To the islands (or themes) either side, apart from the way back -->
-      <nav v-if="level === 'island' || level === 'theme'" class="loc-gallery__steps" :aria-label="t(level === 'island' ? 'locations.gallery.other_islands' : 'locations.gallery.other_themes')">
-        <button type="button" class="loc-gallery__step" @click="step(-1, $event)">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
-          <span><small>{{ t(level === 'island' ? 'locations.gallery.prev_island' : 'locations.gallery.prev_theme') }}</small>{{ stepName(-1) }}</span>
-        </button>
-        <span class="loc-gallery__no">{{ pad(stepNo + 1) }} / {{ pad(level === 'island' ? isles.length : themeSets.length) }}</span>
-        <button type="button" class="loc-gallery__step loc-gallery__step--next" @click="step(1, $event)">
-          <span><small>{{ t(level === 'island' ? 'locations.gallery.next_island' : 'locations.gallery.next_theme') }}</small>{{ stepName(1) }}</span>
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
-        </button>
+      <!-- The map's navigation in one bar: on the map the switch between the
+           islands and all of Spain; down at a location (the islands, then the
+           places on the mainland, west to east) or a theme, the ones either
+           side -->
+      <nav class="loc-gallery__bar" :class="{ 'is-detail': !overview }" :aria-label="overview ? t('locations.mainland.maps') : t(level === 'theme' ? 'locations.gallery.other_themes' : 'locations.mainland.other_locations')">
+        <template v-if="overview">
+          <span class="loc-gallery__bar-label">{{ t('locations.mainland.maps') }}</span>
+          <button type="button" :class="{ 'is-active': level === 'map' }" :aria-pressed="level === 'map'" @click="toArchipelago($event)">
+            {{ t('locations.mainland.canaries') }}
+          </button>
+          <button type="button" :class="{ 'is-active': level === 'spain' }" :aria-pressed="level === 'spain'" @click="toSpain($event)">
+            {{ t('locations.mainland.all_spain') }}
+          </button>
+        </template>
+        <template v-else>
+          <button type="button" :aria-label="`${t(level === 'theme' ? 'locations.gallery.prev_theme' : 'locations.mainland.prev_location')}: ${stepName(-1)}`" @click="step(-1, $event)">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+            <em>{{ stepName(-1) }}</em>
+          </button>
+          <span class="loc-gallery__bar-no">{{ pad(stepNo + 1) }} / {{ pad(stepTotal) }}</span>
+          <button type="button" :aria-label="`${t(level === 'theme' ? 'locations.gallery.next_theme' : 'locations.mainland.next_location')}: ${stepName(1)}`" @click="step(1, $event)">
+            <em>{{ stepName(1) }}</em>
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+          </button>
+        </template>
       </nav>
 
       <!-- The large view: over the whole screen (moved to the end of the
@@ -441,13 +452,7 @@
 import { ref, reactive, computed, onMounted, onBeforeUnmount, nextTick } from 'vue'
 import { isles, total, routeLines, collage, themeSets, themeCollage, graciosa, view } from '@/data/Locations/mapGallery'
 import { islandFacts } from '@/data/Locations/islandFacts'
-import { mainlandFor } from '@/data/Locations/mainland'
-
-const props = defineProps({
-  // Version 2 (review): islands and mainland as one map, at the same scale
-  // and where they really lie
-  oneMap: { type: Boolean, default: false }
-})
+import { mainland as ml } from '@/data/Locations/mainland'
 
 const { t } = useI18n()
 
@@ -519,7 +524,6 @@ const themeEls = []
 const nameEls = []
 const baseEls = []
 const canariesLabel = ref(null)
-const mainlandEl = ref(null)
 
 // The hatching of a lit island (one gallery per page, so a fixed id)
 const hatchId = 'loc-gallery-hatch'
@@ -556,11 +560,9 @@ const facts = computed(() => {
 const islandText = computed(() => islandWords(isle.value.name))
 
 // The places on the mainland (all of Spain)
-// Mainland Spain beside the islands (below them where the area is narrower)
-const stacked = ref(false)
-const ml = computed(() => mainlandFor(stacked.value, props.oneMap))
-const base = computed(() => ml.value.bases[currentBase.value])
-const basesWith = (key) => ml.value.bases.map((b, i) => (b.themes.includes(key) ? i : -1)).filter((i) => i >= 0)
+// The places on the mainland, on the one map of all of Spain
+const base = computed(() => ml.bases[currentBase.value])
+const basesWith = (key) => ml.bases.map((b, i) => (b.themes.includes(key) ? i : -1)).filter((i) => i >= 0)
 const spainShown = computed(() => overviewLevel.value === 'spain')
 const placeName = computed(() =>
   spainShown.value ? t('locations.mainland.spain') : `${t('locations.gallery.title_light')} ${t('locations.gallery.title_bold')}`
@@ -583,7 +585,7 @@ const themesOn = (i) => themeSets.filter((set) => set.on.includes(i)).map((set) 
 const matches = computed(() => {
   if (!overview.value) return null
   if (hoverIsland.value !== null) return themesOn(hoverIsland.value)
-  if (hoverBase.value !== null) return themeSets.filter((set) => ml.value.bases[hoverBase.value].themes.includes(set.key)).map((set) => set.index)
+  if (hoverBase.value !== null) return themeSets.filter((set) => ml.bases[hoverBase.value].themes.includes(set.key)).map((set) => set.index)
   return null
 })
 // A theme pointed at lights the places on the mainland it is found at too
@@ -623,11 +625,16 @@ const hitOrder = isles
   .map((item) => item.index)
   .sort((a, b) => isles[b].box.w * isles[b].box.h - isles[a].box.w * isles[a].box.h)
 
-const stepNo = computed(() => (level.value === 'island' ? current.value : currentTheme.value))
+// The locations in a row, west to east: the islands, then the places on the
+// mainland. The bar steps through them (or through the themes).
+const locations = [...isles.map((_, i) => ({ kind: 'i', i })), ...ml.bases.map((_, i) => ({ kind: 'b', i }))]
+const locationName = (l) => (l.kind === 'i' ? islandName(isles[l.i].name) : baseName(ml.bases[l.i].key))
+const stepNo = computed(() => (level.value === 'theme' ? currentTheme.value : level.value === 'base' ? isles.length + currentBase.value : current.value))
+const stepTotal = computed(() => (level.value === 'theme' ? themeSets.length : locations.length))
 const stepName = (d) =>
-  level.value === 'island'
-    ? islandName(isles[wrap(current.value + d, isles.length)].name)
-    : themeText(themeSets[wrap(currentTheme.value + d, themeSets.length)].key).name
+  level.value === 'theme'
+    ? themeText(themeSets[wrap(currentTheme.value + d, themeSets.length)].key).name
+    : locationName(locations[wrap(stepNo.value + d, locations.length)])
 
 // ---------------------------------------------------------------------------
 // Camera: the map point in the middle of the map's area, and the zoom in
@@ -658,21 +665,26 @@ const goalH = () => goal || H
 // above the navigation (larger screens)
 const freeArea = () => [384, 24, W - 24, goalH() - 92]
 
-// Larger screens: the area's own height (85vh, as in the CSS), grown when an
-// island's or theme's panel needs more room than that
-const baseHeight = () => Math.round(Math.min(1000, Math.max(540, window.innerHeight * 0.85)))
-// (Version 2, the one map: all of Spain is about as tall as it is wide, so
-// the area grows towards the width beside the themes, but no taller than the
-// screen, so the whole map is in view at once)
+// Larger screens: the area's own height, as in the CSS (85vh, but its foot
+// with the map's bar on the first screen), grown when a panel needs more room
+// than that
+const baseHeight = () => Math.round(Math.min(1000, Math.max(540, Math.min(window.innerHeight * 0.85, window.innerHeight - 190))))
+// Room above the area for the site's fixed header, when the page scrolls it
+// into view, and at its foot for the map's bar (larger screens)
+const HEADER_ROOM = 112
+const BAR_ROOM = 88
+// (All of Spain is about as tall as it is wide: the area grows towards the
+// width beside the themes, but no taller than the screen, so the whole map
+// is in view at once)
 const oneMapHeight = () => {
-  const v = ml.value.spainView
-  const want = Math.round(TOP + titleHeight() + 24 + ((W - COLUMN - 44) * v.h) / v.w + 44)
-  return Math.min(want, window.innerHeight - 90)
+  const v = ml.spainView
+  const want = Math.round(TOP + titleHeight() + 24 + ((W - COLUMN - 44) * v.h) / v.w + BAR_ROOM)
+  return Math.min(want, window.innerHeight - HEADER_ROOM - 16)
 }
 const fitStage = () => {
   if (compact.value) return
   const panel = !isOverview() ? panelEl() : null
-  const need = panel ? panel.offsetTop + panel.offsetHeight + 32 : level.value === 'spain' && props.oneMap ? oneMapHeight() : 0
+  const need = panel ? panel.offsetTop + panel.offsetHeight + 32 : level.value === 'spain' ? oneMapHeight() : 0
   const h = Math.max(baseHeight(), need)
   goal = h
   stage.value.style.height = h === baseHeight() ? '' : h + 'px'
@@ -689,7 +701,7 @@ const narrowTop = () => 16 + titleHeight() + 20
 // (A margin on either side, wider on the left, so names west of an island
 // stay inside.)
 // The area an overview shows, in map units: the islands or all of Spain
-const extentOf = (l = level.value) => (l === 'spain' ? ml.value.spainView : view)
+const extentOf = (l = level.value) => (l === 'spain' ? ml.spainView : view)
 const narrowZoom = (v = extentOf()) => (W - 56) / v.w
 const overviewHeight = (v = extentOf()) =>
   narrow.value
@@ -705,7 +717,7 @@ const fitTarget = (v) => {
   }
   const h = compact.value ? overviewHeight(v) : goalH()
   // Below the title, and on larger screens beside the list of themes
-  const [l, top, r, b] = compact.value ? [30, 16 + titleHeight() + 30, W - 30, h - 40] : [COLUMN + 20, TOP + titleHeight() + 24, W - 24, h - 44]
+  const [l, top, r, b] = compact.value ? [30, 16 + titleHeight() + 30, W - 30, h - 40] : [COLUMN + 20, TOP + titleHeight() + 24, W - 24, h - BAR_ROOM]
   const z = Math.min((r - l) / v.w, (b - top) / v.h)
   // (centred across, and close under the title rather than centred down)
   const my = top + Math.min((b - top) / 2, (v.h * z) / 2 + 24)
@@ -721,8 +733,8 @@ const overviewTarget = (l = level.value) => (l === 'spain' ? spainTarget() : map
 // the panel; the map stays in view
 const BASE_SPAN = 760
 const baseTarget = (i) => {
-  const b = ml.value.bases[i]
-  const span = BASE_SPAN * ml.value.s
+  const b = ml.bases[i]
+  const span = BASE_SPAN * ml.s
   if (compact.value) {
     const z = Math.min((W - 48) / span, (overviewHeight() - 120) / span)
     return { x: b.x, y: b.y, z }
@@ -766,7 +778,6 @@ const measure = () => {
   compact.value = window.innerWidth < 992
   W = stage.value.clientWidth
   narrow.value = compact.value && W < 700
-  stacked.value = window.innerWidth < 1200
   if (compact.value) {
     goal = stageHeight()
     stage.value.style.height = goal + 'px'
@@ -812,13 +823,13 @@ const scrollToStage = () => {
   window.scrollTo({ top: window.scrollY + r.top - 108, behavior: reduced ? 'instant' : 'smooth' })
 }
 
-// Larger screens (the one map): scrolls just far enough for the area, at the
+// Larger screens (all of Spain): scrolls just far enough for the area, at the
 // height it is growing to, to be in view whole below the site's header
 const revealStage = () => {
   const r = stage.value.getBoundingClientRect()
   const over = r.top + goalH() - window.innerHeight + 16
   if (over <= 0) return
-  window.scrollTo({ top: window.scrollY + Math.min(over, r.top - 80), behavior: reduced ? 'instant' : 'smooth' })
+  window.scrollTo({ top: window.scrollY + Math.min(over, r.top - HEADER_ROOM), behavior: reduced ? 'instant' : 'smooth' })
 }
 
 // The panel on show (another may still be fading out)
@@ -967,7 +978,7 @@ const toSpain = async (e) => {
     scrollToStage()
   } else {
     fitStage()
-    if (props.oneMap) revealStage()
+    revealStage()
   }
   flyTo(spainTarget())
   if (!e || e.detail === 0) focusOnArrival = { kind: 'canaries' }
@@ -999,7 +1010,11 @@ const flyBase = async (i, e) => {
   focusTitle(e)
 }
 
-const step = (d, e) => (level.value === 'island' ? flyIn(current.value + d, e) : openTheme(currentTheme.value + d, e))
+const step = (d, e) => {
+  if (level.value === 'theme') return openTheme(currentTheme.value + d, e)
+  const l = locations[wrap(stepNo.value + d, locations.length)]
+  return l.kind === 'i' ? flyIn(l.i, e) : flyBase(l.i, e)
+}
 
 const kick = () => {
   if (raf || !ready.value) return
@@ -1115,9 +1130,9 @@ const render = (r = descent()) => {
   isles.forEach((item, i) => {
     const n = nameEls[i]
     const np = toScreen(item.label[0], item.label[1])
-    // (on the one map the islands are too small out at all of Spain for
-    // their names: there only "Canary Islands" stands)
-    const a = props.oneMap ? o * (1 - sp) : o
+    // (out at all of Spain the islands are too small for their names: there
+    // only "Canary Islands" stands)
+    const a = o * (1 - sp)
     n.style.transform = `translate3d(${np[0].toFixed(1)}px, ${np[1].toFixed(1)}px, 0)`
     n.style.opacity = a.toFixed(3)
     show(n, a > 0.02)
@@ -1125,7 +1140,7 @@ const render = (r = descent()) => {
 
   // The places on the mainland (all of Spain, or down at one of them) and
   // the islands' name
-  ml.value.bases.forEach((b, i) => {
+  ml.bases.forEach((b, i) => {
     const n = baseEls[i]
     if (!n) return
     const np = toScreen(b.x, b.y)
@@ -1134,10 +1149,7 @@ const render = (r = descent()) => {
     n.style.opacity = a.toFixed(3)
     show(n, a > 0.02)
   })
-  // The mainland only out at all of Spain (or down at one of its places), so
-  // it never shows at the edge of the islands' map
-  mainlandEl.value.style.opacity = (keep || props.oneMap ? 1 : sp).toFixed(3)
-  const fp = toScreen(ml.value.canaries.x, ml.value.canaries.y)
+  const fp = toScreen(ml.canaries.x, ml.canaries.y)
   canariesLabel.value.style.transform = `translate3d(${fp[0].toFixed(1)}px, ${fp[1].toFixed(1)}px, 0)`
   canariesLabel.value.style.opacity = (o * sp).toFixed(3)
   show(canariesLabel.value, o * sp > 0.02)
@@ -1547,7 +1559,8 @@ onBeforeUnmount(() => {
    own */
 .loc-gallery__stage {
   position: relative;
-  height: 85vh;
+  /* (its foot, with the map's bar, on the first screen; see baseHeight) */
+  height: min(85vh, calc(100vh - 190px));
   min-height: 540px;
   max-height: 1000px;
   /* (grown by the script when a panel needs more room) */
@@ -1891,11 +1904,7 @@ onBeforeUnmount(() => {
 
 /* A quiet sentence, not a call to action */
 .loc-gallery__hint {
-  position: absolute;
-  left: 320px;
-  bottom: 22px;
-  z-index: 3;
-  margin: 0;
+  margin: 18px 0 0;
   font-size: 13px;
   line-height: 1.4;
   color: rgba(255, 255, 255, 0.5);
@@ -1918,8 +1927,7 @@ onBeforeUnmount(() => {
    fill white on hover */
 .loc-gallery__index {
   position: absolute;
-  /* under the button, where the panels start too */
-  top: 96px;
+  top: 22px;
   left: 0;
   z-index: 4;
   width: 270px;
@@ -2249,74 +2257,88 @@ onBeforeUnmount(() => {
   line-height: 1.35;
 }
 
-/* To the islands either side, at the container's right edge */
-.loc-gallery__steps {
+/* The map's navigation, in the style of the site's switch bars: one pill
+   centred under the map, its buttons pills inside it */
+.loc-gallery__bar {
   position: absolute;
-  right: var(--gutter);
+  left: calc(var(--gutter) + 384px + (100% - 2 * var(--gutter) - 408px) / 2);
   bottom: 18px;
   z-index: 5;
   display: flex;
   align-items: center;
-  gap: 10px;
-}
-
-.loc-gallery__step {
-  display: inline-flex;
-  align-items: center;
-  gap: 12px;
-  min-height: 52px;
-  padding: 6px 20px 6px 14px;
-  border: 1px solid rgba(255, 255, 255, 0.2);
+  gap: 4px;
+  max-width: calc(100% - 2 * var(--gutter) - 408px);
+  padding: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 40px;
   background: rgba(32, 29, 29, 0.86);
-  color: #fff;
-  font-size: 15px;
-  line-height: 1.25;
-  text-align: left;
-  cursor: pointer;
-  transition: border-color 0.3s ease;
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transform: translateX(-50%);
 }
 
-.loc-gallery__step--next {
-  padding: 6px 14px 6px 20px;
-  text-align: right;
-}
-
-.loc-gallery__step:hover {
-  border-color: var(--sand);
-}
-
-.loc-gallery__step small {
-  display: block;
-  margin-bottom: 2px;
-  font-size: 10px;
-  font-weight: 300;
+.loc-gallery__bar-label {
+  padding: 0 10px 0 14px;
+  font-size: 11px;
   letter-spacing: 2px;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.6);
+  color: var(--sand);
+  white-space: nowrap;
 }
 
-.loc-gallery__step svg {
+.loc-gallery__bar button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  padding: 9px 16px;
+  border: 0;
+  border-radius: 30px;
+  background: none;
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  white-space: nowrap;
+  cursor: pointer;
+  transition: color 0.3s ease, background-color 0.3s ease;
+}
+
+.loc-gallery__bar button:hover,
+.loc-gallery__bar button.is-active {
+  color: #fff;
+}
+
+.loc-gallery__bar button.is-active {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.loc-gallery__bar em {
+  overflow: hidden;
+  font-style: normal;
+  text-overflow: ellipsis;
+}
+
+.loc-gallery__bar svg {
   flex: 0 0 auto;
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   fill: none;
   stroke: currentColor;
   stroke-width: 1.5;
 }
 
-.loc-gallery__step:focus-visible,
+.loc-gallery__bar-no {
+  padding: 0 6px;
+  font-size: 11px;
+  letter-spacing: 1px;
+  color: var(--sand);
+  white-space: nowrap;
+}
+
+.loc-gallery__bar button:focus-visible,
 .loc-gallery__cell:focus-visible,
 .loc-gallery__view button:focus-visible {
   outline: 1px solid var(--sand);
   outline-offset: 3px;
-}
-
-.loc-gallery__no {
-  font-size: 12px;
-  font-weight: 300;
-  letter-spacing: 2px;
-  color: rgba(255, 255, 255, 0.7);
 }
 
 .loc-gallery-panel-enter-active {
@@ -2438,15 +2460,6 @@ onBeforeUnmount(() => {
     left: calc(var(--gutter) + 12px);
   }
 
-  /* Smaller screens, on the two maps: below the map, before the themes, so it
-     keeps clear of the title */
-  .loc-gallery.is-compact .loc-gallery__back.is-up {
-    position: static;
-    order: 2;
-    align-self: flex-start;
-    margin: 4px 0 20px;
-  }
-
   /* Below the map, in the page; the leaving one out of the way */
   .loc-gallery__panel {
     position: static;
@@ -2461,7 +2474,7 @@ onBeforeUnmount(() => {
   }
 
   .loc-gallery__chips {
-    order: 2;
+    order: 3;
   }
 
   .loc-gallery__head {
@@ -2474,42 +2487,37 @@ onBeforeUnmount(() => {
     right: 16px;
   }
 
-  .loc-gallery__hint {
-    left: 24px;
-  }
 
   .loc-gallery__grid {
     order: 3;
   }
 
-  .loc-gallery__steps {
+  /* In the page: on the map below it (before the themes), down at a
+     location or a theme below the photos */
+  .loc-gallery__bar {
     position: static;
+    order: 2;
+    align-self: flex-start;
+    max-width: 100%;
+    margin: 4px 0 20px;
+    transform: none;
+  }
+
+  .loc-gallery__bar.is-detail {
     order: 4;
+    align-self: stretch;
     justify-content: space-between;
-    margin-top: 16px;
+    margin: 16px 0 0;
   }
 }
 
 @media (max-width: 559px) {
-  .loc-gallery__no {
+  .loc-gallery__bar-label {
     display: none;
   }
 
-  .loc-gallery__step {
-    flex: 1;
-    min-width: 0;
-    max-width: calc(50% - 4px);
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-
-  /* A long name ("Vulkanlandschaften") breaks rather than pushes out */
-  .loc-gallery__step span {
-    min-width: 0;
-    font-size: 14px;
-    -webkit-hyphens: auto;
-    hyphens: auto;
-    overflow-wrap: break-word;
+  .loc-gallery__bar button {
+    padding: 8px 12px;
   }
 }
 
@@ -2701,8 +2709,7 @@ onBeforeUnmount(() => {
   }
 
   .loc-gallery__hint {
-    left: 16px;
-    bottom: 12px;
+    margin-top: 12px;
     font-size: 12px;
   }
 
