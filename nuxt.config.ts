@@ -48,7 +48,9 @@ export default defineNuxtConfig({
     // not an empty <div>. crawlLinks follows internal links to discover routes.
     prerender: {
       crawlLinks: true,
-      routes: ['/'],
+      // /about-v2 is a review page that nothing links to, so the crawler is
+      // pointed at it here.
+      routes: ['/', ...['', '/de', '/es'].map((l) => `${l}/about-v2`)],
       // Don't abort the whole build on a single dead link (the theme demo data
       // still references non-existent pages, e.g. /creative-portfolio). Broken
       // links are logged. TODO: set back to true once demo pages/data are pruned.

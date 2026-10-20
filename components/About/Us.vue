@@ -6,7 +6,8 @@
           <div class="sec-head">
             <span class="sub-title bord mb-30">{{ $t('home.company_label') }}</span>
           </div>
-          <PhotoConceptsSidePhoto :image="photos.dirtTrack" />
+          <AboutFounders v-if="founders" />
+          <PhotoConceptsSidePhoto v-else :image="photos.dirtTrack" />
         </div>
         <div class="col-lg-5 offset-lg-1">
           <div>
@@ -61,6 +62,13 @@
 import { computed, ref } from 'vue'
 import { photos } from '@/data/PhotoConcepts/photos'
 
+// Version 2 (review page /about-v2, from David's feedback): the founders'
+// faces instead of the landscape under "Who we are", and the Flip Flops
+// flag on a boat as the photo of "One Team", shown first.
+const props = defineProps({
+  founders: { type: Boolean, default: false }
+})
+
 const { tm, rt } = useI18n()
 
 const believeItems = computed(() =>
@@ -73,8 +81,15 @@ const believeItems = computed(() =>
 
 // One photo per value, in the order of believe_items: Local First,
 // Relationships Matter, One Team, Solutions Over Obstacles.
-const believePhotos = [photos.villageStreet, photos.treeRoad, photos.valleyVillage, photos.serpentine]
-const activeBelief = ref(0)
+const flag = {
+  src: '/assets/imgs/team/flag-boat.jpg',
+  srcset: '/assets/imgs/team/flag-boat-md.jpg 480w, /assets/imgs/team/flag-boat.jpg 960w',
+  w: 960,
+  h: 1200,
+  alt: 'The Flip Flops Film flag beside an Italian flag on the mast of a boat'
+}
+const believePhotos = [photos.villageStreet, photos.treeRoad, props.founders ? flag : photos.valleyVillage, photos.serpentine]
+const activeBelief = ref(props.founders ? 2 : 0)
 
 const openAccordion = (event, index) => {
   if (typeof index === 'number') activeBelief.value = index
