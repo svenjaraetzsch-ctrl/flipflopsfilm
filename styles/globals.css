@@ -81,7 +81,17 @@ body,
   overflow-x: hidden;
 }
 
-/* 6. Hide the cursor dot on touch devices */
+/* 6. No scrolling while the intro loader covers the page: scrolled down
+   unseen, the page slid back to the top once the intro was over. Desktop
+   pauses ScrollSmoother instead (smoother-script.js), which keeps the
+   scrollbar and so doesn't shift the layout when it lets go. */
+@media (max-width: 991px) {
+  html:has(.loader-wrap:not(.is-done)) {
+    overflow: hidden;
+  }
+}
+
+/* 7. Hide the cursor dot on touch devices */
 @media (hover: none), (pointer: coarse) {
   .cursor { display: none !important; }
 }
