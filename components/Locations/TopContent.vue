@@ -1,13 +1,14 @@
 <template>
   <section class="section-padding">
     <div class="container">
-      <!-- Set as the first section of About (AboutUs): the label on the
-           left, a heading in capitals and the text on the right -->
+      <!-- Set as the first section of About (AboutUs): the label and a photo
+           on the left, a heading in capitals and the text on the right -->
       <div class="row">
         <div class="col-lg-6">
           <div class="sec-head">
             <span class="sub-title bord mb-30">{{ $t('locations.label') }}</span>
           </div>
+          <PhotoConceptsSidePhoto :image="photos.agando" />
         </div>
         <div class="col-lg-5 offset-lg-1">
           <h3 class="text-u text-indent">{{ $t('locations.h5') }}</h3>
@@ -19,6 +20,10 @@
     </div>
   </section>
 </template>
+
+<script setup>
+import { photos } from '@/data/PhotoConcepts/photos'
+</script>
 
 <style scoped>
 @media (max-width: 768px) {

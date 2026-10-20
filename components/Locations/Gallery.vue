@@ -17,7 +17,7 @@
            down at a location or a theme the way back to the map it belongs
            to and the locations (the islands, then the places on the mainland,
            west to east) or themes either side -->
-      <nav class="loc-gallery__nav" :class="{ 'is-detail': !overview }" :aria-label="overview ? t('locations.mainland.maps') : t(level === 'theme' ? 'locations.gallery.other_themes' : 'locations.mainland.other_locations')">
+      <nav class="loc-gallery__nav" :class="{ 'is-detail': !overview }" :aria-label="t('locations.mainland.maps')">
         <template v-if="overview">
           <button type="button" :class="{ 'is-active': level === 'map' }" :aria-pressed="level === 'map'" @click="toArchipelago($event)">
             {{ t('locations.mainland.canaries') }}
@@ -31,15 +31,21 @@
             <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
             {{ t('locations.gallery.back') }}
           </button>
-          <button type="button" class="is-step" :title="stepName(-1)" :aria-label="`${t(level === 'theme' ? 'locations.gallery.prev_theme' : 'locations.mainland.prev_location')}: ${stepName(-1)}`" @click="step(-1, $event)">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
-          </button>
-          <button type="button" class="is-step" :title="stepName(1)" :aria-label="`${t(level === 'theme' ? 'locations.gallery.next_theme' : 'locations.mainland.next_location')}: ${stepName(1)}`" @click="step(1, $event)">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
-          </button>
         </template>
       </nav>
 
+      <!-- Down at a location or a theme: the ones either side, by name, in
+           the bottom left corner (on smaller screens after the photos) -->
+      <nav v-if="!overview" class="loc-gallery__nav loc-gallery__nav--steps" :aria-label="t(level === 'theme' ? 'locations.gallery.other_themes' : 'locations.mainland.other_locations')">
+        <button type="button" class="is-step is-prev" :aria-label="`${t(level === 'theme' ? 'locations.gallery.prev_theme' : 'locations.mainland.prev_location')}: ${stepName(-1)}`" @click="step(-1, $event)">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
+          <em>{{ stepName(-1) }}</em>
+        </button>
+        <button type="button" class="is-step is-next" :aria-label="`${t(level === 'theme' ? 'locations.gallery.next_theme' : 'locations.mainland.next_location')}: ${stepName(1)}`" @click="step(1, $event)">
+          <em>{{ stepName(1) }}</em>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M9 5l7 7-7 7" /></svg>
+        </button>
+      </nav>
 
       <!-- What the island or the theme offers a production, as an open
            column in the type of the page around it: a label, the name, a lead
@@ -522,6 +528,7 @@ const COLUMN = 300
 // left column (the navigation over the themes) needs
 const MAP_GAP = 56
 const LEFT_COLUMN = 600
+const STEPS_ROOM = 76
 // Distance of the title and of the list of themes from the top of the map's
 // area (see .loc-gallery__head)
 const TOP = 22
@@ -676,8 +683,9 @@ const goalH = () => goal || H
 const freeArea = () => [384, 24, W - 24, goalH() - 92]
 
 // Larger screens, down at an island, a place or a theme: the area's own
-// height (85vh, as in the CSS), grown when the panel needs more room than that
-const baseHeight = () => Math.round(Math.min(1000, Math.max(540, window.innerHeight * 0.85)))
+// height (85vh, but its foot, with the ones either side, on the first
+// screen), grown when the panel needs more room than that
+const baseHeight = () => Math.round(Math.min(1000, Math.max(540, Math.min(window.innerHeight * 0.85, window.innerHeight - 190))))
 // On the two maps the map spans the whole width beside the themes, and the
 // area is as tall as that makes it (no less than the column of themes needs)
 const fillHeight = (v = extentOf()) => {
@@ -686,7 +694,9 @@ const fillHeight = (v = extentOf()) => {
 const fitStage = () => {
   if (compact.value) return
   const panel = !isOverview() ? panelEl() : null
-  const h = isOverview() ? fillHeight() : Math.max(baseHeight(), panel ? panel.offsetTop + panel.offsetHeight + 32 : 0)
+  // (down at a location or a theme with room under the panel for the ones
+  // either side, in the bottom left corner)
+  const h = isOverview() ? fillHeight() : Math.max(baseHeight(), panel ? panel.offsetTop + panel.offsetHeight + 32 + STEPS_ROOM : 0)
   goal = h
   stage.value.style.height = h + 'px'
   stage.value.style.maxHeight = 'none'
@@ -2228,9 +2238,21 @@ onBeforeUnmount(() => {
   background: rgba(32, 29, 29, 0.86);
 }
 
-/* Down at a location or a theme: as wide as the panel under it */
+/* Down at a location or a theme: the way back alone, as wide as it needs */
 .loc-gallery__nav.is-detail {
-  width: 330px;
+  width: auto;
+}
+
+/* The ones either side, by name, in the bottom left corner */
+.loc-gallery__nav--steps {
+  top: auto;
+  bottom: 18px;
+  width: auto;
+  max-width: calc(100% - 2 * var(--gutter));
+}
+
+.loc-gallery__nav.loc-gallery__nav--steps button {
+  flex: 0 1 auto;
 }
 
 .loc-gallery__nav button {
@@ -2271,9 +2293,22 @@ onBeforeUnmount(() => {
 }
 
 .loc-gallery__nav .is-step {
-  flex: 0 0 44px;
-  padding: 0;
+  padding: 8px 12px;
   color: rgba(255, 255, 255, 0.85);
+}
+
+.loc-gallery__nav .is-prev {
+  justify-content: flex-start;
+}
+
+.loc-gallery__nav .is-next {
+  justify-content: flex-end;
+}
+
+.loc-gallery__nav em {
+  overflow: hidden;
+  font-style: normal;
+  text-overflow: ellipsis;
 }
 
 .loc-gallery__nav svg {
@@ -2286,8 +2321,8 @@ onBeforeUnmount(() => {
 }
 
 .loc-gallery__nav .is-step svg {
-  width: 18px;
-  height: 18px;
+  width: 16px;
+  height: 16px;
 }
 
 .loc-gallery__nav button:focus-visible,
@@ -2435,6 +2470,19 @@ onBeforeUnmount(() => {
 
   .loc-gallery__nav button {
     min-height: 44px;
+  }
+
+  .loc-gallery__nav.is-detail {
+    width: auto;
+    align-self: flex-start;
+  }
+
+  .loc-gallery__nav.loc-gallery__nav--steps {
+    order: 5;
+    width: auto;
+    max-width: 100%;
+    align-self: flex-start;
+    margin: 24px 0 0;
   }
 
   .loc-gallery__chips {
