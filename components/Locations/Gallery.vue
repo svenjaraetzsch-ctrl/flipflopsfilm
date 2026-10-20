@@ -10,15 +10,8 @@
        flies up again. Nothing is dragged: the page scrolls as usual. On
        smaller screens the photos follow as a grid below the (then folded)
        map. -->
-  <section ref="rootEl" class="loc-gallery" :class="{ 'is-compact': compact, 'is-detail': !overview }">
-    <div class="container loc-gallery__wrap">
-      <!-- Down at an island, a place or a theme: back to the map it belongs to -->
-      <Transition name="loc-gallery-fade">
-        <button v-if="!overview" type="button" class="loc-gallery__back" @click="goBack($event)">
-          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
-          {{ t('locations.gallery.back') }}
-        </button>
-      </Transition>
+  <section class="loc-gallery" :class="{ 'is-compact': compact, 'is-detail': !overview }">
+    <div ref="wrapEl" class="container loc-gallery__wrap">
 
       <!-- What the island or the theme offers a production, as an open
            column in the type of the page around it: a label, the name, a lead
@@ -363,9 +356,11 @@
            view: the page itself is moved by the smooth scrolling). On the map
            the switch between the islands and all of Spain; down at a location
            (the islands, then the places on the mainland, west to east) or a
-           theme, the ones either side. -->
+           theme the way back to the map it belongs to, and the ones either
+           side. -->
       <Teleport to="body">
         <nav
+          ref="barEl"
           class="loc-gallery__bar"
           :class="{ 'is-shown': barShown && !viewing }"
           :aria-label="overview ? t('locations.mainland.maps') : t(level === 'theme' ? 'locations.gallery.other_themes' : 'locations.mainland.other_locations')"
@@ -380,7 +375,10 @@
             </button>
           </template>
           <template v-else>
-            <span class="loc-gallery__bar-label">{{ level === 'theme' ? t('locations.gallery.themes') : t('locations.mainland.places_label') }}</span>
+            <button type="button" class="loc-gallery__bar-back" :aria-label="t('locations.gallery.back')" @click="goBack($event)">
+              <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6" /></svg>
+              <em>{{ t('locations.mainland.maps') }}</em>
+            </button>
             <button type="button" class="is-step" :aria-label="`${t(level === 'theme' ? 'locations.gallery.prev_theme' : 'locations.mainland.prev_location')}: ${stepName(-1)}`" @click="step(-1, $event)">
               <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M15 5l-7 7 7 7" /></svg>
               <em>{{ stepName(-1) }}</em>
@@ -513,9 +511,9 @@ const baseName = (key) => t(`locations.mainland.${key}.name`)
 // ---------------------------------------------------------------------------
 // State
 
-// Height of the map's area at the island or theme level on smaller screens,
-// where it folds into a bar above the photos (with the way back)
-const HEADER = 72
+// Height of the map's area at an island, a place or a theme on smaller
+// screens, where it folds away above the panel (the way back is in the bar)
+const HEADER = 16
 // Larger screens: the width of the list of themes on the left, in pixels
 // (the map starts below the title, see .loc-gallery__head)
 const COLUMN = 300
@@ -534,8 +532,11 @@ const themeEls = []
 const nameEls = []
 const baseEls = []
 const canariesLabel = ref(null)
-const rootEl = ref(null)
-// The map's bar shows while the gallery is in the middle of the screen
+// The map's bar sticks to the foot of the screen while the gallery is in
+// view, and stays at the gallery's foot once that is above the screen's: it
+// then leaves with the gallery as the page scrolls on (see placeBar)
+const wrapEl = ref(null)
+const barEl = ref(null)
 const barShown = ref(false)
 
 // The hatching of a lit island (one gallery per page, so a fixed id)
@@ -1460,6 +1461,23 @@ let headObs = null
 let nearObs = null
 let viewObs = null
 let barObs = null
+let barNear = false
+let barRaf = 0
+
+// Sticky at the foot of the screen, within the gallery (CSS sticky does not
+// work under the smooth scrolling, which moves the page with a transform):
+// the bar never goes below the gallery's foot, and shows only once the
+// gallery is well up on the screen and until its foot has nearly left it
+const placeBar = () => {
+  barRaf = 0
+  if (!barNear || !wrapEl.value || !barEl.value) return
+  const r = wrapEl.value.getBoundingClientRect()
+  const vh = window.innerHeight
+  barEl.value.style.setProperty('--shift', `${Math.min(0, Math.round(r.bottom - vh))}px`)
+  const shown = r.top < vh - 160 && r.bottom > 140
+  if (barShown.value !== shown) barShown.value = shown
+  barRaf = requestAnimationFrame(placeBar)
+}
 let idle = null
 let lastWidth = 0
 
@@ -1527,8 +1545,14 @@ onMounted(() => {
   )
   viewObs.observe(stage.value)
 
-  barObs = new IntersectionObserver(([entry]) => (barShown.value = entry.isIntersecting), { rootMargin: '-35% 0px -35% 0px' })
-  barObs.observe(rootEl.value)
+  // Placed every frame only while the gallery is on the screen (the smooth
+  // scrolling moves the page between the browser's scroll events)
+  barObs = new IntersectionObserver(([entry]) => {
+    barNear = entry.isIntersecting
+    if (barNear && !barRaf) barRaf = requestAnimationFrame(placeBar)
+    if (!barNear) barShown.value = false
+  })
+  barObs.observe(wrapEl.value)
 
   // On smaller screens the title sets where the map goes; it changes height
   // with the width, and once the site's fonts have loaded.
@@ -1558,6 +1582,7 @@ onBeforeUnmount(() => {
   nearObs?.disconnect()
   viewObs?.disconnect()
   barObs?.disconnect()
+  cancelAnimationFrame(barRaf)
 })
 </script>
 
@@ -1859,6 +1884,14 @@ onBeforeUnmount(() => {
   inset: -12px -6px;
 }
 
+/* Phones: names sit close together (Gran Canaria and Fuerteventura almost
+   touch), so the larger target grows sideways only a little up and down */
+@media (max-width: 559px) {
+  .loc-gallery__label span::before {
+    inset: -3px -6px;
+  }
+}
+
 .loc-gallery__label.is-n span {
   transform: translate(-50%, -100%);
 }
@@ -2116,55 +2149,12 @@ onBeforeUnmount(() => {
 
 /* ---------- Island level ---------- */
 
-/* The way back: on its own, top left (at the container's edge), and the most
-   visible control */
-.loc-gallery__back {
-  position: absolute;
-  top: 18px;
-  left: var(--gutter);
-  z-index: 6;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  height: 46px;
-  padding: 0 22px 0 16px;
-  border: 0;
-  border-radius: 23px;
-  background: var(--sand);
-  color: #201D1D;
-  font-size: 12px;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-  cursor: pointer;
-  transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.loc-gallery__back:hover {
-  background: #fff;
-}
-
-.loc-gallery__back svg {
-  width: 18px;
-  height: 18px;
-  fill: none;
-  stroke: currentColor;
-  stroke-width: 1.6;
-  stroke-linecap: round;
-  stroke-linejoin: round;
-}
-
-.loc-gallery__back:focus-visible {
-  outline: 2px solid var(--sand);
-  outline-offset: 4px;
-}
-
 /* What an island or theme offers, as an open column in the type of the page
    above the gallery (no box): a label, the name in two weights, a lead, then
    blocks on fine rules, on an 8px rhythm */
 .loc-gallery__panel {
   position: absolute;
-  top: 96px;
+  top: 22px;
   left: var(--gutter);
   z-index: 5;
   width: 330px;
@@ -2292,16 +2282,16 @@ onBeforeUnmount(() => {
   background: rgba(32, 29, 29, 0.86);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
+  --shift: 0px;
   opacity: 0;
   visibility: hidden;
-  transform: translate(-50%, 12px);
-  transition: opacity 0.4s ease, transform 0.4s ease, visibility 0.4s;
+  transform: translate(-50%, var(--shift));
+  transition: opacity 0.35s ease, visibility 0.35s;
 }
 
 .loc-gallery__bar.is-shown {
   opacity: 1;
   visibility: visible;
-  transform: translate(-50%, 0);
 }
 
 .loc-gallery__bar-label {
@@ -2335,6 +2325,21 @@ onBeforeUnmount(() => {
 
 .loc-gallery__bar button.is-step {
   align-items: center;
+}
+
+/* The way back to the map, first in the bar, in the type of its label */
+.loc-gallery__bar button.loc-gallery__bar-back {
+  align-items: center;
+  padding-left: 12px;
+  font-size: 11px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--sand);
+}
+
+.loc-gallery__bar button.loc-gallery__bar-back:hover {
+  color: #fff;
+  background: rgba(255, 255, 255, 0.1);
 }
 
 .loc-gallery__bar-no {
@@ -2372,11 +2377,7 @@ onBeforeUnmount(() => {
   .loc-gallery__bar {
     left: 12px;
     bottom: 14px;
-    transform: translateY(12px);
-  }
-
-  .loc-gallery__bar.is-shown {
-    transform: none;
+    transform: translateY(var(--shift));
   }
 
   .loc-gallery__bar-label {
@@ -2392,7 +2393,8 @@ onBeforeUnmount(() => {
     display: none;
   }
 
-  .loc-gallery__bar .is-active em {
+  .loc-gallery__bar .is-active em,
+  .loc-gallery__bar .loc-gallery__bar-back em {
     display: inline;
   }
 }
@@ -2516,11 +2518,6 @@ onBeforeUnmount(() => {
     min-height: 0;
     max-height: none;
     transition: height 0.8s cubic-bezier(0.45, 0, 0.2, 1);
-  }
-
-  .loc-gallery__back {
-    top: 12px;
-    left: calc(var(--gutter) + 12px);
   }
 
   /* Below the map, in the page; the leaving one out of the way */
