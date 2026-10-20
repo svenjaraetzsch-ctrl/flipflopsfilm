@@ -196,6 +196,30 @@
       "title_light": "Canary",
       "title_bold": "Islands"
     },
+    "mainland": {
+      "spain": "Spain",
+      "label": "Mainland Spain",
+      "canaries": "Canary Islands",
+      "all_spain": "All of Spain",
+      "madrid": {
+        "name": "Madrid",
+        "intro": "Our base on the mainland: crews, kit and studios in the capital, with old towns, sierra and open plains within easy reach."
+      },
+      "almeria": {
+        "name": "Almería",
+        "intro": "The Tabernas desert, the volcanic coast of Cabo de Gata and the western towns built for the films shot here."
+      },
+      "tax_canaries_label": "Rebate, Canary Islands",
+      "tax_mainland_label": "Rebate, mainland",
+      "tax_mainland_value": "Up to 30%",
+      "hint_spain_mouse": "Click the Canary Islands, Madrid or Almería to open them",
+      "hint_spain_touch": "Tap the Canary Islands, Madrid or Almería to open them",
+      "hint_side_mouse": "Click an island, a place or a theme to open it",
+      "hint_side_touch": "Tap an island, a place or a theme to open it",
+      "open_base": "Open {name}",
+      "open_canaries": "Open the map of the Canary Islands",
+      "bases": "Places on the mainland"
+    },
     "islands": {
       "elHierro": {
         "name": "El Hierro",

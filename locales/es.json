@@ -196,6 +196,30 @@
       "title_light": "Islas",
       "title_bold": "Canarias"
     },
+    "mainland": {
+      "spain": "España",
+      "label": "España Peninsular",
+      "canaries": "Islas Canarias",
+      "all_spain": "Toda España",
+      "madrid": {
+        "name": "Madrid",
+        "intro": "Nuestra base en la península: equipos, material y estudios en la capital, con cascos históricos, sierra y llanuras a poca distancia."
+      },
+      "almeria": {
+        "name": "Almería",
+        "intro": "El desierto de Tabernas, la costa volcánica del Cabo de Gata y los poblados del oeste construidos para las películas rodadas aquí."
+      },
+      "tax_canaries_label": "Reembolso Canarias",
+      "tax_mainland_label": "Reembolso península",
+      "tax_mainland_value": "Hasta un 30%",
+      "hint_spain_mouse": "Haga clic en Canarias, Madrid o Almería para abrirlos",
+      "hint_spain_touch": "Toque Canarias, Madrid o Almería para abrirlos",
+      "hint_side_mouse": "Haga clic en una isla, un lugar o un tema para abrirlo",
+      "hint_side_touch": "Toque una isla, un lugar o un tema para abrirlo",
+      "open_base": "Abrir {name}",
+      "open_canaries": "Abrir el mapa de las Islas Canarias",
+      "bases": "Lugares en la península"
+    },
     "islands": {
       "elHierro": {
         "name": "El Hierro",
