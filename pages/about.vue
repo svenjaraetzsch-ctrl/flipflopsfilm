@@ -8,7 +8,6 @@
         <div class="main-box main-bg ontop">
           <AboutHeader />
           <AboutUs />
-          <SliderScroll></SliderScroll>
           <AboutAccordions />
           <CreativeAgencyTeam />
         </div>

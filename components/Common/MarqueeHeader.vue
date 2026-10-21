@@ -1,8 +1,11 @@
 <template>
+  <!-- A page title between two walls of location photos running past in
+       perspective (Vincent's photos, data/Locations/grid.json). Needs the
+       preview layout, which carries the styles for header .img-marq. -->
   <header>
     <div class="caption">
       <div class="text-center">
-        <h1>{{ $t('locations.header') }}</h1>
+        <h1>{{ title }}</h1>
       </div>
     </div>
 
@@ -35,6 +38,10 @@
 <script setup>
 import data from '@/data/Locations/grid.json'
 
+defineProps({
+  title: { type: String, required: true }
+})
+
 // Seeded so server and client produce the same order (Math.random caused
 // hydration mismatches, and the static build froze one random order anyway).
 const shuffle = (array, seed) => {
@@ -54,3 +61,10 @@ const shuffle = (array, seed) => {
 const leftImages = shuffle(data, 7)
 const rightImages = shuffle(data, 42)
 </script>
+
+<style scoped>
+/* Film look, so these photos sit in the same family as Daniel Bonhoff's. */
+.img-marq img {
+  filter: var(--pc-film-filter);
+}
+</style>

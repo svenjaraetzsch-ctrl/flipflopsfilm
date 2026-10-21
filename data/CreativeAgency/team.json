@@ -3,12 +3,14 @@
     "id": 1,
     "role": "Founder",
     "name": "David Turpin",
-    "image": "/assets/imgs/team/David_Turpin.jpeg"
+    "image": "/assets/imgs/team/David_Turpin.jpeg",
+    "portrait": "/assets/imgs/team/david-turpin-portrait.jpg"
   },
   {
     "id": 2,
     "role": "Founder",
     "name": "André Dolezal",
-    "image": "/assets/imgs/team/André_Dolezal.jpeg"
+    "image": "/assets/imgs/team/André_Dolezal.jpeg",
+    "portrait": "/assets/imgs/team/andre-dolezal-portrait.jpg"
   }
 ]

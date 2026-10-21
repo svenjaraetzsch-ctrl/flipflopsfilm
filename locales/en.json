@@ -28,6 +28,7 @@
     "cookie_policy": "Cookie Policy"
   },
   "common": {
+    "founder": "Founder",
     "read_more": "Read more",
     "years_in_production": "Years in Production",
     "why_label": "Why Flip Flops Film",
@@ -104,17 +105,22 @@
   "tax": {
     "header": "Tax Incentives",
     "canary_label": "Canary Islands",
-    "canary_value": "Up to 54% Rebate",
+    "canary_value": "Up to 54% Tax Rebate",
     "mainland_label": "Mainland Spain",
-    "mainland_value": "Up to 30% Rebate",
+    "mainland_value": "Up to 30% Tax Rebate",
     "min_spend_label": "Minimum Spend",
-    "min_spend_live": "€1,000,000 for live-action feature films and series",
-    "min_spend_animation": "€200,000 for animation works",
     "max_rebate_label": "Maximum Rebate",
-    "max_rebate_film": "Up to €36,000,000 for feature films",
-    "max_rebate_series": "Up to €18,000,000 per episode for series",
+    "canary_min_spend_live": "€1,000,000 for live-action feature films and series",
+    "canary_min_spend_animation": "€200,000 for animation productions",
+    "canary_max_rebate_film": "Up to €36,000,000 for feature films",
+    "canary_max_rebate_series": "Up to €18,000,000 per episode for series",
+    "mainland_min_spend_live": "€1,000,000 for live-action feature films and series",
+    "mainland_min_spend_animation": "€200,000 for animation productions",
+    "mainland_max_rebate_film": "Up to €20,000,000 per production (feature film)",
+    "mainland_max_rebate_series": "Up to €10,000,000 per episode for series",
     "opportunity_label": "The Opportunity",
-    "opportunity_h5": "Spain has become one of Europe's leading destinations for international productions, offering a combination of financial incentives, diverse filming locations and highly experienced production professionals. Depending on the region and project structure, productions may qualify for substantial rebates on eligible local expenditure.",
+    "opportunity_heading": "Spain has become one of Europe's leading destinations for international productions.",
+    "opportunity_text": "It offers a combination of financial incentives, diverse filming locations and highly experienced production professionals. Depending on the region and project structure, productions may qualify for substantial rebates on eligible local expenditure.",
     "opportunity_p": "The Canary Islands currently offer some of the most competitive production incentives in Europe, while mainland Spain provides attractive rebate opportunities for feature films, television productions and international co-productions. Combined with established infrastructure and year-round filming conditions, Spain continues to attract productions from around the world.",
     "approach_label": "Our Approach",
     "approach_p": "Every production is unique, and incentive eligibility depends on a range of creative, operational and financial factors. Our role is to help clients understand available opportunities, evaluate project requirements and develop a production strategy that makes the most of Spain's incentive framework while ensuring a smooth production process.",
@@ -162,7 +168,121 @@
     "header": "Locations",
     "label": "Endless Visual Possibilities",
     "h5": "Fewer company moves, greater visual variety and more time where it matters most: on set.",
-    "p": "Within a few hours, landscapes shift from lunar volcanic terrain and windswept coastlines to dense forests, desert roads and timeless villages. Locations that would normally require multiple countries can often be found within a single region."
+    "p": "Within a few hours, landscapes shift from lunar volcanic terrain and windswept coastlines to dense forests, desert roads and timeless villages. Locations that would normally require multiple countries can often be found within a single region.",
+    "gallery": {
+      "islands": "Islands",
+      "themes": "Themes",
+      "region": "Locations Gallery: map of the Canary Islands with {count} photos",
+      "tax_label": "Tax rebate",
+      "tax_value": "Up to 54%",
+      "season_label": "Filming season",
+      "season_value": "Year-round",
+      "photos": "{count} photos",
+      "filmed": "Filmed here",
+      "found_on": "Found on",
+      "back": "Back to map",
+      "prev_island": "Previous island",
+      "next_island": "Next island",
+      "prev_theme": "Previous theme",
+      "next_theme": "Next theme",
+      "other_islands": "Other islands",
+      "other_themes": "Other themes",
+      "open": "{name}, {count} photos. Open",
+      "open_island": "Open {name}",
+      "photos_of": "Photos of {name}",
+      "photo_of": "{name}, photo {n} of {total}",
+      "prev_photo": "Previous photo",
+      "next_photo": "Next photo",
+      "close": "Close",
+      "theme_no": "Theme {n} / {total}"
+    },
+    "mainland": {
+      "label": "Mainland Spain",
+      "canaries": "Canary Islands",
+      "all_spain": "All of Spain",
+      "madrid": {
+        "name": "Madrid",
+        "intro": "Our base on the mainland: crews, kit and studios in the capital, with old towns, sierra and open plains within easy reach."
+      },
+      "almeria": {
+        "name": "Almería",
+        "intro": "The Tabernas desert, the volcanic coast of Cabo de Gata and the western towns built for the films shot here."
+      },
+      "tax_canaries_label": "Rebate, Canary Islands",
+      "tax_mainland_label": "Rebate, mainland",
+      "tax_mainland_value": "Up to 30%",
+      "open_base": "Open {name}",
+      "open_canaries": "Open the map of the Canary Islands",
+      "maps": "Map",
+      "prev_location": "Previous location",
+      "next_location": "Next location",
+      "other_locations": "Other locations"
+    },
+    "islands": {
+      "elHierro": {
+        "name": "El Hierro",
+        "intro": "The smallest, most remote island: black lava coasts, wind-bent juniper forests and quiet roads."
+      },
+      "laPalma": {
+        "name": "La Palma",
+        "intro": "The green island: laurel forests, waterfalls and the deep Caldera de Taburiente, plus fresh lava fields from the 2021 eruption."
+      },
+      "laGomera": {
+        "name": "La Gomera",
+        "intro": "Deep ravines, terraced valleys and rock spires, crowned by the misty laurel forest of Garajonay."
+      },
+      "tenerife": {
+        "name": "Tenerife",
+        "intro": "The largest island and the archipelago's production hub: Spain's highest peak, lunar plains, pine forests and a modern capital."
+      },
+      "granCanaria": {
+        "name": "Gran Canaria",
+        "intro": "A continent in miniature: deep canyons, mountain villages, dunes, a colonial old town and a big port city."
+      },
+      "fuerteventura": {
+        "name": "Fuerteventura",
+        "intro": "Endless beaches and bare desert mountains: the archipelago's Sahara, with wide horizons and few people."
+      },
+      "lanzarote": {
+        "name": "Lanzarote",
+        "intro": "Shaped by eruptions and by César Manrique: lava seas, craters, black vineyards and wild surf beaches."
+      }
+    },
+    "themes": {
+      "volcanic": {
+        "name": "Volcanic",
+        "intro": "Lava fields, craters and lunar plains, from Teide to Timanfaya."
+      },
+      "desert": {
+        "name": "Desert & dunes",
+        "intro": "Dunes, stony plains and bare ridges that read as the Sahara or the Middle East."
+      },
+      "forest": {
+        "name": "Forest & water",
+        "intro": "Laurel and pine forests, ferns, waterfalls and mountain lakes: green worlds far from the beach image."
+      },
+      "mountains": {
+        "name": "Mountains & valleys",
+        "intro": "Canyons, rock spires, high ridges and green valleys with meadows."
+      },
+      "coast": {
+        "name": "Coast",
+        "intro": "Long beaches, surf, sea stacks, cliffs and natural pools: the Atlantic in every mood."
+      },
+      "roads": {
+        "name": "Roads",
+        "intro": "Hairpin passes, forest roads, desert straights and coastal routes, made for car shoots."
+      },
+      "towns": {
+        "name": "Towns & villages",
+        "intro": "White villages, colonial old towns, harbours and modern city streets."
+      }
+    }
+  },
+  "compare": {
+    "original": "Original",
+    "cinematic": "Cinematic look",
+    "label": "Compare the original with the cinematic look"
   },
   "services": {
     "header": "Production Services",

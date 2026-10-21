@@ -1,20 +1,22 @@
 <template>
   <section class="section-padding">
     <div class="container">
-      <div class="row justify-content-center">
-        <div class="col-lg-11">
-          <div class="row">
-            <div class="col-lg-5">
-              <span class="sub-title bord mb-30">{{ $t('tax.approach_label') }}</span>
-            </div>
-            <div class="col-lg-7">
-              <div class="text">
-                <p class="fz-18">{{ $t('tax.approach_p') }}</p>
-              </div>
-            </div>
+      <!-- Set as the second row of About's first section: the text on the
+           left, a photo on the right -->
+      <div class="row">
+        <div class="col-lg-5">
+          <div class="text">
+            <p>{{ $t('tax.approach_p') }}</p>
           </div>
+        </div>
+        <div class="col-lg-6 offset-lg-1">
+          <PhotoConceptsSidePhoto class="pc-side-photo--right" :image="photos.famara" />
         </div>
       </div>
     </div>
   </section>
 </template>
+
+<script setup>
+import { photos } from '@/data/PhotoConcepts/photos'
+</script>

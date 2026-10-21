@@ -6,20 +6,22 @@
     <div id="smooth-content">
         <main class="main-bg">
             <div class="main-box main-bg ontop">
-                
-                <LocationsHeader />
-                <LocationsTopContent></LocationsTopContent>
-                <LocationsGrid></LocationsGrid>
+                <!-- The map opens the page, with the page title over it, and the
+                     description below it -->
+                <LocationsGallery />
+                <LocationsTopContent />
             </div>
-            <CreativePortfolioContact />
+            <PhotoConceptsContact :image="photos.caldera" />
         </main>
-      
+
         <CommonFooter1 />
     </div>
   </div>
 </template>
 
 <script setup>
+import { photos } from '@/data/PhotoConcepts/photos'
+
 //= Page Metadata
 definePageMeta({
   layout: "preview",
@@ -33,3 +35,4 @@ useHead({
   ]
 });
 </script>
+

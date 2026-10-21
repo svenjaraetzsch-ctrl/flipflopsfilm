@@ -56,12 +56,7 @@ const toggleMenu = () => {
   document.querySelector('.hamenu').classList.toggle('open');
   document.querySelector('.topnav .menu-icon').classList.toggle('open');
   navDark.classList.toggle('navlit');
-
-  if (document.querySelector('.topnav .menu-icon').classList.contains('open')) {
-    document.querySelector('.hamenu').style.top = '0';
-  } else {
-    document.querySelector('.hamenu').style.top = '-100%';
-  }
+  // The slide itself is CSS on .hamenu.open (Menu.vue).
 };
 </script>
 

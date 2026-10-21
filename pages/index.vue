@@ -5,14 +5,17 @@
     <CommonNavbar />
     <CommonMenu />
     <div id="smooth-content">
-      <main class="main-bg">
+      <!-- The home page with Daniel Bonhoff's photographs woven in; the hero
+           video opens to full screen as the page scrolls and carries a line
+           that compares the original with the cinematic look. -->
+      <main class="main-bg pc-home">
         <div class="main-box main-bg ontop">
-          <CreativeAgencyHeader />
+          <PhotoConceptsHomeHero />
           <CreativeAgencyAbout />
           <CreativeAgencyTestimonials />
           <CreativeAgencyAwards />
         </div>
-        <CreativePortfolioContact />
+        <PhotoConceptsContact :image="photos.cofete" />
       </main>
       <CommonFooter1 />
     </div>
@@ -20,6 +23,8 @@
 </template>
 
 <script setup>
+import { photos } from '@/data/PhotoConcepts/photos'
+
 usePageSeo('home')
 
 useHead({
@@ -35,3 +40,4 @@ useHead({
   ]
 })
 </script>
+

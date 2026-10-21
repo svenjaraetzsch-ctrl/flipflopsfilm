@@ -1,5 +1,8 @@
 <template>
-  <div class="loader-wrap">
+  <!-- The page underneath can't be scrolled until the intro is over (see
+       smoother-script.js and globals.css): scrolled down unseen, it slid back
+       to the top as soon as the intro ended. -->
+  <div class="loader-wrap" :class="{ 'is-done': done }">
     <svg viewBox="0 0 1000 1000" preserveAspectRatio="none">
       <path id="svg" d="M0,1005S175,995,500,995s500,5,500,5V0H0Z"></path>
     </svg>
@@ -17,7 +20,9 @@
 </template>
 
 <script setup>
-import { onMounted } from 'vue';
+import { onMounted, ref } from 'vue';
+
+const done = ref(false);
 
 onMounted(() => {
   const svg = document.getElementById("svg");
@@ -29,6 +34,9 @@ onMounted(() => {
   tl.to(svg, { duration: 0.5, attr: { d: curve }, ease: "power2.easeIn", }).to(svg, { duration: 0.5, attr: { d: flat }, ease: "power2.easeOut", });
   tl.to(".loader-wrap", { y: -1500, });
   tl.to(".loader-wrap", { zIndex: -1, display: "none", onComplete: function() {
+    done.value = true;
+    const smoother = typeof ScrollSmoother !== "undefined" && ScrollSmoother.get();
+    if (smoother) smoother.paused(false);
     document.body.style.overflow = '';
     document.body.style.height = '';
     document.documentElement.style.overflow = '';
@@ -36,5 +44,8 @@ onMounted(() => {
   // Not every page has a <header> / header .container; skip to avoid GSAP "target not found"
   if (document.querySelector("header")) tl.from("header", { y: 200 }, "-=1.5");
   if (document.querySelector("header .container")) tl.from("header .container", { y: 40, opacity: 0, delay: 0.3 }, "-=1.5");
+  // ScrollTriggers measured while the header was still shifted by the intro
+  // are 200px off; measure again once everything has settled.
+  tl.call(() => { if (typeof ScrollTrigger !== "undefined") ScrollTrigger.refresh(); });
 });
 </script>

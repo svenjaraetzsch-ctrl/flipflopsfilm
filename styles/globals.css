@@ -81,7 +81,17 @@ body,
   overflow-x: hidden;
 }
 
-/* 6. Hide the cursor dot on touch devices */
+/* 6. No scrolling while the intro loader covers the page: scrolled down
+   unseen, the page slid back to the top once the intro was over. Desktop
+   pauses ScrollSmoother instead (smoother-script.js), which keeps the
+   scrollbar and so doesn't shift the layout when it lets go. */
+@media (max-width: 991px) {
+  html:has(.loader-wrap:not(.is-done)) {
+    overflow: hidden;
+  }
+}
+
+/* 7. Hide the cursor dot on touch devices */
 @media (hover: none), (pointer: coarse) {
   .cursor { display: none !important; }
 }
@@ -243,4 +253,139 @@ footer .logo .logo-svg-wrap {
   footer .container.pb-80 { padding-bottom: 35px !important; }
   footer .container.pt-80 { padding-top: 35px !important; }
   footer .row.mt-80 { margin-top: 35px !important; }
+}
+
+/* ====================== [ Film look for photography ] ====================== */
+
+/* The grade that brings existing photos and the hero video close to Daniel
+   Bonhoff's soft, warm film images. One value, used everywhere. */
+:root {
+  --pc-film-filter: sepia(0.25) saturate(0.7) contrast(0.9) brightness(1.03);
+}
+
+/* The full "film" treatment (the large view of the Locations Gallery): the
+   grade above plus a warm wash, a vignette and moving grain from the theme's
+   own noise texture. */
+.pc-filmic {
+  position: relative;
+  overflow: hidden;
+  height: 100%;
+}
+
+.pc-filmic img {
+  filter: var(--pc-film-filter);
+}
+
+.pc-filmic::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    radial-gradient(ellipse at center, rgba(0, 0, 0, 0) 50%, rgba(30, 20, 12, 0.5) 100%),
+    rgba(215, 170, 115, 0.16);
+  mix-blend-mode: multiply;
+}
+
+.pc-filmic::after {
+  content: '';
+  position: absolute;
+  inset: -100%;
+  z-index: 2;
+  pointer-events: none;
+  background-image: url(/assets/imgs/noise.png);
+  opacity: 0.35;
+  mix-blend-mode: overlay;
+  animation: grain 8s steps(10) infinite;
+}
+
+/* ====================== [ Page titles ] ====================== */
+
+/* One title on every page: the cut, size and distance from the top of the
+   About page title (Mona-Sans Medium, 60px, starting 200px from the top;
+   40px / 160px and 32px / 120px on smaller screens). Used by every page
+   header with a title, with or without a photo behind it. */
+.pc-page-head {
+  padding-top: 0;
+}
+
+.pc-page-head .caption {
+  padding-top: 200px;
+  padding-bottom: 160px;
+}
+
+.pc-page-head .caption h1 {
+  margin: 0;
+  font-family: 'Mona-Sans Medium', sans-serif;
+  font-weight: 500;
+  font-size: 60px;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+/* The home title (its own, larger statement) starts at the same height */
+.crev-header {
+  padding-top: 200px;
+}
+
+/* Without a photo the text that follows can come closer */
+.pc-page-head--plain .caption {
+  padding-bottom: 60px;
+}
+
+@media (max-width: 991px) {
+  .pc-page-head .caption {
+    padding-top: 160px;
+    padding-bottom: 100px;
+  }
+
+  .pc-page-head .caption h1 {
+    font-size: 40px;
+  }
+
+  .crev-header {
+    padding-top: 160px;
+  }
+
+  .pc-page-head--plain .caption {
+    padding-bottom: 40px;
+  }
+}
+
+@media (max-width: 768px) {
+  .pc-page-head .caption {
+    padding-top: 120px;
+    padding-bottom: 80px;
+  }
+
+  .pc-page-head .caption h1 {
+    font-size: 32px;
+  }
+
+  .crev-header {
+    padding-top: 120px;
+  }
+
+  .pc-page-head--plain .caption {
+    padding-bottom: 30px;
+  }
+}
+
+/* Section headings in capitals (h3.text-u, as on About): a word too long
+   for its column breaks rather than running out of it. Long German
+   compounds carry a soft hyphen at the joint in the locale file
+   (Produktions-unterstützung), so they break there first. */
+h3.text-u {
+  overflow-wrap: break-word;
+}
+
+/* Text only for search engines and screen readers */
+.pc-sr-only {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  clip-path: inset(50%) !important;
+  white-space: nowrap !important;
 }
