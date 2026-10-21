@@ -2,14 +2,14 @@
   <section class="section-padding">
     <div class="container">
       <!-- One row per region, the same columns in each so they compare at a
-           glance: the rebate rate large, then the minimum spend and the
+           glance: the rebate rate as a heading, then the minimum spend and the
            maximum rebate -->
       <div class="tax-rates mb-80 pb-20">
         <div v-for="region in regions" :key="region.key" class="row tax-rates__row">
           <div class="col-lg-4">
             <div class="item mb-30">
               <span class="opacity-8 mb-5">{{ region.label }}</span>
-              <h2 class="tax-rates__rate">{{ region.rate[0] }}</h2>
+              <h4 class="tax-rates__rate">{{ region.rate[0] }}</h4>
               <p class="item-detail">{{ region.rate[1] }}</p>
             </div>
           </div>
