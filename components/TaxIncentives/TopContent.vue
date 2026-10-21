@@ -9,7 +9,7 @@
           <div class="col-lg-4">
             <div class="item mb-30">
               <span class="opacity-8 mb-5">{{ region.label }}</span>
-              <h4 class="tax-rates__rate">{{ region.rate[0] }}</h4>
+              <h5 class="tax-rates__rate">{{ region.rate[0] }}</h5>
               <p class="item-detail">{{ region.rate[1] }}</p>
             </div>
           </div>
